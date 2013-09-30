@@ -2,6 +2,17 @@
 
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/../yii-1.1.14.f0fee9/framework/yii.php';
+
+if($_SERVER['SERVER_NAME'] == 'localhost'){
+    $config=dirname(__FILE__).'/protected/config/main-local.php';
+}
+else if($_SERVER['SERVER_NAME'] == 'beta.oddsleaders.com' || $_SERVER['SERVER_NAME'] == 'www.beta.oddsleaders.com'){
+    $config=dirname(__FILE__).'/protected/config/main-beta.php';
+}
+else{
+    $config=dirname(__FILE__).'/protected/config/main.php';
+}
+
 $config=dirname(__FILE__).'/protected/config/main.php';
 
 // remove the following lines when in production mode
