@@ -11,10 +11,7 @@ else if($_SERVER['SERVER_NAME'] == 'beta.oddsleaders.com' || $_SERVER['SERVER_NA
 }
 else{
     $config=dirname(__FILE__).'/protected/config/main.php';
-    var_dump("da");
 }
-
-$config=dirname(__FILE__).'/protected/config/main.php';
 
 // remove the following lines when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG',true);
