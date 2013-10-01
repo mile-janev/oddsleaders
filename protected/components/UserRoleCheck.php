@@ -2,7 +2,7 @@
 
 class UserRoleCheck{
     
-    public static function admins()
+    public static function admin_users()
     {
         $adminUsers = Role::model()->findAllByAttributes(array("role"=>Role::ADMIN_USER));
         
@@ -15,7 +15,7 @@ class UserRoleCheck{
         return $adminsArray;
     }
     
-    public static function frees()
+    public static function free_users()
     {
         $freeUsers = Role::model()->findAllByAttributes(array("role"=>Role::FREE_USER));
         
