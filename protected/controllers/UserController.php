@@ -87,7 +87,7 @@ class UserController extends Controller
 
 		if(isset($_POST['User']))
 		{
-                        $_POST['User']['role'] = UserRoles::FREE_USER;
+                        $_POST['User']['role'] = Role::FREE_USER;
 			$postParams = $_POST['User'];
                         
 			if($model->saveUser($postParams))
