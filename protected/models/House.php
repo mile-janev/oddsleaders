@@ -47,6 +47,7 @@ class House extends CActiveRecord
 		return array(
 			'coefficients' => array(self::HAS_MANY, 'Coefficient', 'house_id'),
 			'nicknames' => array(self::HAS_MANY, 'Nickname', 'house_id'),
+                        'rounds' => array(self::HAS_MANY, 'Round', 'house_id'),
 		);
 	}
 

@@ -51,6 +51,7 @@ class Game extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'coefficients' => array(self::HAS_MANY, 'Coefficient', 'game_id'),
+                        'rounds' => array(self::HAS_MANY, 'Round', 'game_id'),
 			'guest' => array(self::BELONGS_TO, 'Team', 'guest_id'),
 			'home' => array(self::BELONGS_TO, 'Team', 'home_id'),
 		);

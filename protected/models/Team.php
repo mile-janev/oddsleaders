@@ -50,8 +50,8 @@ class Team extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'games' => array(self::HAS_MANY, 'Game', 'guest_id'),
-			'games1' => array(self::HAS_MANY, 'Game', 'home_id'),
+                        'homes' => array(self::HAS_MANY, 'Game', 'home_id'),
+			'guests' => array(self::HAS_MANY, 'Game', 'guest_id'),
 			'nicknames' => array(self::HAS_MANY, 'Nickname', 'team_id'),
 			'league' => array(self::BELONGS_TO, 'League', 'league_id'),
 		);
