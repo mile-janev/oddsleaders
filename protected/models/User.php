@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "users".
+ * This is the model class for table "user".
  *
- * The followings are the available columns in table 'users':
+ * The followings are the available columns in table 'user':
  * @property string $id
  * @property string $username
  * @property string $password
@@ -11,16 +11,16 @@
  * @property string $date_created
  *
  * The followings are the available model relations:
- * @property UserRoles[] $userRoles
+ * @property Role[] $Role
  */
-class Users extends CActiveRecord
+class User extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'users';
+		return 'user';
 	}
 
 	/**
@@ -48,7 +48,7 @@ class Users extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'userRoles' => array(self::HAS_MANY, 'UserRoles', 'user_id'),
+			'roles' => array(self::HAS_MANY, 'Role', 'user_id'),
 		);
 	}
 
@@ -99,10 +99,31 @@ class Users extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Users the static model class
+	 * @return User the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
+        
+        //This method will be used to save User to database
+        public function saveUser($postParams)
+        {
+            $bool = false;
+            
+            $this->attributes = $postParams;
+            
+            if($this->save())
+            {
+                $user_role = $postParams['role'];
+                $role = new Role();
+                $role->role = $user_role;
+                $role->user_id = $this->id;
+                $role->save();
+                
+                $bool = true;
+            }
+            
+            return $bool;
+        }
 }

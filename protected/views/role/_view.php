@@ -1,6 +1,6 @@
 <?php
-/* @var $this UserRolesController */
-/* @var $data UserRoles */
+/* @var $this RoleController */
+/* @var $data Role */
 ?>
 
 <div class="view">

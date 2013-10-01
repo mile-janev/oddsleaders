@@ -1,24 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "user_roles".
+ * This is the model class for table "role".
  *
- * The followings are the available columns in table 'user_roles':
+ * The followings are the available columns in table 'role':
  * @property string $id
  * @property string $user_id
  * @property string $role
  *
  * The followings are the available model relations:
- * @property Users $user
+ * @property User $user
  */
-class UserRoles extends CActiveRecord
+class Role extends CActiveRecord
 {
+    const FREE_USER = "free";
+    const PRO_USER = "professional";
+    const MANAGER_USER = "manager";
+    const ADMIN_USER = "administrator";
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'user_roles';
+		return 'role';
 	}
 
 	/**
@@ -46,7 +50,7 @@ class UserRoles extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
+			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -93,7 +97,7 @@ class UserRoles extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return UserRoles the static model class
+	 * @return Role the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

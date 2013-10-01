@@ -1,6 +1,6 @@
 <?php
 
-class UserRolesController extends Controller
+class UserController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -28,7 +28,7 @@ class UserRolesController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','register'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -62,20 +62,42 @@ class UserRolesController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new UserRoles;
+		$model=new User;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['UserRoles']))
+		if(isset($_POST['User']))
 		{
-			$model->attributes=$_POST['UserRoles'];
+			$model->attributes=$_POST['User'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+		));
+	}
+        
+        public function actionRegister()
+	{
+		$model=new User;
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['User']))
+		{
+                        $_POST['User']['role'] = UserRoles::FREE_USER;
+			$postParams = $_POST['User'];
+                        
+			if($model->saveUser($postParams))
+                        {                             
+                            $this->redirect(array('view','id'=>$model->id));
+                        }
+		}
+
+		$this->render('register',array(
+			'model'=>$model
 		));
 	}
 
@@ -91,9 +113,9 @@ class UserRolesController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['UserRoles']))
+		if(isset($_POST['User']))
 		{
-			$model->attributes=$_POST['UserRoles'];
+			$model->attributes=$_POST['User'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +144,7 @@ class UserRolesController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('UserRoles');
+		$dataProvider=new CActiveDataProvider('User');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +155,10 @@ class UserRolesController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new UserRoles('search');
+		$model=new User('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['UserRoles']))
-			$model->attributes=$_GET['UserRoles'];
+		if(isset($_GET['User']))
+			$model->attributes=$_GET['User'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +169,12 @@ class UserRolesController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return UserRoles the loaded model
+	 * @return User the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=UserRoles::model()->findByPk($id);
+		$model=User::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +182,11 @@ class UserRolesController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param UserRoles $model the model to be validated
+	 * @param Users $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='user-roles-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='users-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
