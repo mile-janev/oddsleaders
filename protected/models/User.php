@@ -15,6 +15,20 @@
  */
 class User extends CActiveRecord
 {
+    public $password_repeat;
+    
+    public function beforeSave() { // 06adb4cbaa2eabbc41f8f2af3b095bf65d67d7b8
+            if ($this->isNewRecord) {
+                $this->date_created = new CDbExpression('NOW()');
+            } else {
+                $this->date_modified = new CDbExpression('NOW()');
+            }
+            
+            $bcrypt = new Bcrypt();
+            $this->password = $bcrypt->hash($this->password);
+
+            return parent::beforeSave();
+        }
 	/**
 	 * @return string the associated database table name
 	 */
@@ -31,12 +45,17 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, name, date_created', 'required'),
-			array('username', 'length', 'max'=>50),
-			array('password, name', 'length', 'max'=>255),
+			array('username, password, password_repeat, email', 'required'),
+			array('username, password, email', 'length', 'max'=>64),
+			array('name', 'length', 'max'=>255),
+                        array('email', 'email'),
+                        array('email', 'unique'), 
+                        array('username', 'unique'),
+                        array('password, password_repeat', 'length', 'max'=>64),
+                        array('password_repeat', 'compare', 'compareAttribute'=>'password'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, name, date_created', 'safe', 'on'=>'search'),
+			array('id, username, name, email, date_created', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,8 +80,10 @@ class User extends CActiveRecord
 			'id' => 'ID',
 			'username' => 'Username',
 			'password' => 'Password',
+                        'password_repeat' => 'Repeat password',
 			'name' => 'Name',
 			'date_created' => 'Date Created',
+                        'email' => 'E-mail',
 		);
 	}
 
@@ -86,8 +107,8 @@ class User extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
 		$criteria->compare('name',$this->name,true);
+                $criteria->compare('email',$this->email,true);
 		$criteria->compare('date_created',$this->date_created,true);
 
 		return new CActiveDataProvider($this, array(

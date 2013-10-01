@@ -18,7 +18,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>64)); ?>
 	</div>
 
 	<div class="row">
@@ -27,8 +27,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'date_created'); ?>
-		<?php echo $form->textField($model,'date_created'); ?>
+		<?php echo $form->label($model,'email'); ?>
+		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>64)); ?>
 	</div>
 
 	<div class="row buttons">

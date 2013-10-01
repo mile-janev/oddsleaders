@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'User'=>array('index'),
-	'Register Tutor',
+	'Register',
 );
 
 $this->menu=array(
