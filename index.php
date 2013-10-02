@@ -3,7 +3,7 @@
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/../yii-1.1.14.f0fee9/framework/yii.php';
 
-if($_SERVER['SERVER_NAME'] == 'localhost'){
+if($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == 'oddsleaders.dev'){
     $config=dirname(__FILE__).'/protected/config/main-local.php';
 }
 else if($_SERVER['SERVER_NAME'] == 'beta.oddsleaders.com' || $_SERVER['SERVER_NAME'] == 'www.beta.oddsleaders.com'){
