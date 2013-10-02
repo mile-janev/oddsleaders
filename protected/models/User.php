@@ -55,7 +55,7 @@ class User extends CActiveRecord
                         array('password_repeat', 'compare', 'compareAttribute'=>'password'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, name, email, date_created', 'safe', 'on'=>'search'),
+			array('id, username, name, email, date_created, oauth_provider', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,6 +84,8 @@ class User extends CActiveRecord
 			'name' => 'Name',
 			'date_created' => 'Date Created',
                         'email' => 'E-mail',
+                        'oauth_provider'=>'Provider',
+                        'oauth_uid'=>'User id from provider'
 		);
 	}
 
@@ -110,6 +112,8 @@ class User extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
                 $criteria->compare('email',$this->email,true);
 		$criteria->compare('date_created',$this->date_created,true);
+                $criteria->compare('oauth_provider',$this->oauth_provider,true);
+                $criteria->compare('oauth_uid',$this->oauth_uid,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

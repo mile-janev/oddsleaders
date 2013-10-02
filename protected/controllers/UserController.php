@@ -82,6 +82,8 @@ class UserController extends Controller
         public function actionRegister()
 	{
 		$model=new User;
+                $model->oauth_provider = isset($_GET['registerwith']) ? $_GET['registerwith'] : "ordinary";
+                
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -95,9 +97,75 @@ class UserController extends Controller
                             $this->redirect(array('view','id'=>$model->id));
                         }
 		}
+                
+//                Facebook registration start
+                require dirname(Yii::app()->basePath) . '/lib/facebook-php-sdk/src/facebook.php';
+                
+                $facebook = new Facebook(array(
+                    'appId' => '1454745711416645',
+                    'secret' => '4b531490370c935cc2079ba8ea78b7e0',
+                    'cookie' => true,
+                ));
+                
+                if(isset($_GET['registerwith']) && $_GET['registerwith'] == 'facebook'){
+                    $fb_user = $facebook->getUser();
+                    // we check if there is a user logged in
+                    if ($fb_user) {
+                        try {
+                            $user_info = $facebook->api('/'.$fb_user);                
+                        } catch (Exception $exc) {
+                            echo $exc->getMessage();
+                        }
+                        
+                        if($user_info){
+                            $model->name = $user_info['first_name']." ".$user_info['last_name'];
+                            $model->username = $user_info['username'];
+                            $model->email = $user_info['email'];
+                            $model->oauth_provider = "facebook";
+                            $access_token = $facebook->getAccessToken();
+                            $model->oauth_uid = $fb_user;   //Ova e ID na userot
+                            Yii::app()->user->name = $model->username;
+
+                            $user = User::model()->findByAttributes(array('username'=>$model->username));
+
+                            if(!isset($user))
+                            {
+                                if(isset($_POST['User']))
+                                {
+                                    $_POST['User']['role'] = Role::FREE_USER;
+                                    $postParams = $_POST['User'];
+                                    if($model->saveUser($postParams))
+                                    {                             
+                                        $this->redirect(Yii::app()->createUrl("site/login"));
+                                    }
+                                }
+                            }
+                            else if(isset($user) && $user->oauth_provider != 'facebook')
+                            {
+                                User::model()->updateByPk($user->id, array('password'=>NULL,'oauth_provider'=>'facebook', 'oauth_uid'=>$model->oauth_uid));
+                            }
+                            
+                                Yii::app()->session['login_way'] = 'facebook'; //If user is authenticated via facebook we set this session to check later in UserIdentity class
+                                if($model->validate() && $model->login())
+                                {
+                                    if(isset(Yii::app()->session['model']))
+                                    {
+                                         $this->redirect(Yii::app()->createUrl("site/index"));
+                                    }
+                                    else
+                                    {
+                                        $this->redirect(Yii::app()->user->returnUrl);
+                                    }
+                                }
+        //				$this->redirect(Yii::app()->user->returnUrl);
+                        }
+                    }
+                }
+//                Facebook registration end
 
 		$this->render('register',array(
-			'model'=>$model
+			'model'=>$model,
+                        'facebook' => $facebook
 		));
 	}
 

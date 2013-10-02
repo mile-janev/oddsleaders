@@ -94,8 +94,62 @@ class SiteController extends Controller
 			if($model->validate() && $model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
+                
+//                Facebook login start
+                require dirname(Yii::app()->basePath) . '/lib/facebook-php-sdk/src/facebook.php';
+                
+                $facebook = new Facebook(array(
+                    'appId' => '1454745711416645',
+                    'secret' => '4b531490370c935cc2079ba8ea78b7e0',
+                    'cookie' => true,
+                ));
+
+                if(isset($_GET['registerwith']) && $_GET['registerwith'] == 'facebook'){
+                    $fb_user = $facebook->getUser();
+                    
+                    // we check if there is a user logged in
+                    if ($fb_user) {
+                        try {
+                            $user_info = $facebook->api('/'.$fb_user);                
+                        } catch (Exception $exc) {
+                            echo $exc->getMessage();
+                        }
+                        
+                        if($user_info){
+                
+                            $user = User::model()->findByAttributes(array('username'=>$user_info['username']));
+                            if($user)
+                            {
+                                $model->username = $user->username;
+                                $model->password = $user->password;
+                                
+                                if($model->validate() && $model->login())
+                                {
+                                    if(isset(Yii::app()->session['model']))
+                                    {
+                                         $this->redirect(Yii::app()->createUrl("site/index"));
+                                    }
+                                    else
+                                    {
+                                        $this->redirect(Yii::app()->user->returnUrl);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                echo "Please register first";
+                            }
+                            
+                        }
+                    }
+                }
+//                Facebook registration end
+                
 		// display the login form
-		$this->render('login',array('model'=>$model));
+		$this->render('login',array(
+                    'model'=>$model,
+                    'facebook' => $facebook,
+                ));
 	}
 
 	/**

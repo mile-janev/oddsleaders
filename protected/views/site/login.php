@@ -50,4 +50,7 @@ $this->breadcrumbs=array(
 	</div>
 
 <?php $this->endWidget(); ?>
+        
+<div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl('site/login', array('registerwith' => 'facebook'), '', '&')))); ?>" >Login using Facebook</a></div>
+        
 </div><!-- form -->

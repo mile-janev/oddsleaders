@@ -18,21 +18,36 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-                $users = User::model()->findByAttributes(array('username' => $this->username));
+                $user = User::model()->findByAttributes(array('username' => $this->username));
                 $bcrypt = new Bcrypt();
-            
-		if(!isset($users->username))
+                
+		if(!isset($user->username))
                 {
                     $this->errorCode=self::ERROR_USERNAME_INVALID;
                 }
-		elseif(!$bcrypt->verify($this->password, $users->password))
+                else if($user->password == $this->password)
                 {
-                    $this->errorCode=self::ERROR_PASSWORD_INVALID;
+                    if($user->oauth_provider == 'facebook')
+                    {
+                        $this->_id=$user->id;
+                        $this->errorCode=self::ERROR_NONE;
+                    }
+                    else
+                    {
+                        $this->errorCode=self::ERROR_PASSWORD_INVALID;
+                    }
                 }
 		else
                 {
-                    $this->_id=$users->id;
-                    $this->errorCode=self::ERROR_NONE;
+                    if(!$bcrypt->verify($this->password, $user->password))
+                    {
+                        $this->errorCode=self::ERROR_PASSWORD_INVALID;
+                    }
+                    else
+                    {
+                        $this->_id=$user->id;
+                        $this->errorCode=self::ERROR_NONE;
+                    }
                 }
                 
 		return !$this->errorCode;

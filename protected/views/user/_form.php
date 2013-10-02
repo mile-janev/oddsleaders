@@ -18,6 +18,9 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+        
+        <?php echo $form->hiddenField($model, 'oauth_provider'); ?>
+        <?php echo $form->hiddenField($model, 'oauth_uid'); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'username'); ?>
@@ -55,4 +58,6 @@
 
 <?php $this->endWidget(); ?>
 
+        <div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl("user/register", array('registerwith' => 'facebook'), '', '&')))); ?>" >Register using Facebook</a></div>
+        
 </div><!-- form -->

@@ -1,18 +1,8 @@
 <?php
 /* @var $this UserController */
 /* @var $model User */
-
-$this->breadcrumbs=array(
-	'User'=>array('index'),
-	'Register',
-);
-
-$this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Manage User', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Register</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'facebook' => $facebook)); ?>
