@@ -6,34 +6,34 @@ class UserRoleCheck{
     {
         $adminUsers = Role::model()->findAllByAttributes(array("role"=>Role::ADMIN_USER));
         
-        $adminsArray = array();
+        $adminArray = array("");
         
         foreach($adminUsers as $admin){
-            $adminsArray[$admin->user->id] = $admin->user->username;
+            $adminArray[$admin->user->id] = $admin->user->username;
         }
         
-        return $adminsArray;
+        return $adminArray;
     }
     
     public static function free_users()
     {
         $freeUsers = Role::model()->findAllByAttributes(array("role"=>Role::FREE_USER));
         
-        $freesArray = array();
+        $freeArray = array("");
         
         foreach($freeUsers as $free){
-            $freesArray[$free->user->id] = $free->user->username;
+            $freeArray[$free->user->id] = $free->user->username;
         }
         
-        return $freesArray;
+        return $freeArray;
     }
     
     public static function isAdmin($id=0)
     {
         $bool = false;
         
-        $role = new Role();
-        $roles = $role->findAllByAttributes(array("user_id" => $id));
+        $roles = Role::model()->findAllByAttributes(array("user_id" => $id));
+        
         foreach ($roles as $role)
         {
             if($role->role == Role::ADMIN_USER)
@@ -49,8 +49,8 @@ class UserRoleCheck{
     {
         $bool = false;
         
-        $role = new Role();
-        $roles = $role->findAllByAttributes(array("user_id" => $id));
+        $roles = Role::model()->findAllByAttributes(array("user_id" => $id));
+        
         foreach ($roles as $role)
         {
             if($role->role == Role::FREE_USER)
@@ -66,8 +66,8 @@ class UserRoleCheck{
     {
         $user_roles = array();
         
-        $role = new Role();
-        $roles = $role->findAllByAttributes(array("user_id" => $id));
+        $roles = Role::model()->findAllByAttributes(array("user_id" => $id));
+        
         foreach ($roles as $role)
         {
             $user_roles[] = $role->role;
