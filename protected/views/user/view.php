@@ -25,5 +25,10 @@ $this->menu=array(
 		'username',
 		'email',
 		'name',
+                array(
+                    'name'=>'role',
+                    'value'=>$model->roles[0]->role,
+                    'sortable'=>TRUE,
+                ),
 	),
 )); ?>

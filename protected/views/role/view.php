@@ -23,6 +23,11 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'user_id',
-		'role',
+                array(
+                    'name'=>'username',
+                    'value'=>$model->user->username,
+                    'sortable'=>TRUE,
+                ),
+                'role',
 	),
 )); ?>

@@ -18,8 +18,13 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
-	<?php echo CHtml::encode($data->date_created); ?>
+	<?php echo CHtml::encode($data->email); ?>
 	<br />
 
+        <b><?php echo CHtml::encode($data->roles[0]->getAttributeLabel('role')); ?>:</b>
+        <?php foreach($data->roles as $role){ ?>
+            <?php echo CHtml::encode($role->role); ?>
+        <?php } ?>
+	<br />
 
 </div>
