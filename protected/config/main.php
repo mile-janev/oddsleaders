@@ -16,6 +16,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+                'application.helpers.*',
 	),
 
 	'modules'=>array(
@@ -36,6 +37,13 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+                'image'=>array(
+                        'class'=>'application.extensions.image.CImageComponent',
+                          // GD or ImageMagick
+                          'driver'=>'GD',
+                          // ImageMagick setup path
+                          'params'=>array('directory'=>'/opt/local/bin'),
+                ),
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(
