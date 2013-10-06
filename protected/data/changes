@@ -1,3 +1,7 @@
 02.10.2013
 ALTER TABLE `user` ADD `oauth_provider` VARCHAR( 32 ) NULL DEFAULT NULL;
 ALTER TABLE `user` ADD `oauth_uid` VARCHAR( 128 ) NULL DEFAULT NULL;
+
+06.10.2013
+1. Izbrisi gi od tabelata coefficient home_win, guest_win i draw;
+2. ALTER TABLE `coefficient` ADD `odds` TEXT NOT NULL;

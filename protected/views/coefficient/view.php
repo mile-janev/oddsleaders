@@ -24,8 +24,6 @@ $this->menu=array(
 		'id',
 		'game_id',
 		'house_id',
-		'home_win',
-		'guest_win',
-		'draw',
+		'odds',
 	),
 )); ?>

@@ -30,6 +30,7 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
+                                array('label'=>'Coefficient', 'url'=>array('/coefficient/index')),
                                 array('label'=>'Game', 'url'=>array('/game/index')),
                                 array('label'=>'House', 'url'=>array('/house/index')),
                                 array('label'=>'League', 'url'=>array('/league/index')),

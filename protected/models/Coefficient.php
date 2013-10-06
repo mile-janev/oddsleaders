@@ -7,9 +7,7 @@
  * @property string $id
  * @property string $game_id
  * @property string $house_id
- * @property double $home_win
- * @property double $guest_win
- * @property double $draw
+ * @property double $odds
  *
  * The followings are the available model relations:
  * @property Game $game
@@ -33,12 +31,11 @@ class Coefficient extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('game_id, house_id, home_win, guest_win, draw', 'required'),
-			array('home_win, guest_win, draw', 'numerical'),
+			array('game_id, house_id, odds', 'required'),
 			array('game_id, house_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, game_id, house_id, home_win, guest_win, draw', 'safe', 'on'=>'search'),
+			array('id, game_id, house_id, odds', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,9 +61,7 @@ class Coefficient extends CActiveRecord
 			'id' => 'ID',
 			'game_id' => 'Game',
 			'house_id' => 'House',
-			'home_win' => 'Home Win',
-			'guest_win' => 'Guest Win',
-			'draw' => 'Draw',
+                        'odds' => "Odds"
 		);
 	}
 
@@ -91,9 +86,7 @@ class Coefficient extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('game_id',$this->game_id,true);
 		$criteria->compare('house_id',$this->house_id,true);
-		$criteria->compare('home_win',$this->home_win);
-		$criteria->compare('guest_win',$this->guest_win);
-		$criteria->compare('draw',$this->draw);
+		$criteria->compare('odds',$this->odds);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

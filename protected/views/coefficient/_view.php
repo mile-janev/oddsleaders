@@ -17,17 +17,8 @@
 	<?php echo CHtml::encode($data->house_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('home_win')); ?>:</b>
-	<?php echo CHtml::encode($data->home_win); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('odds')); ?>:</b>
+	<?php echo CHtml::encode($data->odds); ?>
 	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('guest_win')); ?>:</b>
-	<?php echo CHtml::encode($data->guest_win); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('draw')); ?>:</b>
-	<?php echo CHtml::encode($data->draw); ?>
-	<br />
-
 
 </div>

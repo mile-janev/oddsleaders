@@ -32,21 +32,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'home_win'); ?>
-		<?php echo $form->textField($model,'home_win'); ?>
-		<?php echo $form->error($model,'home_win'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'guest_win'); ?>
-		<?php echo $form->textField($model,'guest_win'); ?>
-		<?php echo $form->error($model,'guest_win'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'draw'); ?>
-		<?php echo $form->textField($model,'draw'); ?>
-		<?php echo $form->error($model,'draw'); ?>
+		<?php echo $form->labelEx($model,'odds'); ?>
+		<?php echo $form->textField($model,'odds'); ?>
+		<?php echo $form->error($model,'odds'); ?>
 	</div>
 
 	<div class="row buttons">

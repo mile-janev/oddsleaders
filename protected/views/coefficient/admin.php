@@ -48,9 +48,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'game_id',
 		'house_id',
-		'home_win',
-		'guest_win',
-		'draw',
+		'odds',
 		array(
 			'class'=>'CButtonColumn',
 		),

@@ -27,18 +27,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'home_win'); ?>
-		<?php echo $form->textField($model,'home_win'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'guest_win'); ?>
-		<?php echo $form->textField($model,'guest_win'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'draw'); ?>
-		<?php echo $form->textField($model,'draw'); ?>
+		<?php echo $form->label($model,'odds'); ?>
+		<?php echo $form->textField($model,'odds'); ?>
 	</div>
 
 	<div class="row buttons">
