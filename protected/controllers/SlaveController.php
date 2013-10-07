@@ -54,56 +54,101 @@ class SlaveController extends Controller
 
             if(($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin)
             {
-                if($develop === '1')
-				{
-					$url = 'http://xml.cdn.betclic.com/odds_en.xml';
-				}
-				else
-				{
-					$url = 'http://www.dev/odds.xml';
-				}
+                if ($develop === '1') 
+                {
+                    $url = 'http://xml.cdn.betclic.com/odds_en.xml';
+                }
+                else
+                {
+                    $url = 'http://www.dev/odds.xml';
+                }
 
-				$html = simplexml_load_file($url);
+                $html = simplexml_load_file($url);
 
-				foreach ($html->sport as $sport) {
-					if(in_array((string)$sport->attributes()->name, $sports))
-					{
-						foreach ($sport->event as $event) {
-							if(in_array($event->attributes()->name,$events))
-							{
-								$i = 0;
-								foreach ($event->match as $match) 
-								{
-									$teams = explode(' - ', $match->attributes()->name);
-									if(isset($teams[1]))
-									{
-										$game[$i]['home'] = $teams[0];
-										$game[$i]['away'] = $teams[1];
-										foreach ($match->bets as $bets) {
-											foreach ($bets->bet as $bet) {
-												if (in_array($bet->attributes()->code, $choice)) 
-												{
-													foreach($bet->choice as $odds)
-													{
-														$game[$i]['bets'][$tips[(string)$odds->attributes()->name]] = (string)$odds->attributes()->odd;
-														$tipovi[$i][$tips[(string)$odds->attributes()->name]] = (string)$odds->attributes()->odd;
-													}
-												}
-											}
-										}
-									}
-									//print_r(json_encode($tipovi));
-									print_r($game);
-									$i++;
-								}
-							}
-						}
-					}
-				}
+                foreach ($html->sport as $sport) 
+                {
+                    if (in_array((string) $sport->attributes()->name, $sports)) 
+                    {
+                        foreach ($sport->event as $event) 
+                        {
+                            if (in_array($event->attributes()->name, $events)) 
+                            {
+                                $i = 0;
+                                foreach ($event->match as $match) 
+                                {
+                                    $teams = explode(' - ', $match->attributes()->name);
+                                    if (isset($teams[1])) 
+                                    {
+                                        $game[$i]['home'] = $teams[0];
+                                        $game[$i]['away'] = $teams[1];
+                                        $game[$i]['start'] = date('Y-m-d H:i', strtotime((string)$match->attributes()->start_date));
+                                        foreach ($match->bets as $bets) 
+                                        {
+                                            foreach ($bets->bet as $bet) 
+                                            {
+                                                if (in_array($bet->attributes()->code, $choice)) 
+                                                {
+                                                    foreach ($bet->choice as $odds) 
+                                                    {
+                                                        $game[$i]['bets'][$tips[(string) $odds->attributes()->name]] = (string) $odds->attributes()->odd;
+                                                        $tipovi[$i][$tips[(string) $odds->attributes()->name]] = (string) $odds->attributes()->odd;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    //Zacuvuva vo baza utakmica
+                                    $this->saveGame($game[$i]);
+                                    
+                                    $i++;
+                                }
+                            }
+                        }
+                    }
+                }
             }
             else
             {
                 die('Access forbiden');
             }
+        }
+        
+        public function saveGame($game)
+        {
+            $odds_json = json_encode($game['bets']);
+            
+            $team_home = Team::model()->findByAttributes(array('name'=>$game['home']));
+            $team_guest = Team::model()->findByAttributes(array('name'=>$game['away']));
+            
+            if($team_home && $team_guest)//If both teams exist in database
+            {
+                $criteria1 = new CDbCriteria();
+                $criteria1->addCondition("home_id = :home_id");
+                $criteria1->params[":home_id"] = $team_home->id;
+                $criteria1->addCondition("guest_id = :guest_id");
+                $criteria1->params[":guest_id"] = $team_guest->id;
+                $game_inserted = Game::model()->findAll($criteria1);
+                
+                if(!$game_inserted)//If game is not inserted
+                {
+                    $game_new = new Game();
+                    $game_new->home_id = $team_home->id;
+                    $game_new->guest_id = $team_guest->id;
+                    $game_new->start = $game['start'];
+
+                    $saved = $game_new->save();
+                    
+                    $coefficient = new Coefficient();
+                    $coefficient->house_id = 1;
+                    $coefficient->game_id = $game_new->id;
+                    $coefficient->odds = $odds_json;
+                    $coefficient->save();
+                }
+            }
+            
+//            var_dump($saved);
+//            exit();
+            return TRUE;
         }
 }

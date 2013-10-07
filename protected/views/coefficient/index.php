@@ -14,10 +14,6 @@ $this->menu=array(
 
 <h1>Coefficients</h1>
 
-<div class="block">
-    <?php echo CHtml::link("Generate coefficients", Yii::app()->createUrl("cron/odds")); ?>
-</div>
-
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
