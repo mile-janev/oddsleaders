@@ -1,4 +1,5 @@
 <ul class="admin-menu">
+    <li><?php echo CHtml::link("Insert league teams", Yii::app()->createUrl("cron/insertTeams")); ?></li>
     <li><?php echo CHtml::link("Slave cron odds", Yii::app()->createUrl("slave/odds")); ?></li>
     <li><?php echo CHtml::link("Generate coefficients", Yii::app()->createUrl("cron/odds")); ?></li>
     <li><?php echo CHtml::link("Get Results", Yii::app()->createUrl("cron/result")); ?></li>

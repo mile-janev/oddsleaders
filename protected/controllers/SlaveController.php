@@ -93,14 +93,13 @@ class SlaveController extends Controller
                                                         $game[$i]['bets'][$tips[(string) $odds->attributes()->name]] = (string) $odds->attributes()->odd;
                                                         $tipovi[$i][$tips[(string) $odds->attributes()->name]] = (string) $odds->attributes()->odd;
                                                     }
+                                                    
+                                                    //Zacuvuva vo baza utakmica
+                                                    $this->saveGame($game[$i]);
                                                 }
                                             }
                                         }
                                     }
-                                    
-                                    //Zacuvuva vo baza utakmica
-                                    $this->saveGame($game[$i]);
-                                    
                                     $i++;
                                 }
                             }
