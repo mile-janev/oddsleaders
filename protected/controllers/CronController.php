@@ -95,8 +95,7 @@ class CronController extends Controller
             if(($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin)
             {
                 $leagues_array = $this->leagues_array_generate();
-                var_dump($leagues_array);
-                exit();
+                
                 foreach ($leagues_array as $league_name=>$league_link)
                 {
 //                    Insert all Leagues
