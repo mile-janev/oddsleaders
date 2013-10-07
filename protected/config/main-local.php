@@ -65,7 +65,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=oddsleaders',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'toor',
+			'password' => 'root',
 			'charset' => 'utf8',
 		),
 		
