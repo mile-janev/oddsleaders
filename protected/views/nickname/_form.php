@@ -27,7 +27,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'house_id'); ?>
-		<?php echo $form->textField($model,'house_id',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->dropDownList($model,'house_id', $houses); ?>
 		<?php echo $form->error($model,'house_id'); ?>
 	</div>
 

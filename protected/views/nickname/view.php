@@ -18,12 +18,18 @@ $this->menu=array(
 
 <h1>View Nickname #<?php echo $model->id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'team_id',
-		'house_id',
-		'name',
-	),
-)); ?>
+<div class="view">
+
+    <b><?php echo CHtml::encode($model->getAttributeLabel('team_id')); ?>:</b>
+    <?php echo CHtml::encode($model->team_id); ?>
+    <br />
+
+    <b><?php echo CHtml::encode($model->getAttributeLabel('house_id')); ?>:</b>
+    <?php echo CHtml::encode($model->house->name); ?>
+    <br />
+
+    <b><?php echo CHtml::encode($model->getAttributeLabel('name')); ?>:</b>
+    <?php echo CHtml::encode($model->name); ?>
+    <br />
+
+</div>

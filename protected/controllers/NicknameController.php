@@ -63,6 +63,8 @@ class NicknameController extends Controller
 	public function actionCreate()
 	{
 		$model=new Nickname;
+                $houses = House::model()->findAll('id != 1');
+                $houses_list=CHtml::listData($houses, 'id', 'name');
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -76,6 +78,7 @@ class NicknameController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
+                        'houses'=>$houses_list
 		));
 	}
 
@@ -87,6 +90,8 @@ class NicknameController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+                $houses = House::model()->findAll('id != 1');
+                $houses_list=CHtml::listData($houses, 'id', 'name');
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -100,6 +105,7 @@ class NicknameController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+                        'houses'=>$houses_list
 		));
 	}
 
