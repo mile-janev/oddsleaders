@@ -48,7 +48,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'name',
 		'slug',
-		'league_id',
+                array(
+                    'name'=>'league_id',
+                    'value'=>'$data->league->name',
+                    'sortable'=>false,
+                ),
 		array(
 			'class'=>'CButtonColumn',
 		),

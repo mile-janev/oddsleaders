@@ -18,12 +18,4 @@ $this->menu=array(
 
 <h1>View Team #<?php echo $model->id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'name',
-		'slug',
-		'league_id',
-	),
-)); ?>
+<?php $this->renderPartial('_view', array('data'=>$model)); ?>

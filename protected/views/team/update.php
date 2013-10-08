@@ -2,12 +2,6 @@
 /* @var $this TeamController */
 /* @var $model Team */
 
-$this->breadcrumbs=array(
-	'Teams'=>array('index'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
-);
-
 $this->menu=array(
 	array('label'=>'List Team', 'url'=>array('index')),
 	array('label'=>'Create Team', 'url'=>array('create')),
