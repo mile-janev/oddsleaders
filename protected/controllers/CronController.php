@@ -27,7 +27,7 @@ class CronController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('result','insertTeams','getteamlinks'),//
+				'actions'=>array('result','insertTeams','getlinks','linkdata'),//
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -188,19 +188,39 @@ class CronController extends Controller
             return $leagues_array;
         }
         
-        public function actionGetteamlinks()
+        public function actionGetlinks()
         {
-            $pages = array();
+            $pagesLinks = array();
             $parserAll = new SimpleHTMLDOM;
             $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/l/115061/wta-osaka');
             foreach($htmlAll->find('div.moreinfo') as $elementAll)
             {
                 foreach ($elementAll->find('a') as $link)
                 {
-                    $pages[] = "https://www.interwetten.com/".$link->href;
+                    $pagesLinks[] = "https://www.interwetten.com".$link->href;
                 }
             }
-            var_dump($pages);
+            var_dump($pagesLinks);
             exit();
         }
+        
+        
+        public function actionLinkdata()
+        {
+            $html = '';
+//            $niza = array();
+            $pagesLinks = array();
+            $parserAll = new SimpleHTMLDOM;
+            $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/e/9864220/arsenal-dortmund');
+            $htmlTableDivs = $htmlAll->find('div.containerContentTable');
+            $htmlArray = explode('<div>', trim($htmlTableDivs[0]->innertext));
+//            foreach ($htmlArray as $elementDiv)
+//            {
+//                
+//            }
+            echo $htmlTableDivs[0]->innertext;
+//            var_dump($htmlArray);
+            exit();
+        }
+        
 }
