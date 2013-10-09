@@ -27,7 +27,7 @@ class SlaveController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('odds'),//
+				'actions'=>array('odds','getlinks', 'linkdata'),//
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -35,6 +35,55 @@ class SlaveController extends Controller
 			),
 		);
 	}
+    
+    public function actionGetlinks()
+    {
+        $pagesLinks = array();
+        $parserAll = new SimpleHTMLDOM;
+        $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/l/115061/wta-osaka');
+        foreach($htmlAll->find('div.moreinfo') as $elementAll)
+        {
+            foreach ($elementAll->find('a') as $link)
+            {
+                $pagesLinks[] = "https://www.interwetten.com".$link->href;
+            }
+        }
+        var_dump($pagesLinks);
+        exit();
+    }
+    
+        
+    public function actionLinkdata()
+    {
+        $html = '';
+//            $niza = array();
+        $pagesLinks = array();
+        $parserAll = new SimpleHTMLDOM;
+        $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/e/9864220/arsenal-dortmund');
+        $htmlTableDivs = $htmlAll->find('div.containerContentTable');
+        $htmlArray = explode('<div>', trim($htmlTableDivs[0]->innertext));
+        
+        preg_match_all('/<div class=\"offerDate\">(.*?)<\/div>/s', $htmlArray[1], $date);
+        preg_match_all('/<div class=\"time2\">(.*?)<\/div>/s', $htmlArray[1], $time);
+        $date = trim($date[1][0]);
+        $time = trim(strip_tags($time[1][0]));
+        $start = $date.' '.$time;
+
+        foreach ($htmlArray as $elementDiv)
+        {
+            preg_match_all('/<div class=\"offertype\">(.*?)<\/div>/si', $elementDiv, $type);
+            foreach ($type as $key => $value) {
+                if(isset($value[0]))
+                {
+                    print_r(strip_tags($value[0]));
+                }
+            }
+
+        }
+        //echo $htmlTableDivs[0]->innertext;
+//            var_dump($htmlArray);
+        exit();
+    }
 
         public function actionOdds()
         {
