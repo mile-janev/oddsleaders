@@ -27,7 +27,7 @@ class CronController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('result','insertTeams'),//
+				'actions'=>array('result','insertTeams','getteamlinks'),//
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -186,5 +186,21 @@ class CronController extends Controller
 //                $leagues_array['League'] = "";
                 
             return $leagues_array;
+        }
+        
+        public function actionGetteamlinks()
+        {
+            $pages = array();
+            $parserAll = new SimpleHTMLDOM;
+            $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/l/115061/wta-osaka');
+            foreach($htmlAll->find('div.moreinfo') as $elementAll)
+            {
+                foreach ($elementAll->find('a') as $link)
+                {
+                    $pages[] = "https://www.interwetten.com/".$link->href;
+                }
+            }
+            var_dump($pages);
+            exit();
         }
 }
