@@ -207,18 +207,25 @@ class CronController extends Controller
         
         public function actionLinkdata()
         {
-            $html = '';
-//            $niza = array();
+            $niza = array();
             $pagesLinks = array();
             $parserAll = new SimpleHTMLDOM;
             $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/e/9864220/arsenal-dortmund');
             $htmlTableDivs = $htmlAll->find('div.containerContentTable');
             $htmlArray = explode('<div>', trim($htmlTableDivs[0]->innertext));
-//            foreach ($htmlArray as $elementDiv)
-//            {
-//                
-//            }
-            echo $htmlTableDivs[0]->innertext;
+            
+            //Tuka gi vrte <div>
+            foreach ($htmlArray as $elementDiv)
+            {
+                if(trim($elementDiv) != '')
+                {
+                    $parserDiv = new SimpleHTMLDOM;
+                    $htmlDiv = $parserDiv->str_get_html($elementDiv);
+//                    Sega bara nis TEKOVNIOT div
+//                    $htmlElement = $htmlDiv->find('.offerDate');
+                }
+            }
+//            echo $htmlTableDivs[0]->innertext;
 //            var_dump($htmlArray);
             exit();
         }
