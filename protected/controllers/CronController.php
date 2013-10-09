@@ -225,7 +225,7 @@ class CronController extends Controller
 //                    $htmlElement = $htmlDiv->find('.offerDate');
                 }
             }
-//            echo $htmlTableDivs[0]->innertext;
+            echo $htmlTableDivs[0]->innertext;
 //            var_dump($htmlArray);
             exit();
         }
