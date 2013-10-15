@@ -312,7 +312,12 @@ class CronController extends Controller
         public function foodballSetDateTime($htmlAll)
         {
             $dateHtml = $htmlAll->find('.offerDate');
-            $date = trim($dateHtml[0]->innertext);
+            $date_trimmed = trim($dateHtml[0]->innertext);
+            $date_array = explode('.', $date_trimmed);
+            $day = $date_array[0];
+            $month = $date_array[1];
+            $year = '20'.$date_array[2];
+            $date = $year.'-'.$month.'-'.$day;
             
             $timeHtml = $htmlAll->find('.time2');
             $time_array = explode('</var>',$timeHtml[0]->innertext);
