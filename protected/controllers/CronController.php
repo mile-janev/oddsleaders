@@ -7,8 +7,9 @@ class CronController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+        public $game = array();
 
-	/**
+        /**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -207,14 +208,16 @@ class CronController extends Controller
         
         public function actionLinkdata()
         {
-            $coefficients = array();
             $pagesLinks = array();
             $parserAll = new SimpleHTMLDOM;
             $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/e/9864220/arsenal-dortmund');
             $htmlTableDivs = $htmlAll->find('div.containerContentTable');
             $htmlArray = explode('<div>', trim($htmlTableDivs[0]->innertext));
             
-            //Tuka gi vrte <div>
+            $this->sportSetHomeGuest($htmlAll);//Set home/guest
+            $this->foodballSetDateTime($htmlAll);//Set date and time
+            
+            //All divs one-by-one
             foreach ($htmlArray as $elementDiv)
             {
                 if(trim($elementDiv) != '')
@@ -228,191 +231,282 @@ class CronController extends Controller
                     
                     if(trim($game_type[0]->innertext) == 'Match')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['match']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['match']['1'] = $odds[0]->innertext;
-                        $coefficients['match']['x'] = $odds[1]->innertext;
-                        $coefficients['match']['2'] = $odds[2]->innertext;
+                        $this->foodballMatch($htmlDiv, $game_type);
                     }
                     else if((trim(preg_match('/handicap/',$game_type[0]->innertext)) 
                             || trim(preg_match('/Handicap/',$game_type[0]->innertext)))
                             && preg_match('/:/',$game_type[0]->innertext))
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['handicap']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['handicap']['1'] = $odds[0]->innertext;
-                        $coefficients['handicap']['x'] = $odds[1]->innertext;
-                        $coefficients['handicap']['2'] = $odds[2]->innertext;
+                        $this->foodballHandicap($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'Double Chance')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['double-chance']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['double-chance']['1x'] = $odds[0]->innertext;
-                        $coefficients['double-chance']['x2'] = $odds[1]->innertext;
+                        $this->foodballDoubleChance($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'First goal')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['first-goal']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['first-goal']['home'] = $odds[0]->innertext;
-                        $coefficients['first-goal']['guest'] = $odds[1]->innertext;
+                        $this->foodballFirstGoal($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'How many goals')
                     {
-                        $coefficients['how-many-goals']['label'] = trim($game_type[0]->innertext);
-                        $odds = $htmlDiv->find('.odds');
-                        $span_name = $htmlDiv->find('span.name');
-                        
-                        $i = 0;
-                        foreach ($span_name as $span)
-                        {
-                            $label = $span->innertext;
-                            if($label == trim('3 or more')){ $label = '3+'; }
-                            else if($label == trim('NO goal')){ $label = '0'; }
-                            else if($label == trim('1 or more')){ $label = '1+'; }
-                            else if($label == trim('2 or more')){ $label = '2+'; }
-                            else if($label == trim('4 or more')){ $label = '4+'; }
-                            else if($label == trim('5 or more')){ $label = '5+'; }
-                            
-                            $coefficients['how-many-goals'][$label] = $odds[$i]->innertext;
-                            $i++;
-                        }                        
+                        $this->foodballHowManyGoals($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'Time first goal')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['time-first-goal']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['time-first-goal']['1-29'] = $odds[0]->innertext;
-                        $coefficients['time-first-goal']['30+'] = $odds[1]->innertext;
+                        $this->foodballTimeFirstGoal($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'When 1st goal')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['when-first-goal']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['when-first-goal']['1-10'] = $odds[0]->innertext;
-                        $coefficients['when-first-goal']['11-20'] = $odds[1]->innertext;
-                        $coefficients['when-first-goal']['21-30'] = $odds[2]->innertext;
-                        $coefficients['when-first-goal']['31-40'] = $odds[3]->innertext;
-                        $coefficients['when-first-goal']['41-50'] = $odds[4]->innertext;
-                        $coefficients['when-first-goal']['51-60'] = $odds[5]->innertext;
-                        $coefficients['when-first-goal']['61-70'] = $odds[6]->innertext;
-                        $coefficients['when-first-goal']['71-80'] = $odds[7]->innertext;
-                        $coefficients['when-first-goal']['81+'] = $odds[8]->innertext;
+                        $this->foodballWhenFirstGoal($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'HalfTime')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['half-time']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['half-time']['1'] = $odds[0]->innertext;
-                        $coefficients['half-time']['x'] = $odds[1]->innertext;
-                        $coefficients['half-time']['2'] = $odds[2]->innertext;
+                        $this->foodballHalfTime($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'Asian 0 Ball Handicap')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['asian-handicap']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['asian-handicap']['1'] = $odds[0]->innertext;
-                        $coefficients['asian-handicap']['2'] = $odds[1]->innertext;
+                        $this->foodballAsianHandicap($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'Half-Time/Full-Time')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['half-full-time']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['half-full-time']['H/H'] = $odds[0]->innertext;
-                        $coefficients['half-full-time']['X/H'] = $odds[1]->innertext;
-                        $coefficients['half-full-time']['G/H'] = $odds[2]->innertext;
-                        $coefficients['half-full-time']['H/X'] = $odds[3]->innertext;
-                        $coefficients['half-full-time']['X/X'] = $odds[4]->innertext;
-                        $coefficients['half-full-time']['G/X'] = $odds[5]->innertext;
-                        $coefficients['half-full-time']['H/G'] = $odds[6]->innertext;
-                        $coefficients['half-full-time']['X/G'] = $odds[7]->innertext;
-                        $coefficients['half-full-time']['G/G'] = $odds[8]->innertext;
+                        $this->foodballHalfTimeFullTime($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'Correct Score')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['correct-score']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['correct-score']['1:0'] = $odds[0]->innertext;
-                        $coefficients['correct-score']['0:0'] = $odds[1]->innertext;
-                        $coefficients['correct-score']['0:1'] = $odds[2]->innertext;
-                        
-                        $coefficients['correct-score']['2:0'] = $odds[3]->innertext;
-                        $coefficients['correct-score']['1:1'] = $odds[4]->innertext;
-                        $coefficients['correct-score']['0:2'] = $odds[5]->innertext;
-                       
-                        $coefficients['correct-score']['2:1'] = $odds[6]->innertext;
-                        $coefficients['correct-score']['2:2'] = $odds[7]->innertext;
-                        $coefficients['correct-score']['1:2'] = $odds[8]->innertext;
-                        
-                        $coefficients['correct-score']['3:0'] = $odds[9]->innertext;
-                        $coefficients['correct-score']['3:3'] = $odds[10]->innertext;
-                        $coefficients['correct-score']['0:3'] = $odds[11]->innertext;
-                        
-                        $coefficients['correct-score']['3:1'] = $odds[12]->innertext;
-                        $coefficients['correct-score']['4:4'] = $odds[13]->innertext;
-                        $coefficients['correct-score']['1:3'] = $odds[14]->innertext;
-                        
-                        $coefficients['correct-score']['3:2'] = $odds[15]->innertext;
-                        $coefficients['correct-score']['2:3'] = $odds[16]->innertext;
-                        
-                        $coefficients['correct-score']['4:0'] = $odds[17]->innertext;
-                        $coefficients['correct-score']['0:4'] = $odds[18]->innertext;
-                        
-                        $coefficients['correct-score']['4:1'] = $odds[19]->innertext;
-                        $coefficients['correct-score']['1:4'] = $odds[20]->innertext;
-                        
-                        $coefficients['correct-score']['4:2'] = $odds[21]->innertext;
-                        $coefficients['correct-score']['2:4'] = $odds[22]->innertext;
-                        
-                        
-                        $coefficients['correct-score']['4:3'] = $odds[23]->innertext;
-                        $coefficients['correct-score']['3:4'] = $odds[24]->innertext;
-                        
-                        $coefficients['correct-score']['5:0'] = $odds[25]->innertext;
-                        $coefficients['correct-score']['0:5'] = $odds[26]->innertext;
-                        
-                        $coefficients['correct-score']['5:1'] = $odds[27]->innertext;
-                        $coefficients['correct-score']['1:5'] = $odds[28]->innertext;
-                        
-                        $coefficients['correct-score']['5:2'] = $odds[29]->innertext;
-                        $coefficients['correct-score']['2:5'] = $odds[30]->innertext;
+                        $this->foodballCorrectScore($htmlDiv, $game_type);
                     }
                     else if(trim($game_type[0]->innertext) == 'Goals')
                     {
-                        $odds = $htmlDiv->find('.odds');
-                        
-                        $coefficients['goals']['label'] = trim($game_type[0]->innertext);
-                        $coefficients['goals']['0'] = $odds[0]->innertext;
-                        $coefficients['goals']['1'] = $odds[1]->innertext;
-                        $coefficients['goals']['2'] = $odds[2]->innertext;
-                        $coefficients['goals']['3'] = $odds[3]->innertext;
-                        $coefficients['goals']['4'] = $odds[4]->innertext;
-                        $coefficients['goals']['5+'] = $odds[5]->innertext;
+                        $this->foodballGoals($htmlDiv, $game_type);
                     }
-//                        foreach ($odds as $odd)
-//                        {
-//                            echo $odd."<br />";
-//                        }
                     
 //                    echo $game_type[0]->innertext."<br />";
                 }
             }
 //            echo $htmlTableDivs[0]->innertext;
 //            var_dump($htmlArray);
-//            $coefficients_json = json_encode($coefficients);
-            var_dump($coefficients);
+//            $coefficients_json = json_encode($this->game['coefficients']);
+            var_dump($this->game);
             exit();
         }
         
+        //Set home and guest teams. Can be used in any sport
+        public function sportSetHomeGuest($htmlAll)
+        {
+            $divHtml = $htmlAll->find('.containerHeadline');
+            $elementDiv = trim($divHtml[0]->innertext);
+            
+            $parserDiv = new SimpleHTMLDOM;
+            $htmlDiv = $parserDiv->str_get_html($elementDiv);
+            $teamsHtml = $htmlAll->find('.head');
+            $home_guest_html = trim($teamsHtml[0]->innertext);
+            
+            $home_guest_array = explode('-', $home_guest_html);
+            $home_team = trim($home_guest_array[0]);
+            $guest_team = trim($home_guest_array[1]);
+            
+            $this->game['teams']['home'] = $home_team;
+            $this->game['teams']['guest'] = $guest_team;
+        }
+        
+        public function foodballSetDateTime($htmlAll)
+        {
+            $dateHtml = $htmlAll->find('.offerDate');
+            $date = trim($dateHtml[0]->innertext);
+            
+            $timeHtml = $htmlAll->find('.time2');
+            $time_array = explode('</var>',$timeHtml[0]->innertext);
+            
+            $date_time = $date.' '.trim($time_array[1]);
+            
+            $this->game['date'] = $date_time;
+        }
+        
+        public function foodballMatch($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+                        
+            $this->game['coefficients']['match']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['match']['1'] = $odds[0]->innertext;
+            $this->game['coefficients']['match']['x'] = $odds[1]->innertext;
+            $this->game['coefficients']['match']['2'] = $odds[2]->innertext;
+        }
+        
+        public function foodballHandicap($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+                        
+            $this->game['coefficients']['handicap']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['handicap']['1'] = $odds[0]->innertext;
+            $this->game['coefficients']['handicap']['x'] = $odds[1]->innertext;
+            $this->game['coefficients']['handicap']['2'] = $odds[2]->innertext;
+        }
+        
+        public function foodballDoubleChance($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+                        
+            $this->game['coefficients']['double-chance']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['double-chance']['1x'] = $odds[0]->innertext;
+            $this->game['coefficients']['double-chance']['x2'] = $odds[1]->innertext;
+        }
+        
+        public function foodballFirstgoal($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+                        
+            $this->game['coefficients']['first-goal']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['first-goal']['home'] = $odds[0]->innertext;
+            $this->game['coefficients']['first-goal']['guest'] = $odds[1]->innertext;
+        }
+        
+        public function foodballHowManyGoals($htmlDiv, $game_type)
+        {
+            $this->game['coefficients']['how-many-goals']['label'] = trim($game_type[0]->innertext);
+            $odds = $htmlDiv->find('.odds');
+            $span_name = $htmlDiv->find('span.name');
+
+            $i = 0;
+            foreach ($span_name as $span)
+            {
+                $label = $span->innertext;
+                if($label == trim('3 or more')){ $label = '3+'; }
+                else if($label == trim('NO goal')){ $label = '0'; }
+                else if($label == trim('1 or more')){ $label = '1+'; }
+                else if($label == trim('2 or more')){ $label = '2+'; }
+                else if($label == trim('4 or more')){ $label = '4+'; }
+                else if($label == trim('5 or more')){ $label = '5+'; }
+
+                $this->game['coefficients']['how-many-goals'][$label] = $odds[$i]->innertext;
+                $i++;
+            }
+        }
+        
+        public function foodballTimeFirstGoal($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+
+            $this->game['coefficients']['time-first-goal']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['time-first-goal']['1-29'] = $odds[0]->innertext;
+            $this->game['coefficients']['time-first-goal']['30+'] = $odds[1]->innertext;
+        }
+        
+        public function foodballWhenFirstGoal($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+            $this->game['coefficients']['when-first-goal']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['when-first-goal']['1-10'] = $odds[0]->innertext;
+            $this->game['coefficients']['when-first-goal']['11-20'] = $odds[1]->innertext;
+            $this->game['coefficients']['when-first-goal']['21-30'] = $odds[2]->innertext;
+            $this->game['coefficients']['when-first-goal']['31-40'] = $odds[3]->innertext;
+            $this->game['coefficients']['when-first-goal']['41-50'] = $odds[4]->innertext;
+            $this->game['coefficients']['when-first-goal']['51-60'] = $odds[5]->innertext;
+            $this->game['coefficients']['when-first-goal']['61-70'] = $odds[6]->innertext;
+            $this->game['coefficients']['when-first-goal']['71-80'] = $odds[7]->innertext;
+            $this->game['coefficients']['when-first-goal']['81+'] = $odds[8]->innertext;
+        }
+        
+        public function foodballHalfTime($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+                        
+            $this->game['coefficients']['half-time']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['half-time']['1'] = $odds[0]->innertext;
+            $this->game['coefficients']['half-time']['x'] = $odds[1]->innertext;
+            $this->game['coefficients']['half-time']['2'] = $odds[2]->innertext;
+        }
+        
+        public function foodballAsianHandicap($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+                        
+            $this->game['coefficients']['asian-handicap']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['asian-handicap']['1'] = $odds[0]->innertext;
+            $this->game['coefficients']['asian-handicap']['2'] = $odds[1]->innertext;
+        }
+        
+        public function foodballHalfTimeFullTime($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+                        
+            $this->game['coefficients']['half-full-time']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['half-full-time']['H/H'] = $odds[0]->innertext;
+            $this->game['coefficients']['half-full-time']['X/H'] = $odds[1]->innertext;
+            $this->game['coefficients']['half-full-time']['G/H'] = $odds[2]->innertext;
+            $this->game['coefficients']['half-full-time']['H/X'] = $odds[3]->innertext;
+            $this->game['coefficients']['half-full-time']['X/X'] = $odds[4]->innertext;
+            $this->game['coefficients']['half-full-time']['G/X'] = $odds[5]->innertext;
+            $this->game['coefficients']['half-full-time']['H/G'] = $odds[6]->innertext;
+            $this->game['coefficients']['half-full-time']['X/G'] = $odds[7]->innertext;
+            $this->game['coefficients']['half-full-time']['G/G'] = $odds[8]->innertext;
+        }
+        
+        public function foodballCorrectScore($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+                        
+            $this->game['coefficients']['correct-score']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['correct-score']['1:0'] = $odds[0]->innertext;
+            $this->game['coefficients']['correct-score']['0:0'] = $odds[1]->innertext;
+            $this->game['coefficients']['correct-score']['0:1'] = $odds[2]->innertext;
+
+            $this->game['coefficients']['correct-score']['2:0'] = $odds[3]->innertext;
+            $this->game['coefficients']['correct-score']['1:1'] = $odds[4]->innertext;
+            $this->game['coefficients']['correct-score']['0:2'] = $odds[5]->innertext;
+
+            $this->game['coefficients']['correct-score']['2:1'] = $odds[6]->innertext;
+            $this->game['coefficients']['correct-score']['2:2'] = $odds[7]->innertext;
+            $this->game['coefficients']['correct-score']['1:2'] = $odds[8]->innertext;
+
+            $this->game['coefficients']['correct-score']['3:0'] = $odds[9]->innertext;
+            $this->game['coefficients']['correct-score']['3:3'] = $odds[10]->innertext;
+            $this->game['coefficients']['correct-score']['0:3'] = $odds[11]->innertext;
+
+            $this->game['coefficients']['correct-score']['3:1'] = $odds[12]->innertext;
+            $this->game['coefficients']['correct-score']['4:4'] = $odds[13]->innertext;
+            $this->game['coefficients']['correct-score']['1:3'] = $odds[14]->innertext;
+
+            $this->game['coefficients']['correct-score']['3:2'] = $odds[15]->innertext;
+            $this->game['coefficients']['correct-score']['2:3'] = $odds[16]->innertext;
+
+            $this->game['coefficients']['correct-score']['4:0'] = $odds[17]->innertext;
+            $this->game['coefficients']['correct-score']['0:4'] = $odds[18]->innertext;
+
+            $this->game['coefficients']['correct-score']['4:1'] = $odds[19]->innertext;
+            $this->game['coefficients']['correct-score']['1:4'] = $odds[20]->innertext;
+
+            $this->game['coefficients']['correct-score']['4:2'] = $odds[21]->innertext;
+            $this->game['coefficients']['correct-score']['2:4'] = $odds[22]->innertext;
+
+
+            $this->game['coefficients']['correct-score']['4:3'] = $odds[23]->innertext;
+            $this->game['coefficients']['correct-score']['3:4'] = $odds[24]->innertext;
+
+            $this->game['coefficients']['correct-score']['5:0'] = $odds[25]->innertext;
+            $this->game['coefficients']['correct-score']['0:5'] = $odds[26]->innertext;
+
+            $this->game['coefficients']['correct-score']['5:1'] = $odds[27]->innertext;
+            $this->game['coefficients']['correct-score']['1:5'] = $odds[28]->innertext;
+
+            $this->game['coefficients']['correct-score']['5:2'] = $odds[29]->innertext;
+            $this->game['coefficients']['correct-score']['2:5'] = $odds[30]->innertext;
+        }
+        
+        public function foodballGoals($htmlDiv, $game_type)
+        {
+            $odds = $htmlDiv->find('.odds');
+                        
+            $this->game['coefficients']['goals']['label'] = trim($game_type[0]->innertext);
+            $this->game['coefficients']['goals']['0'] = $odds[0]->innertext;
+            $this->game['coefficients']['goals']['1'] = $odds[1]->innertext;
+            $this->game['coefficients']['goals']['2'] = $odds[2]->innertext;
+            $this->game['coefficients']['goals']['3'] = $odds[3]->innertext;
+            $this->game['coefficients']['goals']['4'] = $odds[4]->innertext;
+            $this->game['coefficients']['goals']['5+'] = $odds[5]->innertext;
+        }
+        
+//        public function sportGameName($htmlDiv, $game_type)
+//        {
+//            
+//        }
 }
