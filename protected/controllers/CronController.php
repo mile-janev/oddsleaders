@@ -28,7 +28,7 @@ class CronController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('result','insertTeams','getlinks','linkdata'),//
+				'actions'=>array('gettournaments','gettournament','tournamentlinks','getlinks','getodds','result','insertTeams','linkdata'),//
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -36,6 +36,106 @@ class CronController extends Controller
 			),
 		);
 	}
+        
+//Separated action, get all tournaments from some sport and add them into database table tournament
+        public function actionGettournaments()
+        {
+            $criteria1  = new CDbCriteria();
+            $criteria1->addCondition("active = 1");
+            $sports = Sport::model()->findAll($criteria1);
+            
+            foreach ($sports as $sport)
+            {
+                $parserAll = new SimpleHTMLDOM;
+                $htmlAll = $parserAll->file_get_html($sport->link);
+                $htmlTable = $htmlAll->find('div#divOfferTarget');
+                
+                foreach ($htmlTable[0]->find('td a') as $tournament_a)
+                {
+                    $tournament_name = trim($tournament_a->innertext);
+                    $tournament_link = $tournament_a->href;
+                    
+                    $criteria2 = new CDbCriteria();
+                    $criteria2->addCondition('name = :tournament_name');
+                    $criteria2->params[":tournament_name"] = $tournament_name;
+                    $tournament = Tournament::model()->find($criteria2);
+                    if(!$tournament)
+                    {
+                        $tournament = new Tournament();
+                        $tournament->name = $tournament_name;
+                        $tournament->link = "https://www.interwetten.com".$tournament_link;
+                        $tournament->active = 1;
+                        $tournament->sport_id = $sport->id;
+                        $tournament->save();
+                    }
+                }
+            }
+            echo 'Successfully generated tournaments into database!';
+            exit();
+        }
+        
+//        Cron get tournament
+        public function actionGettournament()
+        {
+            $criteria1  = new CDbCriteria();
+            $criteria1->addCondition("active = 1");
+//            $criteria1->addCondition("");//Uslov za crono da ne se povtoruva na istio tournament
+            $criteria1->order = "cron_group";
+            $criteria1->limit = 1;
+            $tournament = Tournament::model()->find($criteria1);
+            
+            $this->actionTournamentLinks($tournament->id);
+        }
+
+
+//        Get all links for given tournament
+        public function actionTournamentlinks($id=0)
+        {
+            $match_links = array();
+            
+            $tournament = Tournament::model()->findByPk($id);
+            
+            $parserAll = new SimpleHTMLDOM;
+            $htmlAll = $parserAll->file_get_html($tournament->link);
+            foreach($htmlAll->find('div.moreinfo') as $elementAll)
+            {
+                foreach ($elementAll->find('a') as $link)
+                {
+                    $match_links[] = "https://www.interwetten.com".$link->href;
+                    //Here go action for getting odds. Row abowe not need
+                }
+            }
+
+            var_dump($match_links);
+            exit();
+        }
+        
+        public function actionGetlinks()
+        {
+            $pagesLinks = array();
+            $parserAll = new SimpleHTMLDOM;
+            $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/l/115061/wta-osaka');
+            foreach($htmlAll->find('div.moreinfo') as $elementAll)
+            {
+                foreach ($elementAll->find('a') as $link)
+                {
+                    $pagesLinks[] = "https://www.interwetten.com".$link->href;
+                }
+            }
+            var_dump($pagesLinks);
+            exit();
+        }
+        
+        public function actionGetodds()
+        {            
+            $parserAll = new SimpleHTMLDOM;
+            $htmlAll = $parserAll->file_get_html('http://www.interwetten.com/en/sportsbook/default.aspx');
+            foreach($htmlAll->find('p[class=list sub]') as $elementP)
+            {
+//                foreach ($elementP->find(''))
+            }
+            exit();
+        }
 
         public function actionResult()
         {
@@ -189,28 +289,11 @@ class CronController extends Controller
             return $leagues_array;
         }
         
-        public function actionGetlinks()
-        {
-            $pagesLinks = array();
-            $parserAll = new SimpleHTMLDOM;
-            $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/l/115061/wta-osaka');
-            foreach($htmlAll->find('div.moreinfo') as $elementAll)
-            {
-                foreach ($elementAll->find('a') as $link)
-                {
-                    $pagesLinks[] = "https://www.interwetten.com".$link->href;
-                }
-            }
-            var_dump($pagesLinks);
-            exit();
-        }
-        
-        
         public function actionLinkdata()
         {
             $pagesLinks = array();
             $parserAll = new SimpleHTMLDOM;
-            $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/e/9853180/ny-islanders-buffalo-sabres');
+            $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/e/9869842/johansson-joachim-raonic-milos');
             $htmlTableDivs = $htmlAll->find('div.containerContentTable');
             $htmlArray = explode('<div>', trim($htmlTableDivs[0]->innertext));
             
