@@ -28,7 +28,7 @@ class CronController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('gettournaments','gettournament','tournamentlinks','getlinks','getodds','result','insertTeams','linkdata'),//
+				'actions'=>array('gettournaments','gettournament','tournamentlinks','getodds','result','insertTeams','linkdata'),//
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -87,213 +87,37 @@ class CronController extends Controller
             $this->actionTournamentLinks($tournament->id);
         }
 
-
 //        Get all links for given tournament
         public function actionTournamentlinks($id=0)
         {
-            $match_links = array();
-            
             $tournament = Tournament::model()->findByPk($id);
-            
+            $sport = $tournament->sport->name;
+//            $i=0;
             $parserAll = new SimpleHTMLDOM;
             $htmlAll = $parserAll->file_get_html($tournament->link);
             foreach($htmlAll->find('div.moreinfo') as $elementAll)
             {
                 foreach ($elementAll->find('a') as $link)
                 {
-                    $match_links[] = "https://www.interwetten.com".$link->href;
+//                    $i++;
+//                    if($i<=2){
+                    $match_link = "https://www.interwetten.com".$link->href;
+                    $this->actionGetodds($match_link, $sport);
                     //Here go action for getting odds. Row abowe not need
-                }
-            }
-
-            var_dump($match_links);
-            exit();
-        }
-        
-        public function actionGetlinks()
-        {
-            $pagesLinks = array();
-            $parserAll = new SimpleHTMLDOM;
-            $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/l/115061/wta-osaka');
-            foreach($htmlAll->find('div.moreinfo') as $elementAll)
-            {
-                foreach ($elementAll->find('a') as $link)
-                {
-                    $pagesLinks[] = "https://www.interwetten.com".$link->href;
-                }
-            }
-            var_dump($pagesLinks);
-            exit();
-        }
-        
-        public function actionGetodds()
-        {            
-            $parserAll = new SimpleHTMLDOM;
-            $htmlAll = $parserAll->file_get_html('http://www.interwetten.com/en/sportsbook/default.aspx');
-            foreach($htmlAll->find('p[class=list sub]') as $elementP)
-            {
-//                foreach ($elementP->find(''))
-            }
-            exit();
-        }
-
-        public function actionResult()
-        {
-            $u_id = Yii::app()->user->id;
-//            $isAdmin = array_key_exists($u_id, $this->admin);
-            $isAdmin = 1;
-
-            if(($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin)
-            {
-
-                $parserAll = new SimpleHTMLDOM;
-                $htmlAll = $parserAll->file_get_html('http://www.livescore.com/soccer/2013-10-06/');
-                foreach($htmlAll->find('table.league-table') as $elementAll)
-                {
-                    foreach ($elementAll->find('tr') as $elementTable)
-                    {
-                        foreach ($elementTable->find('td.fh') as $homeTeam)
-                        {
-                            $homeTeamName = $homeTeam->innertext;
-                            echo "<pre>".$homeTeamName."</pre>";
-                        }
-                        foreach ($elementTable->find('td.fa') as $guestTeam)
-                        {
-                            $guestTeamName = $guestTeam->innertext;
-                            echo "<pre>".$guestTeamName."</pre>";
-                        }
-                        foreach ($elementTable->find('td.fs a') as $result)
-                        {
-                            $resultArray = explode("-", $result->innertext);
-                            $homeTeamGoals = $resultArray[0];
-                            $guestTeamGoals = $resultArray[1];
-                            echo "<pre>".$guestTeamGoals."</pre>";
-                        }
-                        echo "<pre><br /></pre>";
-//                        var_dump($bla);
-//                        echo "<pre>".$elementTable->innertext."</pre>";
-//                        exit();
-                    }
+//                    }
                     
-//                    echo "<pre>".$elementAll->innertext."</pre>";
-//                    exit();
-                }
-                
-                exit();
-            }
-            else
-            {
-                die('Access forbiden');
-            }
-        }
-        
-        public function actionInsertTeams()
-        {
-            $u_id = Yii::app()->user->id;
-//            $isAdmin = array_key_exists($u_id, $this->admin);
-            $isAdmin = 1;
-
-            if(($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin)
-            {
-                $leagues_array = $this->leagues_array_generate();
-                
-                foreach ($leagues_array as $league_name=>$league_link)
-                {
-//                    Insert all Leagues
-                    $old_league = League::model()->findByAttributes(array('name'=>$league_name));
-                    if(!$old_league)
-                    {
-                        $league = new League();
-                        $league->name = $league_name;
-                        $league->slug = SlugGenerator::slug($league_name);
-                        $league->save();
-                        
-//                        Insert all teams from this leagues
-                        $parserAll = new SimpleHTMLDOM;
-                        $htmlAll = $parserAll->file_get_html($league_link);
-                        foreach($htmlAll->find('td.cty') as $elementAll)
-                        {
-                            $old_team = Team::model()->findByAttributes(array('name'=>$elementAll->innertext));
-                            if(!$old_team)
-                            {
-                                $team = new Team();
-                                $team->name = $elementAll->innertext;
-                                $team->slug = SlugGenerator::slug($elementAll->innertext);
-                                $team->league_id = $league->id;
-                                $team->save();
-                            }
-                        }
-                    }
                 }
             }
-            else
-            {
-                die('Access forbiden');
-            }
+            var_dump($this->game);
+                    exit();
         }
         
-        //Funkcija za generiranje na nizata so sodrze iminja i linkovi do livescore tabelata na ligata
-        public function leagues_array_generate()
-        {
-                $leagues_array = array();
-                
-                //Niza od site ligi na livescore
-//                Anglija
-                $leagues_array['Premier League'] = "http://www.livescore.com/soccer/england/premier-league/";
-                $leagues_array['Championship'] = "http://www.livescore.com/soccer/england/championship/";
-                $leagues_array['England League 1'] = "http://www.livescore.co.uk/soccer/england/league-1/";
-                $leagues_array['England League 2'] = "http://www.livescore.co.uk/soccer/england/league-2/";
-                $leagues_array['Blue Square Premier'] = "http://www.livescore.co.uk/soccer/england/blue-square-premier/";
-                $leagues_array['Blue Square North'] = "http://www.livescore.co.uk/soccer/england/blue-square-north/";
-                $leagues_array['Blue Square South'] = "http://www.livescore.co.uk/soccer/england/blue-square-south/";
-                $leagues_array['Evo Stik League'] = "http://www.livescore.co.uk/soccer/england/evo-stik-league/";
-                $leagues_array['Zamaretto League'] = "http://www.livescore.co.uk/soccer/england/zamaretto-league/";
-                $leagues_array['Ryman League'] = "http://www.livescore.co.uk/soccer/england/ryman-league/";
-//                Italy
-                $leagues_array['Italy Serie A'] = "http://www.livescore.com/soccer/italy/serie-a/";
-                $leagues_array['Italy Serie B'] = "http://www.livescore.com/soccer/italy/serie-b/";
-                $leagues_array['Italy Serie C1 A'] = "http://www.livescore.com/soccer/italy/serie-c1-a/";
-                $leagues_array['Italy Serie C1 B'] = "http://www.livescore.com/soccer/italy/serie-c1-b/";
-                $leagues_array['Italy Serie C2 A'] = "http://www.livescore.com/soccer/italy/serie-c2-a/";
-                $leagues_array['Italy Serie C2 B'] = "http://www.livescore.com/soccer/italy/serie-c2-b/";
-//                Spain
-                $leagues_array['Primera Division'] = "http://www.livescore.com/soccer/spain/primera-division/";
-                $leagues_array['Secunda Division'] = "http://www.livescore.com/soccer/spain/segunda-division/";
-                $leagues_array['Secunda B Group 1'] = "http://www.livescore.com/soccer/spain/segunda-b-group-i/";
-                $leagues_array['Secunda B Group 2'] = "http://www.livescore.com/soccer/spain/segunda-b-group-ii/";
-                $leagues_array['Secunda B Group 3'] = "http://www.livescore.com/soccer/spain/segunda-b-group-iii/";
-                $leagues_array['Secunda B Group 4'] = "http://www.livescore.com/soccer/spain/segunda-b-group-iv/";
-//                Germany
-                $leagues_array['Bundesliga'] = "http://www.livescore.com/soccer/germany/bundesliga/";
-                $leagues_array['Bundesliga 2'] = "http://www.livescore.com/soccer/germany/2-bundesliga/";
-                $leagues_array['Liga 3'] = "http://www.livescore.com/soccer/germany/3-liga/";
-                $leagues_array['Regionalliga Bayern'] = "http://www.livescore.com/soccer/germany/regionalliga-bayern/";
-                $leagues_array['Regionalliga North'] = "http://www.livescore.com/soccer/germany/regionalliga-north/";
-                $leagues_array['Regionalliga Nordost'] = "http://www.livescore.com/soccer/germany/regionalliga-nordost/";
-                $leagues_array['Regionalliga West'] = "http://www.livescore.eu/soccer/germany/regionalliga-west/";
-                $leagues_array['Regionalliga Sudwest'] = "http://www.livescore.com/soccer/germany/regionalliga-sudwest/";
-//                France
-                $leagues_array['Ligue 1'] = "http://www.livescore.com/soccer/france/ligue-1/";
-                $leagues_array['Ligue 2'] = "http://www.livescore.com/soccer/france/ligue-2/";
-                $leagues_array['Championnat National'] = "http://www.livescore.com/soccer/france/championnat-national/";
-                $leagues_array['CFA Group A'] = "http://www.livescore.com/soccer/france/cfa-group-a/";
-                $leagues_array['CFA Group B'] = "http://www.livescore.com/soccer/france/cfa-group-b/";
-                $leagues_array['CFA Group C'] = "http://www.livescore.com/soccer/france/cfa-group-c/";
-                $leagues_array['CFA Group D'] = "http://www.livescore.com/soccer/france/cfa-group-d/";
-//                Netherland
-//                Belgium
-//                Portugal
-//                Scotland
-//                $leagues_array['League'] = "";
-                
-            return $leagues_array;
-        }
-        
-        public function actionLinkdata()
+        //Get odds for given match link. Add this as link in admin part
+        public function actionGetodds($match_link, $sport)
         {
             $pagesLinks = array();
             $parserAll = new SimpleHTMLDOM;
-            $htmlAll = $parserAll->file_get_html('https://www.interwetten.com/en/sportsbook/e/9869842/johansson-joachim-raonic-milos');
+            $htmlAll = $parserAll->file_get_html($match_link);
             $htmlTableDivs = $htmlAll->find('div.containerContentTable');
             $htmlArray = explode('<div>', trim($htmlTableDivs[0]->innertext));
             
@@ -307,104 +131,121 @@ class CronController extends Controller
                 {
                     $parserDiv = new SimpleHTMLDOM;
                     $htmlDiv = $parserDiv->str_get_html($elementDiv);
-//                    Now we search in current div to find which game is in this div
                     
+//                    Now we search in current div to find which game is in this div
                     $htmlElement = $htmlDiv->find('.offertype');
                     $game_type = $htmlElement[0]->find('span');//Will return game type, like handicap, First goal etc.
                     
-                    if(trim($game_type[0]->innertext) == 'Match')
+                    if($sport == "Football")
                     {
-                        $this->foodballMatch($htmlDiv, $game_type);
+                        $this->foodballOdds($htmlDiv, $game_type);
                     }
-                    else if((trim(preg_match('/handicap/',$game_type[0]->innertext)) 
-                            || trim(preg_match('/Handicap/',$game_type[0]->innertext)))
-                            && preg_match('/:/',$game_type[0]->innertext))
+                    else if($sport == "Tennis")
                     {
-                        $this->foodballHandicap($htmlDiv, $game_type);
+                        $this->tennisOdds($htmlDiv, $game_type);
                     }
-                    else if(trim($game_type[0]->innertext) == 'Double Chance')
+                    else if($sport == "Ice hockey")
                     {
-                        $this->foodballDoubleChance($htmlDiv, $game_type);
+                        $this->icehockeyOdds($htmlDiv, $game_type);
                     }
-                    else if(trim($game_type[0]->innertext) == 'First goal')
-                    {
-                        $this->foodballFirstGoal($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'How many goals')
-                    {
-                        $this->foodballHowManyGoals($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Time first goal')
-                    {
-                        $this->foodballTimeFirstGoal($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'When 1st goal')
-                    {
-                        $this->foodballWhenFirstGoal($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'HalfTime')
-                    {
-                        $this->foodballHalfTime($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Asian 0 Ball Handicap')
-                    {
-                        $this->foodballAsianHandicap($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Half-Time/Full-Time')
-                    {
-                        $this->foodballHalfTimeFullTime($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Correct Score')
-                    {
-                        $this->foodballCorrectScore($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Goals')
-                    {
-                        $this->foodballGoals($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Game')
-                    {
-                        $this->tennisGame($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Handicap 1.5 Sets')
-                    {
-                        $this->tennisHendicap($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Who wins first Set')
-                    {
-                        $this->tennisFirstSet($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Set betting')
-                    {
-                        $this->tennisSetBetting($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'Winning Team')
-                    {
-                        $this->hockeyWinning($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'How many goals 0-5/6+')
-                    {
-                        $this->hockeyGoals($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == '1st period')
-                    {
-                        $this->hockeyFirstPeriod($htmlDiv, $game_type);
-                    }
-                    else if(trim($game_type[0]->innertext) == 'How many goals in 1st period')
-                    {
-                        $this->hockeyGoalsFirstPeriod($htmlDiv, $game_type);
-                    }
-
-//                    echo $game_type[0]->innertext."<br />";
                 }
             }
-//            echo $htmlTableDivs[0]->innertext;
-//            var_dump($htmlArray);
-//            $coefficients_json = json_encode($this->game['coefficients']);
-            var_dump($this->game);
-            exit();
         }
         
+        public function foodballOdds($htmlDiv, $game_type)
+        {
+            if(trim($game_type[0]->innertext) == 'Match')
+            {
+                $this->foodballMatch($htmlDiv, $game_type);
+            }
+            else if((trim(preg_match('/handicap/',$game_type[0]->innertext)) 
+                    || trim(preg_match('/Handicap/',$game_type[0]->innertext)))
+                    && preg_match('/:/',$game_type[0]->innertext))
+            {
+                $this->foodballHandicap($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'Double Chance')
+            {
+                $this->foodballDoubleChance($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'First goal')
+            {
+                $this->foodballFirstGoal($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'How many goals')
+            {
+                $this->foodballHowManyGoals($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'Time first goal')
+            {
+                $this->foodballTimeFirstGoal($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'When 1st goal')
+            {
+                $this->foodballWhenFirstGoal($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'HalfTime')
+            {
+                $this->foodballHalfTime($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'Asian 0 Ball Handicap')
+            {
+                $this->foodballAsianHandicap($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'Half-Time/Full-Time')
+            {
+                $this->foodballHalfTimeFullTime($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'Correct Score')
+            {
+                $this->foodballCorrectScore($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'Goals')
+            {
+                $this->foodballGoals($htmlDiv, $game_type);
+            }
+        }
+        
+        public function tennisOdds($htmlDiv, $game_type)
+        {
+            if(trim($game_type[0]->innertext) == 'Game')
+            {
+                $this->tennisGame($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'Handicap 1.5 Sets')
+            {
+                $this->tennisHendicap($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'Who wins first Set')
+            {
+                $this->tennisFirstSet($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'Set betting')
+            {
+                $this->tennisSetBetting($htmlDiv, $game_type);
+            }
+        }
+        
+        public function icehockeyOdds($htmlDiv, $game_type)
+        {
+            if(trim($game_type[0]->innertext) == 'Winning Team')
+            {
+                $this->hockeyWinning($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'How many goals 0-5/6+')
+            {
+                $this->hockeyGoals($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == '1st period')
+            {
+                $this->hockeyFirstPeriod($htmlDiv, $game_type);
+            }
+            else if(trim($game_type[0]->innertext) == 'How many goals in 1st period')
+            {
+                $this->hockeyGoalsFirstPeriod($htmlDiv, $game_type);
+            }
+        }
+
         //Set home and guest teams. Can be used in any sport
         public function sportSetHomeGuest($htmlAll)
         {
