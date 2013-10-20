@@ -84,32 +84,46 @@ class CronController extends Controller
             $criteria1->limit = 1;
             $tournament = Tournament::model()->find($criteria1);
             
-            $this->actionTournamentLinks($tournament->id);
+            $this->actionTournamentLinks($tournament);
         }
 
 //        Get all links for given tournament
-        public function actionTournamentlinks($id=0)
+        public function actionTournamentlinks($tournament)
         {
-            $tournament = Tournament::model()->findByPk($id);
             $sport = $tournament->sport->name;
-//            $i=0;
+                        
             $parserAll = new SimpleHTMLDOM;
             $htmlAll = $parserAll->file_get_html($tournament->link);
             foreach($htmlAll->find('div.moreinfo') as $elementAll)
             {
                 foreach ($elementAll->find('a') as $link)
                 {
-//                    $i++;
-//                    if($i<=2){
                     $match_link = "https://www.interwetten.com".$link->href;
-                    $this->actionGetodds($match_link, $sport);
-                    //Here go action for getting odds. Row abowe not need
-//                    }
                     
+                    $stack = Stack::model()->findByAttributes(array("link"=>$match_link));
+                    if(!$stack)
+                    {
+                        $stack = new Stack();
+                        $stack->link = $match_link;
+                        $stack->tournament_id = $tournament->id;
+                        $stack->cron = 0;
+                        $stack->save();
+                    }
                 }
             }
+            
+            $criteria2 = new CDbCriteria();
+            $criteria2->select = '*';
+            $criteria2->limit = 2;
+            $stack_links = Stack::model()->findAll($criteria2);
+            
+            foreach ($stack_links as $stack_link)
+            {
+                $this->game = array();
+                $this->actionGetodds($stack_link->link, $sport);
+            }
             var_dump($this->game);
-                    exit();
+            exit();
         }
         
         //Get odds for given match link. Add this as link in admin part

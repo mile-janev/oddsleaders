@@ -1,9 +1,10 @@
 <ul class="admin-menu">
     <li><?php echo CHtml::link("Sport admin", Yii::app()->createUrl("sport/admin")); ?></li>
     <li><?php echo CHtml::link("Tournament admin", Yii::app()->createUrl("tournament/admin")); ?></li>
-    <li><a href="#">-------------------------------------------------------------------------------------</a></li>
+     <li><?php echo CHtml::link("Stack admin", Yii::app()->createUrl("stack/admin")); ?></li>
+    <li>-------------------------------------------------------------------------------------</li>
     <li><?php echo CHtml::link("Get odds", Yii::app()->createUrl("cron/getodds")); ?></li>
-    <li><a href="#">-------------------------------------------------------------------------------------</a></li>
+    <li>-------------------------------------------------------------------------------------</li>
     <li><?php echo CHtml::link("Insert league teams", Yii::app()->createUrl("cron/insertTeams")); ?></li>
     <li><?php echo CHtml::link("Slave cron odds", Yii::app()->createUrl("slave/odds")); ?></li>
     <li><?php echo CHtml::link("Generate coefficients", Yii::app()->createUrl("cron/odds")); ?></li>

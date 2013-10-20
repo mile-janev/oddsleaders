@@ -1,28 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "tournament".
+ * This is the model class for table "stack".
  *
- * The followings are the available columns in table 'tournament':
+ * The followings are the available columns in table 'stack':
  * @property string $id
- * @property string $name
  * @property string $link
- * @property integer $active
- * @property string $sport_id
- * @property datetime $cron_time
- * @property int $cron_group
+ * @property string $tournament_id
+ * @property integer $cron
  *
  * The followings are the available model relations:
- * @property Sport $sport
+ * @property Tournament $tournament
  */
-class Tournament extends CActiveRecord
+class Stack extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tournament';
+		return 'stack';
 	}
 
 	/**
@@ -33,13 +30,12 @@ class Tournament extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, link, sport_id', 'required'),
-			array('active', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>256),
-			array('sport_id', 'length', 'max'=>10),
+			array('link, tournament_id, cron', 'required'),
+			array('cron', 'numerical', 'integerOnly'=>true),
+			array('tournament_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, link, active, sport_id, cron_time, cron_group', 'safe', 'on'=>'search'),
+			array('id, link, tournament_id, cron', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,8 +47,7 @@ class Tournament extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'sport' => array(self::BELONGS_TO, 'Sport', 'sport_id'),
-                        'links' => array(self::HAS_MANY, 'Tournament', 'tournament_id'),
+			'tournament' => array(self::BELONGS_TO, 'Tournament', 'tournament_id'),
 		);
 	}
 
@@ -63,12 +58,9 @@ class Tournament extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
 			'link' => 'Link',
-			'active' => 'Active',
-			'sport_id' => 'Sport',
-                        'cron_time' => 'Cron last',
-                        'cron_group' => 'Cron group'
+			'tournament_id' => 'Tournament',
+			'cron' => 'Cron',
 		);
 	}
 
@@ -91,16 +83,12 @@ class Tournament extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
 		$criteria->compare('link',$this->link,true);
-		$criteria->compare('active',$this->active);
-		$criteria->compare('sport_id',$this->sport_id,true);
-                $criteria->compare('cron_time',$this->cron_time,true);
-                $criteria->compare('cron_group',$this->cron_group,true);
+		$criteria->compare('tournament_id',$this->tournament_id,true);
+		$criteria->compare('cron',$this->cron);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-                        'pagination' => array('pageSize' => 30,)
 		));
 	}
 
@@ -108,7 +96,7 @@ class Tournament extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Tournament the static model class
+	 * @return Stack the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
