@@ -27,9 +27,29 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+            $script = Yii::app()->clientScript;
+            $baseUrl = Yii::app()->request->baseUrl;
+            $script->registerScriptFile($baseUrl . '/js/main.js');
+            $script->registerCssFile($baseUrl . '/lib/colorbox/colorbox.css');
+            $script->registerScriptFile($baseUrl . '/lib/colorbox/jquery.colorbox-min.js');
+            
+//            Login
+            $login=new LoginForm;
+            require dirname(Yii::app()->basePath) . '/lib/facebook-php-sdk/src/facebook.php';
+            $facebook = new Facebook(array(
+                'appId' => '1454745711416645',
+                'secret' => '4b531490370c935cc2079ba8ea78b7e0',
+                'cookie' => true,
+            ));
+//            Register
+            $model=new User;
+            
+
+            $this->render('index', array(
+                'login'=>$login,
+                'model'=>$model,
+                'facebook' => $facebook
+            ));
 	}
 
 	/**

@@ -5,4 +5,4 @@
 
 <h1>Register</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model, 'facebook' => $facebook)); ?>
+<?php $this->renderPartial('/user/_form', array('model'=>$model, 'facebook' => $facebook)); ?>
