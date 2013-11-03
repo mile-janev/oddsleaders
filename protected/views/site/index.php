@@ -24,18 +24,30 @@ $this->pageTitle=Yii::app()->name;
 $(document).ready( function() {
 
     $("#loginColorbox").colorbox({
-        close: "X",
         inline:true,
         width: '510px',
-        opacity: 0.50,
+        opacity: 0.70,
+        speed: 100,
+        scrolling: false
+    });
+    $("#loginColorboxInside").colorbox({
+        inline:true,
+        width: '510px',
+        opacity: 0.70,
         speed: 100,
         scrolling: false
     });
     $("#registerColorbox").colorbox({
-        close: "X",
         inline:true,
         width: '510px',
-        opacity: 0.50,
+        opacity: 0.70,
+        speed: 100,
+        scrolling: false
+    });
+    $("#registerColorboxInside").colorbox({
+        inline:true,
+        width: '510px',
+        opacity: 0.70,
         speed: 100,
         scrolling: false
     });

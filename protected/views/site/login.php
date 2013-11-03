@@ -16,9 +16,10 @@ $this->breadcrumbs=array(
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-form',
-	'enableClientValidation'=>true,
+	'enableAjaxValidation'=>true,
+        'action'=>array('site/login'),
 	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
+            'validateOnSubmit'=>true,
 	),
 )); ?>
 
@@ -50,4 +51,6 @@ $this->breadcrumbs=array(
         
 <div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl('site/login', array('registerwith' => 'facebook'), '', '&')))); ?>" >Login using Facebook</a></div>
         
+<?php echo CHtml::link('Register here', '#partial-register', array('id'=>'registerColorboxInside')); ?>
+
 </div><!-- form -->

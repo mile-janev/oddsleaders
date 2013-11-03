@@ -13,6 +13,7 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>true,
+        'action'=>array('user/register'),
         'clientOptions'=>array(
             'validateOnSubmit'=>true,
         ),
@@ -61,4 +62,6 @@
 
         <div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl("user/register", array('registerwith' => 'facebook'), '', '&')))); ?>" >Register using Facebook</a></div>
         
+        <?php echo CHtml::link('Log In', '#partial-login', array('id'=>'loginColorboxInside')); ?>
+
 </div><!-- form -->
