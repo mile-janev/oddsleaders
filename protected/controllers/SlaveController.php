@@ -39,13 +39,40 @@ class SlaveController extends Controller
     public function actionGetXml()
     {
         $xml = simplexml_load_file('http://api.oddsleaders.dev/xml/odds.xml');
-        
         foreach ($xml->sport as $key => $sport) {
             $sport_name = (string)$sport->sport_name;
+
+        	$sport_model = new Sport();
+            $sport_model->name = $sport_name;
+            $sport_model->save();
+
+            $sport_id = Yii::app()->db->getLastInsertId('Sport');
+            
             foreach ($sport->tournament as $key => $tournament) {
                 $tournament_name = (string)$tournament->tournament_name;
+                $tournament_slug = SlugGenerator::slug($tournament_name);
+
+            	$league_model = new League();
+                $league_model->name = $tournament_name;
+                $league_model->slug = $tournament_slug;
+                $league_model->sport_id = $sport_id;
+                $league_model->save();             
+
+            	$league_id = Yii::app()->db->getLastInsertId('League');
+
                 foreach ($tournament->game as $key => $game) {
+                	$code = (string)$game->code;
+                	$opponent = (string)$game->opponent;
+                	$start = (string)$game->start;
                 	$odds = (string)$game->odds;
+                		
+                	$game_model = new Game();
+	                $game_model->teams = $opponent;
+	                $game_model->start = strtotime($start);
+	                $game_model->odds = $odds;
+	                $game_model->league_id = $league_id;
+	                $game_model->code = $code;
+	                $game_model->save();
                 }
             }
         }
