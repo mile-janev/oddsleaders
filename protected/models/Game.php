@@ -5,16 +5,14 @@
  *
  * The followings are the available columns in table 'game':
  * @property string $id
- * @property string $home_id
- * @property string $guest_id
- * @property string $start
- * @property string $home_goals
- * @property string $guest_goals
+ * @property string $league_id
+ * @property string $teams
+ * @property integer $start
+ * @property string $odds
+ * @property integer $code
  *
  * The followings are the available model relations:
- * @property Coefficient[] $coefficients
- * @property Team $guest
- * @property Team $home
+ * @property League $league
  */
 class Game extends CActiveRecord
 {
@@ -34,11 +32,13 @@ class Game extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('home_id, guest_id, start, home_goals, guest_goals', 'required'),
-			array('home_id, guest_id, home_goals, guest_goals', 'length', 'max'=>10),
+			array('league_id, teams, start, odds, code', 'required'),
+			array('start, code', 'numerical', 'integerOnly'=>true),
+			array('league_id', 'length', 'max'=>10),
+			array('teams', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, home_id, guest_id, start, home_goals, guest_goals', 'safe', 'on'=>'search'),
+			array('id, league_id, teams, start, odds, code', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,10 +50,7 @@ class Game extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'coefficients' => array(self::HAS_MANY, 'Coefficient', 'game_id'),
-                        'rounds' => array(self::HAS_MANY, 'Round', 'game_id'),
-			'guest' => array(self::BELONGS_TO, 'Team', 'guest_id'),
-			'home' => array(self::BELONGS_TO, 'Team', 'home_id'),
+			'league' => array(self::BELONGS_TO, 'League', 'league_id'),
 		);
 	}
 
@@ -64,11 +61,11 @@ class Game extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'home_id' => 'Home',
-			'guest_id' => 'Guest',
+			'league_id' => 'League',
+			'teams' => 'Teams',
 			'start' => 'Start',
-			'home_goals' => 'Home Goals',
-			'guest_goals' => 'Guest Goals',
+			'odds' => 'Odds',
+			'code' => 'Code',
 		);
 	}
 
@@ -91,11 +88,11 @@ class Game extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('home_id',$this->home_id,true);
-		$criteria->compare('guest_id',$this->guest_id,true);
-		$criteria->compare('start',$this->start,true);
-		$criteria->compare('home_goals',$this->home_goals,true);
-		$criteria->compare('guest_goals',$this->guest_goals,true);
+		$criteria->compare('league_id',$this->league_id,true);
+		$criteria->compare('teams',$this->teams,true);
+		$criteria->compare('start',$this->start);
+		$criteria->compare('odds',$this->odds,true);
+		$criteria->compare('code',$this->code);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

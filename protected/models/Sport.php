@@ -30,12 +30,10 @@ class Sport extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, link', 'required'),
-			array('active', 'numerical', 'integerOnly'=>true),
-			array('name, link', 'length', 'max'=>256),
+			array('name', 'required'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, link, active', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,8 +57,6 @@ class Sport extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'link' => 'Link',
-			'active' => 'Active',
 		);
 	}
 
@@ -84,8 +80,6 @@ class Sport extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('link',$this->link,true);
-		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
