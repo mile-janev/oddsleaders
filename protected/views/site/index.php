@@ -24,6 +24,7 @@ $this->pageTitle=Yii::app()->name;
 $(document).ready( function() {
 
     $("#loginColorbox").colorbox({
+        close: "X",
         inline:true,
         width: '510px',
         opacity: 0.70,
@@ -31,6 +32,7 @@ $(document).ready( function() {
         scrolling: false
     });
     $("#loginColorboxInside").colorbox({
+        close: "X",
         inline:true,
         width: '510px',
         opacity: 0.70,
@@ -38,6 +40,7 @@ $(document).ready( function() {
         scrolling: false
     });
     $("#registerColorbox").colorbox({
+        close: "X",
         inline:true,
         width: '510px',
         opacity: 0.70,
@@ -45,6 +48,7 @@ $(document).ready( function() {
         scrolling: false
     });
     $("#registerColorboxInside").colorbox({
+        close: "X",
         inline:true,
         width: '510px',
         opacity: 0.70,
