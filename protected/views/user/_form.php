@@ -25,43 +25,38 @@
         <?php echo $form->hiddenField($model, 'oauth_uid'); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'username'); ?>
+		<i class="icon-user"></i>
+		<?php echo $form->textField($model,'username', array("Placeholder"=>"Username")); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'password'); ?>
+		<i class="icon-lock"></i>
+		<?php echo $form->passwordField($model,'password', array("Placeholder"=>"Password")); ?>
 	</div>
         
         <div class="row">
-		<?php echo $form->labelEx($model,'password_repeat'); ?>
-		<?php echo $form->passwordField($model,'password_repeat',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'password_repeat'); ?>
-	</div>
-        
+		<i class="icon-repeat"></i>
+		<?php echo $form->passwordField($model,'password_repeat', array("Placeholder"=>"Repeat password")); ?>
+	</div>    
         <div class="row">
-		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'email'); ?>
+		<i class="icon-envelope"></i>
+		<?php echo $form->textField($model,'email', array("Placeholder"=>"Email")); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'name'); ?>
+		<i class="icon-pencil"></i>
+		<?php echo $form->textField($model,'name', array("Placeholder"=>"Your name")); ?>
 	</div>	
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create my profile' : 'Save changes', array('class'=>"button green")); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
-        <div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl("user/register", array('registerwith' => 'facebook'), '', '&')))); ?>" >Register using Facebook</a></div>
-        
-        <?php echo CHtml::link('Log In', '#partial-login', array('id'=>'loginColorboxInside')); ?>
+        <div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl("user/register", array('registerwith' => 'facebook'), '', '&')))); ?>" class="button green"><i class="icon-facebook"></i>  Register using Facebook</a></div>
+        <hr>
+        <p>You already have account ???</p>
+        <?php echo CHtml::link('<i class="icon-user"></i> Log In', '#partial-login', array('id'=>'loginColorboxInside', 'class'=>'fb_login button blue')); ?>
 
 </div><!-- form -->
