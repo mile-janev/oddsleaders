@@ -28,23 +28,6 @@ a
 		font-size: 16px;
 		top: 0px;
 		color: #ffffff;
-		color: #ffffff !important;
-		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-		background-color: #5bb75b;
-		background-image: -moz-linear-gradient(top, #62c462, #51a351);
-		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
-		background-image: -webkit-linear-gradient(top, #62c462, #51a351);
-		background-image: -o-linear-gradient(top, #62c462, #51a351);
-		background-image: linear-gradient(to bottom, #62c462, #51a351);
-		background-repeat: repeat-x;
-		border-color: #51a351 #51a351 #387038;
-		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
-		filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-
-		-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-		-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 	}
 	#top #top_menu
 	{
@@ -150,58 +133,30 @@ a
 		}
 		#mainmenu ul li > a:hover
 		{
-			color: #da5453;
+			color: #1a5e83;
 			background: #fff;
 			padding: 7px 20px 10px 20px;
-			border-top: 3px solid #013f78;
+			border-top: 3px solid #1a5e83;
 		}
 		#mainmenu ul li > .selected
 		{
-			color: #da5453;
+			color: #1a5e83;
 			background: #fff;
 			padding: 7px 20px 10px 20px;
-			border-top: 3px solid #da5453;
+			border-top: 3px solid #1a5e83;
 		}
 		#mainmenu ul li > .selected:hover
 		{
-			border-top: 3px solid #da5453;	
+			border-top: 3px solid #1a5e83;	
 		}
 
 #last_minute 
 {
 	width: 1100px;
 	margin: 5px auto;
-	background: #417a97;
 	height: 30px;
 	overflow: hidden;
 }
-	#last_minute h1
-	{
-		margin: 0;
-		color: #fff;
-		width: 160px;
-		height: inherit;
-		font-size: 14px;
-		font-weight: normal;
-		background: #da5453;
-		vertical-align: top;
-		display: inline-block;
-		padding: 7px 0 0 15px;
-	}
-	#last_minute .lm_matches 
-	{
-		margin: 0;
-		width: 930px;
-		display: inline-block;
-		vertical-align: top;
-	}
-			#last_minute .lm_matches a 
-			{
-				color: #fff;
-				font-weight: bold;
-				padding-top: 7px;
-				display: inline-block;
-			}
 
 #wrapped 
 {
@@ -209,7 +164,7 @@ a
 	height: auto;
 	min-height: 500px;
 	font-size: 0;
-	margin: 0px auto 20px auto;
+	margin: 10px auto 20px auto;
 	background: rgba(242, 242, 242, 1);
 	border: 1px solid rgba(255,255,255,1);
 }
@@ -268,9 +223,10 @@ a
 	#wrapped #content #sidebar #sel_sport
 	{
 		text-align: center;
+		font-weight: bold;
 		padding: 5px 10px 0 10px;
 		text-transform: uppercase;
-		text-shadow: 1px 1px #fff;
+		color: #1a5e83;
 	}
 		#wrapped #content #sidebar #sports 
 		{
@@ -283,15 +239,15 @@ a
 			color: #ffffff;
 			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 			background-color: #006dcc;
-			background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-			background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-			background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-			background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+			background-image: -moz-linear-gradient(top, #0088cc, #1a5e83);
+			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#1a5e83));
+			background-image: -webkit-linear-gradient(top, #0088cc, #1a5e83);
+			background-image: -o-linear-gradient(top, #0088cc, #1a5e83);
+			background-image: linear-gradient(to bottom, #0088cc, #1a5e83);
 			background-repeat: repeat-x;
-			border-color: #0044cc #0044cc #002a80;
+			border-color: #1a5e83 #1a5e83 #002a80;
 			border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff1a5e83', GradientType=0);
 			filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 		}
 				#wrapped #content #sidebar #sports > li a 
@@ -328,15 +284,15 @@ a
 					color: #ffffff;
 					text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 					background-color: #006dcc;
-					background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-					background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-					background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-					background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-					background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+					background-image: -moz-linear-gradient(top, #0088cc, #1a5e83);
+					background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#1a5e83));
+					background-image: -webkit-linear-gradient(top, #0088cc, #1a5e83);
+					background-image: -o-linear-gradient(top, #0088cc, #1a5e83);
+					background-image: linear-gradient(to bottom, #0088cc, #1a5e83);
 					background-repeat: repeat-x;
-					border-color: #0044cc #0044cc #002a80;
+					border-color: #1a5e83 #1a5e83 #002a80;
 					border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-					filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+					filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff1a5e83', GradientType=0);
 					filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 					-webkit-transition: all 0.1s ease;
 					-moz-transition: all 0.1s ease;
@@ -470,10 +426,114 @@ a
 
 		#wrapped #content #rightbar #bet_slip 
 		{
-			width: 100%;
-			height: 200px;
-			border-radius: 5px; 
+			color: #353535;
 		}
+		#wrapped #content #rightbar #bet_slip form 
+		{
+			width: 100%;
+			height: 170px;
+			display: block;
+		}
+		#wrapped #content #rightbar #bet_slip #matchs 
+		{ 
+		}
+		#wrapped #content #rightbar #bet_slip #matchs #match
+		{
+			padding: 5px;
+			margin-top: 2px;
+			font-size: 11px;
+			background-color: #f5f5f5;
+			background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+			background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+			background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+			background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+			filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+			-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+			-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);	
+			box-shadow: 0px 2px 1px #cdcdcd;
+		}
+		#wrapped #content #rightbar #bet_slip #matchs #match:hover 
+		{
+			background: #efefef;
+			background-position: 36px;
+			-webkit-transition: all .25s linear;
+			   -moz-transition: all .25s linear;
+			    -ms-transition: all .25s linear;
+			     -o-transition: all .25s linear;
+			        transition: all .25s linear;
+		}
+		#wrapped #content #rightbar #bet_slip #matchs #match .close
+		{
+			width: 16px;
+			height: 16px;
+			float: right;
+			border-radius: 50%;
+			cursor: pointer;
+			font-size: 10px;
+			padding: 1px 5px;
+			margin-right: 10px;
+		}
+		#wrapped #content #rightbar #bet_slip #matchs #match .close:hover 
+		{
+			background: #1a5e83;
+			color: #fff;
+		}
+		#wrapped #content #rightbar #bet_slip #matchs #match #odds #tip  
+		{
+			color: #fff;
+			float: left;
+			padding: 2px 10px;
+			border-radius: 10px;
+			background: #006dcc;
+		}
+		#wrapped #content #rightbar #bet_slip #matchs #match #odds span 
+		{
+			margin-left: 20px;
+			display: inline-block;
+		}
+		#wrapped #content #rightbar #bet_slip #stake 
+		{
+			font-size: 12px;
+			margin-top: 10px;
+			text-align: right;
+		} 
+		#wrapped #content #rightbar #bet_slip #stake input[type=text]
+		{
+			width: 50px;
+			border: none;
+			outline: none;
+			padding: 2px 5px;
+			border: 1px solid #1a5e83;
+			margin-left: 0 5px;
+		}
+		#wrapped #content #rightbar #bet_slip #money 
+		{
+			padding: 5px 0;
+			margin: 10px 0;
+			font-size: 12px;
+			color: #fff;
+			background: #006dcc;
+			text-align: center;
+			border-top: 1px solid #1a5e83;
+			border-bottom: 1px solid #1a5e83;
+		}
+			#wrapped #content #rightbar #bet_slip #money span 
+			{
+				font-weight: bold;
+			}
+			
+		#wrapped #content #rightbar #bet_slip .clear 
+		{
+			font-size: 12px;
+			color: #1a5e83;
+			font-weight: bold;
+			position: absolute;
+			margin: 10px 0 0 5px; 
+		}
+
 /*--------------------------------------------------------------------------------------------------------------
 										MAIN TOP BOX
 ---------------------------------------------------------------------------------------------------------------*/
@@ -481,10 +541,6 @@ a
 {
 	width: 100%;
 	height: auto;
-	border-radius: 5px;
-	-o-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
 	background: rgba(1,63,120,.05);
 	border: 1px solid rgba(1,63,120,.25);
 }
@@ -642,7 +698,7 @@ a
 				{
 					color: #fff;
 					cursor: pointer;
-					background: #da5453;
+					background: #62c462;
 				}
 				#wrapped #main .upcoming li #tip:hover span
 				{
@@ -711,35 +767,23 @@ a
 		-moz-border-radius: 5px 5px 0 0;
 		-webkit-border-radius: 5px 5px 0 0;
 		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-		background-color: #5bb75b;
-		background-image: -moz-linear-gradient(top, #62c462, #51a351);
-		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
-		background-image: -webkit-linear-gradient(top, #62c462, #51a351);
-		background-image: -o-linear-gradient(top, #62c462, #51a351);
-		background-image: linear-gradient(to bottom, #62c462, #51a351);
-		background-repeat: repeat-x;
-		border-color: #51a351 #51a351 #387038;
-		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
-		filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-
-		-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-		-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 	}
 	.box .table 
 	{
 		width: 100%;
 		color: #333333;
 		font-size: 11px;
-		background: rgba(255,255,255,.75);
 		border: 1px solid #51a351;
 	}
+		.box .table tr 
+		{
+			background: #fff;
+			margin: 0;
+		}
 			.box .table tr th 
 			{
 				padding: 5px;
 				background: #efefef;
-				border-bottom: 1px solid rgba(1,63,120,.2);
 			}
 			.box .table tr th:first-child
 			{
@@ -754,7 +798,7 @@ a
 			.box .table tr td 
 			{
 				padding: 5px;
-				border-right: 1px solid rgba(1,63,120,.2);
+				margin: 0;
 			}
 			.box .table tr td:first-child
 			{
@@ -846,7 +890,7 @@ a
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
-	.green:hover 
+	.form .green:hover 
 	{
 		color: #ffffff;
 		background: #62c462;
@@ -861,18 +905,18 @@ a
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	background-color: #006dcc;
-	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-	background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-	background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-	background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+	background-image: -moz-linear-gradient(top, #0088cc, #1a5e83);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#1a5e83));
+	background-image: -webkit-linear-gradient(top, #0088cc, #1a5e83);
+	background-image: -o-linear-gradient(top, #0088cc, #1a5e83);
+	background-image: linear-gradient(to bottom, #0088cc, #1a5e83);
 	background-repeat: repeat-x;
-	border-color: #0044cc #0044cc #002a80;
+	border-color: #1a5e83 #1a5e83 #002a80;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff1a5e83', GradientType=0);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
-	.blue:hover 
+	.form .blue:hover 
 	{
 		color: #ffffff;
 		background: #0088cc;
@@ -928,4 +972,57 @@ i[data-title]:hover:after
 .left 
 {
 	float: left;
+}
+
+/*--------------------------------------------------------------------------------------------------------------
+										NANO SCROLLER
+---------------------------------------------------------------------------------------------------------------*/
+.nano {
+  position : relative;
+  width    : 100%;
+  height   : 90%;
+  overflow : hidden;
+}
+.nano .content {
+  position      : absolute;
+  overflow      : scroll;
+  overflow-x    : hidden;
+  top           : 0;
+  right         : 0;
+  bottom        : 0;
+  left          : 0;
+}
+.nano .content:focus {
+  outline: thin dotted;
+}
+.nano .content::-webkit-scrollbar {
+  visibility: hidden;
+}
+.has-scrollbar .content::-webkit-scrollbar {
+  visibility: visible;
+}
+.nano > .pane {
+  background : #ccc;
+  position   : absolute;
+  width      : 10px;
+  right      : 0;
+  top        : 0;
+  bottom     : 0;
+  z-index: 999;
+  visibility : hidden\9; /* Target only IE7 and IE8 with this hack */
+  opacity    : .01; 
+  -webkit-transition    : .2s;
+  -moz-transition       : .2s;
+  -o-transition         : .2s;
+  transition            : .2s;
+}
+.nano > .pane > .slider {
+  background: #444;
+  background: #1a5e83;
+  position              : relative;
+  margin                : 0 0 0 1px;
+}
+.nano:hover > .pane, .pane.active, .pane.flashed {
+  visibility : visible\9; /* Target only IE7 and IE8 with this hack */
+  opacity    : 0.99;
 }

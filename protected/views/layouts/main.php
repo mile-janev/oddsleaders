@@ -22,47 +22,11 @@
         $script = Yii::app()->clientScript;
         $script->registerCoreScript('jquery');
     ?>
+
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
-   	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.services li').click(function(){
-				$(this).find('ul').show();
-				$(this).mouseleave(function(){
-					$(this).find('ul').hide();
-				});
-			});
-
-			$('.more, #more').click(function(){
-				$(this).parent("div").next().slideToggle();
-			});
-
-			function side_toggle(obj)
-			{
-			    if (obj.attr('class') != 'active')
-				{
-			      $('#sports li ul').slideUp();
-			      obj.next().slideToggle();
-			      $('#sports li a').removeClass('active');
-			      obj.addClass('active');
-			    }	
-			};
-
-				$(".toggler").click(function()
-				{
-					side_toggle($(this));
-					return false;
-				});
-
-			/*$('#main_menu li').mouseover(function(){
-				color = $(this).attr('data');
-				$('#top').css({'background': '#'+color});
-			});*/
-		});
-	</script>
-
 <body>
-<div id="top">
+<div id="top" class="blue">
 	<ul id="top_menu">
 		<li><a href="">Home</a></li>
 		<li><a href="">Tips</a></li>
@@ -75,35 +39,14 @@
 </div>
 <div id="banner"></div>
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-                array('label'=>'Game', 'url'=>array('/game/index')),
-                array('label'=>'House', 'url'=>array('/house/index')),
-                array('label'=>'League', 'url'=>array('/league/index')),
-                array('label'=>'Nickname', 'url'=>array('/nickname/index')),
-                array('label'=>'User', 'url'=>array('/user/index')),
-				array('label'=>'Role', 'url'=>array('/role/index')),
-				array('label'=>'Round', 'url'=>array('/round/index')),
-                array('label'=>'Team', 'url'=>array('/team/index')),
-                array('label'=>'User', 'url'=>array('/user/index')),
-                array('label'=>'Contact', 'url'=>array('/site/contact')),
-                array('label'=>'Admin', 'url'=>array('/admin/admin')),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
+		<ul>
+			<li><a href="" class="selected"><i class="icon-home"></i> HOME</a></li>
+			<li><a href=""><i class="icon-comments"></i> TIPS</a></li>
+			<li><a href=""><i class="icon-book"></i> HELP</a></li>
+			<li><a href=""><i class="icon-envelope"></i> CONTACT</a></li>
+			<li><a href=""><i class="icon-globe"></i>GAMES</a></li>
+		</ul>
 	</div><!-- mainmenu -->
-	<div id="last_minute">
-		<h1>Last minute matches:</h1>
-		<div class="lm_matches">
-			<a href="">18:00 Barcelona - Real Mardid | 2.3 | 3.00 | 2.5</a>
-		</div>
-	</div>
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
 <div id="wrapped">
 	<div id="content">
 		<div id="sidebar">
@@ -181,7 +124,7 @@
 		</div>
 		<div id="main">
 			<?php echo $content; ?>
-			<div class="box_title"><i class="icon-flag"></i> Top Matches</div>
+			<div class="box_title green"><i class="icon-flag"></i> Top Matches</div>
 			<div id="main_top">
 				<div id="left"><i class="icon-chevron-left"></i></div>
 				<ul>
@@ -207,7 +150,7 @@
 				<div id="right"><i class="icon-chevron-right"></i></div>
 			</div>
 			<div class="box">
-				<div class="box_title"><i class="icon-flag"></i> Upcoming events</div>
+				<div class="box_title green"><i class="icon-flag"></i> Upcoming events</div>
 				<ul class="upcoming">
 					<li>
 						<div id="sport"><div class="icon tennis"></div></div>
@@ -381,7 +324,7 @@
 				</ul>	
 			</div>
 			<div class="box">
-				<div class="box_title"><i class="icon football"></i> Football</div>
+				<div class="box_title green"><i class="icon football"></i> Football</div>
 				<table class="table">
 					<tr class="th">
 						<th colspan="2">Spain Primera Devision</th>
@@ -485,7 +428,7 @@
 				</table>
 			</div>
 			<div class="box">
-				<div class="box_title"><i class="icon tennis"></i> Tennis</div>
+				<div class="box_title green"><i class="icon tennis"></i> Tennis</div>
 				<table class="table">
 					<tr class="th">
 						<th colspan="2">Rolan Garos</th>
@@ -562,8 +505,30 @@
 			</div>
 		</div>
 		<div id="rightbar">
-			<div class="box_title"><i class="icon-credit-card"></i> Bet slip</div>
+			<div class="box_title blue"><i class="icon-credit-card"></i> Bet slip</div>
 			<div id="bet_slip">
+				<form class="form" action="#" method="POST">
+					<div class="nano">
+						<div class="content">
+							<div id="matchs">
+								<div id="match">Barcelona - Milan <span class="close">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div>
+								<div id="match">Dortmund - Arsenal <span class="close">X</span><div id="odds"><div id="tip">2</div><span>1.45</span></div></div>
+								<div id="match">Juventus - Real Madrid <span class="close">X</span><div id="odds"><div id="tip">X</div><span>1.45</span></div></div>
+								<div id="match">N. Djokovic - R. Federer <span class="close">X</span><div id="odds"><div id="tip">2</div><span>1.45</span></div></div>
+								<div id="match">Barcelona - Milan <span class="close">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div>
+							</div>
+						</div>
+					</div>
+							<div id="stake">
+								Place your stake 
+								<input type="text" name="stake"> €
+							</div>
+							<div id="money">
+								Winning stake <span>25000 €</span> 
+							</div>
+							<a href="" class="clear">Clear bets</a>
+							<input type="submit" value="Place Bet" class="button blue right">
+				</div>
 			</div>
 		</div>
 	</div>

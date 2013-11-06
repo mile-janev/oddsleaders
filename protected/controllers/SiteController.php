@@ -32,6 +32,7 @@ class SiteController extends Controller
             $script->registerScriptFile($baseUrl . '/js/main.js');
             $script->registerCssFile($baseUrl . '/lib/colorbox/colorbox.css');
             $script->registerScriptFile($baseUrl . '/lib/colorbox/jquery.colorbox-min.js');
+            $script->registerScriptFile($baseUrl . '/js/nanoScroller.js');
             
 //            Login
             $login=new LoginForm;

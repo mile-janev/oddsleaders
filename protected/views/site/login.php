@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 	'Login',
 );
 ?>
-<div class="form">
+<div class="form popup">
 	<div id="left">
 		<?php $form=$this->beginWidget('CActiveForm', array(
 			'id'=>'login-form',
