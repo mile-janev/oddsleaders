@@ -426,7 +426,10 @@ a
 
 		#wrapped #content #rightbar #bet_slip 
 		{
+			height: 290px;
 			color: #353535;
+			border-bottom: 1px solid #fff;
+			margin-bottom: 20px;
 		}
 		#wrapped #content #rightbar #bet_slip form 
 		{
@@ -506,6 +509,7 @@ a
 			border: none;
 			outline: none;
 			padding: 2px 5px;
+			box-shadow: inset 0 0 10px 1px #ccc;
 			border: 1px solid #1a5e83;
 			margin-left: 0 5px;
 		}
@@ -533,6 +537,88 @@ a
 			position: absolute;
 			margin: 10px 0 0 5px; 
 		}
+	#wrapped #content #rightbar #tabs
+	{
+		text-align: right;
+		padding: 10px 0px 1px 0;
+		border: 2px solid #1a5e83;
+	}
+	#wrapped #content #rightbar #tabs a 
+	{
+		color: #fff;
+		padding: 5px 10px;
+		background: #1a5e83;
+		border-radius: 4px 4px 0 0;
+		-o-border-radius: 4px 4px 0 0;
+		-moz-border-radius: 4px 4px 0 0;
+		-webkit-border-radius: 4px 4px 0 0;
+	}
+	#wrapped #content #rightbar #tabs .active 
+	{
+		color: #353535;
+		border: 2px solid #1a5e83;
+		border-bottom: none;
+		background: #efefef;
+	}
+	#wrapped #content #rightbar #tipsters 
+	{
+		margin: 0;
+		padding: 0;
+		color: #353535;
+		font-size: 12px;
+		list-style: none;
+		border: 2px solid #1a5e83;
+	}
+	#wrapped #content #rightbar #tipsters #row 
+	{
+		margin: 0;
+		display: block;
+		border-bottom: 1px dotted #cdcdcd;
+	}
+	#wrapped #content #rightbar #tipsters #row #user a 
+	{
+		color: #1a5e83;
+	}
+	#wrapped #content #rightbar #tipsters #row #user a:hover 
+	{
+		text-decoration: underline;
+	} 
+	#wrapped #content #rightbar #tipsters #row:nth-child(2n)
+	{
+		background: #fff;
+	}
+	#wrapped #content #rightbar #tipsters #row:hover 
+	{
+		background: rgba(98,191,98,.1) ;
+	}
+	#wrapped #content #rightbar #tipsters #row span
+	{
+		width: 30px;
+		padding: 5px;
+		text-align: center;
+		display: inline-block;
+		border-right: 1px dotted #1a5e83;
+	}
+
+	#wrapped #content #rightbar #tipsters #row #user
+	{
+		font-size: 14px;
+		color: #1a5e83;
+		padding: 5px 10px;
+		display: inline-block;
+		vertical-align: top;
+		zoom: 1; /* Fix for IE7 */
+		*display: inline; /* Fix for IE7 */
+	}
+	#wrapped #content #rightbar #tipsters #row #credits
+	{
+		padding: 5px;
+		float: right;
+		display: inline-block;
+		vertical-align: top;
+		zoom: 1; /* Fix for IE7 */
+		*display: inline; /* Fix for IE7 */
+	}
 
 /*--------------------------------------------------------------------------------------------------------------
 										MAIN TOP BOX
@@ -746,7 +832,6 @@ a
 						{
 							background: none;
 						}
-
 /*--------------------------------------------------------------------------------------------------------------
 										TABLE
 ---------------------------------------------------------------------------------------------------------------*/
@@ -767,6 +852,10 @@ a
 		-moz-border-radius: 5px 5px 0 0;
 		-webkit-border-radius: 5px 5px 0 0;
 		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	}
+	.box_title i 
+	{
+		font-size: 16px;
 	}
 	.box .table 
 	{

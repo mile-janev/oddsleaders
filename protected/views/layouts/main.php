@@ -529,6 +529,24 @@
 							<a href="" class="clear">Clear bets</a>
 							<input type="submit" value="Place Bet" class="button blue right">
 				</div>
+				<div class="box_title blue"><i class="icon-hand-up"></i> Best tipsters</div>
+				<div id="tabs">
+					<a href="#tab-0" class="active">Mountly</a>
+					<a href="#tab-1">All time</a>
+				</div>
+				<ul id="tipsters">
+					<li id="row"><span>1</span><div id="user"><a href="">tiger_s</a></div><div id="credits">632€</div></li>
+					<li id="row"><span>2</span><div id="user"><a href="">janev</a></div><div id="credits">602€</div></li>
+					<li id="row"><span>3</span><div id="user"><a href="">mile</a></div><div id="credits">600€</div></li>
+					<li id="row"><span>4</span><div id="user"><a href="">slavco</a></div><div id="credits">555€</div></li>
+					<li id="row"><span>5</span><div id="user"><a href="">kuzeski</a></div><div id="credits">512€</div></li>
+					<li id="row"><span>6</span><div id="user"><a href="">jmile</a></div><div id="credits">480€</div></li>
+					<li id="row"><span>7</span><div id="user"><a href="">leaders</a></div><div id="credits">421€</div></li>
+					<li id="row"><span>8</span><div id="user"><a href="">odds</a></div><div id="credits">398€</div></li>
+					<li id="row"><span>9</span><div id="user"><a href="">bets.com</a></div><div id="credits">350€</div></li>
+					<li id="row"><span>10</span><div id="user"><a href="">tipster</a></div><div id="credits">312€</div></li>
+					<li id="row"><div id="user" style="text-align:center; width:100%;"><a href="">See all <i class="icon-double-angle-right"></i></a></div></li>
+				</ul>
 			</div>
 		</div>
 	</div>
