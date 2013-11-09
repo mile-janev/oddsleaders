@@ -29,10 +29,12 @@ class SiteController extends Controller
 	{
             $script = Yii::app()->clientScript;
             $baseUrl = Yii::app()->request->baseUrl;
-            $script->registerScriptFile($baseUrl . '/js/main.js');
             $script->registerCssFile($baseUrl . '/lib/colorbox/colorbox.css');
             $script->registerScriptFile($baseUrl . '/lib/colorbox/jquery.colorbox-min.js');
             $script->registerScriptFile($baseUrl . '/js/nanoScroller.js');
+            $script->registerScriptFile($baseUrl . '/js/charts.js');
+            $script->registerScriptFile($baseUrl . '/js/serials.js');
+            $script->registerScriptFile($baseUrl . '/js/main.js');
             
 //            Login
             $login=new LoginForm;

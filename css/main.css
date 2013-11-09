@@ -12,9 +12,17 @@ body {
 	font: 13px Tahoma;
 	background: #efefef;
 }
+table, caption, tbody, tfoot, thead, tr, th, td {
+	border-collapse: separate;
+	border-spacing: 0;
+}
 a 
 {
 	text-decoration: none;
+}
+.pointer
+{
+	display: none;
 }
 .login_icon 
 {
@@ -29,67 +37,133 @@ a
 		top: 0px;
 		color: #ffffff;
 	}
-	#top #top_menu
+	#top #top_wrapped
 	{
 		width: 1100px;
-		padding: 10px;
 		margin: 0 auto;
+		position: relative;
+	}
+	#top #loged 
+	{
+		margin: 4px 60px 0 0px;
+	}
+	#top #loged img 
+	{
+		height: 30px;
+		display: inline-block;
+		vertical-align: top;
+	}
+	#top #loged h1 
+	{
+		font-size: 12px;
+		vertical-align: top;
+		display: inline-block;
+	}
+		#top .config
+		{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			top: 5px;
+			right: 0;
+			position: absolute;
+			display: inline-block;
+			text-align: right;
+		}
+			#top .config > li 
+			{
+				display: block;
+			}
+			#top .config > li:hover a
+			{
+				background: #fff;
+			}
+			#top .config > li a 
+			{
+				color: #fff;
+				padding: 8px;
+				font-size: 22px;
+				margin-bottom: 8px;
+			}
+			#top .config li ul 
+			{
+				width: 142px;
+				padding: 0px;
+				margin-top: 8px;
+				padding-top: 1px;
+				display: none;
+				list-style: none;
+				text-align: left;
+				margin-right: -1px;
+				border-top: none !important;
+			} 
+			#top .config li:hover ul 
+			{
+				display: block;
+			}
+			#top .config li ul li 
+			{
+				display: block;
+				height: 28px;
+				border-bottom: 1px dotted #fff;
+			} 
+				#top .config li ul li a 
+				{
+					width: 140px;
+					color: #353535;
+					font-size: 14px;
+					position: absolute;
+					z-index: 999999;
+					padding: 5px 0 5px 15px;
+					background: transparent !important;
+				}
+				#top .config li ul li a:hover 
+				{
+					background: #e6e6e6 !important;
+				}
+				#top .config li .bilans
+				{
+					font-size: 11px;
+					padding-top: 8px; 
+					background: #e6e6e6 !important;
+				}
+				#top .config li .bilans span 
+				{
+					float: right;
+					font-size: 13px;
+					margin: -2px 10px 0 0;
+					font-weight: bold;
+				}
+	#top #top_menu
+	{
+		margin: 0 auto;
+		float: left;
 		font-size: 13px;
 		display: block;
-		overflow: auto;
+		padding: 0;
 		list-style: none;
 	}
 		#top #top_menu li 
 		{
-			float: left;
-			margin: 0 2px;
-			font-size: 92%;
-			background: none;
-			position: relative;
-			padding: 0;
+			margin: 0;
+			padding: 11px;
+			font-weight: bold;
+			display: inline-block;
+			height: 40px !important;
+			border-right: 1px solid #1a5e83;
 		}
-		#top #top_menu li:before
-		{
-			width:100%;
-			z-index: 10;
-			content: "";
-			height: 100%;
-			margin: -2px 0;
-			padding: 2px 0;
-			position: absolute;
-			border-radius: 5px;
-		}
-		#top #top_menu li:hover:before
-		{
-			background: url(../images/yt-top.png) repeat-x;
-		}
-			#top #top_menu li a 
+			#top #top_menu li select
 			{
-				z-index: 12;
-				color: #f2f4f3; 
-				padding: 3px 10px;
-				position: relative;
-				background: none;
-				-webkit-transition: all 0.3s ease-in-out 0s;
-				-moz-transition: all 0.3s ease-in-out 0s;
-				-o-transition: all 0.3s ease-in-out 0s;
-				-ms-transition: all 0.3s ease-in-out 0s;
-				transition: all 0.3s ease-in-out 0s;
-			}
-			#top #top_menu li a:hover 
-			{
-				text-decoration: none;
-				color: #fff;
-				text-shadow: 0 0 3px #fff;
-				-webkit-transform: scale(1.0);
-				-moz-transform: scale(1.0);
-				-ms-transform: scale(1.0);
-				-o-transform: scale(1.0);
-				transform: scale(1.0);
+				margin: -5px 0 0 10px;
+				border: none;
+				padding: 3px 5px; 
+				border-radius: 3px;
 			}
 #banner
 {
-	height: 80px;
+	width: 1100px;
+	margin: 0 auto;
+	height: 60px;
 }
 	#mainmenu ul 
 	{
@@ -180,46 +254,6 @@ a
 		background: rgba(242, 242, 242, 0.5);
 		border-right: 1px solid rgba(255,255,255,0.7);
 	}
-		#wrapped #content #sidebar #loged 
-		{
-			width: 100%;
-			display: block;
-			min-height: 70px;
-			padding-bottom: 20px;
-			margin: 0 auto 0px auto;
-			border-bottom: 1px solid rgba(255,255,255,.75);
-		}
-			#wrapped #content #sidebar #loged img 
-			{
-				float: left;
-				width: 60px;
-				padding: 1px;
-				background: #d7d7d7; 
-				border: 1px solid rgba(255,255,255,.75);
-			}
-			#wrapped #content #sidebar #loged #right
-			{
-				width: auto;
-				margin: 0 0 0 5px;
-				display: inline-block;
-			}
-				#wrapped #content #sidebar #loged #right h1 
-				{
-					color: #333;
-					font-size: 12px;	
-					margin: 5px 0 10px 0;
-					text-transform: uppercase;
-				}
-				#wrapped #content #sidebar #loged #right a 
-				{
-					font-size: 11px;
-					color: #1f1f1f;
-					display: block;
-				}
-				#wrapped #content #sidebar #loged #right a:hover 
-				{
-					text-decoration: underline;
-				}
 	#wrapped #content #sidebar #sel_sport
 	{
 		text-align: center;
@@ -553,7 +587,7 @@ a
 		-moz-border-radius: 4px 4px 0 0;
 		-webkit-border-radius: 4px 4px 0 0;
 	}
-	#wrapped #content #rightbar #tabs .active 
+	#wrapped #content #rightbar #tabs .current
 	{
 		color: #353535;
 		border: 2px solid #1a5e83;
@@ -627,96 +661,54 @@ a
 {
 	width: 100%;
 	height: auto;
+	text-align: center;
+	padding-bottom: 20px;
 	background: rgba(1,63,120,.05);
-	border: 1px solid rgba(1,63,120,.25);
+	border: 2px solid #1a5e83;
 }
-#wrapped #content #main #main_top #arrows 
-{
-	width: 100%;
-}
-#wrapped #content #main #main_top #left
-{
-	font-size: 20px;
-	padding: 37px 5px;
-	color: #3b5999;
-	display: inline-block;
-	border-right: 1px solid rgba(1,63,120,.25);
-}
-#wrapped #content #main #main_top #right 
-{
-	float: right;
-	color: #3b5999;
-	font-size: 20px;
-	padding: 37px 5px;
-	border-left: 1px solid rgba(1,63,120,.25);
-}
-	#wrapped #content #main #main_top #left:hover 
+	#wrapped #content #main #main_top #match
 	{
-		cursor: pointer;
-		color: #da5453;
-	}
-	#wrapped #content #main #main_top #right:hover 
-	{
-		cursor: pointer;
-		color: #da5453;
-	}
-	#wrapped #content #main #main_top ul 
-	{
-		width: 550px;
-		padding: 0;
-		margin: 10px 5px;
-		list-style: none;
-		vertical-align: top;
+		width: 170px;
+		margin: 0 5px;
+		position: relative;
+		text-align: center;
 		display: inline-block;
 	}
-		#wrapped #content #main #main_top ul li 
-		{
-			width: 32%;
-			color: #1a5e83;
-			margin-left: 6px;
-			text-align: center;
-			padding: 5px 0px;
-			display: inline-block;
-			background: rgba(255,255,255,.5);
-			border: 1px solid rgba(255,255,255,1);
-		}
-		#wrapped #content #main #main_top ul li:first-child
-		{
-			margin-left: 0;
-		}
-		#wrapped #content #main #main_top ul li:hover
-		{
-			border: 1px solid #efefef;
-		}
-			#wrapped #main #main_top ul li #teams 
-			{
-				padding: 5px 10px;
-				font-weight: bold;
-				border-bottom: 1px solid #fff; 	
-			}
-			#wrapped #main #main_top ul li #tip
-			{
-				width: 31%;
-				text-align: left;
-				font-size: 11px;
-				padding: 2px 5px;
-				cursor: pointer;
-				display: inline-block;
-				border: 1px solid rgba(1,63,120,.4);
-			}
-			#wrapped #main #main_top ul li #tip:hover 
-			{
-				color: #fff;
-				background: #da5453;
-				border: 1px solid #fff;
-			}
-				#wrapped #main #main_top ul li #tip p 
-				{
-					margin: 0;
-					float: right;
-					font-weight: bold;
-					display: inline-block;
-				}
+	#wrapped #content #main #main_top #match #teams 
+	{
+		width: 100%;
+		padding: 5px;
+		margin: 5px 0;
+		color: #353535;
+		text-align: center;
+	}
+	#wrapped #content #main #main_top #match #odds
+	{
+		width: 165px;
+	}
+	#wrapped #content #main #main_top #match a 
+	{
+		width: 40px;
+		color: #fff;
+		padding: 2px 0;
+		margin-top: 5px;
+		margin-left	: 10px;
+		background: #1a5e83;
+		display: inline-block;
+		background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+		background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+		background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+		background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+		background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+		-webkit-background-size: 30px 30px;
+		-moz-background-size: 30px 30px;
+		-o-background-size: 30px 30px;
+		background-size: 30px 30px;
+	}
+	#wrapped #content #main #main_top #match a:hover
+	{
+		background: #387697;
+	} 
 
 	#wrapped #main .upcoming
 	{
@@ -730,17 +722,14 @@ a
 		{
 			width: 100%;
 			background: #fff;
-			border-left: 1px solid #51a351;
-			border-right: 1px solid #51a351;
+			border-left: 1px solid #bfbfbf;
+			border-right: 1px solid #bfbfbf;
+			border-bottom: 1px dotted #b3b3b3;
 			display: inline-block;
-		}
-		#wrapped #main .upcoming > li:first-child
-		{
-			border-top: 1px solid #51a351; 
 		}
 		#wrapped #main .upcoming > li:last-child
 		{
-			border-bottom: 1px solid #51a351;
+			border-bottom: 1px solid #b3b3b3;
 		}
 		#wrapped #main .upcoming li:nth-child(2n)
 		{
@@ -753,13 +742,14 @@ a
 			}
 				#wrapped #main .upcoming li #sport 
 				{
-					padding: 2px 5px;
 					width: 30px;
+					padding: 2px 7px;
+					text-align: center;
 				}
 				#wrapped #main .upcoming li #match
 				{
 					padding: 6px 5px;
-					border-left: 1px solid #51a351;
+					border-left: 1px dotted #353535;
 				}
 				#wrapped #main .upcoming li #tips 
 				{
@@ -768,17 +758,15 @@ a
 				#wrapped #main .upcoming li #tip 
 				{
 					width: 70px;
-					color: #353535;
-					font-weight: bold;
-					padding: 1px 5px;
+					color: #fff;
 					margin: 4px 2px;
+					padding: 1px 5px;
 					display: inline-block;
-					border: 1px solid #51a351;
+					background-color: #51a351;
 				}
 					#wrapped #main .upcoming li #tip span
 					{
 						float: right;
-						color: #51a351;
 					}
 				#wrapped #main .upcoming li #tip:hover 
 				{
@@ -793,16 +781,21 @@ a
 				#wrapped #main .upcoming li #more 
 				{
 					width: 45px;
-					color: #fff;
+					color: #353535;
 					display: inline-block;
 					cursor: pointer;
 					padding: 6px 5px;
 					text-align: center;
-					background: #51a351;
+					background: #e6e6e6;
 				}
 					#wrapped #main .upcoming li #more:hover 
 					{
 						text-decoration: underline;
+					}
+					
+					#wrapped #main .upcoming > li:hover 
+					{
+						background: rgba(98,191,98,.1);
 					}
 
 				#wrapped #main .more_odds 
@@ -862,17 +855,17 @@ a
 		width: 100%;
 		color: #333333;
 		font-size: 11px;
-		border: 1px solid #51a351;
+		border: 1px solid #bfbfbf;
 	}
 		.box .table tr 
 		{
+			border: none;
 			background: #fff;
-			margin: 0;
 		}
 			.box .table tr th 
 			{
 				padding: 5px;
-				background: #efefef;
+				background: #bfbfbf;
 			}
 			.box .table tr th:first-child
 			{
@@ -899,8 +892,16 @@ a
 			}
 			.box .table tr:hover 
 			{
-				color: #fff;
-				background: rgba(1,63,120,.7);
+				background: rgba(98,191,98,.1);
+			}
+			.box .table tr #time 
+			{
+				border-right: 1px dotted #1a5e83;
+			}
+			.box .table tr #teams 
+			{
+				font-size: 13px;
+				color: #1a5e83;
 			}
 			.box .table tr .clickable 
 			{
@@ -910,15 +911,13 @@ a
 			{
 				color: #fff;
 				cursor: pointer;
-				background: #da5453;
+				background: #ccc;
 			}
 			.box .table tr .more 
 			{
 				width: 50px;
-				color: #fff;
+				background: #efefef;
 				text-align: center;
-				background: #4a769d;
-				border-left: 1px solid rgba(1,63,120,.2);
 				border-bottom: none;
 			}
 				.box .table tr .more:hover 
@@ -1015,7 +1014,35 @@ a
 		     -o-transition: all .25s ease;
 		        transition: all .25s ease;
 	}
-
+.grey
+{
+	color: #353535;
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+	background-repeat: repeat-x;
+	border: 1px solid #cccccc;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	border-bottom-color: #b3b3b3;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.stripe
+{
+	background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	-webkit-background-size: 30px 30px;
+	-moz-background-size: 30px 30px;
+	-o-background-size: 30px 30px;
+	background-size: 30px 30px;
+}
 .fb_btn
 {
 	width: 170px;

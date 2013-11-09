@@ -27,17 +27,35 @@
 </head>
 <body>
 <div id="top" class="blue">
-	<ul id="top_menu">
-		<li><a href="">Home</a></li>
-		<li><a href="">Tips</a></li>
-		<li><a href="">Help</a></li>
-		<li><a href="">Contact</a></li>
-	</ul>	
-	<div class="right">
-		
+	<div id="top_wrapped">
+		<ul id="top_menu">
+			<li><?=date("d-m-Y H:i");?></li>
+			<li>Language<select>
+					<option>English</option>
+					<option>Macedonian</option>
+					<option>Serbian</option>
+				</select></li>
+		</ul>	
+		<div class="right">
+			<div id="loged">
+				<img src="images/profile.jpg"/>
+				<h1>Кузески Славчо</h1>
+			</div>
+				<ul class="config">
+					<li><a href=""><i class="icon-indent-right"></i></a>
+						<ul class="grey">
+							<li><a href=""><i class="icon-user"></i> Profile</a></li>
+							<li><a href=""><i class="icon-signout"></i> Log Out</a></li>
+							<li><a class="bilans"> CREDITS <span>620 €</span></a></li>
+						</ul>
+					</li>
+				</ul>	
+		</div>
 	</div>
 </div>
-<div id="banner"></div>
+<div id="banner">
+	<a href="/"><img src="/images/logo.png" title="Oddsleaders.com"/></a>
+</div>
 	<div id="mainmenu">
 		<ul>
 			<li><a href="" class="selected"><i class="icon-home"></i> HOME</a></li>
@@ -50,19 +68,9 @@
 <div id="wrapped">
 	<div id="content">
 		<div id="sidebar">
-			<!-- <a href="" class="button green">Log IN</a><br>
-			<a href="" class="button">Sign UP</a><br> -->
-			<div id="loged">
-				<img src="images/profile.jpg"/>
-				<div id="right">
-					<h1>Кузески Славчо</h1>
-					<a href=""><i class="icon-user"></i> Profile</a>
-					<a href=""><i class="icon-signout"></i> Log Out</a>
-				</div>
-			</div>
-			<p id="sel_sport">Select your sport:</p>
+			<p class="box_title blue" style="text-align:center; margin:0 0 15px 0;">Select your sport:</p>
 			<ul id="sports">
-				<li><a href="" class="toggler"><div class="icon football"></div>Football <span>52</span></a>
+				<li><a href="" class="toggler active"><div class="icon football"></div>Football <span>52</span></a>
 					<ul>
 						<li><a href="">⇢ Premier League <span>(12)</span></a><li>
 						<li><a href="">⇢ Championship <span>(10)</span></a><li>
@@ -124,386 +132,6 @@
 		</div>
 		<div id="main">
 			<?php echo $content; ?>
-			<div class="box_title green"><i class="icon-flag"></i> Top Matches</div>
-			<div id="main_top">
-				<div id="left"><i class="icon-chevron-left"></i></div>
-				<ul>
-					<li>
-						<div id="teams">Barcelona - Real Madrid</div>
-						<div id="tip">1 <p>2.4</p></div>
-						<div id="tip">X <p>3.1</p></div>
-						<div id="tip">2 <p>2.5</p></div>
-					</li>
-					<li>
-						<div id="teams">Barcelona - Real Madrid</div>
-						<div id="tip">1 <p>2.4</p></div>
-						<div id="tip">X <p>3.1</p></div>
-						<div id="tip">2 <p>2.5</p></div>
-					</li>
-					<li>
-						<div id="teams">Barcelona - Real Madrid</div>
-						<div id="tip">1 <p>2.4</p></div>
-						<div id="tip">X <p>3.1</p></div>
-						<div id="tip">2 <p>2.5</p></div>
-					</li>
-				</ul>
-				<div id="right"><i class="icon-chevron-right"></i></div>
-			</div>
-			<div class="box">
-				<div class="box_title green"><i class="icon-flag"></i> Upcoming events</div>
-				<ul class="upcoming">
-					<li>
-						<div id="sport"><div class="icon tennis"></div></div>
-						<div id="match">Rafael Nadal - Roger Federer</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">5+<i class="icon-plus-sign"></i></span></div>
-						</div>
-						<ul class="more_odds">
-							<li>
-								<div id="type">First Set <i class="icon-warning-sign" data-title="Correct score"></i></div>
-								<div id="tip">1 <span>1.8</span></div>
-								<div id="tip">2 <span>1.8</span></div>
-							</li>
-							<li>
-								<div id="type">Handicap (+2.5) <i class="icon-warning-sign" data-title="Correct score"></i></div>
-								<div id="tip">1 <span>1.8</span></div>
-								<div id="tip">2 <span>1.8</span></div>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<div id="sport"><div class="icon football"></div></div>
-						<div id="match">Olympiakoa - Panatinaikos</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">X <span>3.1</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">16+<i class="icon-plus-sign"></i></span></div>
-						</div>
-						<ul class="more_odds">
-							<li>
-								<div id="type">Double Chance <i class="icon-warning-sign" data-title="Correct score"></i></div>
-								<div id="tip">1X <span>1.11</span></div>
-								<div id="tip">X2 <span>1.8</span></div>
-								<div id="tip">12 <span>1.13</span></div>
-							</li>
-							<li>
-								<div id="type">Half Time / Full Time <i class="icon-warning-sign" data-title="Who will be winner on the first half and winner in seccond half"></i></div>
-								<div id="tip">1-1 <span>2.5</span></div>
-								<div id="tip">1-X <span>15.0</span></div>
-								<div id="tip">X-1 <span>4.7</span></div>
-								<div id="tip">X-2 <span>5.5</span></div>
-								<div id="tip">X-X <span>5.1</span></div>
-								<div id="tip">2-X <span>16.0</span></div>
-								<div id="tip">2-2 <span>8.5</span></div>
-								<div id="tip">2-1 <span>25.0</span></div>
-								<div id="tip">1-2 <span>25.0</span></div>
-							</li>
-							<li>
-								<div id="type">Both teams scored <i class="icon-warning-sign" data-title="Correct score"></i></div>
-								<div id="tip">NG <span>1.9</span></div>
-								<div id="tip">GG <span>1.6</span></div>
-							</li>
-							<li>
-								<div id="type">How many goals <i class="icon-warning-sign" data-title="How many goals will be scored in the match"></i></div>
-								<div id="tip">0-1 <span>3.5</span></div>
-								<div id="tip">0-2 <span>2.2</span></div>
-								<div id="tip">0-3 <span>1.8</span></div>
-								<div id="tip">3+ <span>1.6</span></div>
-								<div id="tip">4+ <span>2.2</span></div>
-								<div id="tip">5+ <span>5.5</span></div>
-								<div id="tip">7+ <span>10.5</span></div>
-							</li>
-							<li>
-								<div id="type">Corect score <i class="icon-warning-sign" data-title="Correct score"></i></div>
-								<div id="tip">0-0 <span>1.9</span></div>
-								<div id="tip">0-1 <span>1.6</span></div>
-								<div id="tip">0-2 <span>1.6</span></div>
-								<div id="tip">0-3 <span>1.6</span></div>
-								<div id="tip">0-4 <span>1.6</span></div>
-								<div id="tip">0-5 <span>1.6</span></div>
-								<div id="tip">1-0 <span>1.6</span></div>
-								<div id="tip">2-0 <span>1.6</span></div>
-								<div id="tip">3-0 <span>1.6</span></div>
-								<div id="tip">4-0 <span>1.6</span></div>
-								<div id="tip">5-0 <span>1.6</span></div>
-								<div id="tip">1-1 <span>1.6</span></div>
-								<div id="tip">2-1 <span>1.6</span></div>
-								<div id="tip">2-2 <span>1.6</span></div>
-								<div id="tip">2-3 <span>1.6</span></div>
-								<div id="tip">3-2 <span>1.6</span></div>
-								<div id="tip">3-3 <span>1.6</span></div>
-								<div id="tip">3-4 <span>1.6</span></div>
-								<div id="tip">4-4 <span>1.6</span></div>
-								<div id="tip">4-3 <span>1.6</span></div>
-								<div id="tip">4-5 <span>1.6</span></div>
-								<div id="tip">5-4 <span>1.6</span></div>
-								<div id="tip">5-5 <span>1.6</span></div>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<div id="sport"><div class="icon football"></div></div>
-						<div id="match">Porto - Benfica</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">X <span>3.1</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">16+<i class="icon-plus-sign"></i></span></div>
-						</div>
-					</li>
-					<li>
-						<div id="sport"><div class="icon basketball"></div></div>
-						<div id="match">Real Mardrid - Barcelona</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">4+<i class="icon-plus-sign"></i></span></div>
-						</div>
-					</li>
-					<li>
-						<div id="sport"><div class="icon hockey"></div></div>
-						<div id="match">Frolunda - HV 71.</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">X <span>3.1</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">10+<i class="icon-plus-sign"></i></span></div>
-						</div>
-					</li>
-					<li>
-						<div id="sport"><div class="icon football"></div></div>
-						<div id="match">Milan - Inter</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">X <span>3.1</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">16+<i class="icon-plus-sign"></i></span></div>
-						</div>
-					</li>
-					<li>
-						<div id="sport"><div class="icon hockey"></div></div>
-						<div id="match">Kazan - Sibirsk</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">X <span>3.1</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">10+<i class="icon-plus-sign"></i></span></div>
-						</div>
-					</li>
-					<li>
-						<div id="sport"><div class="icon tennis"></div></div>
-						<div id="match">N. Wawrinka - Del Porto</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">5+<i class="icon-plus-sign"></i></span></div>
-						</div>
-					</li>
-					<li>
-						<div id="sport"><div class="icon tennis"></div></div>
-						<div id="match">Ana Ivanovic - Venus Williams</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">5+<i class="icon-plus-sign"></i></span></div>
-						</div>
-					</li>
-					<li>
-						<div id="sport"><div class="icon football"></div></div>
-						<div id="match">Vardar - Rabotnicki</div>
-						<div id="tips">
-							<div id="tip">1 <span>1.95</span></div>
-							<div id="tip">X <span>3.1</span></div>
-							<div id="tip">2 <span>2.9</span></div>
-							<div id="more">16+<i class="icon-plus-sign"></i></span></div>
-						</div>
-					</li>
-				</ul>	
-			</div>
-			<div class="box">
-				<div class="box_title green"><i class="icon football"></i> Football</div>
-				<table class="table">
-					<tr class="th">
-						<th colspan="2">Spain Primera Devision</th>
-						<th>1</th>
-						<th>X</th>
-						<th>2</th>
-						<th>0-2</th>
-						<th>3+</th>
-						<th>More</th>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Real Madrid - Barcelona</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">3.1</td>
-						<td class="clickable">2.65</td>
-						<td class="clickable">1.9</td>
-						<td class="clickable">1.6</td>
-						<td class="more">+16 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Real Madrid - Barcelona</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">3.1</td>
-						<td class="clickable">2.65</td>
-						<td class="clickable">1.9</td>
-						<td class="clickable">1.6</td>
-						<td class="more">+16 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Real Madrid - Barcelona</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">3.1</td>
-						<td class="clickable">2.65</td>
-						<td class="clickable">1.9</td>
-						<td class="clickable">1.6</td>
-						<td class="more">+16 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Real Madrid - Barcelona</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">3.1</td>
-						<td class="clickable">2.65</td>
-						<td class="clickable">1.9</td>
-						<td class="clickable">1.6</td>
-						<td class="more">+16 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Real Madrid - Barcelona</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">3.1</td>
-						<td class="clickable">2.65</td>
-						<td class="clickable">1.9</td>
-						<td class="clickable">1.6</td>
-						<td class="more">+16 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Real Madrid - Barcelona</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">3.1</td>
-						<td class="clickable">2.65</td>
-						<td class="clickable">1.9</td>
-						<td class="clickable">1.6</td>
-						<td class="more">+16 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Real Madrid - Barcelona</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">3.1</td>
-						<td class="clickable">2.65</td>
-						<td class="clickable">1.9</td>
-						<td class="clickable">1.6</td>
-						<td class="more">+16 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Real Madrid - Barcelona</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">3.1</td>
-						<td class="clickable">2.65</td>
-						<td class="clickable">1.9</td>
-						<td class="clickable">1.6</td>
-						<td class="more">+16 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Real Madrid - Barcelona</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">3.1</td>
-						<td class="clickable">2.65</td>
-						<td class="clickable">1.9</td>
-						<td class="clickable">1.6</td>
-						<td class="more">+16 <i class="icon-plus-sign"></i></td>
-					</tr>
-				</table>
-			</div>
-			<div class="box">
-				<div class="box_title green"><i class="icon tennis"></i> Tennis</div>
-				<table class="table">
-					<tr class="th">
-						<th colspan="2">Rolan Garos</th>
-						<th>1</th>
-						<th>2</th>
-						<th>+ 2.5</th>
-						<th>- 2.5</th>
-						<th>More</th>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Rafael Nadal - Roger Federer</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">1.75</td>
-						<td class="clickable">1.8</td>
-						<td class="clickable">1.8</td>
-						<td class="more">+5 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Rafael Nadal - Roger Federer</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">1.75</td>
-						<td class="clickable">1.8</td>
-						<td class="clickable">1.8</td>
-						<td class="more">+5 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Rafael Nadal - Roger Federer</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">1.75</td>
-						<td class="clickable">1.8</td>
-						<td class="clickable">1.8</td>
-						<td class="more">+5 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Rafael Nadal - Roger Federer</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">1.75</td>
-						<td class="clickable">1.8</td>
-						<td class="clickable">1.8</td>
-						<td class="more">+5 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Rafael Nadal - Roger Federer</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">1.75</td>
-						<td class="clickable">1.8</td>
-						<td class="clickable">1.8</td>
-						<td class="more">+5 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Rafael Nadal - Roger Federer</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">1.75</td>
-						<td class="clickable">1.8</td>
-						<td class="clickable">1.8</td>
-						<td class="more">+5 <i class="icon-plus-sign"></i></td>
-					</tr>
-					<tr class="disabled">
-						<td>21:00</td>
-						<td>Rafael Nadal - Roger Federer</td>
-						<td class="clickable">1,95</td>
-						<td class="clickable">1.75</td>
-						<td class="clickable">1.8</td>
-						<td class="clickable">1.8</td>
-						<td class="more">+5 <i class="icon-plus-sign"></i></td>
-					</tr>
-				</table>
-			</div>
-		</div>
 		<div id="rightbar">
 			<div class="box_title blue"><i class="icon-credit-card"></i> Bet slip</div>
 			<div id="bet_slip">
@@ -531,7 +159,7 @@
 				</div>
 				<div class="box_title blue"><i class="icon-hand-up"></i> Best tipsters</div>
 				<div id="tabs">
-					<a href="#tab-0" class="active">Mountly</a>
+					<a href="#tab-0" class="current">Mountly</a>
 					<a href="#tab-1">All time</a>
 				</div>
 				<ul id="tipsters">

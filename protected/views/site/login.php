@@ -18,7 +18,7 @@ $this->breadcrumbs=array(
 		            'validateOnSubmit'=>true,
 			),
 		)); ?>
-		<img src="http://www.topvideo.tv/images/regtop.png"/>
+		<img src="/images/regtop.png"/>
 		<div class="row">
 			<i class="icon-user"></i>
 			<?php echo $form->textField($model,'username', array('placeholder'=>'Username')); ?>
