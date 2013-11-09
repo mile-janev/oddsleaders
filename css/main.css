@@ -1,15 +1,16 @@
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 @font-face{
-	font-family:'HelveticaNeue';
-	src:local('HelveticaNeue'),
-	local('HelveticaNeue'),
-	url('../font/HelveticaNeue.ttf') format('ttf');
+	font-family:'Tahoma';
+	src:local('Tahoma'),
+	local('Tahoma'),
+	url('../font/Tahoma.ttf') format('ttf');
 }
 body {
 	margin: 0;
 	height: auto;
 	color: #666666;
-	font: 13px Tahoma;
+	font-size: 13px;
+	font-family: "Tahoma";
 	background: #efefef;
 }
 table, caption, tbody, tfoot, thead, tr, th, td {
