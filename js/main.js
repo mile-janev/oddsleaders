@@ -15,8 +15,32 @@ $(document).ready(function() {
         $(tab).show();
         $(this).addClass("current");
 
-        return false;
-    });
+		return false;
+	});
+	
+	$('.disabled').find('.stripe').live('click', function(){
+		alert('false');
+		return false;
+	});
+
+	$('.stripe').click(function(){
+		id = $(this).attr('data');
+
+		$('.'+id).addClass('disabled');
+		$(this).addClass('tipped');
+		return false;
+	});
+
+
+	$('#matchs #match .close').live('click', function(){
+		match = $(this).attr('id');
+
+		$('.match-'+match).remove();
+		
+		$('.nano').nanoScroller({
+			preventPageScrolling: true
+		});
+	});
 
     $('.more, #more').click(function() {
         $(this).parent("div").next().slideToggle();
@@ -41,9 +65,9 @@ $(document).ready(function() {
 
     side_toggle($('.first'));
 
-    $('.nano').nanoScroller({
-        preventPageScrolling: true
-    });
+		$('.nano').nanoScroller({
+			preventPageScrolling: true
+		});
 
     var chart;
 
