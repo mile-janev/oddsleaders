@@ -1,11 +1,11 @@
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 @font-face {
     font-family: "Tahoma";
-    src: url('font/tahoma/Tahoma.eot');
-    src: url('font/tahoma/Tahoma.eot?#iefix') format('embedded-opentype'),
-        url('font/tahoma/Tahoma.woff') format('woff'),
-        url('font/tahoma/Tahoma.ttf') format('truetype'),
-        url('font/tahoma/Tahoma.svg') format('svg');
+    src: url('../font/tahoma/Tahoma.eot');
+    src: url('../font/tahoma/Tahoma.eot?#iefix') format('embedded-opentype'),
+        url('../font/tahoma/Tahoma.woff') format('woff'),
+        url('../font/tahoma/Tahoma.ttf') format('truetype'),
+        url('../font/tahoma/Tahoma.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
