@@ -9,29 +9,27 @@
                 </select></li>
         </ul>	
         <div class="right">
-            <div id="loged">
                 <?php if (Yii::app()->user->isGuest) { ?>
-                    <h1>Please login here -></h1>
+                <div id="top_btn">
+                    <a id="loginColorbox" href="#partial-login" class="button grey"><i class="icon-signin"></i> Log in</a>
+                    You are new here ?? 
+                    <a id="registerColorbox" href="#partial-register" class="button grey"><i class="icon-user"></i> Register</a>
+                </div>
                 <?php } else { ?>
+                <div id="loged">
                     <img src="images/profile.jpg"/>
                     <h1>Кузески Славчо</h1>
+                    <ul class="config">
+                        <li><a href=""><i class="icon-indent-right"></i></a>
+                            <ul class="grey">
+                                    <li><a href=""><i class="icon-user"></i> Profile</a></li>
+                                    <li><a href="/index.php?r=site/logout"><i class="icon-signout"></i> Log Out</a></li>
+                                    <li><a class="bilans"> CREDITS <span>620 €</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>	
+                </div>
                 <?php } ?>
-                
-            </div>
-            <ul class="config">
-                <li><a href=""><i class="icon-indent-right"></i></a>
-                    <ul class="grey">
-                        <?php if(Yii::app()->user->isGuest) { ?>
-                            <li><a id="loginColorbox" href="#partial-login" class="button blue"><i class="icon-signin"></i>Log In</a></li>
-                            <li><a id="registerColorbox" href="#partial-register" class="button green"><i class="icon-user"></i>Register</a></li>
-                        <?php } else { ?>
-                            <li><a href=""><i class="icon-user"></i> Profile</a></li>
-                            <li><a href=""><i class="icon-signout"></i> Log Out</a></li>
-                            <li><a class="bilans"> CREDITS <span>620 €</span></a></li>
-                        <?php } ?>
-                    </ul>
-                </li>
-            </ul>	
         </div>
     </div>
 </div>
