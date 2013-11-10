@@ -1,7 +1,7 @@
 <div id="sidebar">
     <p class="box_title blue" style="text-align:center; margin:0 0 15px 0;">Select your sport:</p>
     <ul id="sports">
-        <li><a href="" class="toggler active"><div class="icon football"></div>Football <span>52</span></a>
+        <li><a href="" class="toggler first"><div class="icon football"></div>Football <span>52</span></a>
             <ul>
                 <li><a href="">⇢ Premier League <span>(12)</span></a><li>
                 <li><a href="">⇢ Championship <span>(10)</span></a><li>
