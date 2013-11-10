@@ -19,7 +19,7 @@
                         $gamesNumber = count($tournament->stacks);
                             if ($gamesNumber != 0 && $tournament->active == 1) {
                     ?>
-                        <li><a href="#">⇢ <?php echo $tournament->name; ?> 
+                        <li><a href="#" title="<?=$tournament->name;?>">⇢ <?php if(strlen($tournament->name) > 22) { echo substr($tournament->name, 0, 22); }else { echo $tournament->name;} ?> 
                                 <span><?php echo $gamesNumber; ?></span>
                             </a>
                         <li>

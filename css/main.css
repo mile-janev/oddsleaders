@@ -420,7 +420,7 @@ a
 				border: none;
 				font-size: 11px;
 				border-radius: 0;
-				padding: 0px 20px;
+				padding: 0px 10px;
 				background: #f1f1f1;
 			}
 			#wrapped #content #sidebar #sports li ul > li a:hover 
@@ -438,7 +438,7 @@ a
 					padding: 0;
 					color: #333;
 					float: right;
-					margin-right: -18px;
+					margin-right: -8px;
 					box-shadow: none;
 					background: none;
 				}
