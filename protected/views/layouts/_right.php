@@ -26,12 +26,11 @@
     </div>
     <div class="box_title blue"><i class="icon-hand-up"></i> Best tipsters</div>
     <div id="tabs">
-        <a href="#tab-0" class="current">Mountly</a>
-        <a href="#tab-1">All time</a>
+        <a href=".tab-0" class="tab_btn current">Mountly</a>
+        <a href=".tab-1" class="tab_btn">All time</a>
     </div>
-    <div  class="tab_box">
-        <div id="tab-0">
-            <ul id="tipsters" class="tabb">
+    <div class="tab_box">
+            <ul id="tipsters" class="tabb tab-0">
                 <li id="row"><span>1</span><div id="user"><a href="">tiger_s</a></div><div id="credits">632€</div></li>
                 <li id="row"><span>2</span><div id="user"><a href="">janev</a></div><div id="credits">602€</div></li>
                 <li id="row"><span>3</span><div id="user"><a href="">mile</a></div><div id="credits">600€</div></li>
@@ -44,9 +43,7 @@
                 <li id="row"><span>10</span><div id="user"><a href="">tipster</a></div><div id="credits">312€</div></li>
                 <li id="row"><div id="user" style="text-align:center; width:100%;"><a href="">See all <i class="icon-double-angle-right"></i></a></div></li>
             </ul>
-        </div>
-        <div id="tab-1" class="tabb">
-            <ul id="tipsters">
+            <ul id="tipsters" class="tabb tab-1">
                 <li id="row"><span>1</span><div id="user"><a href="">slavco</a></div><div id="credits">555€</div></li>
                 <li id="row"><span>2</span><div id="user"><a href="">mile</a></div><div id="credits">600€</div></li>
                 <li id="row"><span>3</span><div id="user"><a href="">janev</a></div><div id="credits">602€</div></li>
@@ -59,6 +56,5 @@
                 <li id="row"><span>10</span><div id="user"><a href="">leaders</a></div><div id="credits">421€</div></li>
                 <li id="row"><div id="user" style="text-align:center; width:100%;"><a href="">See all <i class="icon-double-angle-right"></i></a></div></li>
             </ul>
-        </div>
     </div>
 </div>

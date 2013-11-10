@@ -606,7 +606,7 @@ a
 		border: 2px solid #1a5e83;
 		border-bottom: 5px solid #1a5e83;
 	}
-	#wrapped #content #rightbar #tab-1 
+	#wrapped #content #rightbar .tab-1 
 	{
 		display: none;
 	}

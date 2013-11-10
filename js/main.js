@@ -7,13 +7,14 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#tabs a').click(function(){
+	$('.tab_btn').click(function(){
+		$('.tab_btn').removeClass('current');
 		tab = $(this).attr('href');
 
-		$('.tabb').hide(function(){
-			$(tab).show();
-		});
-		
+		$('.tabb').hide();
+		$(tab).show();
+		$(this).addClass("current");
+
 		return false;
 	});
 
@@ -31,12 +32,13 @@ $(document).ready(function(){
 	      obj.addClass('active');
 	    }	
 	};
-		side_toggle($('.active'));
 		$(".toggler").click(function()
 		{
 			side_toggle($(this));
 			return false;
 		});
+
+		side_toggle($('.first'));
 
 	$('.nano').nanoScroller({
 		preventPageScrolling: true
