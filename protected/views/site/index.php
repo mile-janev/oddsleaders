@@ -4,10 +4,6 @@
 $this->pageTitle = Yii::app()->name;
 ?>
 
-<!-- <a id="loginColorbox" href="#partial-login" class="button blue"><i class="icon-signin"></i> Log In</a><br />
-
-<a id="registerColorbox" href="#partial-register" class="button green"><i class="icon-user"></i> Register</a><br /> -->
-
 <div style='display:none'>
     <div id="partial-login" class="partial-form">
         <?php $this->renderPartial('login', array('model' => $login, 'facebook' => $facebook)); ?>

@@ -7,13 +7,14 @@
                     <option>Macedonian</option>
                     <option>Serbian</option>
                 </select></li>
-        </ul>	
+        </ul>
         <div class="right">
                 <?php if (Yii::app()->user->isGuest) { ?>
                 <div id="top_btn">
-                    <a id="loginColorbox" href="#partial-login" class="button grey"><i class="icon-signin"></i> Log in</a>
+                    <a id="loginColorbox" 
+                       href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-login" : Yii::app()->createUrl('site/login'); ?>" class="button grey"><i class="icon-signin"></i> Log in</a>
                     You are new here ?? 
-                    <a id="registerColorbox" href="#partial-register" class="button grey"><i class="icon-user"></i> Register</a>
+                    <a id="registerColorbox" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-register" : Yii::app()->createUrl('user/register'); ?>" class="button grey"><i class="icon-user"></i> Register</a>
                 </div>
                 <?php } else { ?>
                 <div id="loged">
