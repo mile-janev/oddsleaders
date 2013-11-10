@@ -1,15 +1,17 @@
 <?php
 
 // change the following paths if necessary
-$yii=dirname(__FILE__).'/../yii-1.1.14.f0fee9/framework/yii.php';
 
 if($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == 'oddsleaders.dev'){
+    $yii=dirname(__FILE__).'/../yii-1.1.14.f0fee9/framework/yii.php';
     $config=dirname(__FILE__).'/protected/config/main-local.php';
 }
-else if($_SERVER['SERVER_NAME'] == 'beta.oddsleaders.com' || $_SERVER['SERVER_NAME'] == 'www.beta.oddsleaders.com'){
+else if($_SERVER['SERVER_NAME'] == 'staging.oddsleaders.com' || $_SERVER['SERVER_NAME'] == 'www.staging.oddsleaders.com'){
+    $yii=dirname(__FILE__).'/../../../public_html/yii/framework/yii.php';
     $config=dirname(__FILE__).'/protected/config/main-beta.php';
 }
 else{
+    $yii=dirname(__FILE__).'/../yii-1.1.14.f0fee9/framework/yii.php';
     $config=dirname(__FILE__).'/protected/config/main.php';
 }
 
