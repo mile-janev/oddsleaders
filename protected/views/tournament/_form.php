@@ -24,16 +24,34 @@
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>256)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'syn'); ?>
+		<?php echo $form->textField($model,'syn',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'syn'); ?>
+	</div>
 
+        <div class="row">
+		<?php echo $form->labelEx($model,'country_id'); ?>
+		<?php echo $form->dropDownList($model,'country_id', $countriesList); ?>
+		<?php echo $form->error($model,'country_id'); ?>
+	</div>
+        
 	<div class="row">
 		<?php echo $form->labelEx($model,'link'); ?>
 		<?php echo $form->textArea($model,'link',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'link'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'syn_link'); ?>
+		<?php echo $form->textArea($model,'syn_link',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'syn_link'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
+		<?php echo $form->checkBox($model,'active'); ?>
 		<?php echo $form->error($model,'active'); ?>
 	</div>
 
@@ -44,15 +62,9 @@
 	</div>
         
         <div class="row">
-		<?php echo $form->labelEx($model,'cron_time'); ?>
-		<?php echo $form->textField($model,'cron_time',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'cron_time'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($model,'cron_group'); ?>
-		<?php echo $form->textField($model,'cron_group',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'cron_group'); ?>
+		<?php echo $form->labelEx($model,'special'); ?>
+		<?php echo $form->checkBox($model,'special'); ?>
+		<?php echo $form->error($model,'special'); ?>
 	</div>
 
 	<div class="row buttons">

@@ -6,10 +6,13 @@
  * The followings are the available columns in table 'sport':
  * @property string $id
  * @property string $name
+ * @property string $syn
  * @property string $link
+ * @property string $syn_link
  * @property integer $active
  *
  * The followings are the available model relations:
+ * @property Game[] $games
  * @property Tournament[] $tournaments
  */
 class Sport extends CActiveRecord
@@ -30,10 +33,12 @@ class Sport extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
+			array('name, link', 'required'),
+			array('active', 'numerical', 'integerOnly'=>true),
+			array('name, syn, link, syn_link', 'length', 'max'=>256),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, syn, link, syn_link, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,6 +62,11 @@ class Sport extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+                        'syn' => 'Res Name',
+			'link' => 'Link',
+                        'syn_link' => 'Res Link',
+			'active' => 'Active',
+                        'icon' => 'Icon'
 		);
 	}
 
@@ -80,10 +90,14 @@ class Sport extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
+                $criteria->compare('syn',$this->syn,true);
+		$criteria->compare('link',$this->link,true);
+                $criteria->compare('syn_link',$this->syn_link,true);
+		$criteria->compare('active',$this->active);
+                $criteria->compare('icon',$this->icon);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-                        'pagination' => array('pageSize' => 30,)
 		));
 	}
 

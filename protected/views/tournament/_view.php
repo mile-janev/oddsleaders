@@ -12,9 +12,17 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
+        
+        <b><?php echo CHtml::encode($data->getAttributeLabel('syn')); ?>:</b>
+	<?php echo CHtml::encode($data->syn); ?>
+	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('link')); ?>:</b>
 	<?php echo CHtml::encode($data->link); ?>
+	<br />
+        
+        <b><?php echo CHtml::encode($data->getAttributeLabel('syn_link')); ?>:</b>
+	<?php echo CHtml::encode($data->syn_link); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('active')); ?>:</b>
@@ -25,12 +33,8 @@
 	<?php echo CHtml::encode($data->sport_id); ?>
 	<br />
 
-        <b><?php echo CHtml::encode($data->getAttributeLabel('cron_time')); ?>:</b>
-	<?php echo CHtml::encode($data->cron_time); ?>
-	<br />
-        
-        <b><?php echo CHtml::encode($data->getAttributeLabel('cron_group')); ?>:</b>
-	<?php echo CHtml::encode($data->cron_group); ?>
+        <b><?php echo CHtml::encode($data->getAttributeLabel('special')); ?>:</b>
+	<?php echo CHtml::encode($data->special); ?>
 	<br />
 
 </div>

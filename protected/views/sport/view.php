@@ -16,14 +16,26 @@ $this->menu=array(
 );
 ?>
 
-<h1><?php echo $model->name; ?> #<?php echo $model->id; ?></h1>
+<h1>View Sport #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
 		'name',
-		'link',
+                'syn',
+		array(
+                    'name'=>'link',
+                    'value'=>"<a href='" .$model->link. "' target='_blank'>" .$model->link. "</a>",
+                    'sortable'=>TRUE,
+                    'type'  => 'raw',
+                ),
+                array(
+                    'name'=>'syn_link',
+                    'value'=>"<a href='" .$model->syn_link. "' target='_blank'>" .$model->syn_link. "</a>",
+                    'sortable'=>TRUE,
+                    'type'  => 'raw',
+                ),
 		'active',
 	),
 )); ?>

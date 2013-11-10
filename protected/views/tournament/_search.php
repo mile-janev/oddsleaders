@@ -20,25 +20,35 @@
 		<?php echo $form->label($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
+    
+        <div class="row">
+		<?php echo $form->label($model,'syn'); ?>
+		<?php echo $form->textField($model,'syn',array('size'=>60,'maxlength'=>256)); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'link'); ?>
 		<?php echo $form->textArea($model,'link',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
+    
+        <div class="row">
+		<?php echo $form->label($model,'syn_link'); ?>
+		<?php echo $form->textArea($model,'syn_link',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'active'); ?>
-		<?php echo $form->textField($model,'active',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->textField($model,'active'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'cron_time'); ?>
-		<?php echo $form->textField($model,'cron_time',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->label($model,'sport_id'); ?>
+		<?php echo $form->textField($model,'sport_id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
     
         <div class="row">
-		<?php echo $form->label($model,'cron_group'); ?>
-		<?php echo $form->textField($model,'cron_group',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->label($model,'special'); ?>
+		<?php echo $form->textField($model,'special'); ?>
 	</div>
 
 	<div class="row buttons">

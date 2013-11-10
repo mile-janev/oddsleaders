@@ -1,29 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "tournament".
+ * This is the model class for table "country".
  *
- * The followings are the available columns in table 'tournament':
- * @property string $id
- * @property string $name
- * @property string $syn
+ * The followings are the available columns in table 'country':
+ * @property integer $id
+ * @property string $country
  * @property string $link
- * @property string $syn_link
- * @property integer $active
- * @property string $sport_id
- *
- * The followings are the available model relations:
- * @property Stack[] $stacks
- * @property Sport $sport
  */
-class Tournament extends CActiveRecord
+class Country extends CActiveRecord
 {
 	/**
-	 * @return stactivering the associated database table name
+	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tournament';
+		return 'country';
 	}
 
 	/**
@@ -34,14 +26,12 @@ class Tournament extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, link, sport_id', 'required'),
-			array('active', 'numerical', 'integerOnly'=>true),
-                        array('special', 'numerical', 'integerOnly'=>true),
-			array('name, syn', 'length', 'max'=>256),
-			array('sport_id', 'length', 'max'=>10),
+			array('link', 'required'),
+			array('country', 'length', 'max'=>128),
+			array('link', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, syn, link, syn_link, active, sport_id, special', 'safe', 'on'=>'search'),
+			array('id, country, link', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,9 +43,6 @@ class Tournament extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'stacks' => array(self::HAS_MANY, 'Stack', 'tournament_id'),
-			'sport' => array(self::BELONGS_TO, 'Sport', 'sport_id'),
-                        'country' => array(self::BELONGS_TO, 'Country', 'country_id'),
 		);
 	}
 
@@ -66,14 +53,8 @@ class Tournament extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-                        'syn' => 'Res Name',
-                        'country_id' => 'Country',
+			'country' => 'Country',
 			'link' => 'Link',
-                        'syn_link' => 'Res Link',
-			'active' => 'Active',
-			'sport_id' => 'Sport',
-                        'special' => 'Special tournament'
 		);
 	}
 
@@ -95,14 +76,9 @@ class Tournament extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
-                $criteria->compare('syn',$this->syn,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('country',$this->country,true);
 		$criteria->compare('link',$this->link,true);
-                $criteria->compare('syn_link',$this->syn_link,true);
-		$criteria->compare('active',$this->active);
-		$criteria->compare('sport_id',$this->sport_id,true);
-                $criteria->compare('special',$this->special,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -113,7 +89,7 @@ class Tournament extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Tournament the static model class
+	 * @return Country the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

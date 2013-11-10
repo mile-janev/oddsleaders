@@ -2,6 +2,12 @@
 /* @var $this SportController */
 /* @var $model Sport */
 
+$this->breadcrumbs=array(
+	'Sports'=>array('index'),
+	$model->name=>array('view','id'=>$model->id),
+	'Update',
+);
+
 $this->menu=array(
 	array('label'=>'List Sport', 'url'=>array('index')),
 	array('label'=>'Create Sport', 'url'=>array('create')),

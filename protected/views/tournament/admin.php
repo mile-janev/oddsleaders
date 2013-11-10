@@ -45,15 +45,26 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-            'id',
-            'name',
-            'link',
-            'active',
-            'sport_id',
-            'cron_time',
-            'cron_group',
-            array(
-                    'class'=>'CButtonColumn',
-            ),
+		'id',
+		'name',
+                'syn',
+		array(
+                    'name'=>'link',
+                    'value'=>'"<a href=" .$data->link. " target=_blank>" .$data->link. "</a>"',
+                    'sortable'=>TRUE,
+                    'type'  => 'raw',
+                ),
+                array(
+                    'name'=>'syn_link',
+                    'value'=>'"<a href=" .$data->syn_link. " target=_blank>" .$data->syn_link. "</a>"',
+                    'sortable'=>TRUE,
+                    'type'  => 'raw',
+                ),
+		'active',
+		'sport_id',
+                'special',
+		array(
+			'class'=>'CButtonColumn',
+		),
 	),
 )); ?>
