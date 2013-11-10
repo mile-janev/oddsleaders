@@ -162,28 +162,51 @@
 					<a href="#tab-0" class="current">Mountly</a>
 					<a href="#tab-1">All time</a>
 				</div>
-				<ul id="tipsters">
-					<li id="row"><span>1</span><div id="user"><a href="">tiger_s</a></div><div id="credits">632€</div></li>
-					<li id="row"><span>2</span><div id="user"><a href="">janev</a></div><div id="credits">602€</div></li>
-					<li id="row"><span>3</span><div id="user"><a href="">mile</a></div><div id="credits">600€</div></li>
-					<li id="row"><span>4</span><div id="user"><a href="">slavco</a></div><div id="credits">555€</div></li>
-					<li id="row"><span>5</span><div id="user"><a href="">kuzeski</a></div><div id="credits">512€</div></li>
-					<li id="row"><span>6</span><div id="user"><a href="">jmile</a></div><div id="credits">480€</div></li>
-					<li id="row"><span>7</span><div id="user"><a href="">leaders</a></div><div id="credits">421€</div></li>
-					<li id="row"><span>8</span><div id="user"><a href="">odds</a></div><div id="credits">398€</div></li>
-					<li id="row"><span>9</span><div id="user"><a href="">bets.com</a></div><div id="credits">350€</div></li>
-					<li id="row"><span>10</span><div id="user"><a href="">tipster</a></div><div id="credits">312€</div></li>
-					<li id="row"><div id="user" style="text-align:center; width:100%;"><a href="">See all <i class="icon-double-angle-right"></i></a></div></li>
-				</ul>
+				<div  class="tab_box">
+					<div id="tab-0">
+						<ul id="tipsters" class="tabb">
+							<li id="row"><span>1</span><div id="user"><a href="">tiger_s</a></div><div id="credits">632€</div></li>
+							<li id="row"><span>2</span><div id="user"><a href="">janev</a></div><div id="credits">602€</div></li>
+							<li id="row"><span>3</span><div id="user"><a href="">mile</a></div><div id="credits">600€</div></li>
+							<li id="row"><span>4</span><div id="user"><a href="">slavco</a></div><div id="credits">555€</div></li>
+							<li id="row"><span>5</span><div id="user"><a href="">kuzeski</a></div><div id="credits">512€</div></li>
+							<li id="row"><span>6</span><div id="user"><a href="">jmile</a></div><div id="credits">480€</div></li>
+							<li id="row"><span>7</span><div id="user"><a href="">leaders</a></div><div id="credits">421€</div></li>
+							<li id="row"><span>8</span><div id="user"><a href="">odds</a></div><div id="credits">398€</div></li>
+							<li id="row"><span>9</span><div id="user"><a href="">bets.com</a></div><div id="credits">350€</div></li>
+							<li id="row"><span>10</span><div id="user"><a href="">tipster</a></div><div id="credits">312€</div></li>
+							<li id="row"><div id="user" style="text-align:center; width:100%;"><a href="">See all <i class="icon-double-angle-right"></i></a></div></li>
+						</ul>
+					</div>
+					<div id="tab-1" class="tabb">
+						<ul id="tipsters">
+							<li id="row"><span>1</span><div id="user"><a href="">slavco</a></div><div id="credits">555€</div></li>
+							<li id="row"><span>2</span><div id="user"><a href="">mile</a></div><div id="credits">600€</div></li>
+							<li id="row"><span>3</span><div id="user"><a href="">janev</a></div><div id="credits">602€</div></li>
+							<li id="row"><span>4</span><div id="user"><a href="">kuzeski</a></div><div id="credits">512€</div></li>
+							<li id="row"><span>5</span><div id="user"><a href="">odds</a></div><div id="credits">398€</div></li>
+							<li id="row"><span>6</span><div id="user"><a href="">bets.com</a></div><div id="credits">350€</div></li>
+							<li id="row"><span>7</span><div id="user"><a href="">tipster</a></div><div id="credits">312€</div></li>
+							<li id="row"><span>8</span><div id="user"><a href="">jmile</a></div><div id="credits">480€</div></li>
+							<li id="row"><span>9</span><div id="user"><a href="">tiger_s</a></div><div id="credits">632€</div></li>
+							<li id="row"><span>10</span><div id="user"><a href="">leaders</a></div><div id="credits">421€</div></li>
+							<li id="row"><div id="user" style="text-align:center; width:100%;"><a href="">See all <i class="icon-double-angle-right"></i></a></div></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	
 
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+	<div id="footer" class="grey">
+		<ul>
+			<li><a href="">About us</a></li>
+			<li><a href="">Help</a></li>
+			<li><a href="">Terms and conditions</a></li>
+			<li><a href="">Privacy</a></li>
+			<li><a href="">Partners</a></li>
+		</ul>
 	</div><!-- footer -->
 
 </div><!-- page -->

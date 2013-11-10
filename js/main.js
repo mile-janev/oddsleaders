@@ -7,6 +7,16 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#tabs a').click(function(){
+		tab = $(this).attr('href');
+
+		$('.tabb').hide(function(){
+			$(tab).show();
+		});
+		
+		return false;
+	});
+
 	$('.more, #more').click(function(){
 		$(this).parent("div").next().slideToggle();
 	});
