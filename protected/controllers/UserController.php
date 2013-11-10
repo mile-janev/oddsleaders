@@ -32,7 +32,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','profile','tickets','history','betmanager'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -260,4 +260,40 @@ class UserController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionTickets()
+        {
+            $model = User::model()->findAll();
+            
+            $this->render('tickets',array(
+                'model'=>$model,
+            ));
+        }
+        
+        public function actionHistory()
+        {
+            $model = User::model()->findAll();
+            
+            $this->render('history',array(
+                'model'=>$model,
+            ));
+        }
+        
+        public function actionBetmanager()
+        {
+            $model = User::model()->findAll();
+            
+            $this->render('betmanager',array(
+                'model'=>$model,
+            ));
+        }
+        
+        public function actionProfile()
+        {
+            $model = User::model()->findAll();
+            
+            $this->render('profile',array(
+                'model'=>$model,
+            ));
+        }
 }

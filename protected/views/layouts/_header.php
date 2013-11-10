@@ -17,12 +17,12 @@
                 </div>
                 <?php } else { ?>
                 <div id="loged">
-                    <img src="images/profile.jpg"/>
-                    <h1>Кузески Славчо</h1>
+                    <img src="images/regtop.png"/>
+                    <h1><?php echo Yii::app()->user->name; ?></h1>
                     <ul class="config">
                         <li><a href=""><i class="icon-indent-right"></i></a>
                             <ul class="grey">
-                                    <li><a href=""><i class="icon-user"></i> Profile</a></li>
+                                <li><a href="<?php echo Yii::app()->createUrl('user/profile'); ?>"><i class="icon-user"></i> Profile</a></li>
                                     <li><a href="/index.php?r=site/logout"><i class="icon-signout"></i> Log Out</a></li>
                                     <li><a class="bilans"> CREDITS <span>620 €</span></a></li>
                             </ul>
@@ -41,8 +41,10 @@
         $this->widget('zii.widgets.CMenu',array(
             'items'=>array(
                 array('label'=>'Home', 'url'=>array('/site/index')),
-                array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                array('label'=>'Top Matches', 'url'=>array('/stack/topmatches')),
+                array('label'=>'Tickets', 'url'=>array('/user/tickets'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'My History', 'url'=>array('/user/history'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'Bet Manager', 'url'=>array('/user/betmanager'), 'visible'=>!Yii::app()->user->isGuest),
             ),
         )); 
     ?>
