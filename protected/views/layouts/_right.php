@@ -1,26 +1,28 @@
 <div id="rightbar">
     <div class="box_title blue"><i class="icon-credit-card"></i> Bet slip</div>
     <div id="bet_slip">
-        <div class="nano">
-            <div class="content">
-                <div id="matchs">
-                    <div id="match">Barcelona - Milan <span class="close">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div>
-                    <div id="match">Dortmund - Arsenal <span class="close">X</span><div id="odds"><div id="tip">2</div><span>1.45</span></div></div>
-                    <div id="match">Juventus - Real Madrid <span class="close">X</span><div id="odds"><div id="tip">X</div><span>1.45</span></div></div>
-                    <div id="match">N. Djokovic - R. Federer <span class="close">X</span><div id="odds"><div id="tip">2</div><span>1.45</span></div></div>
-                    <div id="match">Barcelona - Milan <span class="close">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div>
+        <form class="form" action="#" method="POST">
+            <div class="nano">
+                <div class="content">
+                    <div id="matchs">
+                        <div id="match">Barcelona - Milan <span class="close">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div>
+                        <div id="match">Dortmund - Arsenal <span class="close">X</span><div id="odds"><div id="tip">2</div><span>1.45</span></div></div>
+                        <div id="match">Juventus - Real Madrid <span class="close">X</span><div id="odds"><div id="tip">X</div><span>1.45</span></div></div>
+                        <div id="match">N. Djokovic - R. Federer <span class="close">X</span><div id="odds"><div id="tip">2</div><span>1.45</span></div></div>
+                        <div id="match">Barcelona - Milan <span class="close">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="stake">
-            Place your stake 
-            <input type="text" name="stake"> €
-        </div>
-        <div id="money">
-            Winning stake <span>25000 €</span> 
-        </div>
-        <a href="" class="clear">Clear bets</a>
-        <input type="submit" value="Place Bet" class="button blue right">
+            <div id="stake">
+                Place your stake 
+                <input type="text" name="stake"> €
+            </div>
+            <div id="money">
+                Winning stake <span>25000 €</span> 
+            </div>
+            <a href="" class="clear">Clear bets</a>
+            <input type="submit" value="Place Bet" class="button blue right">
+        </form>
     </div>
     <div class="box_title blue"><i class="icon-hand-up"></i> Best tipsters</div>
     <div id="tabs">
