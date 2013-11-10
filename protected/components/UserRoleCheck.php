@@ -4,7 +4,7 @@ class UserRoleCheck{
     
     public static function admin_users()
     {
-        $adminUsers = Role::model()->findAllByAttributes(array("role"=>Role::ADMIN_USER));
+        $adminUsers = Role::model()->findAllByAttributes(array("role"=>Role::ROLE_ADMINISTRATOR));
         
         $adminArray = array("");
         
@@ -36,7 +36,7 @@ class UserRoleCheck{
         
         foreach ($roles as $role)
         {
-            if($role->role == Role::ADMIN_USER)
+            if($role->role == Role::ROLE_ADMINISTRATOR)
             {
                 $bool = true;
             }
@@ -53,7 +53,7 @@ class UserRoleCheck{
         
         foreach ($roles as $role)
         {
-            if($role->role == Role::FREE_USER)
+            if($role->role == Role::ROLE_FREE)
             {
                 $bool = true;
             }

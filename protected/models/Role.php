@@ -13,10 +13,10 @@
  */
 class Role extends CActiveRecord
 {
-    const FREE_USER = "free";
-    const PRO_USER = "professional";
-    const MANAGER_USER = "manager";
-    const ADMIN_USER = "administrator";
+    const ROLE_FREE = "free";
+    const ROLE_PROFESSIONAL = "professional";
+    const ROLE_MANAGER = "manager";
+    const ROLE_ADMINISTRATOR = "administrator";
 	/**
 	 * @return string the associated database table name
 	 */
