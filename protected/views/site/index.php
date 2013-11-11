@@ -20,7 +20,7 @@ $this->pageTitle = Yii::app()->name;
         <?php $this->renderPartial('/user/register', array('model' => $model, 'facebook' => $facebook)); ?>
     </div>
 </div>
-<div class="box_title blue"><i class="icon-flag"></i> Top Matches</div>
+<div class="box_title green"><i class="icon-flag"></i> Top Matches</div>
 <div id="main_top">
     <div id="match" class="51">
         <div id="teams" class="grey">Barcelona - Milan</div>
@@ -48,7 +48,7 @@ $this->pageTitle = Yii::app()->name;
                 $match_odds = '';
                 foreach ($odds->match as $key => $match) {
                     if($key != 'label')
-                        $match_odds .= '<a id="tip" class="stripe" data="'.$value['code'].'">'.ucfirst($key).' <span>'.$match.'</span></a>';
+                        $match_odds .= '<div id="tip"><a class="stripe" data-id="'.$value['code'].'">'.ucfirst($key).' <span>'.$match.'</span></a></div>';
                 }
 
                 $more = ''; $count = 0;
@@ -61,7 +61,7 @@ $this->pageTitle = Yii::app()->name;
                             if($tip != 'label')
                             {
                                 if(!empty($m_odds))
-                                    $odd .= '<a id="tip" class="stripe" data="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a>';
+                                    $odd .= '<div id="tip"><a class="stripe" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
                             }
                         }
 

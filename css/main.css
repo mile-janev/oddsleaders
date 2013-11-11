@@ -690,7 +690,7 @@ a
 	text-align: center;
 	padding-bottom: 20px;
 	background: rgba(1,63,120,.05);
-	border: 2px solid #1a5e83;
+	border: 2px solid #51a351;
 }
 	#wrapped #content #main #main_top #match
 	{
@@ -719,7 +719,7 @@ a
 		padding: 2px 0;
 		margin-top: 5px;
 		margin-left	: 10px;
-		background: #1a5e83;
+		background: #51a351;
 		display: inline-block;
 		background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
 		background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
@@ -733,7 +733,7 @@ a
 	}
 	#wrapped #content #main #main_top #match a:hover
 	{
-		background: #387697;
+		background: #387038;
 	} 
 
 	#wrapped #main .upcoming
@@ -789,26 +789,53 @@ a
 				#wrapped #main .upcoming li #tip 
 				{
 					width: 70px;
-					color: #fff;
-					margin: 4px 2px;
-					padding: 1px 5px;
+					color: #353535;
+					padding: 1px 3px;
 					display: inline-block;
+				}
+					#wrapped #main .upcoming .disable #tip 
+					{
+						width: 60px;
+						margin: 3px 5px;
+						font-size: 10px;
+						padding: 1px 3px;
+						border: 1px solid;
+						border-color: #bd362f #bd362f #802420;
+						border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+					}
+					#wrapped #main .upcoming .disable .selected
+					{
+						color: #fff !important;
+						border-color: #51a351 !important;
+						background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+						background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+						background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+						background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+						background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+						-webkit-background-size: 30px 30px;
+						-moz-background-size: 30px 30px;
+						-o-background-size: 30px 30px;
+						background-size: 30px 30px;
+						font-size: 10px !important;
+						background-color: #51a351 !important;
+					}
+				#wrapped #main .upcoming li #tip a 
+				{
+					margin: 3px 0;
+					color: #efefef;
+					display: block;
+					padding: 1px 5px;
 					background-color: #51a351;
 				}
 					#wrapped #main .upcoming li #tip span
 					{
 						float: right;
 					}
-				#wrapped #main .upcoming li #tip:hover 
+				#wrapped #main .upcoming li #tip a:hover 
 				{
-					color: #fff;
 					cursor: pointer;
 					background: #62c462;
 				}
-				#wrapped #main .upcoming li #tip:hover span
-				{
-					color: #fff;
-				} 
 				#wrapped #main .upcoming li #more 
 				{
 					width: 45px;
@@ -1100,14 +1127,15 @@ a
 	-o-background-size: 30px 30px;
 	background-size: 30px 30px;
 }
-.disabled .stripe
+.disable
 {
-	background: #ccc !important;
+	background: rgba(189,54,47,.1) !important;
 }
-.disabled .tipped 
-{
-	background: black !important;
-}
+	.disable .more_odds
+	{
+		background: none !important;
+		border-color: rgb(189,54,47); 
+	}
 .fb_btn
 {
 	width: 170px;
