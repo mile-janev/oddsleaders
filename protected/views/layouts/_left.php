@@ -2,6 +2,7 @@
     $criteria1 = new CDbCriteria();
     $criteria1->addCondition('active = 1');
     $sports = Sport::model()->findAll($criteria1);
+
 ?>
 
 <div id="sidebar">

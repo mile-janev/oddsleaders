@@ -1,12 +1,47 @@
 
 $(document).ready(function() {
+//	time 
+	function countdown()
+	{
+		$('.time_play').each(function(){
+			time = $(this).text().split(':');
+			hours = time[0];
+			minutes = time[1];
+			seconds = time[2];
+
+			if(seconds == 0) {
+				seconds = 59;
+				minutes = time[1]-1;
+			} else {
+				seconds = time[2]-1;
+			}
+
+			if(minutes == 0)
+			{
+				hours = time[0]-1;
+			}
+
+			if(String(seconds).length == 1) {
+				seconds = '0'+seconds;
+			}
+			if(String(minutes).length == 1) {
+				minutes = '0'+minutes;
+			}
+			$(this).html(hours+':'+minutes+':'+seconds);
+		});
+	}
+
+	setInterval(function() {
+		countdown();
+	},1000);
+
     $('.services li').click(function() {
         $(this).find('ul').show();
         $(this).mouseleave(function() {
             $(this).find('ul').hide();
         });
     });
-
+// tabs switch
     $('.tab_btn').click(function() {
         $('.tab_btn').removeClass('current');
         tab = $(this).attr('href');
@@ -17,17 +52,12 @@ $(document).ready(function() {
 
 		return false;
 	});
-	
-	$('.disabled').find('.stripe').live('click', function(){
-		alert('false');
-		return false;
-	});
 
 	$('.stripe').click(function(){
 		id = $(this).attr('data');
 
 		$('.'+id).addClass('disabled');
-		$(this).addClass('tipped');
+		$(this).css({ 'backgound' : '#efefef' });
 		return false;
 	});
 

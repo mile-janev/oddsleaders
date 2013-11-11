@@ -777,6 +777,11 @@ a
 					padding: 6px 5px;
 					border-left: 1px dotted #353535;
 				}
+				#wrapped #main .upcoming li #match a 
+				{
+					font-size: 11px;
+					color: #1a5e83;
+				}
 				#wrapped #main .upcoming li #tips 
 				{
 					float: right;
