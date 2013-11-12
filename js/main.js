@@ -1,12 +1,47 @@
 
 $(document).ready(function() {
+//	time 
+	function countdown()
+	{
+		$('.time_play').each(function(){
+			time = $(this).text().split(':');
+			hours = time[0];
+			minutes = time[1];
+			seconds = time[2];
+
+			if(seconds == 0) {
+				seconds = 59;
+				minutes = time[1]-1;
+			} else {
+				seconds = time[2]-1;
+			}
+
+			if(minutes == 0)
+			{
+				hours = time[0]-1;
+			}
+
+			if(String(seconds).length == 1) {
+				seconds = '0'+seconds;
+			}
+			if(String(minutes).length == 1) {
+				minutes = '0'+minutes;
+			}
+			$(this).html(hours+':'+minutes+':'+seconds);
+		});
+	}
+
+	setInterval(function() {
+		countdown();
+	},1000);
+
     $('.services li').click(function() {
         $(this).find('ul').show();
         $(this).mouseleave(function() {
             $(this).find('ul').hide();
         });
     });
-
+// tabs switch
     $('.tab_btn').click(function() {
         $('.tab_btn').removeClass('current');
         tab = $(this).attr('href');
@@ -17,17 +52,25 @@ $(document).ready(function() {
 
 		return false;
 	});
+// 
+    function mark_played(game_id) 
+    {
+        $(document).find('a').each(function(index, element) {
+            if (game_id == $(this).attr('data-id')) {
+                $(this).contents().unwrap();
+            }
+        });
+    }
+
+    $('#tip').live('click', function(){
+        return false;
+    });
 	
-	$('.disabled').find('.stripe').live('click', function(){
-		alert('false');
-		return false;
-	});
-
-	$('.stripe').click(function(){
-		id = $(this).attr('data');
-
-		$('.'+id).addClass('disabled');
-		$(this).addClass('tipped');
+    $('.stripe').live('click', function(){
+		game_id = $(this).attr('data-id');
+        $(this).closest('div').addClass('selected');
+        $('.'+game_id).addClass('disable').addClass('stripe');
+		mark_played(game_id);
 		return false;
 	});
 
@@ -121,7 +164,7 @@ $(document).ready(function() {
         graph.type = "column";
         graph.lineAlpha = 0;
         graph.fillAlphas = 1;
-        graph.fillColors = ["#1a5e83", "#0088cc"];
+        graph.fillColors = ["#51a351", "#62c462"];
         graph.labelText = "[[description]]";
         graph.balloonText = "[[category]]: [[value]] %";
         chart.addGraph(graph);
@@ -132,7 +175,7 @@ $(document).ready(function() {
 
     var chart;
 
-    var chartData = [
+    var chartData1 = [
         {
             "teams": "Dortmund win",
             "procent": 30,
@@ -153,7 +196,7 @@ $(document).ready(function() {
     AmCharts.ready(function() {
         // SERIAL CHART
         var chart = new AmCharts.AmSerialChart();
-        chart.dataProvider = chartData;
+        chart.dataProvider = chartData1;
         chart.categoryField = "teams";
         chart.startDuration = 2;
         // change balloon text color                
@@ -182,7 +225,7 @@ $(document).ready(function() {
         graph.type = "column";
         graph.lineAlpha = 0;
         graph.fillAlphas = 1;
-        graph.fillColors = ["#1a5e83", "#0088cc"];
+        graph.fillColors = ["#51a351", "#62c462"];
         graph.labelText = "[[description]]";
         graph.balloonText = "[[category]]: [[value]] %";
         chart.addGraph(graph);
@@ -191,7 +234,7 @@ $(document).ready(function() {
         chart.write("chartdiv1");
     });
 
-    var chartData = [
+    var chartData2 = [
         {
             "teams": "Juventus win",
             "procent": 20,
@@ -212,7 +255,7 @@ $(document).ready(function() {
     AmCharts.ready(function() {
         // SERIAL CHART
         var chart = new AmCharts.AmSerialChart();
-        chart.dataProvider = chartData;
+        chart.dataProvider = chartData2;
         chart.categoryField = "teams";
         chart.startDuration = 2;
         // change balloon text color                
@@ -241,7 +284,7 @@ $(document).ready(function() {
         graph.type = "column";
         graph.lineAlpha = 0;
         graph.fillAlphas = 1;
-        graph.fillColors = ["#1a5e83", "#0088cc"];
+        graph.fillColors = ["#51a351", "#62c462"];
         graph.labelText = "[[description]]";
         graph.balloonText = "[[category]]: [[value]] %";
         chart.addGraph(graph);
