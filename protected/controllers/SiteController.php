@@ -58,7 +58,7 @@ class SiteController extends Controller
                 'facebook' => $facebook,
                 'upcoming' => $upcoming
             ));
-	}
+	} 
 
 	/**
 	 * This is the action to handle external exceptions.
