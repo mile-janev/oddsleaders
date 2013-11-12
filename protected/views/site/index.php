@@ -1,12 +1,6 @@
 <?php
 /* @var $this SiteController */
-
-$this->pageTitle = Yii::app()->name;
-
-    $criteria1 = new CDbCriteria();
-    $criteria1->order = 'start ASC';
-    $criteria1->limit = '20';
-    $upcoming = Stack::model()->findAll($criteria1);
+    $this->pageTitle = Yii::app()->name;
 ?>
 
 <div style='display:none'>
@@ -46,32 +40,36 @@ $this->pageTitle = Yii::app()->name;
                 $odds = json_decode($value['data']);
 
                 $match_odds = '';
-                foreach ($odds->match as $key => $match) {
-                    if($key != 'label')
-                        $match_odds .= '<div id="tip"><a class="stripe" data-id="'.$value['code'].'">'.ucfirst($key).' <span>'.$match.'</span></a></div>';
-                }
-
-                $more = ''; $count = 0;
-                foreach ($odds as $key => $more_odds) {
-                    $odd = '';
-                    if($key != 'match')
-                    {
-
-                        foreach ($more_odds as $tip => $m_odds) {
-                            if($tip != 'label')
-                            {
-                                if(!empty($m_odds))
-                                    $odd .= '<div id="tip"><a class="stripe" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
-                            }
-                        }
-
-                        $more .= '<li>
-                                    <div id="type">'.ucfirst($key).'</i></div>
-                                    '.$odd.'
-                                </li>';
-                        $count++;
+                if ($odds) {
+                    foreach ($odds->match as $key => $match) {
+                        if($key != 'label')
+                            $match_odds .= '<div id="tip"><a class="stripe" data-id="'.$value['code'].'">'.ucfirst($key).' <span>'.$match.'</span></a></div>';
                     }
-                }   
+                }
+                
+                $more = ''; $count = 0;
+                if ($odds) {
+                    foreach ($odds as $key => $more_odds) {
+                        $odd = '';
+                        if($key != 'match')
+                        {
+
+                            foreach ($more_odds as $tip => $m_odds) {
+                                if($tip != 'label')
+                                {
+                                    if(!empty($m_odds))
+                                        $odd .= '<div id="tip"><a class="stripe" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
+                                }
+                            }
+
+                            $more .= '<li>
+                                        <div id="type">'.ucfirst($key).'</i></div>
+                                        '.$odd.'
+                                    </li>';
+                            $count++;
+                        }
+                    }   
+                }
                     $time = strtotime($value['start']) - time();
                     echo '<li class="'.$value['code'].'">
                         <div id="sport"><div class="icon football"></div></div>

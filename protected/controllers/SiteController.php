@@ -47,11 +47,16 @@ class SiteController extends Controller
 //            Register
             $model=new User;
             
+            $criteria1 = new CDbCriteria();
+            $criteria1->order = 'start ASC';
+            $criteria1->limit = '20';
+            $upcoming = Stack::model()->findAll($criteria1);
 
             $this->render('index', array(
                 'login'=>$login,
                 'model'=>$model,
-                'facebook' => $facebook
+                'facebook' => $facebook,
+                'upcoming' => $upcoming
             ));
 	}
 
