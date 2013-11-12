@@ -1,7 +1,7 @@
 <div id="top" class="blue">
     <div id="top_wrapped">
         <ul id="top_menu">
-            <li><?= date("d-m-Y H:i"); ?></li>
+            <li><?=date('d-M-Y', time());?> <div id="clock" style="display:inline-block;"></div></li>
             <li>Language<select>
                     <option>English</option>
                     <option>Macedonian</option>
