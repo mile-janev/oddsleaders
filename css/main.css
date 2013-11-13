@@ -1083,7 +1083,6 @@ a
 			width: 65px;
 			text-align: left;
 			margin: 5px 0 0 5px;
-			border: 1px dotted #51a351;
 		} 
 		.box .table li ul .tip a
 		{
@@ -1099,6 +1098,7 @@ a
 
 		.box .table .disable .tip 
 		{
+			padding: 5px 0;
 			color: #b1b1b1 !important;
 			vertical-align: middle;
 		}
@@ -1111,6 +1111,14 @@ a
 			color: #fff !important;
 			border-color: #51a351 !important;
 			background-color: #51a351 !important;
+		}
+		.box .table .disable ul li .tip 
+		{
+			font-size: 10px;
+			padding: 0 5px;
+			border: 1px solid;
+			border-color: #bd362f #bd362f #802420;
+			border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 		}
 
 /*--------------------------------------------------------------------------------------------------------------
