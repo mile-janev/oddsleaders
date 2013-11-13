@@ -43,7 +43,7 @@
                 if ($odds) {
                     foreach ($odds->match as $key => $match) {
                         if($key != 'label')
-                            $match_odds .= '<div id="tip"><a class="stripe" data-id="'.$value['code'].'">'.ucfirst($key).' <span>'.$match.'</span></a></div>';
+                            $match_odds .= '<div id="tip"><a class="stripe clickable" data-id="'.$value['code'].'">'.ucfirst($key).' <span>'.$match.'</span></a></div>';
                     }
                 }
                 
@@ -58,7 +58,7 @@
                                 if($tip != 'label')
                                 {
                                     if(!empty($m_odds))
-                                        $odd .= '<div id="tip"><a class="stripe" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
+                                        $odd .= '<div id="tip"><a class="stripe clickable" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
                                 }
                             }
 
@@ -76,7 +76,7 @@
                         <div id="match"><a>'.$value['opponent'].'</a> - for <span class="time_play">'.date('H:i:s', $time).'</span></div>
                         <div id="tips">
                             '.$match_odds.'
-                            <div id="more">'.$count.'+<i class="icon-plus-sign"></i></div>
+                            <div class="more">'.$count.'+<i class="icon-plus-sign"></i></div>
                         </div>
                         <ul class="more_odds">
                             '.$more.'
@@ -86,190 +86,82 @@
         ?>
     </ul>   
 </div>
-<div class="box">
+<div id="new_tipsters" class="box">
     <div class="box_title grey"><i class="icon-star"></i> Say hello to our new tipsters</div>
+    <div id="users">
+        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
+        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
+        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
+        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
+        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
+        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
+        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
+        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
+    </div>
 </div>
 <div class="box">
-    <div class="box_title grey"><i class="icon football"></i> Football</div>
-    <table class="table">
-        <tr class="th">
-            <th colspan="2">Spain Primera Devision</th>
-            <th>1</th>
-            <th>X</th>
-            <th>2</th>
-            <th>0-2</th>
-            <th>3+</th>
-            <th>More</th>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td id="teams">Real Madrid - Barcelona</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">3.1</td>
-            <td class="clickable">2.65</td>
-            <td class="clickable">1.9</td>
-            <td class="clickable">1.6</td>
-            <td class="more">+16 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td id="teams">Real Madrid - Barcelona</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">3.1</td>
-            <td class="clickable">2.65</td>
-            <td class="clickable">1.9</td>
-            <td class="clickable">1.6</td>
-            <td class="more">+16 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td id="teams">Real Madrid - Barcelona</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">3.1</td>
-            <td class="clickable">2.65</td>
-            <td class="clickable">1.9</td>
-            <td class="clickable">1.6</td>
-            <td class="more">+16 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td id="teams">Real Madrid - Barcelona</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">3.1</td>
-            <td class="clickable">2.65</td>
-            <td class="clickable">1.9</td>
-            <td class="clickable">1.6</td>
-            <td class="more">+16 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td id="teams">Real Madrid - Barcelona</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">3.1</td>
-            <td class="clickable">2.65</td>
-            <td class="clickable">1.9</td>
-            <td class="clickable">1.6</td>
-            <td class="more">+16 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td id="teams">Real Madrid - Barcelona</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">3.1</td>
-            <td class="clickable">2.65</td>
-            <td class="clickable">1.9</td>
-            <td class="clickable">1.6</td>
-            <td class="more">+16 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td id="teams">Real Madrid - Barcelona</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">3.1</td>
-            <td class="clickable">2.65</td>
-            <td class="clickable">1.9</td>
-            <td class="clickable">1.6</td>
-            <td class="more">+16 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td id="teams">Real Madrid - Barcelona</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">3.1</td>
-            <td class="clickable">2.65</td>
-            <td class="clickable">1.9</td>
-            <td class="clickable">1.6</td>
-            <td class="more">+16 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td id="teams">Real Madrid - Barcelona</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">3.1</td>
-            <td class="clickable">2.65</td>
-            <td class="clickable">1.9</td>
-            <td class="clickable">1.6</td>
-            <td class="more">+16 <i class="icon-plus-sign"></i></td>
-        </tr>
-    </table>
-</div>
-<div class="box">
-    <div class="box_title green"><i class="icon tennis"></i> Tennis</div>
-    <table class="table">
-        <tr class="th">
-            <th colspan="2">Rolan Garos</th>
-            <th>1</th>
-            <th>2</th>
-            <th>+ 2.5</th>
-            <th>- 2.5</th>
-            <th>More</th>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td>Rafael Nadal - Roger Federer</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">1.75</td>
-            <td class="clickable">1.8</td>
-            <td class="clickable">1.8</td>
-            <td class="more">+5 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td>Rafael Nadal - Roger Federer</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">1.75</td>
-            <td class="clickable">1.8</td>
-            <td class="clickable">1.8</td>
-            <td class="more">+5 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td>Rafael Nadal - Roger Federer</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">1.75</td>
-            <td class="clickable">1.8</td>
-            <td class="clickable">1.8</td>
-            <td class="more">+5 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td>Rafael Nadal - Roger Federer</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">1.75</td>
-            <td class="clickable">1.8</td>
-            <td class="clickable">1.8</td>
-            <td class="more">+5 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td>Rafael Nadal - Roger Federer</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">1.75</td>
-            <td class="clickable">1.8</td>
-            <td class="clickable">1.8</td>
-            <td class="more">+5 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td>Rafael Nadal - Roger Federer</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">1.75</td>
-            <td class="clickable">1.8</td>
-            <td class="clickable">1.8</td>
-            <td class="more">+5 <i class="icon-plus-sign"></i></td>
-        </tr>
-        <tr class="disabled">
-            <td id="time">21:00</td>
-            <td>Rafael Nadal - Roger Federer</td>
-            <td class="clickable">1,95</td>
-            <td class="clickable">1.75</td>
-            <td class="clickable">1.8</td>
-            <td class="clickable">1.8</td>
-            <td class="more">+5 <i class="icon-plus-sign"></i></td>
-        </tr>
-    </table>
-</div>
+    <div class="box_title green"><i class="icon football"></i> Football</div>
+    <ul class="table">
+        <li>
+            <div id="league">Spain Primera Devision</div>
+            <div id="tips">
+                <div>1</div>
+                <div>X</div>
+                <div>2</div>
+                <div>More</div>
+            </div>
+        </li>
+        <?php
+            foreach ($upcoming as $key => $value) {
+                $odds = json_decode($value['data']);
 
+                $match_odds = '';
+                if ($odds) {
+                    foreach ($odds->match as $key => $match) {
+                        if($key != 'label')
+                            $match_odds .= '<div class="tip"><a class="clickable" data-id="'.$value['code'].'">'.$match.'</a></div>';
+                    }
+                }
+                
+                $more = ''; $count = 0;
+                if ($odds) {
+                    foreach ($odds as $key => $more_odds) {
+                        $odd = '';
+                        if($key != 'match')
+                        {
+
+                            foreach ($more_odds as $tip => $m_odds) {
+                                if($tip != 'label')
+                                {
+                                    if(!empty($m_odds))
+                                        $odd .= '<div class="tip"><a class="clickable" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
+                                }
+                            }
+
+                            $more .= '<li>
+                                        <div id="type">'.ucfirst($key).'</i></div>
+                                        '.$odd.'
+                                    </li>';
+                            $count++;
+                        }
+                    }   
+                }
+
+                echo '<li class="'.$value['code'].'">
+                        <div id="time">'.date("d-m H:i", strtotime($value['start'])).'</div>
+                        <div id="teams">'.$value['opponent'].'</div>
+                        <div id="tips">
+                            '.$match_odds.'
+                            <div class="more">+16 <i class="icon-plus-sign"></i></div>
+                        </div>
+                        <ul class="more_odds">
+                            '.$more.'
+                        </ul>
+                    </li>';    
+            }
+        ?>
+    </ul>
+</div>
 <script type="text/javascript">
     $(document).ready(function() {
 

@@ -5,11 +5,10 @@
             <div class="nano">
                 <div class="content">
                     <div id="matchs" class="match-slip">
-                        <div id="match" class="match-1">Barcelona - Milan <span class="close" id="1">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div>
-                        <div id="match" class="match-2">Dortmund - Arsenal <span class="close" id="2">X</span><div id="odds"><div id="tip">2</div><span>1.45</span></div></div>
-                        <div id="match" class="match-3">Juventus - Real Madrid <span class="close" id="3">X</span><div id="odds"><div id="tip">X</div><span>1.45</span></div></div>
-                        <div id="match" class="match-4">N. Djokovic - R. Federer <span class="close" id="4">X</span><div id="odds"><div id="tip">2</div><span>1.45</span></div></div>
-                        <div id="match" class="match-5">Barcelona - Milan <span class="close" id="5">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div>
+                        <p>Your slipper is EMPTY.<br> To select a bet please click on price. <br> You need to be</p> 
+                        <a id="loginColorbox" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-login" : Yii::app()->createUrl('site/login'); ?>" class="button blue  "><i class="icon-signin"></i> Log in</a> or
+                        <a id="registerColorbox" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-register" : Yii::app()->createUrl('user/register'); ?>" class="button green"><i class="icon-user"></i> Register</a>
+                        <!-- <div id="match" class="match-5">Barcelona - Milan <span class="close" id="5">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div> -->
                     </div>
                 </div>
             </div>

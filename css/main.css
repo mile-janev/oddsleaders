@@ -477,8 +477,14 @@ a
 		{
 			height: 290px;
 			color: #353535;
+			text-align: center;
 			border-bottom: 1px solid #fff;
+		}
+		#wrapped #content #rightbar #bet_slip p
+		{
+			font-size: 16px !important;
 			margin-bottom: 20px;
+
 		}
 		#wrapped #content #rightbar #bet_slip form 
 		{
@@ -495,6 +501,7 @@ a
 			padding: 5px;
 			margin-top: 2px;
 			font-size: 11px;
+			text-align: left;
 			background-color: #f5f5f5;
 			background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
 			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
@@ -584,7 +591,6 @@ a
 			font-size: 12px;
 			color: #1a5e83;
 			font-weight: bold;
-			position: absolute;
 			margin: 10px 0 0 5px; 
 		}
 	#wrapped #content #rightbar #tabs
@@ -800,6 +806,8 @@ a
 						font-size: 10px;
 						padding: 1px 3px;
 						border: 1px solid;
+						color: #b1b1b1;
+						cursor:url(../images/danger.png),auto;
 						border-color: #bd362f #bd362f #802420;
 						border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 					}
@@ -836,7 +844,7 @@ a
 					cursor: pointer;
 					background: #62c462;
 				}
-				#wrapped #main .upcoming li #more 
+				#wrapped #main .upcoming li .more 
 				{
 					width: 45px;
 					color: #353535;
@@ -846,7 +854,7 @@ a
 					text-align: center;
 					background: #e6e6e6;
 				}
-					#wrapped #main .upcoming li #more:hover 
+					#wrapped #main .upcoming li .more:hover 
 					{
 						text-decoration: underline;
 					}
@@ -873,6 +881,10 @@ a
 						padding-left: 10px;
 						background: none;
 					}
+					#wrapped #main .more_odds li:first-child
+					{
+						font-weight: normal !important;
+					}
 						#wrapped #main .more_odds li #type 
 						{
 							display: block;
@@ -883,6 +895,35 @@ a
 						{
 							background: none;
 						}
+		#wrapped #main #new_tipsters #users
+	 	{
+	 		padding: 0 7px 7px 8px;
+	 		border: 1px solid #bfbfbf;
+		}
+			#wrapped #main #new_tipsters #users #user
+			{
+				width: 69px;
+				padding: 5px;
+				margin-top: 5px;
+				text-align: center;
+				display: inline-block;
+				border: 1px dotted #bfbfbf;
+				background: rgba(98,191,98,.1);
+			}
+			#wrapped #main #new_tipsters #users #user:hover 
+			{
+				background: rgba(189,54,47,.2);
+			}
+				#wrapped #main #new_tipsters #users #user img 
+				{
+					max-width: 50px;
+				} 
+				#wrapped #main #new_tipsters #users #user h1
+				{
+					color: #353535;
+					font-weight: bold;
+					font-size: 11px;
+				}
 #footer
 {
 	width: 100%;
@@ -937,78 +978,140 @@ a
 	.box .table 
 	{
 		width: 100%;
-		color: #333333;
+		padding: 0;
+		margin: 0;
+		color: #353535;
 		font-size: 11px;
+		list-style: none;
 		border: 1px solid #bfbfbf;
 	}
-		.box .table tr 
+		.box .table li 
 		{
 			border: none;
 			background: #fff;
 		}
-			.box .table tr th 
+		.box .table li:nth-child(2n)
+		{
+			background: #efefef;
+		}
+			.box .table li:first-child 
 			{
-				padding: 5px;
-				background: #ccc;
-			}
-			.box .table tr th:first-child
-			{
-				text-align: left;
+				color: #333;
 				font-weight: bold;
-			}
-			.box .table .th:hover 
-			{
-				color: #333333;
-				background: none;
-			}
-			.box .table tr td 
-			{
-				padding: 5px;
-				margin: 0;
-			}
-			.box .table tr td:first-child
-			{
-				width: 20px;
-			}
-			.box .table tr:nth-child(2n)
-			{
-				background: #efefef;
-			}
-			.box .table tr:hover 
-			{
-				background: rgba(98,191,98,.1);
-			}
-			.box .table tr #time 
-			{
-				border-right: 1px dotted #1a5e83;
-			}
-			.box .table tr #teams 
-			{
-				font-size: 13px;
-				color: #1a5e83;
-			}
-			.box .table tr .clickable 
-			{
-				text-align: center;
-			}
-			.box .table tr .clickable:hover 
-			{
-				color: #fff;
-				cursor: pointer;
 				background: #ccc;
 			}
-			.box .table tr .more 
+			.box .table li #league 
 			{
-				width: 50px;
-				background: #efefef;
-				text-align: center;
-				border-bottom: none;
+				width: 335px;
+				padding: 5px;
+				text-align: left;
 			}
-				.box .table tr .more:hover 
-				{
-					cursor: pointer;
-					text-decoration: underline;
-				}
+			.box .table li > div 
+			{
+				padding: 0;
+				display: inline-block;
+				vertical-align: top;
+				zoom: 1; /* Fix for IE7 */
+				*display: inline; /* Fix for IE7 */
+				vertical-align: top;
+			}
+			.box .table li:first-child > #tips div 
+			{
+				width: 60px;
+				padding: 5px;
+				text-align: center;
+			} 
+		.box .table li #tips 
+		{
+			width: auto;
+			float: right;
+			color: #1a5e83;
+		}
+		.box .table li #tips > div
+		{
+			display: inline-block;
+			vertical-align: middle;
+			zoom: 1; /* Fix for IE7 */
+			*display: inline; /* Fix for IE7 */
+		}
+		.box .table li #time 
+		{
+			padding: 5px;
+			border-right: 1px dotted #353535;
+		}
+		.box .table li #teams 
+		{
+			padding: 5px; 
+			font-weight: bold;
+		}
+		.box .table li .tip 
+		{
+			width: 60px;
+			text-align: center;
+		}
+		.box .table li .tip a 
+		{
+			width: 100%;
+			padding: 5px 0;
+			display: inline-block;
+			border-left: 1px dotted #d7d7d7;
+		}
+		.box .table li .tip a:hover 
+		{
+			color: #fff;
+			cursor: pointer;
+			background: #51a351;
+		}
+		.box .table li .more 
+		{
+			width: 60px;
+			padding: 5px;
+			text-align: center;
+			background: #efefef;
+		}
+			.box .table li .more:hover 
+			{
+				cursor: pointer;
+				text-decoration: underline;
+			}
+		.box .table li ul 
+		{
+			display: block;
+		}
+		.box .table li ul li .tip 
+		{
+			width: 65px;
+			text-align: left;
+			margin: 5px 0 0 5px;
+			border: 1px dotted #51a351;
+		} 
+		.box .table li ul .tip a
+		{
+			width: 100%;
+			padding: 0 5px;
+			border-left: none;
+			font-size: 10px !important;
+		} 
+		.box .table li ul li .tip span
+		{
+			float: right;
+		}
+
+		.box .table .disable .tip 
+		{
+			color: #b1b1b1 !important;
+			vertical-align: middle;
+		}
+		.box .table .disable .tip:hover 
+		{
+			cursor:url(../images/danger.png),auto;
+		}
+		.box .table .disable .selected, .selected:hover
+		{
+			color: #fff !important;
+			border-color: #51a351 !important;
+			background-color: #51a351 !important;
+		}
 
 /*--------------------------------------------------------------------------------------------------------------
 										BUTTONS

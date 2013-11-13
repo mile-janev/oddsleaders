@@ -74,10 +74,10 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         return false;
     });
 	
-    $('.stripe').live('click', function(){
+    $('.clickable').live('click', function(){
 		game_id = $(this).attr('data-id');
         $(this).closest('div').addClass('selected');
-        $('.'+game_id).addClass('disable').addClass('stripe');
+        $('.'+game_id).addClass('disable');
 		mark_played(game_id);
 		return false;
 	});
@@ -93,7 +93,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 		});
 	});
 
-    $('.more, #more').click(function() {
+    $('.more').click(function() {
         $(this).parent("div").next().slideToggle();
     });
 
