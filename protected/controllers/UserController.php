@@ -32,7 +32,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','profile','tickets','history','betmanager'),
+				'actions'=>array('create','update','profile','tickets','history'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -62,6 +62,8 @@ class UserController extends Controller
 	 */
 	public function actionCreate()
 	{
+            $this->layout='admin';
+            
 		$model=new User;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -176,6 +178,8 @@ class UserController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            $this->layout='admin';
+            
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -277,15 +281,6 @@ class UserController extends Controller
             $model = User::model()->findAll();
             
             $this->render('history',array(
-                'model'=>$model,
-            ));
-        }
-        
-        public function actionBetmanager()
-        {
-            $model = User::model()->findAll();
-            
-            $this->render('betmanager',array(
                 'model'=>$model,
             ));
         }

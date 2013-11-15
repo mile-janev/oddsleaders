@@ -51,6 +51,8 @@ class CountryController extends Controller
 	 */
 	public function actionView($id)
 	{
+            $this->layout='admin';
+            
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +64,8 @@ class CountryController extends Controller
 	 */
 	public function actionCreate()
 	{
+            $this->layout='admin';
+            
 		$model=new Country;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -86,6 +90,8 @@ class CountryController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            $this->layout='admin';
+            
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed

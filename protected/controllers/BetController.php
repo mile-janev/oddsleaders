@@ -32,7 +32,7 @@ class BetController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','betmanager'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -51,6 +51,8 @@ class BetController extends Controller
 	 */
 	public function actionView($id)
 	{
+            $this->layout='admin';
+            
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +64,8 @@ class BetController extends Controller
 	 */
 	public function actionCreate()
 	{
+            $this->layout='admin';
+            
 		$model=new Bet;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -86,6 +90,8 @@ class BetController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            $this->layout='admin';
+            
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -172,4 +178,14 @@ class BetController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        
+        public function actionBetmanager()
+        {
+            $model = User::model()->findAll();
+            
+            $this->render('betmanager',array(
+                'model'=>$model,
+            ));
+        }
 }
