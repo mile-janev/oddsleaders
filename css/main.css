@@ -220,12 +220,13 @@ a
 			font-weight: bold;
 			padding: 10px 20px;
 		}
-		#mainmenu ul li > a:hover
+		#mainmenu ul li > a:hover, #mainmenu ul li.active
 		{
 			color: #1a5e83;
 			background: #fff;
-			padding: 7px 20px 10px 20px;
+			/*padding: 7px 20px 10px 20px;*/
 			border-top: 3px solid #1a5e83;
+                        padding-top: 7px;
 		}
 		#mainmenu ul li > .selected
 		{
@@ -1349,4 +1350,33 @@ i[data-title]:hover:after
 
 #cboxContent, #cboxLoadedContent{
     height: auto !important;
+}
+
+#adminMenu{
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 20px;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+}
+#adminMenu li{
+    float: left;
+    list-style-type: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+#adminMenu li a{
+    float: left;
+    color: #328E32;
+    padding: 10px;
+}
+#adminMenu li a:hover, #adminMenu li a:active{
+    background: #ffffff;
+    border-top: 3px solid #328E32;
+    padding-top: 7px;
+}
+.adminContentWrapper{
+    float: left;
+}
+.adminMain{
+    width: 100% !important;
 }

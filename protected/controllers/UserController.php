@@ -36,7 +36,7 @@ class UserController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','adminpanel'),
 				'users'=> UserRoleCheck::admin_users(),
 			),
 			array('deny',  // deny all users
@@ -223,14 +223,16 @@ class UserController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new User('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['User']))
-			$model->attributes=$_GET['User'];
-                
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+            $this->layout='admin';
+            
+            $model=new User('search');
+            $model->unsetAttributes();  // clear any default values
+            if(isset($_GET['User']))
+                $model->attributes=$_GET['User'];
+
+            $this->render('admin',array(
+                'model'=>$model,
+            ));
 	}
 
 	/**
@@ -293,6 +295,17 @@ class UserController extends Controller
             $model = User::model()->findAll();
             
             $this->render('profile',array(
+                'model'=>$model,
+            ));
+        }
+        
+        public function actionAdminpanel()
+        {
+            $this->layout='admin';
+            
+            $model = User::model()->findAll();
+            
+            $this->render('adminpanel',array(
                 'model'=>$model,
             ));
         }

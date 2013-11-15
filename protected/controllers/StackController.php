@@ -36,7 +36,7 @@ class StackController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','admintopmatches'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -135,14 +135,16 @@ class StackController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Stack('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Stack']))
-			$model->attributes=$_GET['Stack'];
+            $this->layout='admin';
+            
+            $model=new Stack('search');
+            $model->unsetAttributes();  // clear any default values
+            if(isset($_GET['Stack']))
+                $model->attributes=$_GET['Stack'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+            $this->render('admin',array(
+                'model'=>$model,
+            ));
 	}
 
 	/**
@@ -178,6 +180,17 @@ class StackController extends Controller
             $model = Stack::model()->findAll();
             
             $this->render('topmatches',array(
+                'model'=>$model,
+            ));
+        }
+        
+        public function actionAdmintopmatches()
+        {
+            $this->layout='admin';
+            
+            $model = Stack::model()->findAll();
+            
+            $this->render('admintopmatches',array(
                 'model'=>$model,
             ));
         }

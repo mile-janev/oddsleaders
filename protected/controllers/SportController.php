@@ -133,14 +133,16 @@ class SportController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Sport('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Sport']))
-			$model->attributes=$_GET['Sport'];
+            $this->layout='admin';
+            
+            $model=new Sport('search');
+            $model->unsetAttributes();  // clear any default values
+            if(isset($_GET['Sport']))
+                $model->attributes=$_GET['Sport'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+            $this->render('admin',array(
+                'model'=>$model,
+            ));
 	}
 
 	/**

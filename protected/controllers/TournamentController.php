@@ -140,14 +140,16 @@ class TournamentController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Tournament('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Tournament']))
-			$model->attributes=$_GET['Tournament'];
+            $this->layout='admin';
+            
+            $model=new Tournament('search');
+            $model->unsetAttributes();  // clear any default values
+            if(isset($_GET['Tournament']))
+                $model->attributes=$_GET['Tournament'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+            $this->render('admin',array(
+                'model'=>$model,
+            ));
 	}
 
 	/**

@@ -133,6 +133,8 @@ class CountryController extends Controller
 	 */
 	public function actionAdmin()
 	{
+            $this->layout='admin';
+            
 		$model=new Country('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Country']))
