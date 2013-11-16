@@ -26,7 +26,9 @@
                     foreach ($data->match as $key => $value) {
                         if ($key != 'label') {
                 ?>
-                        <a href="" class="stripe"><?php echo $value; ?></a>
+                        <a href="#" class="stripe" rel="<?php echo OddsClass::getPercent($data->match, $value); ?>">
+                            <?php echo $value; ?>
+                        </a>
                 <?php } } ?>
             </div>
         </div>
