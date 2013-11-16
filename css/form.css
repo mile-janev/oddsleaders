@@ -164,8 +164,7 @@ div.popup .errorSummary
 
 div.popup .errorMessage
 {
-	color: red;
-	display: inline-block;
+	color: #bd362f;
 	font-size: 0.9em;
 }
 

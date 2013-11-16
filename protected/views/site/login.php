@@ -22,11 +22,13 @@ $this->breadcrumbs=array(
 		<div class="row">
 			<i class="icon-user"></i>
 			<?php echo $form->textField($model,'username', array('placeholder'=>'Username')); ?>
+			<?php echo $form->error($model,'username'); ?>
 		</div>
 
 		<div class="row">
 			<i class="icon-lock"></i>
 			<?php echo $form->passwordField($model,'password', array('placeholder'=> 'Password')); ?>
+			<?php echo $form->error($model,'password'); ?>
 		</div>
 
 		<div class="row rememberMe">
@@ -39,10 +41,6 @@ $this->breadcrumbs=array(
 				<?php echo $form->label($model,'rememberMe'); ?>
 		</div>
 		<button type="submit" class="button blue"><i class="icon-signin"></i> Log me in</button>
-		<div id="error">
-			<?php echo $form->error($model,'username'); ?>
-			<?php echo $form->error($model,'password'); ?>
-		</div>
 		<?php $this->endWidget(); ?>
 		<hr>
 		<div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl('site/login', array('registerwith' => 'facebook'), '', '&')))); ?>" class="button blue"><i class="icon-facebook facebook"></i> Log in using facebook</a></div>
