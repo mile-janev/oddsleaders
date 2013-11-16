@@ -16,21 +16,21 @@
 </div>
 <div class="box_title green"><i class="icon-flag"></i> Top Matches</div>
 <div id="main_top">
-    <div id="match" class="51">
-        <div id="teams" class="grey">Barcelona - Milan</div>
-        <div id="chartdiv" style="width: 180px; height: 100px;"></div>
-        <div id="odds"><a href="" class="stripe" data='51'>1.45</a><a href="" class="stripe" data='51'>3.1</a><a href="" class="stripe" data='51'>4.5</a></div>
-    </div>
-    <div id="match" class="21">
-        <div id="teams" class="grey">Dortmund - Arsenal</div>
-        <div id="chartdiv1" style="width: 180px; height: 100px;"></div>
-        <div id="odds"><a href="" class="stripe" data='21'>1.45</a><a href="" class="stripe" data='21'>3.1</a><a href="" class="stripe" data='21'>4.5</a></div>
-    </div>
-    <div id="match" class="12">
-        <div id="teams" class="grey">Juventus - Real Madrid</div>
-        <div id="chartdiv2" style="width: 180px; height: 100px;"></div>
-        <div id="odds"><a href="" class="stripe" data='12'>1.45</a><a href="" class="stripe" data='12'>3.1</a><a href="" class="stripe" data='12'>4.5</a></div>
-    </div>
+    <?php $i=1; foreach ($topMatches as $topMatch) { ?>
+        <div id="match">
+            <div id="teams" class="grey"><?php echo $topMatch->opponent; ?></div>
+            <div id="chartdiv<?php echo $i; ?>" style="width: 180px; height: 100px;"></div>
+            <div id="odds">
+                <?php 
+                    $data = json_decode($topMatch->data);
+                    foreach ($data->match as $key => $value) {
+                        if ($key != 'label') {
+                ?>
+                        <a href="" class="stripe"><?php echo $value; ?></a>
+                <?php } } ?>
+            </div>
+        </div>
+    <?php $i++; } ?>
 </div>
 <div class="box">
     <div class="box_title grey"><i class="icon-flag"></i> Upcoming events</div>

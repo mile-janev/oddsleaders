@@ -125,12 +125,12 @@ window.onload = displayTime;  // Start displaying the time when document loads.
     var chartData = [
         {
             "teams": "Barcelona win",
-            "procent": 70,
+            "procent": 20,
             "short": "1"
         },
         {
             "teams": "Draw",
-            "procent": 10,
+            "procent": 20,
             "short": "X"
         },
         {
@@ -178,7 +178,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         chart.addGraph(graph);
 
         // WRITE
-        chart.write("chartdiv");
+        chart.write("chartdiv1");
     });
 
     var chart;
@@ -239,7 +239,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         chart.addGraph(graph);
 
         // WRITE
-        chart.write("chartdiv1");
+        chart.write("chartdiv2");
     });
 
     var chartData2 = [
@@ -298,6 +298,6 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         chart.addGraph(graph);
 
         // WRITE
-        chart.write("chartdiv2");
+        chart.write("chartdiv3");
     });
 });

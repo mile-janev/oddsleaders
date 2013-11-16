@@ -49,14 +49,20 @@ class SiteController extends Controller
             
             $criteria1 = new CDbCriteria();
             $criteria1->order = 'start ASC';
-            $criteria1->limit = '20';
+            $criteria1->limit = 20;
             $upcoming = Stack::model()->findAll($criteria1);
+            
+            $criteria2 = new CDbCriteria();
+            $criteria2->order = 'id ASC';
+            $criteria2->limit = 3;
+            $topMatches = Stack::model()->findAll($criteria2);
 
             $this->render('index', array(
                 'login'=>$login,
                 'model'=>$model,
                 'facebook' => $facebook,
-                'upcoming' => $upcoming
+                'upcoming' => $upcoming,
+                'topMatches' => $topMatches
             ));
 	}
 
