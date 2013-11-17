@@ -717,7 +717,7 @@ a
 	}
 	#wrapped #content #main #main_top #match #odds
 	{
-		width: 165px;
+		width: 170px;
 	}
 	#wrapped #content #main #main_top #match a 
 	{
@@ -725,7 +725,7 @@ a
 		color: #fff;
 		padding: 2px 0;
 		margin-top: 5px;
-		margin-left	: 10px;
+		margin-left	: 5px;
 		background: #51a351;
 		display: inline-block;
 		background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
@@ -803,11 +803,12 @@ a
 					#wrapped #main .upcoming .disable #tip 
 					{
 						width: 60px;
+						color: #b1b1b1;
 						margin: 3px 5px;
 						font-size: 10px;
 						padding: 1px 3px;
 						border: 1px solid;
-						color: #b1b1b1;
+						position: relative;
 						cursor:url(../images/danger.png),auto;
 						border-color: #bd362f #bd362f #802420;
 						border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -834,11 +835,14 @@ a
 					color: #efefef;
 					display: block;
 					padding: 1px 5px;
+					position: relative;
 					background-color: #51a351;
 				}
 					#wrapped #main .upcoming li #tip span
 					{
-						float: right;
+						top: 0;
+						right: 3px;
+						position: absolute;
 					}
 				#wrapped #main .upcoming li #tip a:hover 
 				{
@@ -1088,8 +1092,8 @@ a
 		.box .table li ul .tip a
 		{
 			width: 100%;
+			border: 1px dotted #51a351;
 			padding: 0 5px;
-			border-left: none;
 			font-size: 10px !important;
 		} 
 		.box .table li ul li .tip span

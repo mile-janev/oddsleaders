@@ -18,34 +18,36 @@
             'validateOnSubmit'=>true,
         ),
 )); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
         <?php echo $form->hiddenField($model, 'oauth_provider'); ?>
         <?php echo $form->hiddenField($model, 'oauth_uid'); ?>
 
 	<div class="row">
 		<i class="icon-user"></i>
 		<?php echo $form->textField($model,'username', array("Placeholder"=>"Username")); ?>
+		<?php echo $form->error($model,'username'); ?>
 	</div>
 
 	<div class="row">
 		<i class="icon-lock"></i>
 		<?php echo $form->passwordField($model,'password', array("Placeholder"=>"Password")); ?>
+		<?php echo $form->error($model,'password'); ?>
 	</div>
         
         <div class="row">
 		<i class="icon-repeat"></i>
 		<?php echo $form->passwordField($model,'password_repeat', array("Placeholder"=>"Repeat password")); ?>
+		<?php echo $form->error($model,'password_repeat'); ?>
 	</div>    
         <div class="row">
 		<i class="icon-envelope"></i>
 		<?php echo $form->textField($model,'email', array("Placeholder"=>"Email")); ?>
+		<?php echo $form->error($model,'email'); ?>
 	</div>
 
 	<div class="row">
 		<i class="icon-pencil"></i>
 		<?php echo $form->textField($model,'name', array("Placeholder"=>"Your name")); ?>
+		<?php echo $form->error($model,'name'); ?>
 	</div>	
 
 	<div class="row buttons">
