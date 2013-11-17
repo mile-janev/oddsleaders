@@ -157,7 +157,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 // top matches charts
     var chart;
 
-    var chartData = [
+    var chartData1 = [
         {
             "teams": "Barcelona win",
             "procent": 20,
@@ -171,67 +171,6 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         {
             "teams": "Milan win",
             "procent": 20,
-            "short": "2"
-        }
-    ];
-
-    AmCharts.ready(function() {
-        // SERIAL CHART
-        var chart = new AmCharts.AmSerialChart();
-        chart.dataProvider = chartData;
-        chart.categoryField = "teams";
-        chart.startDuration = 2;
-        // change balloon text color                
-        chart.balloon.color = "#000000";
-
-        // AXES
-        // category
-        var categoryAxis = chart.categoryAxis;
-        categoryAxis.gridAlpha = 0;
-        categoryAxis.axisAlpha = 0;
-        categoryAxis.labelsEnabled = false;
-
-        // value
-        var valueAxis = new AmCharts.ValueAxis();
-        valueAxis.gridAlpha = 0;
-        valueAxis.axisAlpha = 0;
-        valueAxis.labelsEnabled = false;
-        valueAxis.minimum = 0;
-        chart.addValueAxis(valueAxis);
-
-        // GRAPH
-        var graph = new AmCharts.AmGraph();
-        graph.balloonText = "[[category]]: [[value]]";
-        graph.valueField = "procent";
-        graph.descriptionField = "short";
-        graph.type = "column";
-        graph.lineAlpha = 0;
-        graph.fillAlphas = 1;
-        graph.fillColors = ["#51a351", "#62c462"];
-        graph.labelText = "[[description]]";
-        graph.balloonText = "[[category]]: [[value]] %";
-        chart.addGraph(graph);
-
-        // WRITE
-        chart.write("chartdiv1");
-    });
-
-    var chart;
-
-    var chartData1 = [
-        {
-            "teams": "Dortmund win",
-            "procent": 30,
-            "short": "1"
-        },
-        {
-            "teams": "Draw",
-            "procent": 40,
-            "short": "X"
-        },
-        {
-            "teams": "Arsenal win",
-            "procent": 30,
             "short": "2"
         }
     ];
@@ -274,10 +213,71 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         chart.addGraph(graph);
 
         // WRITE
+        chart.write("chartdiv1");
+    });
+
+    var chart;
+
+    var chartData2 = [
+        {
+            "teams": "Dortmund win",
+            "procent": 30,
+            "short": "1"
+        },
+        {
+            "teams": "Draw",
+            "procent": 40,
+            "short": "X"
+        },
+        {
+            "teams": "Arsenal win",
+            "procent": 30,
+            "short": "2"
+        }
+    ];
+
+    AmCharts.ready(function() {
+        // SERIAL CHART
+        var chart = new AmCharts.AmSerialChart();
+        chart.dataProvider = chartData2;
+        chart.categoryField = "teams";
+        chart.startDuration = 2;
+        // change balloon text color                
+        chart.balloon.color = "#000000";
+
+        // AXES
+        // category
+        var categoryAxis = chart.categoryAxis;
+        categoryAxis.gridAlpha = 0;
+        categoryAxis.axisAlpha = 0;
+        categoryAxis.labelsEnabled = false;
+
+        // value
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.gridAlpha = 0;
+        valueAxis.axisAlpha = 0;
+        valueAxis.labelsEnabled = false;
+        valueAxis.minimum = 0;
+        chart.addValueAxis(valueAxis);
+
+        // GRAPH
+        var graph = new AmCharts.AmGraph();
+        graph.balloonText = "[[category]]: [[value]]";
+        graph.valueField = "procent";
+        graph.descriptionField = "short";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.fillColors = ["#51a351", "#62c462"];
+        graph.labelText = "[[description]]";
+        graph.balloonText = "[[category]]: [[value]] %";
+        chart.addGraph(graph);
+
+        // WRITE
         chart.write("chartdiv2");
     });
 
-    var chartData2 = [
+    var chartData3 = [
         {
             "teams": "Juventus win",
             "procent": 20,
@@ -298,7 +298,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
     AmCharts.ready(function() {
         // SERIAL CHART
         var chart = new AmCharts.AmSerialChart();
-        chart.dataProvider = chartData2;
+        chart.dataProvider = chartData3;
         chart.categoryField = "teams";
         chart.startDuration = 2;
         // change balloon text color                
