@@ -54,7 +54,7 @@
                 if ($odds) {
                     foreach ($odds->match as $key => $match) {
                         if($key != 'label')
-                            $match_odds .= '<div id="tip"><a class="stripe clickable" data-id="'.$value['code'].'">'.ucfirst($key).' <span>'.$match.'</span></a></div>';
+                            $match_odds .= '<div class="tip"><a class="stripe clickable" data-id="'.$value['code'].'">'.ucfirst($key).' <span>'.$match.'</span></a></div>';
                     }
                 }
                 
@@ -69,7 +69,7 @@
                                 if($tip != 'label')
                                 {
                                     if(!empty($m_odds))
-                                        $odd .= '<div id="tip"><a class="stripe clickable" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
+                                        $odd .= '<div class="tip"><a class="stripe clickable" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
                                 }
                             }
 
@@ -85,7 +85,7 @@
                     echo '<li class="'.$value['code'].'">
                         <div id="sport"><div class="icon football"></div></div>
                         <div id="match"><a>'.$value['opponent'].'</a> - for <span class="time_play">'.date('H:i:s', $time).'</span></div>
-                        <div id="tips">
+                        <div class="tips">
                             '.$match_odds.'
                             <div class="more">'.$count.'+<i class="icon-plus-sign"></i></div>
                         </div>
@@ -115,7 +115,7 @@
     <ul class="table">
         <li>
             <div id="league">Spain Primera Devision</div>
-            <div id="tips">
+            <div class="tips">
                 <div>1</div>
                 <div>X</div>
                 <div>2</div>
@@ -161,7 +161,7 @@
                 echo '<li class="'.$value['code'].'">
                         <div id="time">'.date("d-m H:i", strtotime($value['start'])).'</div>
                         <div id="teams">'.$value['opponent'].'</div>
-                        <div id="tips">
+                        <div class="tips">
                             '.$match_odds.'
                             <div class="more">+16 <i class="icon-plus-sign"></i></div>
                         </div>

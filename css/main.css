@@ -542,7 +542,7 @@ a
 			background: #1a5e83;
 			color: #fff;
 		}
-		#wrapped #content #rightbar #bet_slip #matchs #match #odds #tip  
+		#wrapped #content #rightbar #bet_slip #matchs #match #odds .tip  
 		{
 			color: #fff;
 			float: left;
@@ -789,18 +789,18 @@ a
 					font-size: 11px;
 					color: #1a5e83;
 				}
-				#wrapped #main .upcoming li #tips 
+				#wrapped #main .upcoming li .tips 
 				{
 					float: right;
 				}
-				#wrapped #main .upcoming li #tip 
+				#wrapped #main .upcoming li .tip 
 				{
 					width: 70px;
 					color: #353535;
 					padding: 1px 3px;
 					display: inline-block;
 				}
-					#wrapped #main .upcoming .disable #tip 
+					#wrapped #main .upcoming .disable .tip 
 					{
 						width: 60px;
 						color: #b1b1b1;
@@ -829,7 +829,7 @@ a
 						font-size: 10px !important;
 						background-color: #51a351 !important;
 					}
-				#wrapped #main .upcoming li #tip a 
+				#wrapped #main .upcoming li .tip a 
 				{
 					margin: 3px 0;
 					color: #efefef;
@@ -838,13 +838,13 @@ a
 					position: relative;
 					background-color: #51a351;
 				}
-					#wrapped #main .upcoming li #tip span
+					#wrapped #main .upcoming li .tip span
 					{
 						top: 0;
 						right: 3px;
 						position: absolute;
 					}
-				#wrapped #main .upcoming li #tip a:hover 
+				#wrapped #main .upcoming li .tip a:hover 
 				{
 					cursor: pointer;
 					background: #62c462;
@@ -1020,19 +1020,19 @@ a
 				*display: inline; /* Fix for IE7 */
 				vertical-align: top;
 			}
-			.box .table li:first-child > #tips div 
+			.box .table li:first-child > .tips div 
 			{
 				width: 60px;
 				padding: 5px;
 				text-align: center;
 			} 
-		.box .table li #tips 
+		.box .table li .tips 
 		{
 			width: auto;
 			float: right;
 			color: #1a5e83;
 		}
-		.box .table li #tips > div
+		.box .table li .tips > div
 		{
 			display: inline-block;
 			vertical-align: middle;

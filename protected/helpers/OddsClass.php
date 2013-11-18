@@ -28,7 +28,7 @@ class OddsClass {
             }
         }
         
-        return round((100/$sum)* OddsClass::formatNumber($valueOdd, 5), 2);
+        return round( (1/OddsClass::formatNumber($valueOdd, 5)) * 100, 2);
     }
     
     /**
