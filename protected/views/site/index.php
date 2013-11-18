@@ -16,17 +16,26 @@
 </div>
 <div class="box_title green"><i class="icon-flag"></i> Top Matches</div>
 <div id="main_top">
-    <?php $i=1; foreach ($topMatches as $topMatch) { ?>
+    <?php $i=1; foreach ($topMatches as $topMatch) {
+        $teams = explode(' vs ', $topMatch->opponent);
+    ?>
         <div id="match">
-            <div id="teams" class="grey"><?php echo $topMatch->opponent; ?></div>
+            <div id="teams" class="grey">
+                <span class="chart_<?php echo $i; ?>_home"><?php echo $teams[0]; ?></span>
+                -
+                <span class="chart_<?php echo $i; ?>_guest"><?php echo $teams[1]; ?></span>
+            </div>
             <div id="chartdiv<?php echo $i; ?>" style="width: 180px; height: 100px;"></div>
             <div id="odds">
                 <?php 
                     $data = json_decode($topMatch->data);
-                    foreach ($data->match as $key => $value) {
+                    $j=0;
+                    foreach ($data->match as $key => $value) { 
                         if ($key != 'label') {
+                            $j++;
                 ?>
-                        <a href="#" class="stripe" rel="<?php echo OddsClass::getPercent($data->match, $value); ?>">
+                        <a href="#" class="stripe chart_<?php echo $i; ?>_<?php echo $j; ?>"
+                           rel="<?php echo OddsClass::getPercent($data->match, $value); ?>">
                             <?php echo $value; ?>
                         </a>
                 <?php } } ?>

@@ -159,18 +159,18 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 
     var chartData1 = [
         {
-            "teams": "Barcelona win",
-            "procent": 20,
+            "teams": $('.chart_1_home').html() + " win",
+            "procent": $('.chart_1_1').attr('rel'),
             "short": "1"
         },
         {
             "teams": "Draw",
-            "procent": 20,
+            "procent": $('.chart_1_2').attr('rel'),
             "short": "X"
         },
         {
-            "teams": "Milan win",
-            "procent": 20,
+            "teams": $('.chart_1_guest').html() + " win",
+            "procent": $('.chart_1_3').attr('rel'),
             "short": "2"
         }
     ];
@@ -220,18 +220,18 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 
     var chartData2 = [
         {
-            "teams": "Dortmund win",
-            "procent": 30,
+            "teams": $('.chart_2_home').html() + " win",
+            "procent": $('.chart_2_1').attr('rel'),
             "short": "1"
         },
         {
             "teams": "Draw",
-            "procent": 40,
+            "procent": $('.chart_2_2').attr('rel'),
             "short": "X"
         },
         {
-            "teams": "Arsenal win",
-            "procent": 30,
+            "teams": $('.chart_2_guest').html() + " win",
+            "procent": $('.chart_2_3').attr('rel'),
             "short": "2"
         }
     ];
@@ -279,18 +279,18 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 
     var chartData3 = [
         {
-            "teams": "Juventus win",
-            "procent": 20,
+            "teams": $('.chart_3_home').html() + " win",
+            "procent": $('.chart_3_1').attr('rel'),
             "short": "1"
         },
         {
             "teams": "Draw",
-            "procent": 50,
+            "procent": $('.chart_3_2').attr('rel'),
             "short": "X"
         },
         {
-            "teams": "Real Madrid win",
-            "procent": 30,
+            "teams": $('.chart_3_guest').html() + " win",
+            "procent": $('.chart_1_1').attr('rel'),
             "short": "2"
         }
     ];
