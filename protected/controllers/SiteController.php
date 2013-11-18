@@ -35,6 +35,7 @@ class SiteController extends Controller
             $script->registerScriptFile($baseUrl . '/js/charts.js');
             $script->registerScriptFile($baseUrl . '/js/serials.js');
             $script->registerScriptFile($baseUrl . '/js/main.js');
+            $script->registerScriptFile($baseUrl . '/js/jquery-cookie/jquery.cookie.js');
             
 //            Login
             $login=new LoginForm;

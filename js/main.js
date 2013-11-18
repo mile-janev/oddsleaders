@@ -61,26 +61,26 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 		return false;
 	});
 // 
-    function mark_played(game_id) 
-    {
-        $(document).find('a').each(function(index, element) {
-            if (game_id == $(this).attr('data-id')) {
-                $(this).contents().unwrap();
-            }
-        });
-    }
+//    function mark_played(game_id) 
+//    {
+//        $(document).find('a').each(function(index, element) {
+//            if (game_id == $(this).attr('data-id')) {
+//                $(this).contents().unwrap();
+//            }
+//        });
+//    }
 
-    $('#tip').live('click', function(){
-        return false;
-    });
+//    $('#tip').live('click', function(){
+//        return false;
+//    });
 	
-    $('.clickable').live('click', function(){
-		game_id = $(this).attr('data-id');
-        $(this).closest('div').addClass('selected');
-        $('.'+game_id).addClass('disable');
-		mark_played(game_id);
-		return false;
-	});
+//    $('.clickable').live('click', function(){
+//		game_id = $(this).attr('data-id');
+//        $(this).closest('div').addClass('selected');
+//        $('.'+game_id).addClass('disable');
+//		mark_played(game_id);
+//		return false;
+//	});
 
 
 	$('#matchs #match .close').live('click', function(){
@@ -335,4 +335,27 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         // WRITE
         chart.write("chartdiv3");
     });
+    
+    $(".stripe").click(function(){
+        var gameCode = $(this).attr('rel');
+        var gameType = $(this).find(".gameType").html();
+        var gameQuote = $(this).find(".gameQuote").html();
+        console.log(gameCode);
+        console.log(gameType);
+        console.log(gameQuote);
+    })
+
+    
 });
+
+
+function setCookie(key, value) {
+    var expires = new Date();
+    expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+    document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+}
+
+function getCookie(key) {
+    var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+    return keyValue ? keyValue[2] : null;
+}

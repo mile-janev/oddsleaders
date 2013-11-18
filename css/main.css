@@ -497,7 +497,7 @@ a
 		{
 			max-height: 150px;
 		}
-		#wrapped #content #rightbar #bet_slip #matchs #match
+		#wrapped #content #rightbar #bet_slip #matchs .match
 		{
 			padding: 5px;
 			margin-top: 2px;
@@ -516,7 +516,7 @@ a
 			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);	
 			box-shadow: 0px 2px 1px #cdcdcd;
 		}
-		#wrapped #content #rightbar #bet_slip #matchs #match:hover 
+		#wrapped #content #rightbar #bet_slip #matchs .match:hover 
 		{
 			background: #efefef;
 			background-position: 36px;
@@ -526,7 +526,7 @@ a
 			     -o-transition: all .25s linear;
 			        transition: all .25s linear;
 		}
-		#wrapped #content #rightbar #bet_slip #matchs #match .close
+		#wrapped #content #rightbar #bet_slip #matchs .match .close
 		{
 			width: 16px;
 			height: 16px;
@@ -537,12 +537,12 @@ a
 			padding: 1px 5px;
 			margin-right: 10px;
 		}
-		#wrapped #content #rightbar #bet_slip #matchs #match .close:hover 
+		#wrapped #content #rightbar #bet_slip #matchs .match .close:hover 
 		{
 			background: #1a5e83;
 			color: #fff;
 		}
-		#wrapped #content #rightbar #bet_slip #matchs #match #odds .tip  
+		#wrapped #content #rightbar #bet_slip #matchs .match #odds .tip  
 		{
 			color: #fff;
 			float: left;
@@ -550,7 +550,7 @@ a
 			border-radius: 10px;
 			background: #006dcc;
 		}
-		#wrapped #content #rightbar #bet_slip #matchs #match #odds span 
+		#wrapped #content #rightbar #bet_slip #matchs .match #odds span 
 		{
 			margin-left: 20px;
 			display: inline-block;
@@ -699,7 +699,7 @@ a
 	background: rgba(1,63,120,.05);
 	border: 2px solid #51a351;
 }
-	#wrapped #content #main #main_top #match
+	#wrapped #content #main #main_top .match
 	{
 		width: 170px;
 		margin: 0 5px;
@@ -707,7 +707,7 @@ a
 		text-align: center;
 		display: inline-block;
 	}
-	#wrapped #content #main #main_top #match #teams 
+	#wrapped #content #main #main_top .match #teams 
 	{
 		width: 100%;
 		padding: 5px;
@@ -715,11 +715,11 @@ a
 		color: #353535;
 		text-align: center;
 	}
-	#wrapped #content #main #main_top #match #odds
+	#wrapped #content #main #main_top .match #odds
 	{
 		width: 170px;
 	}
-	#wrapped #content #main #main_top #match a 
+	#wrapped #content #main #main_top .match a 
 	{
 		width: 40px;
 		color: #fff;
@@ -738,7 +738,7 @@ a
 		-o-background-size: 30px 30px;
 		background-size: 30px 30px;
 	}
-	#wrapped #content #main #main_top #match a:hover
+	#wrapped #content #main #main_top .match a:hover
 	{
 		background: #387038;
 	} 
@@ -779,12 +779,12 @@ a
 					padding: 2px 7px;
 					text-align: center;
 				}
-				#wrapped #main .upcoming li #match
+				#wrapped #main .upcoming li .match
 				{
 					padding: 6px 5px;
 					border-left: 1px dotted #353535;
 				}
-				#wrapped #main .upcoming li #match a 
+				#wrapped #main .upcoming li .match a 
 				{
 					font-size: 11px;
 					color: #1a5e83;
@@ -1383,4 +1383,7 @@ i[data-title]:hover:after
 }
 .adminMain{
     width: 100% !important;
+}
+.gameType{
+    margin: 0;
 }

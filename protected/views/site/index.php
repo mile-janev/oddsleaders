@@ -1,4 +1,90 @@
 <?php
+//    unset(Yii::app()->request->cookies['slipper']);
+//    unset(Yii::app()->session['slipper']);
+    
+    if(!isset(Yii::app()->request->cookies['slipper']) && !isset(Yii::app()->session['slipper']))
+    {
+        $cookie = new CHttpCookie('slipper', '$item->id');
+        $cookie->expire = time() + (60*60*24*30*6);
+        Yii::app()->request->cookies['slipper'] = $cookie;
+    }
+    else if(isset(Yii::app()->session['slipper']))
+    {
+        $cookie_value = Yii::app()->session['slipper'];
+        
+    }
+    else //if isset cookie
+    {
+        $cookie_value = Yii::app()->request->cookies['slipper']->value;
+    }
+ 
+    if(!empty($cookie_value))
+    {
+        $cookie_array = explode('|', $cookie_value);
+        $cookie_array_num = count($cookie_array);
+
+        $current_item = '$item->id';
+        $cookie_value_new = '';
+
+        if(isset(Yii::app()->session['slipper']))
+        {
+            $cookie = new CHttpCookie('slipper', $cookie_value);
+            $cookie->expire = time() + (60*60*24*30*6);//Cookie expire after 6 months
+            Yii::app()->request->cookies['slipper'] = $cookie;
+        }
+
+        if(!in_array('$item->id', $cookie_array))
+        {
+            if($cookie_array_num < 9)
+            {
+                $cookie_value_new = $cookie_value.'|'.'$item->id';
+                
+                $cookie = new CHttpCookie('slipper', $cookie_value_new);
+                $cookie->expire = time() + (60*60*24*30*6);
+                Yii::app()->request->cookies['slipper'] = $cookie;
+            }
+            else
+            {
+                if(!isset(Yii::app()->session['slipper']))
+                {
+                    array_push($cookie_array, $current_item);
+                    array_shift($cookie_array);
+
+                    $cookie_array_new = $cookie_array;
+                    $arr_new_num = count($cookie_array_new);
+
+                    for($i=0; $i<$arr_new_num-1; $i++)
+                    {
+                        $cookie_value_new .= $cookie_array_new[$i].'|';
+                    }
+                    $cookie_value_new .= $cookie_array_new[$arr_new_num-1];
+                }
+
+                if(!isset(Yii::app()->session['slipper']))
+                {
+                    Yii::app()->session['slipper'] = $cookie_value_new;
+                    unset(Yii::app()->request->cookies['slipper']);
+                    $this->refresh();
+                }
+                else
+                {
+                    $cookie_value_new = Yii::app()->session['slipper'];
+                    unset(Yii::app()->session['slipper']);
+                    $this->refresh();
+                    
+                    $cookie = new CHttpCookie('slipper', $cookie_value_new);
+                    $cookie->expire = time() + (60*60*24*30*6);
+                    Yii::app()->request->cookies['slipper'] = $cookie;
+                }
+            }
+        }
+    }
+    
+//    var_dump(Yii::app()->user->getFlash('new_error')); exit();
+//    var_dump(Yii::app()->request->cookies['slipper']);
+?>
+
+<?php
 /* @var $this SiteController */
     $this->pageTitle = Yii::app()->name;
 ?>
@@ -19,7 +105,7 @@
     <?php $i=1; foreach ($topMatches as $topMatch) {
         $teams = explode(' vs ', $topMatch->opponent);
     ?>
-        <div id="match">
+        <div class="match">
             <div id="teams" class="grey">
                 <span class="chart_<?php echo $i; ?>_home"><?php echo $teams[0]; ?></span>
                 -
@@ -54,7 +140,7 @@
                 if ($odds) {
                     foreach ($odds->match as $key => $match) {
                         if($key != 'label')
-                            $match_odds .= '<div class="tip"><a class="stripe clickable" data-id="'.$value['code'].'">'.ucfirst($key).' <span>'.$match.'</span></a></div>';
+                            $match_odds .= '<div class="tip"><a class="stripe clickable" rel="'.$value['code'].'"><p class="gameType">'.ucfirst($key).'</p><span class="gameQuote">'.$match.'</span></a></div>';
                     }
                 }
                 
@@ -69,7 +155,7 @@
                                 if($tip != 'label')
                                 {
                                     if(!empty($m_odds))
-                                        $odd .= '<div class="tip"><a class="stripe clickable" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
+                                        $odd .= '<div class="tip"><a class="stripe clickable" rel="'.$value['code'].'"><p class="gameType">'.ucfirst($tip).'</p><span class="gameQuote">'.$m_odds.'</span></a></div>';
                                 }
                             }
 
@@ -84,7 +170,7 @@
                     $time = strtotime($value['start']) - time();
                     echo '<li class="'.$value['code'].'">
                         <div id="sport"><div class="icon football"></div></div>
-                        <div id="match"><a>'.$value['opponent'].'</a> - for <span class="time_play">'.date('H:i:s', $time).'</span></div>
+                        <div class="match"><a>'.$value['opponent'].'</a> - for <span class="time_play">'.date('H:i:s', $time).'</span></div>
                         <div class="tips">
                             '.$match_odds.'
                             <div class="more">'.$count.'+<i class="icon-plus-sign"></i></div>
@@ -130,7 +216,7 @@
                 if ($odds) {
                     foreach ($odds->match as $key => $match) {
                         if($key != 'label')
-                            $match_odds .= '<div class="tip"><a class="clickable" data-id="'.$value['code'].'">'.$match.'</a></div>';
+                            $match_odds .= '<div class="tip"><a class="clickable" rel="'.$value['code'].'">'.$match.'</a></div>';
                     }
                 }
                 
@@ -145,7 +231,7 @@
                                 if($tip != 'label')
                                 {
                                     if(!empty($m_odds))
-                                        $odd .= '<div class="tip"><a class="clickable" data-id="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
+                                        $odd .= '<div class="tip"><a class="clickable" rel="'.$value['code'].'">'.ucfirst($tip).' <span>'.$m_odds.'</span></a></div>';
                                 }
                             }
 
