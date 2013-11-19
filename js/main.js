@@ -359,30 +359,3 @@ function getCookie(key) {
     var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
     return keyValue ? keyValue[2] : null;
 }
-
-$('.load').live('click', function(){
-    id = $(this).attr('data-id');
-
-    $.ajax(
-    {
-        type: 'POST',
-        url: '/index.php?r=getmatches',
-        data: {'id':id},
-        dataType: "html",
-        error: function(xhr,tStatus,e)
-        {
-            if(!xhr){
-                alert(" We have an error ");
-                alert(tStatus+"   "+e.message);
-            }else{
-                alert("else: "+e.message); // the great unknown
-            }
-            },
-        success: function(resp)
-        {
-            $('#main #content').append(resp);  // deal with data returned
-        }
-    });
-
-    return false;
-});

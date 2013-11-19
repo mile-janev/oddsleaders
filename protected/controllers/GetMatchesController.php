@@ -4,18 +4,23 @@ class GetMatchesController extends Controller
 {
 	public function actionIndex()
 	{
-		$id = 0;
-		if(isset($_POST['id']))
-				$id = $_POST['id'];
+//            $this->layout = '';
+            $id = 0;
+            if(isset($_POST['id']))
+                            $id = $_POST['id'];
 
-		$matches = Stack::model()->findAll(array(
-			'condition' => 'tournament_id > :id',
-			'params' => array(':id' => $id),
-		));
+            $matches = Stack::model()->findAll(array(
+                    'condition' => 'tournament_id > :id',
+                    'params' => array(':id' => $id),
+            ));
 
-		$this->render('index', array(
-			'matches' => $matches,
-		));
+            $content = $this->renderPartial('index', array('matches' => $matches));
+            
+//            echo json_encode(array('status'=>'ok', 'content'=>$content));
+            Yii::app()->end();
+//            $this->render('index', array(
+//                    'matches' => $matches,
+//            ));
 	}
 
 	// Uncomment the following methods and override them if needed

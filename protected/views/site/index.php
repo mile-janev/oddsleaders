@@ -259,3 +259,30 @@
         ?>
     </ul>
 </div>
+
+<script type="text/javascript">
+    
+    $('.load').click(function(){
+
+        $.post('<?php echo $this->createUrl('GetMatches/index'); ?>', 
+        {
+            id : $(this).attr('data-id')
+        },
+        function(data)
+        {
+            if(data)
+            {
+                console.log(data);
+                $('#main #content').append(data); 
+            }
+            else
+            {
+                console.log('Greska');
+            }
+        },
+        'json'
+        );
+        return false;
+    })
+    
+</script>
