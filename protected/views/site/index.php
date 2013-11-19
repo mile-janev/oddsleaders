@@ -269,7 +269,7 @@
         $.ajax(
         {
             type: 'POST',
-            url: '<?php echo $this->createUrl('GetMatches/index'); ?>',
+            url: '<?php echo $this->createUrl('stack/getmatches'); ?>',
             data: {'method':'users'},
             dataType: "html",
             success: function(response)

@@ -28,7 +28,7 @@ class StackController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','topmatches'),
+				'actions'=>array('index','view','topmatches','getmatches'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -200,4 +200,25 @@ class StackController extends Controller
                 'model'=>$model,
             ));
         }
+        
+        public function actionGetmatches()
+	{
+//            $this->layout = '';
+            $id = 0;
+            if(isset($_POST['id']))
+                            $id = $_POST['id'];
+
+            $matches = Stack::model()->findAll(array(
+                    'condition' => 'tournament_id > :id',
+                    'params' => array(':id' => $id),
+            ));
+
+            $content = $this->renderPartial('getmatches', array('matches' => $matches));
+            
+//            echo json_encode(array('status'=>'ok', 'content'=>$content));
+            Yii::app()->end();
+//            $this->render('index', array(
+//                    'matches' => $matches,
+//            ));
+	}
 }
