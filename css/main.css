@@ -247,6 +247,14 @@ a
 	height: 30px;
 	overflow: hidden;
 }
+.loader
+{
+	width: 100%;
+	z-index: 9999;
+	display: none;
+	margin: 20px 0;
+	text-align: center;
+}
 
 #wrapped 
 {
@@ -451,6 +459,10 @@ a
 		padding: 10px 20px;
 		vertical-align: top;
 		display: inline-block;
+	}
+	#wrapped #content #main 
+	{
+		position: relative;
 	}
 		#wrapped #content #main #title 
 		{

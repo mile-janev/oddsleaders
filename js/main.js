@@ -93,7 +93,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 		});
 	});
 
-    $('.more').click(function() {
+    $('.more').live('click', function() {
         $(this).parent("div").next().slideToggle();
     });
 

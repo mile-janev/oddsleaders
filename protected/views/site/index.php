@@ -88,7 +88,8 @@
 /* @var $this SiteController */
     $this->pageTitle = Yii::app()->name;
 ?>
-
+<div class="loader"><img src="/images/blue_load.gif" alt="Loading ..."/></div>
+<div class="load_matches"></div>
 <div style='display:none'>
     <div id="partial-login" class="partial-form">
         <?php $this->renderPartial('login', array('model' => $login, 'facebook' => $facebook)); ?>
@@ -196,7 +197,7 @@
         <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
     </div>
 </div>
-<div class="box">
+<!-- <div class="box">
     <div class="box_title green"><i class="icon football"></i> Football</div>
     <ul class="table">
         <li>
@@ -258,23 +259,24 @@
             }
         ?>
     </ul>
-</div>
+</div> -->
 
 <script type="text/javascript">
     
     $('.load').click(function(){
         
-        id : $(this).attr('data-id')
-        
+        id = $(this).attr('data-id');
+        $('.loader').show();
         $.ajax(
         {
             type: 'POST',
             url: '<?php echo $this->createUrl('stack/getmatches'); ?>',
-            data: {'method':'users'},
+            data: {'id' : id},
             dataType: "html",
             success: function(response)
             {
-                $('#main #content').append(response);
+                $('.loader').hide();
+                $('#main .load_matches').prepend(response);
             }
         });
 

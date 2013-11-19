@@ -202,11 +202,13 @@ class StackController extends Controller
         }
         
         public function actionGetmatches()
-	{
-//            $this->layout = '';
-            $id = 0;
-            if(isset($_POST['id']))
-                            $id = $_POST['id'];
+		{
+            $id = $_POST['id'];	
+
+            if(!isset($_SESSION['tournament'][$id]))
+            {
+            	$_SESSION['tournament'][] = $id;
+            }
 
             $matches = Stack::model()->findAll(array(
                     'condition' => 'tournament_id > :id',
@@ -215,10 +217,6 @@ class StackController extends Controller
 
             $content = $this->renderPartial('getmatches', array('matches' => $matches));
             
-//            echo json_encode(array('status'=>'ok', 'content'=>$content));
             Yii::app()->end();
-//            $this->render('index', array(
-//                    'matches' => $matches,
-//            ));
-	}
+		}
 }
