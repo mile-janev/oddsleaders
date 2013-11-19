@@ -39,8 +39,19 @@
             </div>
         </div>
 
-        <?php $this->renderPartial('/layouts/_footer'); ?>
+        <?php 
 
+            $this->renderPartial('/layouts/_footer');
 
+            $script = Yii::app()->clientScript;
+            $baseUrl = Yii::app()->request->baseUrl;
+            $script->registerCssFile($baseUrl . '/lib/colorbox/colorbox.css');
+            $script->registerScriptFile($baseUrl . '/lib/colorbox/jquery.colorbox-min.js');
+            $script->registerScriptFile($baseUrl . '/js/nanoScroller.js');
+            $script->registerScriptFile($baseUrl . '/js/charts.js');
+            $script->registerScriptFile($baseUrl . '/js/serials.js');
+            $script->registerScriptFile($baseUrl . '/js/main.js');
+            $script->registerScriptFile($baseUrl . '/js/jquery-cookie/jquery.cookie.js');
+        ?>
     </body>
 </html>

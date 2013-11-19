@@ -51,7 +51,7 @@ class CountryController extends Controller
 	 */
 	public function actionView($id)
 	{
-            $this->layout='admin';
+        $this->layout='admin';
             
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
