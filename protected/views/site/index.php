@@ -263,26 +263,22 @@
 <script type="text/javascript">
     
     $('.load').click(function(){
+        
+        id : $(this).attr('data-id')
+        
+        $.ajax(
+        {
+            type: 'POST',
+            url: '<?php echo $this->createUrl('GetMatches/index'); ?>',
+            data: {'method':'users'},
+            dataType: "html",
+            success: function(response)
+            {
+                $('#main #content').append(response);
+            }
+        });
 
-        $.post('<?php echo $this->createUrl('GetMatches/index'); ?>', 
-        {
-            id : $(this).attr('data-id')
-        },
-        function(data)
-        {
-            if(data)
-            {
-                console.log(data);
-                $('#main #content').append(data); 
-            }
-            else
-            {
-                console.log('Greska');
-            }
-        },
-        'json'
-        );
         return false;
-    })
+    });
     
 </script>
