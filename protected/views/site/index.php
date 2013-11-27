@@ -187,14 +187,12 @@
 <div id="new_tipsters" class="box">
     <div class="box_title grey"><i class="icon-star"></i> Say hello to our new tipsters</div>
     <div id="users">
-        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
-        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
-        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
-        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
-        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
-        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
-        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
-        <div id="user"><img src="/images/profile.jpg" alt="Kuzeski Slavco"/><h1>Kuzeski Slavco</h1></div>
+        <?php foreach ($users as $user) { ?>
+            <div class="user">
+                <img src="<?php echo ($user['image']) ? $user['image'] : '/images/regtop.png'; ?>" alt="<?php echo $user['name']; ?>"/>
+                <h1><?php echo $user['name']; ?></h1>
+            </div>
+        <?php } ?>
     </div>
 </div>
 <!-- <div class="box">

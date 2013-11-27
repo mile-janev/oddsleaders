@@ -1,1 +1,4 @@
 Use new database
+
+27.11.2013
+ALTER TABLE `user` ADD `image` VARCHAR( 255 ) NULL DEFAULT NULL AFTER `oauth_uid`;

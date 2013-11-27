@@ -654,11 +654,11 @@ a
 		display: block;
 		border-bottom: 1px dotted #cdcdcd;
 	}
-	#wrapped #content #rightbar #tipsters #row #user a 
+	#wrapped #content #rightbar #tipsters #row .user a 
 	{
 		color: #1a5e83;
 	}
-	#wrapped #content #rightbar #tipsters #row #user a:hover 
+	#wrapped #content #rightbar #tipsters #row .user a:hover 
 	{
 		text-decoration: underline;
 	} 
@@ -679,7 +679,7 @@ a
 		border-right: 1px dotted #1a5e83;
 	}
 
-	#wrapped #content #rightbar #tipsters #row #user
+	#wrapped #content #rightbar #tipsters #row .user
 	{
 		font-size: 14px;
 		color: #1a5e83;
@@ -917,7 +917,7 @@ a
 	 		padding: 0 7px 7px 8px;
 	 		border: 1px solid #bfbfbf;
 		}
-			#wrapped #main #new_tipsters #users #user
+			#wrapped #main #new_tipsters #users .user
 			{
 				width: 69px;
 				padding: 5px;
@@ -927,15 +927,15 @@ a
 				border: 1px dotted #bfbfbf;
 				background: rgba(98,191,98,.1);
 			}
-			#wrapped #main #new_tipsters #users #user:hover 
+			#wrapped #main #new_tipsters #users .user:hover 
 			{
 				background: rgba(189,54,47,.2);
 			}
-				#wrapped #main #new_tipsters #users #user img 
+				#wrapped #main #new_tipsters #users .user img 
 				{
 					max-width: 50px;
 				} 
-				#wrapped #main #new_tipsters #users #user h1
+				#wrapped #main #new_tipsters #users .user h1
 				{
 					color: #353535;
 					font-weight: bold;

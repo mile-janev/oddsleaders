@@ -51,13 +51,19 @@ class SiteController extends Controller
             $criteria2->order = 'id ASC';
             $criteria2->limit = 3;
             $topMatches = Stack::model()->findAll($criteria2);
+            
+            $criteria3 = new CDbCriteria();
+            $criteria3->order = 'id DESC';
+            $criteria3->limit = 8;
+            $users = User::model()->findAll($criteria3);
 
             $this->render('index', array(
                 'login'=>$login,
                 'model'=>$model,
                 'facebook' => $facebook,
                 'upcoming' => $upcoming,
-                'topMatches' => $topMatches
+                'topMatches' => $topMatches,
+                'users' => $users
             ));
 	}
 
