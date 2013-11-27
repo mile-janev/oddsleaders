@@ -340,22 +340,28 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         var gameCode = $(this).attr('rel');
         var gameType = $(this).find(".gameType").html();
         var gameQuote = $(this).find(".gameQuote").html();
-        console.log(gameCode);
-        console.log(gameType);
-        console.log(gameQuote);
+        
+        var bets = gameCode + '-' + gameType + '-' + gameQuote + '|';
+        
+        if($.cookie("myBets")){
+            var cookieValue = $.cookie("myBets");
+            
+            var cookieNewValue = '';
+            var matchBets = cookieValue.split('|');
+            for (var i=0; i<matchBets.length-1; i++) {
+                var gameBet = matchBets[i].split('-');
+                if (gameBet[0]!=gameCode) {//If gameCode is same than old will be deleted
+                    cookieNewValue += matchBets[i] + "|";
+                }
+            }
+            cookieNewValue += bets;
+            $.cookie("myBets", cookieNewValue, { expires : 2 });//2 days
+        } else {
+            $.cookie("myBets", bets, { expires : 2 });//2 days
+        }
+        
+//        $.removeCookie("myBets");
+        console.log($.cookie("myBets"));
     })
 
-    
 });
-
-
-function setCookie(key, value) {
-    var expires = new Date();
-    expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
-    document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
-}
-
-function getCookie(key) {
-    var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
-    return keyValue ? keyValue[2] : null;
-}
