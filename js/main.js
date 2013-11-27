@@ -391,6 +391,6 @@ function setRemoveMyLeagues(id)
         $.cookie("myLeagues", myLeaguesString, { expires : 2 });//2 days
     }
     
-//    $.removeCookie("myLeag    ues");
+//    $.removeCookie("myLeagues");
     console.log($.cookie("myLeagues"));
 }
