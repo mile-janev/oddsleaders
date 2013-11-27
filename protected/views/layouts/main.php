@@ -19,8 +19,8 @@
                 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome-ie7.min.css" media="screen, projection" />
         <![endif]-->
         <?php
-        $script = Yii::app()->clientScript;
-        $script->registerCoreScript('jquery');
+            $script = Yii::app()->clientScript;
+            $script->registerCoreScript('jquery');
         ?>
 
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -39,14 +39,9 @@
             </div>
         </div>
 
-        <?php 
-
-            $this->renderPartial('/layouts/_footer');
-
-            $script = Yii::app()->clientScript;
+        <?php $this->renderPartial('/layouts/_footer'); ?>
+        <?php
             $baseUrl = Yii::app()->request->baseUrl;
-            $script->registerCssFile($baseUrl . '/lib/colorbox/colorbox.css');
-            $script->registerScriptFile($baseUrl . '/lib/colorbox/jquery.colorbox-min.js');
             $script->registerScriptFile($baseUrl . '/js/nanoScroller.js');
             $script->registerScriptFile($baseUrl . '/js/charts.js');
             $script->registerScriptFile($baseUrl . '/js/serials.js');

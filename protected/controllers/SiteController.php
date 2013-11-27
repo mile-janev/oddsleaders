@@ -27,7 +27,10 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-           
+            $script = Yii::app()->clientScript;
+            $baseUrl = Yii::app()->request->baseUrl;
+            $script->registerCssFile($baseUrl . '/lib/colorbox/colorbox.css');
+            $script->registerScriptFile($baseUrl . '/lib/colorbox/jquery.colorbox-min.js');
 //            Login
             $login=new LoginForm;
             require dirname(Yii::app()->basePath) . '/lib/facebook-php-sdk/src/facebook.php';

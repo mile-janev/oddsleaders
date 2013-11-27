@@ -59,6 +59,6 @@
         <div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl("user/register", array('registerwith' => 'facebook'), '', '&')))); ?>" class="button green"><i class="icon-facebook"></i>  Register using Facebook</a></div>
         <hr>
         <p>You already have account ???</p>
-        <?php echo CHtml::link('<i class="icon-user"></i> Log In', '#partial-login', array('id'=>'loginColorboxInside', 'class'=>'fb_login button blue')); ?>
+        <a id="loginColorboxInside" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-login" : Yii::app()->createUrl('site/login'); ?>" class="fb_login button blue"><i class="icon-signin"></i> Log in</a>
 
 </div><!-- form -->

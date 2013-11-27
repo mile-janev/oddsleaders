@@ -46,8 +46,9 @@ $this->breadcrumbs=array(
 		<div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl('site/login', array('registerwith' => 'facebook'), '', '&')))); ?>" class="button blue"><i class="icon-facebook facebook"></i> Log in using facebook</a></div>
 	</div>
 	<div id="right">
-		<h1>New Here ???</h1>
-		<p>Step into the virtual world of sports gambling. Show you are the best predictor and win a lot of prizes and respect. We offer you the best odds and many games you can play in different sports. So REGISTER NOW and get 500 OMoney. </p>
-		<?php echo CHtml::link('<i class="icon-user"></i> Register here', '#partial-register', array('id'=>'registerColorboxInside', 'class'=>'button green')); ?>
+            <h1>New Here ???</h1>
+            <p>Step into the virtual world of sports gambling. Show you are the best predictor and win a lot of prizes and respect. We offer you the best odds and many games you can play in different sports. So REGISTER NOW and get 500 OMoney. </p>
+
+            <a id="registerColorboxInside" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-register" : Yii::app()->createUrl('user/register'); ?>" class="button green"><i class="icon-user"></i> Register here</a>
 	</div>
 </div><!-- form -->
