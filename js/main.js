@@ -350,7 +350,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
             var matchBets = cookieValue.split('|');
             for (var i=0; i<matchBets.length-1; i++) {
                 var gameBet = matchBets[i].split('-');
-                if (gameBet[0]!=gameCode) {//If gameCode is same than old will be deleted
+                if (gameBet[0]!=gameCode) {//If gameCode is same as old will be deleted
                     cookieNewValue += matchBets[i] + "|";
                 }
             }
@@ -365,3 +365,32 @@ window.onload = displayTime;  // Start displaying the time when document loads.
     })
 
 });
+
+function setRemoveMyLeagues(id)
+{
+    var myLeaguesString = id + '|';
+    
+    if($.cookie("myLeagues")){
+        var cookieValue = $.cookie("myLeagues");
+        var cookieNewValue = '';
+        var have = false;
+        var leagues = cookieValue.split('|');
+        for (var i=0; i<leagues.length-1; i++) {
+            if (leagues[i]!=id) {
+                cookieNewValue += leagues[i] + "|";
+            } else {
+                have = true;
+            }
+        }
+        if(!have) {
+        cookieNewValue += myLeaguesString;
+        }
+        
+        $.cookie("myLeagues", cookieNewValue, { expires : 2 });//2 days
+    } else {
+        $.cookie("myLeagues", myLeaguesString, { expires : 2 });//2 days
+    }
+    
+//    $.removeCookie("myLeag    ues");
+    console.log($.cookie("myLeagues"));
+}

@@ -266,6 +266,9 @@
     $('.load').click(function(){
         
         id = $(this).attr('data-id');
+        
+        setRemoveMyLeagues(id);
+        
         $('.loader').show();
         $.ajax(
         {

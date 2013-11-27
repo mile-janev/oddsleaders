@@ -201,22 +201,17 @@ class StackController extends Controller
             ));
         }
         
-        public function actionGetmatches()
-		{
-            $id = $_POST['id'];	
-
-            if(!isset($_SESSION['tournament'][$id]))
-            {
-            	$_SESSION['tournament'][] = $id;
-            }
-
-            $matches = Stack::model()->findAll(array(
-                    'condition' => 'tournament_id > :id',
-                    'params' => array(':id' => $id),
-            ));
-
-            $content = $this->renderPartial('getmatches', array('matches' => $matches));
+        public function actionGetmatches() 
+        {
+            $id = $_POST['id'];
             
+            $criteria1 = new CDbCriteria();
+            $criteria1->addCondition('tournament_id = :id');
+            $criteria1->params[':id'] = $id;
+            $matches = Stack::model()->findAll($criteria1);
+            
+            $content = $this->renderPartial('getmatches', array('matches' => $matches));
+
             Yii::app()->end();
-		}
+        }
 }
