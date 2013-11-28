@@ -388,6 +388,11 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         $('.match-slip').append(html);
         console.log($.cookie("myBets"));
     })
+    
+    $('body').delegate('.betSlipperClose', 'click', function(){
+        $(this).parent().remove();
+        //Here code who delete this game from cookie. game_id is Id in $(this)
+    })
 
 });
 
