@@ -374,6 +374,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
                 var gameBet = matchBets[i].split('-');
                 if (gameBet[0]!=gameCode) {//If gameCode is same as old will be deleted
                     cookieNewValue += matchBets[i] + "|";
+                    //Make edit on slipper div here
                 }
             }
             cookieNewValue += bets;
@@ -384,14 +385,14 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         
         $('#not_loged').hide();
         // $.removeCookie("myBets");
-        html = '<div class="match" id="match-5">'+gameCode+'<span class="close" id="5">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
+        html = '<div class="match" id="match-5">'+matchName+'<span class="close" id="5">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
         $('.match-slip').append(html);
         console.log($.cookie("myBets"));
     })
     
     $('body').delegate('.betSlipperClose', 'click', function(){
+        removeGameFromCookie($(this).attr('id'));
         $(this).parent().remove();
-        //Here code who delete this game from cookie. game_id is Id in $(this)
     })
 
 });
@@ -420,5 +421,24 @@ function setRemoveMyLeagues(id)
         $.cookie("myLeagues", cookieNewValue, { expires : 2 });//2 days
     } else {
         $.cookie("myLeagues", myLeaguesString, { expires : 2 });//2 days
+    }
+}
+
+function removeGameFromCookie(gameCode)
+{
+    if($.cookie("myBets")){
+        var cookieValue = $.cookie("myBets");
+
+        var cookieNewValue = '';
+        var matchBets = cookieValue.split('|');
+        for (var i=0; i<matchBets.length-1; i++) {
+            var gameBet = matchBets[i].split('-');
+            if (gameBet[0]!=gameCode) {//If gameCode is same as old will be deleted
+                cookieNewValue += matchBets[i] + "|";
+            }
+        }
+        $.cookie("myBets", cookieNewValue, { expires : 2 });//2 days
+    } else {
+        $.cookie("myBets", bets, { expires : 2 });//2 days
     }
 }
