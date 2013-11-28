@@ -28,7 +28,7 @@ class StackController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','topmatches','getmatches'),
+				'actions'=>array('index','view','topmatches','getmatches','mymatches'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -213,5 +213,25 @@ class StackController extends Controller
             $content = $this->renderPartial('getmatches', array('matches' => $matches));
 
             Yii::app()->end();
+        }
+
+        public function actionMymatches()
+        {
+        	$model = '';
+        	$leagues = explode('|', $_COOKIE['myLeagues']);
+
+        	foreach ($leagues as $key => $value) {
+        		if($value != '')
+        		{
+        			$criteria1 = new CDbCriteria();
+		            $criteria1->addCondition('tournament_id = :id');
+		            $criteria1->params[':id'] = $value;
+		            $model[] = Stack::model()->findAll($criteria1);
+        		}
+        	}
+
+        	$this->render('mymatches',array(
+                'model'=>$model,
+            ));
         }
 }

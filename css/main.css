@@ -247,6 +247,14 @@ a
 	height: 30px;
 	overflow: hidden;
 }
+.loaded 
+{
+	color: rgb(189,54,47) !important;
+}
+.loaded:hover 
+{
+	text-shadow: none !important;
+}
 .loader
 {
 	width: 100%;

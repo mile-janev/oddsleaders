@@ -2,7 +2,12 @@
     $criteria1 = new CDbCriteria();
     $criteria1->addCondition('active = 1');
     $sports = Sport::model()->findAll($criteria1);
-
+    /*$leagues = explode('|', $_COOKIE['myLeagues']);
+    $class = 'load';
+    foreach ($leagues as $key => $value) {
+        if($value === $tournament->id)
+            $class = 'loaded';
+    }*/
 ?>
 
 <div id="sidebar">
@@ -19,8 +24,16 @@
                     <?php foreach ($sport->tournaments as $tournament) { 
                         $gamesNumber = count($tournament->stacks);
                             if ($gamesNumber != 0 && $tournament->active == 1) {
-                    ?>
-                        <li><a href="#" data-id="<?=$tournament->id;?>" class="load" title="<?=$tournament->name;?>">⇢ <?php if(strlen($tournament->name) > 22) { echo substr($tournament->name, 0, 22); }else { echo $tournament->name;} ?> 
+                                $leagues = explode('|', $_COOKIE['myLeagues']);
+                                $class = 'load';
+                                foreach ($leagues as $key => $value) {
+                                    if($value == $tournament->id)
+                                    {
+                                        $class = 'loaded';
+                                    }
+                                }
+                        ?>
+                        <li><a href="#" data-id="<?=$tournament->id;?>" class="<?=$class;?>" title="<?=$tournament->name;?>">⇢ <?php if(strlen($tournament->name) > 22) { echo substr($tournament->name, 0, 22); }else { echo $tournament->name;} ?> 
                                 <span><?php echo $gamesNumber; ?></span>
                             </a>
                         <li>

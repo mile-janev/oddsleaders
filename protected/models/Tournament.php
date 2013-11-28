@@ -34,14 +34,13 @@ class Tournament extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, link, sport_id', 'required'),
+			array('name, sport_id', 'required'),
 			array('active', 'numerical', 'integerOnly'=>true),
-                        array('special', 'numerical', 'integerOnly'=>true),
-			array('name, syn', 'length', 'max'=>256),
+			array('name, slug', 'length', 'max'=>256),
 			array('sport_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, syn, link, syn_link, active, sport_id, special', 'safe', 'on'=>'search'),
+			array('id, name, slug, active, sport_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,13 +66,10 @@ class Tournament extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-                        'syn' => 'Res Name',
+                        'slug' => 'Address',
                         'country_id' => 'Country',
-			'link' => 'Link',
-                        'syn_link' => 'Res Link',
 			'active' => 'Active',
-			'sport_id' => 'Sport',
-                        'special' => 'Special tournament'
+			'sport_id' => 'Sport'
 		);
 	}
 
@@ -97,12 +93,9 @@ class Tournament extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
-                $criteria->compare('syn',$this->syn,true);
-		$criteria->compare('link',$this->link,true);
-                $criteria->compare('syn_link',$this->syn_link,true);
+                $criteria->compare('slug',$this->slug,true);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('sport_id',$this->sport_id,true);
-                $criteria->compare('special',$this->special,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

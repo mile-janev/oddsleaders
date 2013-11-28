@@ -260,11 +260,16 @@
 </div> -->
 
 <script type="text/javascript">
-    
-    $('.load').click(function(){
-        
+    $('.loaded').live('click', function(){
+        return false;
+    });
+
+    $('.load').live('click', function()
+    {    
         id = $(this).attr('data-id');
-        
+        $(this).removeClass('load');
+        $(this).addClass('loaded');
+
         setRemoveMyLeagues(id);
         
         $('.loader').show();
