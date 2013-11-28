@@ -17,8 +17,8 @@
                                 $bet = explode("-", $cookieValue[$i]);
                         ?>
                             <div class="match" id="match-5">
-                               <?php echo $bet[0]; ?>
-                                <span class="close" id="5">X</span>
+                                <?php echo $bet[3]; ?>
+                                <span class="close betSlipperClose" id="<?php echo $bet[0]; ?>">X</span>
                                 <div id="odds">
                                     <div class="tip"><?php echo $bet[1]; ?></div>
                                     <span><?php echo $bet[2]; ?></span>

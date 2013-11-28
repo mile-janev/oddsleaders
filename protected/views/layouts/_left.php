@@ -23,7 +23,9 @@
                 <ul>
                     <?php foreach ($sport->tournaments as $tournament) { 
                         $gamesNumber = count($tournament->stacks);
+                        $class = 'load';
                             if ($gamesNumber != 0 && $tournament->active == 1) {
+                                if(isset($_COOKIE['myLeagues'])) {
                                 $leagues = explode('|', $_COOKIE['myLeagues']);
                                 $class = 'load';
                                 foreach ($leagues as $key => $value) {
@@ -31,6 +33,7 @@
                                     {
                                         $class = 'loaded';
                                     }
+                                }
                                 }
                         ?>
                         <li><a href="#" data-id="<?=$tournament->id;?>" class="<?=$class;?>" title="<?=$tournament->name;?>">⇢ <?php if(strlen($tournament->name) > 22) { echo substr($tournament->name, 0, 22); }else { echo $tournament->name;} ?> 
