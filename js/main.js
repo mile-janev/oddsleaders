@@ -361,8 +361,9 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         var gameCode = $(this).attr('rel');
         var gameType = $(this).find(".gameType").html();
         var gameQuote = $(this).find(".gameQuote").html();
+        var matchName = $(this).parent().parent().parent().find(".match").find("a").html();
         
-        var bets = gameCode + '-' + gameType + '-' + gameQuote + '|';
+        var bets = gameCode + '-' + gameType + '-' + gameQuote + '-' + matchName + '|';
         
         if($.cookie("myBets")){
             var cookieValue = $.cookie("myBets");
