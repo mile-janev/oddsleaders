@@ -25,8 +25,7 @@
                         $gamesNumber = count($tournament->stacks);
                         $class = 'load';
                             if ($gamesNumber != 0 && $tournament->active == 1) {
-                                if(isset($_COOKIE['myLeagues'])) {
-                                $leagues = explode('|', $_COOKIE['myLeagues']);
+                                isset($_COOKIE['myLeagues']) ? $leagues = explode('|', $_COOKIE['myLeagues']) : $leagues[] = '';
                                 $class = 'load';
                                 foreach ($leagues as $key => $value) {
                                     if($value == $tournament->id)

@@ -217,17 +217,23 @@ class StackController extends Controller
 
         public function actionMymatches()
         {
-        	$model = '';
-        	$leagues = explode('|', $_COOKIE['myLeagues']);
+        	if(isset($_COOKIE['myLeagues']))
+        	{
+	        	$leagues = explode('|', $_COOKIE['myLeagues']);
 
-        	foreach ($leagues as $key => $value) {
-        		if($value != '')
-        		{
-        			$criteria1 = new CDbCriteria();
-		            $criteria1->addCondition('tournament_id = :id');
-		            $criteria1->params[':id'] = $value;
-		            $model[] = Stack::model()->findAll($criteria1);
-        		}
+	        	foreach ($leagues as $key => $value) {
+	        		if($value != '')
+	        		{
+	        			$criteria1 = new CDbCriteria();
+			            $criteria1->addCondition('tournament_id = :id');
+			            $criteria1->params[':id'] = $value;
+			            $model[] = Stack::model()->findAll($criteria1);
+	        		}
+	        	}
+        	}
+        	else
+        	{
+        		$model = '';
         	}
 
         	$this->render('mymatches',array(
