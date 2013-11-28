@@ -5,19 +5,29 @@
             <div class="nano">
                 <div class="content">
                     <div id="matchs" class="match-slip">
-                        <p>Your slipper is EMPTY.<br> To select a bet please click on price. <br> You need to be</p> 
-                        <a id="loginColorbox" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-login" : Yii::app()->createUrl('site/login'); ?>" class="button blue  "><i class="icon-signin"></i> Log in</a> or
-                        <a id="registerColorbox" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-register" : Yii::app()->createUrl('user/register'); ?>" class="button green"><i class="icon-user"></i> Register</a>
-                        <!-- <div id="match" class="match-5">Barcelona - Milan <span class="close" id="5">X</span><div id="odds"><div id="tip">1</div><span>1.45</span></div></div> -->
+                        <div id="not_loged">
+                            <p>Your slipper is EMPTY.<br> To select a bet please click on price. <br> You need to be</p> 
+                            <a id="loginColorbox" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-login" : Yii::app()->createUrl('site/login'); ?>" class="button blue  "><i class="icon-signin"></i> Log in</a> or
+                            <a id="registerColorbox" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-register" : Yii::app()->createUrl('user/register'); ?>" class="button green"><i class="icon-user"></i> Register</a>
+                        </div>
+                        <?php 
+                            $matchs = explode('|',$_COOKIE['myBets']);
+                            foreach ($matchs as $key => $value) {
+                                $type = explode("-", $value);
+                                //print_r($type[1]);
+                                //echo '<div class="match" id="match-5">'.$types[0].'<span class="close" id="5">X</span><div id="odds"><div class="tip">'.$types[0].'</div><span>'.$types[0].'</span></div></div>';
+                            }
+                        ?>
+                        <!-- <div class="match" id="match-5">Barcelona - Milan <span class="close" id="5">X</span><div id="odds"><div class="tip">1</div><span>1.45</span></div></div> -->
                     </div>
                 </div>
             </div>
             <div id="stake">
                 Place your stake 
-                <input type="text" name="stake"> €
+                <input type="text" name="stake" class="stake"> €
             </div>
             <div id="money">
-                Winning stake <span>25000 €</span> 
+                Winning stake <span>0 €</span> 
             </div>
             <a href="" class="clear">Clear bets</a>
             <input type="submit" value="Place Bet" class="button blue right">

@@ -12,7 +12,7 @@
             <li>
                 <a href="#"
                    class="toggler<?php // echo ($i==1) ? ' first' : ''; ?>">
-                    <div class="icon" style="background-position: <?php echo $sport->icon; ?>"></div><?php echo $sport->name; ?>
+                    <div class="icon <?php echo strtolower($sport->name); ?>"></div><?php echo $sport->name; ?>
                     <!--<span>&nbsp;</span>-->
                 </a>
                 <ul>

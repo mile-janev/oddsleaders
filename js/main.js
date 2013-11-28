@@ -116,9 +116,30 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 
     side_toggle($('.first'));
 
-		$('.nano').nanoScroller({
-			preventPageScrolling: true
-		});
+    $('.match-slip').bind("DOMSubtreeModified",function(){
+        cal_win_stake();
+        $('.nano').nanoScroller({
+            preventPageScrolling: true
+        });
+    });
+
+    $('.stake').bind('input', function() { 
+        cal_win_stake();
+    });
+
+// calculate the posible winning stake
+    function cal_win_stake()
+    {
+        var total = 1;
+        $('.match-slip .match').each(function(){
+            odd = $(this).find('#odds span').text();
+            new_odd = odd.replace(',','.');
+            total = total * new_odd;
+        });      
+
+        stake = $('.stake').val(); // get the current stake of the input field.
+        $('#money span').html((total*stake).toFixed(2)+' €');
+    }
         
 // load login and register popups 
     $(document).ready(function() {
@@ -360,7 +381,10 @@ window.onload = displayTime;  // Start displaying the time when document loads.
             $.cookie("myBets", bets, { expires : 2 });//2 days
         }
         
-//        $.removeCookie("myBets");
+        $('#not_loged').hide();
+        // $.removeCookie("myBets");
+        html = '<div class="match" id="match-5">'+gameCode+'<span class="close" id="5">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
+        $('.match-slip').append(html);
         console.log($.cookie("myBets"));
     })
 
@@ -383,7 +407,7 @@ function setRemoveMyLeagues(id)
             }
         }
         if(!have) {
-        cookieNewValue += myLeaguesString;
+            cookieNewValue += myLeaguesString;
         }
         
         $.cookie("myLeagues", cookieNewValue, { expires : 2 });//2 days
