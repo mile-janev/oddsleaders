@@ -1,4 +1,7 @@
 <?php
+	if($model != '')
+	{
+
 	foreach ($model as $matches) 
 	{
 ?>
@@ -62,6 +65,11 @@
                     </li>';
         }
         echo '</ul></div>';
+	}
+	}
+	else 
+	{
+		echo '<h1>You don`t have chosen favourites leagues</h1>';
 	}
 
 
