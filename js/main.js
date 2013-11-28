@@ -393,12 +393,13 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 
 function setRemoveMyLeagues(id)
 {
+    console.log(id);
     var myLeaguesString = id + '|';
+    var have = false;
     
     if($.cookie("myLeagues")){
         var cookieValue = $.cookie("myLeagues");
         var cookieNewValue = '';
-        var have = false;
         var leagues = cookieValue.split('|');
         for (var i=0; i<leagues.length-1; i++) {
             if (leagues[i]!=id) {
@@ -415,7 +416,4 @@ function setRemoveMyLeagues(id)
     } else {
         $.cookie("myLeagues", myLeaguesString, { expires : 2 });//2 days
     }
-    
-//    $.removeCookie("myLeagues");
-    console.log($.cookie("myLeagues"));
 }
