@@ -60,27 +60,27 @@ window.onload = displayTime;  // Start displaying the time when document loads.
 
 		return false;
 	});
-// 
-//    function mark_played(game_id) 
-//    {
-//        $(document).find('a').each(function(index, element) {
-//            if (game_id == $(this).attr('data-id')) {
-//                $(this).contents().unwrap();
-//            }
-//        });
-//    }
+ 
+    function mark_played(game_id) 
+    {
+        $(document).find('a').each(function(index, element) {
+            if (game_id == $(this).attr('rel')) {
+                $(this).contents().unwrap();
+            }
+        });
+    }
 
-//    $('#tip').live('click', function(){
-//        return false;
-//    });
+    $('#tip').live('click', function(){
+        return false;
+    });
 	
-//    $('.clickable').live('click', function(){
-//		game_id = $(this).attr('data-id');
-//        $(this).closest('div').addClass('selected');
-//        $('.'+game_id).addClass('disable');
-//		mark_played(game_id);
-//		return false;
-//	});
+    $('.clickable').live('click', function(){
+		game_id = $(this).attr('rel');
+        $(this).closest('div').addClass('selected');
+        $('.'+game_id).addClass('disable');
+		mark_played(game_id);
+		return false;
+	});
 
 
 	$('#matchs #match .close').live('click', function(){
@@ -138,7 +138,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         });      
 
         stake = $('.stake').val(); // get the current stake of the input field.
-        $('#money span').html((total*stake).toFixed(2)+' €');
+        $('#money #win_stake').val((total*stake).toFixed(2)+' €');
     }
         
 // load login and register popups 
@@ -357,14 +357,19 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         chart.write("chartdiv3");
     });
     
-    $(".stripe").click(function(){
+    $(".clickable").click(function(){
         var gameCode = $(this).attr('rel');
+        
+        $(this).closest('div').addClass('selected');
+        $('.'+gameCode).addClass('disable');
+        
+
         var gameType = $(this).find(".gameType").html();
         var gameQuote = $(this).find(".gameQuote").html();
-        var matchName = $(this).parent().parent().parent().find(".match").find("a").html();
+        var matchName = $('.'+gameCode).find("a").html();
         
         var bets = gameCode + '-' + gameType + '-' + gameQuote + '-' + matchName + '|';
-        
+
         if($.cookie("myBets")){
             var cookieValue = $.cookie("myBets");
             
@@ -383,11 +388,15 @@ window.onload = displayTime;  // Start displaying the time when document loads.
             $.cookie("myBets", bets, { expires : 2 });//2 days
         }
         
+        mark_played(gameCode);
+        
         $('#not_loged').hide();
         // $.removeCookie("myBets");
         html = '<div class="match">'+matchName+'<span class="close betSlipperClose" id="'+gameCode+'">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
         $('.match-slip').append(html);
         console.log($.cookie("myBets"));
+
+        return false;
     })
     
     $('body').delegate('.betSlipperClose', 'click', function(){

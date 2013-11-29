@@ -610,7 +610,16 @@ a
 			{
 				font-weight: bold;
 			}
-			
+			#wrapped #content #rightbar #bet_slip #win_stake
+			{
+				max-width: 80px;
+				color: #fff;
+				font-family: "tahoma";
+				font-weight: bold;
+				display: inline-block;
+				background: none;
+				border: none;
+			}			
 		#wrapped #content #rightbar #bet_slip .clear 
 		{
 			font-size: 12px;
@@ -986,6 +995,15 @@ a
 {
 	width: 100%;
 	padding: 10px 10px;
+}
+.box #user_box
+{
+	min-height: 200px;
+	border: 2px solid #51a351;
+}
+.box #user_box label
+{
+	display: block;
 }
 	.box_title
 	{

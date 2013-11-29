@@ -47,7 +47,7 @@ class User extends CActiveRecord
 		return array(
 			array('username, password, password_repeat, email', 'required'),
 			array('username, password, email', 'length', 'max'=>64),
-			array('name', 'length', 'max'=>255),
+			array('name', 'image', 'length', 'max'=>255),
                         array('email', 'email'),
                         array('email', 'unique'), 
                         array('username', 'unique'),
@@ -55,7 +55,7 @@ class User extends CActiveRecord
                         array('password_repeat', 'compare', 'compareAttribute'=>'password'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, name, email, date_created, oauth_provider', 'safe', 'on'=>'search'),
+			array('id, username, name, email, image, date_created, oauth_provider', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,6 +82,7 @@ class User extends CActiveRecord
 			'password' => 'Password',
                         'password_repeat' => 'Repeat password',
 			'name' => 'Name',
+			'image'=> 'Avatar',
 			'date_created' => 'Date Created',
                         'email' => 'E-mail',
                         'oauth_provider'=>'Provider',
