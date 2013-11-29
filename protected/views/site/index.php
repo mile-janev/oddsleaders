@@ -261,12 +261,21 @@
 
 <script type="text/javascript">
     $('.loaded').live('click', function(){
+        id = $(this).attr('data-id');
+
+        setRemoveMyLeagues(id);
+
+        $(this).removeClass('loaded');
+        $(this).addClass('load');
+        
+        $('.load_matches #'+id).slideUp('fast');
         return false;
     });
 
     $('.load').live('click', function()
     {    
         id = $(this).attr('data-id');
+
         $(this).removeClass('load');
         $(this).addClass('loaded');
 

@@ -1,22 +1,24 @@
+<div class="loader"><img src="/images/blue_load.gif" alt="Loading ..."/></div>
+<div class="load_matches"></div>
 <?php
-	if($model != '')
-	{
+    if($model != '')
+    {
 
-	foreach ($model as $matches) 
-	{
+    foreach ($model as $matches) 
+    {
 ?>
-		<div class="box">
-			<div class="box_title green">Football</div>
-				<ul class="table">
-				<li>
-		            <div id="league"><?php echo $matches[0]->tournament['name']; ?></div>
-		            <div class="tips">
-		                <div>1</div>
-		                <div>X</div>
-		                <div>2</div>
-		                <div>More</div>
-		            </div>
-		        </li>
+        <div class="box" id="<?=$matches[0]->tournament->id;?>">
+            <div class="box_title green">Football</div>
+                <ul class="table">
+                <li>
+                    <div id="league"><?php echo $matches[0]->tournament['name']; ?></div>
+                    <div class="tips">
+                        <div>1</div>
+                        <div>X</div>
+                        <div>2</div>
+                        <div>More</div>
+                    </div>
+                </li>
 <?php
         foreach ($matches as $key => $value) {
             $odds = json_decode($value['data']);
@@ -71,6 +73,45 @@
 	{
 		echo '<h1>You don`t have chosen favourites leagues</h1>';
 	}
-
-
 ?>
+
+<script type="text/javascript">
+    $('.loaded').live('click', function(){
+        id = $(this).attr('data-id');
+
+        setRemoveMyLeagues(id);
+
+        $(this).removeClass('loaded');
+        $(this).addClass('load');
+        
+        $('#'+id).slideUp('fast');
+        return false;
+    });
+
+    $('.load').live('click', function()
+    {    
+        id = $(this).attr('data-id');
+
+        $(this).removeClass('load');
+        $(this).addClass('loaded');
+
+        setRemoveMyLeagues(id);
+        
+        $('.loader').show();
+        $.ajax(
+        {
+            type: 'POST',
+            url: '<?php echo $this->createUrl('stack/getmatches'); ?>',
+            data: {'id' : id},
+            dataType: "html",
+            success: function(response)
+            {
+                $('.loader').hide();
+                $('#main .load_matches').prepend(response);
+            }
+        });
+
+        return false;
+    });
+    
+</script>

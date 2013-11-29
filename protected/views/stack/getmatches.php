@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box" id="<?=$matches[0]->tournament->id;?>">
     <div class="box_title green"><i class="icon football"></i> Football</div>
     <ul class="table">
         <li>

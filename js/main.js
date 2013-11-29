@@ -385,7 +385,7 @@ window.onload = displayTime;  // Start displaying the time when document loads.
         
         $('#not_loged').hide();
         // $.removeCookie("myBets");
-        html = '<div class="match" id="match-5">'+matchName+'<span class="close" id="5">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
+        html = '<div class="match">'+matchName+'<span class="close betSlipperClose" id="'+gameCode+'">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
         $('.match-slip').append(html);
         console.log($.cookie("myBets"));
     })

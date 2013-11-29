@@ -36,7 +36,7 @@
                                 }
                                 }
                         ?>
-                        <li><a href="#" data-id="<?=$tournament->id;?>" class="<?=$class;?>" title="<?=$tournament->name;?>">⇢ <?php if(strlen($tournament->name) > 22) { echo substr($tournament->name, 0, 22); }else { echo $tournament->name;} ?> 
+                        <li><a href="<?php echo $this->createurl('stack/mymatches');?>" data-id="<?=$tournament->id;?>" class="<?=$class;?>" title="<?=$tournament->name;?>">⇢ <?php if(strlen($tournament->name) > 22) { echo substr($tournament->name, 0, 22); }else { echo $tournament->name;} ?> 
                                 <span><?php echo $gamesNumber; ?></span>
                             </a>
                         <li>

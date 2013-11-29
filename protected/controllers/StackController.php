@@ -217,7 +217,7 @@ class StackController extends Controller
 
         public function actionMymatches()
         {
-        	if(isset($_COOKIE['myLeagues']))
+        	if(isset($_COOKIE['myLeagues']) AND $_COOKIE['myLeagues'] != '')
         	{
 	        	$leagues = explode('|', $_COOKIE['myLeagues']);
 
