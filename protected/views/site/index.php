@@ -35,7 +35,7 @@
                         if ($key != 'label') {
                             $j++;
                 ?>
-                        <a href="#" class="stripe chart_<?php echo $i; ?>_<?php echo $j; ?>"
+                        <a href="#" class="stripe clickable chart_<?php echo $i; ?>_<?php echo $j; ?>"
                            rel="<?php echo OddsClass::getPercent($data->match, $value); ?>">
                             <?php echo $value; ?>
                         </a>
@@ -82,10 +82,22 @@
                         {
 
                             foreach ($more_odds as $tip => $m_odds) {
+
+                                $tipped = '';
+                                foreach ($cookie as $cook) {
+                                    
+                                    $exp = explode("-", $cook);
+
+                                    if($exp[0] === $value['code'])
+                                    {
+                                        if(isset($exp[1]) AND $exp[1] === ucfirst($tip))
+                                            $tipped = 'tipped';
+                                    }
+                                }
                                 if($tip != 'label')
                                 {
                                     if(!empty($m_odds))
-                                        $odd .= '<div class="tip"><a class="stripe clickable" rel="'.$value['code'].'"><p class="gameType">'.ucfirst($tip).'</p><span class="gameQuote">'.$m_odds.'</span></a></div>';
+                                        $odd .= '<div class="tip"><a class="stripe clickable '.$tipped.'" rel="'.$value['code'].'"><p class="gameType">'.ucfirst($tip).'</p><span class="gameQuote">'.$m_odds.'</span></a></div>';
                                 }
                             }
 

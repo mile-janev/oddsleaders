@@ -1246,6 +1246,7 @@ a
 .tipped
 {
 	background: rgba(189,54,47,1) !important;
+	color: #ffffff !important;
 }
 	.disable .more_odds
 	{
@@ -1297,6 +1298,14 @@ i[data-title]:hover:after
 .left 
 {
 	float: left;
+}
+.show
+{
+	display: block !important;
+}
+.hide 
+{
+	display: none !important;
 }
 
 /*--------------------------------------------------------------------------------------------------------------

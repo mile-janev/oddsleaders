@@ -5,13 +5,11 @@
             <div class="nano">
                 <div class="content">
                     <div id="matchs" class="match-slip">
-                        <?php if (!isset($_COOKIE['myBets'])) { ?>
-                            <div id="not_loged">
-                                <p>Your slipper is EMPTY.<br> To select a bet please click on price. <br> You need to be</p> 
-                                <a id="loginColorbox" href="<?php echo (Yii::app()->controller->id . '/' . $this->action->id == 'site/index') ? "#partial-login" : Yii::app()->createUrl('site/login'); ?>" class="button blue  "><i class="icon-signin"></i> Log in</a> or
-                                <a id="registerColorbox" href="<?php echo (Yii::app()->controller->id . '/' . $this->action->id == 'site/index') ? "#partial-register" : Yii::app()->createUrl('user/register'); ?>" class="button green"><i class="icon-user"></i> Register</a>
+                        <?php if (!isset($_COOKIE['myBets']) OR $_COOKIE['myBets'] === '') { ?>
+                            <div id="empty">    
+                                <p>Your slipper is EMPTY.<br> To select a bet please click on price. <br></p> 
                             </div>
-                        <?php } else {
+                        <?php  } else {
                             $cookieValue = explode('|', $_COOKIE['myBets']);
                             for ($i = 0; $i < count($cookieValue) - 1; $i++) {
                                 $bet = explode("-", $cookieValue[$i]);
@@ -28,6 +26,13 @@
                     </div>
                 </div>
             </div>
+           <!--  <?php if (Yii::app()->user->isGuest) { ?>
+                <div id="not_loged">
+                    You need to be<br>
+                    <a id="loginColorbox" href="<?php echo (Yii::app()->controller->id . '/' . $this->action->id == 'site/index') ? "#partial-login" : Yii::app()->createUrl('site/login'); ?>" class="button blue  "><i class="icon-signin"></i> Log in</a> or
+                    <a id="registerColorbox" href="<?php echo (Yii::app()->controller->id . '/' . $this->action->id == 'site/index') ? "#partial-register" : Yii::app()->createUrl('user/register'); ?>" class="button green"><i class="icon-user"></i> Register</a>
+                </div>
+            <?php } ?> -->
             <div id="stake">
                 Place your stake 
                 <input type="text" name="stake" class="stake"> €
@@ -36,7 +41,7 @@
                 Winning stake <span><input type="text" id="win_stake" name="win_stake" value="0 €"/></span> 
             </div>
             <a href="" class="clear">Clear bets</a>
-            <input type="submit" value="Place Bet" class="button blue right">
+            <input type="submit" value="Place Bet" class="button blue right" id="place_bet">
         </form>
     </div>
     <div class="box_title blue"><i class="icon-hand-up"></i> Best tipsters</div>

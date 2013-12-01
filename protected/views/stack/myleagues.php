@@ -20,14 +20,28 @@
                     </div>
                 </li>
 <?php
+       $cookie = explode('|', $_COOKIE['myBets']);
+
         foreach ($matches as $key => $value) {
             $odds = json_decode($value['data']);
 
             $match_odds = '';
             if ($odds) {
                 foreach ($odds->match as $key => $match) {
+                    $tipped = '';
+                    foreach ($cookie as $cook) {
+                        
+                        $exp = explode("-", $cook);
+
+                        if($exp[0] === $value['code'])
+                        {
+                            if(isset($exp[1]) AND $exp[1] === ucfirst($key))
+                                $tipped = 'tipped';
+                        }
+                    }
+
                     if ($key != 'label')
-                        $match_odds .= '<div class="tip"><a class="clickable" rel="' . $value['code'] . '" class="gameQuote">' . $match . '</a></div>';
+                        $match_odds .= '<div class="tip"><a class="clickable '.$tipped.'" id="liga" rel="' . $value['code'] . '" data-type="'.ucfirst($key).'">' . $match . '</a></div>';
                 }
             }
 
@@ -39,9 +53,21 @@
                     if ($key != 'match') {
 
                         foreach ($more_odds as $tip => $m_odds) {
+                            $tipped = '';
+                            foreach ($cookie as $cook) {
+                                
+                                $exp = explode("-", $cook);
+
+                                if($exp[0] === $value['code'])
+                                {
+                                    if(isset($exp[1]) AND $exp[1] === ucfirst($tip))
+                                        $tipped = 'tipped';
+                                }
+                            }
+
                             if ($tip != 'label') {
                                 if (!empty($m_odds))
-                                    $odd .= '<div class="tip"><a class="clickable" rel="' . $value['code'] . '" class="gameType">' . ucfirst($tip) . ' <span class="gameQuote">' . $m_odds . '</span></a></div>';
+                                    $odd .= '<div class="tip"><a class="clickable '.$tipped.'" rel="' . $value['code'] . '"><b class="gameType">' . ucfirst($tip) . '</b> <span class="gameQuote">' . $m_odds . '</span></a></div>';
                             }
                         }
 
@@ -53,10 +79,16 @@
                     }
                 }
             }
+            $disable = '';
+            foreach ($cookie as $key => $cook) {
+                $exp = explode('-', $cook);
+                if($exp[0] === $value['code'])
+                    $disable = 'disable';
+            }
 
-            echo '<li class="' . $value['code'] . '">
+            echo '<li class="' . $value['code'] . " ".$disable.'">
                         <div id="time">' . date("d-m H:i", strtotime($value['start'])) . '</div>
-                        <div id="teams">' . $value['opponent'] . '</div>
+                        <div id="teams"><a>' . $value['opponent'] . '</a></div>
                         <div class="tips">
                             ' . $match_odds . '
                             <div class="more">+16 <i class="icon-plus-sign"></i></div>

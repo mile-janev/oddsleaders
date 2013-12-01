@@ -130,46 +130,35 @@ $(document).ready(function() {
     side_toggle($('.first'));
 /*
  * ---------------------------------------------------------------------------------------------------------------------
- *  Ouptut html data
- *  @return html
- * ---------------------------------------------------------------------------------------------------------------------
-*/
-    $('.stake').bind('input', function() { 
-        cal_win_stake();
-    });
-/*
- * ---------------------------------------------------------------------------------------------------------------------
- *  Calculate the winning stake e.q  stake 2 eura * coefficient 25 = winning stake 50 eura
- *  @return integer
- * ---------------------------------------------------------------------------------------------------------------------
-*/
-    function cal_win_stake()
-    {
-        var total = 1;
-        $('.match-slip .match').each(function(){
-            odd = $(this).find('#odds span').text();
-            new_odd = odd.replace(',','.');
-            total = total * new_odd;
-        });      
-
-        stake = $('.stake').val(); // get the current stake of the input field.
-        $('#money #win_stake').val((total*stake).toFixed(2)+' €');
-    }
-/*
- * ---------------------------------------------------------------------------------------------------------------------
  *  Add the match to slipper and create cookie for that match
  *  @return 
  * ---------------------------------------------------------------------------------------------------------------------
 */
     $(".clickable").live('click', function(){
         var gameCode = $(this).attr('rel');
+        var league_btn = $(this).attr('id');
         
         $('.'+gameCode).addClass('disable');
-        
-        var gameType = $(this).find(".gameType").html();
-        var gameQuote = $(this).find(".gameQuote").html();
-        var matchName = $('.'+gameCode).find("a").html();
-        
+
+        empty = $('#empty').attr('class');
+        if(empty != 'hide')
+        {
+            $('#empty').addClass('hide');
+        }
+
+        if(league_btn != 'liga')
+        {
+            var gameType = $(this).find(".gameType").html();
+            var gameQuote = $(this).find(".gameQuote").html();
+            var matchName = $('.'+gameCode).find("a").html();
+        }
+        else
+        {
+            var gameType = $(this).attr("data-type");
+            var gameQuote = $(this).html();
+            var matchName = $('.'+gameCode).find('#teams').html();
+        }
+
         var bets = gameCode + '-' + gameType + '-' + gameQuote + '-' + matchName + '|';
 
         if($.cookie("myBets")){
@@ -198,21 +187,29 @@ $(document).ready(function() {
 
         $(this).addClass('tipped');
         
-        $('#not_loged').hide();
+        //$('#not_loged').hide();
         // $.removeCookie("myBets");
         html = '<div class="match">'+matchName+'<span class="close betSlipperClose" id="'+gameCode+'">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
         $('.match-slip').append(html);
 
         cal_win_stake();
+
         $('.nano').nanoScroller({
             preventPageScrolling: true
         });
 
         return false;
     })
-    
+ /*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Delete match from sliper
+ *  @return html
+ * ---------------------------------------------------------------------------------------------------------------------
+*/   
     $('body').delegate('.betSlipperClose', 'click', function(){
         id = $(this).attr('id');
+
+        check_slipper();
 
         removeGameFromCookie(id);
         $(this).parent().remove();
@@ -222,8 +219,91 @@ $(document).ready(function() {
         $('.nano').nanoScroller({
             preventPageScrolling: true
         });
+
+        cal_win_stake();
+        
+    });
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Change winning stake when new stake is inserted
+ *  @return winning stake
+ * ---------------------------------------------------------------------------------------------------------------------
+*/
+    $('.stake').bind('input', function() { 
+        cal_win_stake();
+    });
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Check the slipper have matches, or stake is bigger than 0
+ *  @return boolean
+ * ---------------------------------------------------------------------------------------------------------------------
+*/
+    $('#place_bet').click(function(){
+        matchs = $('.match-slip > .match').length;
+        stake = $('.stake').val(); // get the current stake of the input field.
+        if(matchs <= 0)
+            alert('Please select matches to bet');
+
+        if(stake <= 0)
+            alert('Please insert valid value for stake');
+
+        return false;
     });
 });
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Ouptut html data
+ *  @return html
+ * ---------------------------------------------------------------------------------------------------------------------
+*/
+    function check_slipper()
+    {
+        matchs = $('.match-slip > .match').length;
+
+        if(matchs == 0)
+        {
+            $('.match-slip #empty').removeClass('hide').addClass('show');
+        }
+    }
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Calculate the winning stake e.q  stake 2 eura * coefficient 25 = winning stake 50 eura
+ *  @return integer
+ * ---------------------------------------------------------------------------------------------------------------------
+*/
+    function cal_win_stake()
+    {
+        var total = 1;
+        $('.match-slip .match').each(function(){
+            odd = $(this).find('#odds span').text();
+            new_odd = odd.replace(',','.');
+            total = total * new_odd;
+        });
+
+        if($('.match-slip > .match').length == 0)
+            total = 0;
+
+        stake = $('.stake').val(); // get the current stake of the input field.
+        $('#money #win_stake').val((total*stake).toFixed(2)+' €');
+    }
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Add league to cookie and favourites that league
+ *  @return 
+ * ---------------------------------------------------------------------------------------------------------------------
+*/
+    $('.clear').live('click', function(){
+        $('.match-slip').html('');
+
+        $('.disable').each(function(){
+            $(this).removeClass('disable');
+            $(this).find('.tipped').removeClass('tipped');
+        });
+
+        $.cookie('myBets', '' , { expires: 2 });
+
+        return false;
+    });
 /*
  * ---------------------------------------------------------------------------------------------------------------------
  *  Add league to cookie and favourites that league
