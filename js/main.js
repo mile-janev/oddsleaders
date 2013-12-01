@@ -131,13 +131,6 @@ $(document).ready(function() {
  *  @return html
  * ---------------------------------------------------------------------------------------------------------------------
 */
-    $('.match-slip').bind("DOMSubtreeModified",function(){
-        cal_win_stake();
-        $('.nano').nanoScroller({
-            preventPageScrolling: true
-        });
-    });
-
     $('.stake').bind('input', function() { 
         cal_win_stake();
     });
@@ -168,8 +161,8 @@ $(document).ready(function() {
     $(".clickable").click(function(){
         var gameCode = $(this).attr('rel');
         
-        $(this).closest('div').addClass('selected');
-        //$('.'+gameCode).addClass('disable');
+        $(this).addClass('tipped');
+        $('.'+gameCode).addClass('disable');
         
 
         var gameType = $(this).find(".gameType").html();
@@ -203,6 +196,10 @@ $(document).ready(function() {
         html = '<div class="match">'+matchName+'<span class="close betSlipperClose" id="'+gameCode+'">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
         $('.match-slip').append(html);
         console.log($.cookie("myBets"));
+        cal_win_stake();
+        $('.nano').nanoScroller({
+            preventPageScrolling: true
+        });
 
         return false;
     })
