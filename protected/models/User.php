@@ -47,11 +47,12 @@ class User extends CActiveRecord
 		return array(
 			array('username, password, password_repeat, email', 'required'),
 			array('username, password, email', 'length', 'max'=>64),
-			array('name', 'image', 'length', 'max'=>255),
+			array('name', 'length', 'max'=>255),
+                        array('image', 'length', 'max'=>255),
                         array('email', 'email'),
                         array('email', 'unique'), 
                         array('username', 'unique'),
-                        array('password, password_repeat', 'length', 'max'=>64),
+                        array('password, password_repeat', 'length', 'min'=>4, 'max'=>64),
                         array('password_repeat', 'compare', 'compareAttribute'=>'password'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
