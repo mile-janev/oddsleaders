@@ -21,6 +21,10 @@
         <?php
             $script = Yii::app()->clientScript;
             $script->registerCoreScript('jquery');
+            $baseUrl = Yii::app()->request->baseUrl;
+            $script->registerScriptFile($baseUrl . '/js/nanoScroller.js');
+            $script->registerScriptFile($baseUrl . '/js/main.js');
+            $script->registerScriptFile($baseUrl . '/js/jquery-cookie/jquery.cookie.js');
         ?>
 
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -40,13 +44,5 @@
         </div>
 
         <?php $this->renderPartial('/layouts/_footer'); ?>
-        <?php
-            $baseUrl = Yii::app()->request->baseUrl;
-            $script->registerScriptFile($baseUrl . '/js/nanoScroller.js');
-            $script->registerScriptFile($baseUrl . '/js/charts.js');
-            $script->registerScriptFile($baseUrl . '/js/serials.js');
-            $script->registerScriptFile($baseUrl . '/js/main.js');
-            $script->registerScriptFile($baseUrl . '/js/jquery-cookie/jquery.cookie.js');
-        ?>
     </body>
 </html>

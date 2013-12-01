@@ -31,7 +31,9 @@ class SiteController extends Controller
             $baseUrl = Yii::app()->request->baseUrl;
             $script->registerCssFile($baseUrl . '/lib/colorbox/colorbox.css');
             $script->registerScriptFile($baseUrl . '/lib/colorbox/jquery.colorbox-min.js');
-            $script->registerScriptFile($baseUrl . '/js/coroboxInclude.js');
+            $script->registerScriptFile($baseUrl . '/js/charts.js');
+            $script->registerScriptFile($baseUrl . '/js/serials.js');
+            $script->registerScriptFile($baseUrl . '/js/frontpage.js');
 //            Login
             $login=new LoginForm;
             require dirname(Yii::app()->basePath) . '/lib/facebook-php-sdk/src/facebook.php';
