@@ -53,11 +53,22 @@
 
             foreach ($upcoming as $key => $value) {
                 $odds = json_decode($value['data']);
-                $tipped = '';
                 if($value['code'])
                 $match_odds = '';
                 if ($odds) {
                     foreach ($odds->match as $key => $match) {
+                        $tipped = '';
+                        foreach ($cookie as $cook) {
+                            
+                            $exp = explode("-", $cook);
+
+                            if($exp[0] === $value['code'])
+                            {
+                                if(isset($exp[1]) AND $exp[1] === ucfirst($key))
+                                    $tipped = 'tipped';
+                            }
+                        }
+
                         if($key != 'label')
                             $match_odds .= '<div class="tip"><a class="stripe clickable '.$tipped.'" rel="'.$value['code'].'"><p class="gameType">'.ucfirst($key).'</p><span class="gameQuote">'.$match.'</span></a></div>';
                     }

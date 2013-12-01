@@ -27,7 +27,7 @@
             if ($odds) {
                 foreach ($odds->match as $key => $match) {
                     if ($key != 'label')
-                        $match_odds .= '<div class="tip"><a class="clickable" rel="' . $value['code'] . '">' . $match . '</a></div>';
+                        $match_odds .= '<div class="tip"><a class="clickable" rel="' . $value['code'] . '" class="gameQuote">' . $match . '</a></div>';
                 }
             }
 
@@ -41,7 +41,7 @@
                         foreach ($more_odds as $tip => $m_odds) {
                             if ($tip != 'label') {
                                 if (!empty($m_odds))
-                                    $odd .= '<div class="tip"><a class="clickable" rel="' . $value['code'] . '">' . ucfirst($tip) . ' <span>' . $m_odds . '</span></a></div>';
+                                    $odd .= '<div class="tip"><a class="clickable" rel="' . $value['code'] . '" class="gameType">' . ucfirst($tip) . ' <span class="gameQuote">' . $m_odds . '</span></a></div>';
                             }
                         }
 

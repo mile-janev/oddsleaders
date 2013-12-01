@@ -1241,11 +1241,11 @@ a
 }
 .disable
 {
-	background: rgba(189,54,47,.1) !important;
+	background: rgba(189,54,47,.2) !important;
 }
 .tipped
 {
-	background: red !important;
+	background: rgba(189,54,47,1) !important;
 }
 	.disable .more_odds
 	{

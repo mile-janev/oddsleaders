@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    $('.nano').nanoScroller({
+        preventPageScrolling: true
+    });
 /*
  * ---------------------------------------------------------------------------------------------------------------------
  *  Digital clock
@@ -158,13 +161,11 @@ $(document).ready(function() {
  *  @return 
  * ---------------------------------------------------------------------------------------------------------------------
 */
-    $(".clickable").click(function(){
+    $(".clickable").live('click', function(){
         var gameCode = $(this).attr('rel');
         
-        $(this).addClass('tipped');
         $('.'+gameCode).addClass('disable');
         
-
         var gameType = $(this).find(".gameType").html();
         var gameQuote = $(this).find(".gameQuote").html();
         var matchName = $('.'+gameCode).find("a").html();
@@ -182,12 +183,20 @@ $(document).ready(function() {
                     cookieNewValue += matchBets[i] + "|";
                     //Make edit on slipper div here
                 }
+                else
+                {
+                    removeGameFromCookie(gameCode);
+                    $('#matchs #'+gameCode).closest('div').hide();
+                    $('.'+gameCode).find('.tipped').removeClass('tipped');
+                }
             }
             cookieNewValue += bets;
             $.cookie("myBets", cookieNewValue, { expires : 2 });//2 days
         } else {
             $.cookie("myBets", bets, { expires : 2 });//2 days
         }
+
+        $(this).addClass('tipped');
         
         $('#not_loged').hide();
         // $.removeCookie("myBets");
@@ -208,15 +217,12 @@ $(document).ready(function() {
         removeGameFromCookie(id);
         $(this).parent().remove();
         $('.'+id).removeClass('disable');
-        $('.'+id).find('.tipped').each(function(){
-            $(this).removeClass('tipped');
-        });
+        $('.'+id).find('.tipped').removeClass('tipped');
 
         $('.nano').nanoScroller({
             preventPageScrolling: true
         });
-    })
-
+    });
 });
 /*
  * ---------------------------------------------------------------------------------------------------------------------
