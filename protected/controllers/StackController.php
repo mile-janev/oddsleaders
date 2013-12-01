@@ -28,7 +28,7 @@ class StackController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','topmatches','getmatches','mymatches'),
+				'actions'=>array('index','view','topmatches','getmatches','myleagues', 'mymatches'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -215,7 +215,7 @@ class StackController extends Controller
             Yii::app()->end();
         }
 
-        public function actionMymatches()
+        public function actionMyleagues()
         {
         	if(isset($_COOKIE['myLeagues']) AND $_COOKIE['myLeagues'] != '')
         	{
@@ -236,7 +236,15 @@ class StackController extends Controller
         		$model = '';
         	}
 
-        	$this->render('mymatches',array(
+        	$this->render('myleagues',array(
+                'model'=>$model,
+            ));
+        }
+        public function actionMymatches()
+        {
+            $model = new Stack();
+
+            $this->render('mymatches',array(
                 'model'=>$model,
             ));
         }
