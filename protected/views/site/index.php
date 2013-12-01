@@ -53,12 +53,13 @@
 
             foreach ($upcoming as $key => $value) {
                 $odds = json_decode($value['data']);
-
+                $tipped = '';
+                if($value['code'])
                 $match_odds = '';
                 if ($odds) {
                     foreach ($odds->match as $key => $match) {
                         if($key != 'label')
-                            $match_odds .= '<div class="tip"><a class="stripe clickable" rel="'.$value['code'].'"><p class="gameType">'.ucfirst($key).'</p><span class="gameQuote">'.$match.'</span></a></div>';
+                            $match_odds .= '<div class="tip"><a class="stripe clickable '.$tipped.'" rel="'.$value['code'].'"><p class="gameType">'.ucfirst($key).'</p><span class="gameQuote">'.$match.'</span></a></div>';
                     }
                 }
                 
@@ -86,7 +87,14 @@
                     }   
                 }
                     $time = strtotime($value['start']) - time();
-                    echo '<li class="'.$value['code'].'">
+                    $disable = '';
+                    foreach ($cookie as $key => $cook) {
+                        $exp = explode('-', $cook);
+                        if($exp[0] === $value['code'])
+                            $disable = 'disable';
+                    }
+
+                    echo '<li class="'.$value['code']." ".$disable.'">
                         <div id="sport"><div class="icon football"></div></div>
                         <div class="match"><a>'.$value['opponent'].'</a> - for <span class="time_play">'.date('H:i:s', $time).'</span></div>
                         <div class="tips">
