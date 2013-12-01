@@ -42,6 +42,20 @@ class OddsClass {
         return round(str_replace(',', '.', $value) , $decimals);
     }
     
+    /**
+     * If monthly=true will return the best tipsters from this month, else from all time
+     * @param type $monthly
+     * @return 10 users from database who fulfill this condition
+     */
+    public static function getTipsters($monthly=true)
+    {
+        $criteria1 = new CDbCriteria();
+        $criteria1->limit = 10;
+        $tipsters = User::model()->findAll($criteria1);
+        
+        return $tipsters;
+    }
+    
 }
 
 ?>

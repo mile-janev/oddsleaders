@@ -41,35 +41,47 @@
     </div>
     <div class="box_title blue"><i class="icon-hand-up"></i> Best tipsters</div>
     <div id="tabs">
-        <a href=".tab-0" class="tab_btn current">Mountly</a>
+        <a href=".tab-0" class="tab_btn current">Monthly</a>
         <a href=".tab-1" class="tab_btn">All time</a>
     </div>
     <div class="tab_box">
-        <ul id="tipsters" class="tabb tab-0">
-            <li class="row"><span>1</span><div class="user"><a href="">tiger_s</a></div><div id="credits">632€</div></li>
-            <li class="row"><span>2</span><div class="user"><a href="">janev</a></div><div id="credits">602€</div></li>
-            <li class="row"><span>3</span><div class="user"><a href="">mile</a></div><div id="credits">600€</div></li>
-            <li class="row"><span>4</span><div class="user"><a href="">slavco</a></div><div id="credits">555€</div></li>
-            <li class="row"><span>5</span><div class="user"><a href="">kuzeski</a></div><div id="credits">512€</div></li>
-            <li class="row"><span>6</span><div class="user"><a href="">jmile</a></div><div id="credits">480€</div></li>
-            <li class="row"><span>7</span><div class="user"><a href="">leaders</a></div><div id="credits">421€</div></li>
-            <li class="row"><span>8</span><div class="user"><a href="">odds</a></div><div id="credits">398€</div></li>
-            <li class="row"><span>9</span><div class="user"><a href="">bets.com</a></div><div id="credits">350€</div></li>
-            <li class="row"><span>10</span><div class="user"><a href="">tipster</a></div><div id="credits">312€</div></li>
-            <li class="row"><div class="user" style="text-align:center; width:100%;"><a href="">See all <i class="icon-double-angle-right"></i></a></div></li>
+        <ul class="tipsters tabb tab-0">
+            <?php $tipstersMonth = OddsClass::getTipsters(TRUE); ?>
+            <?php if ($tipstersMonth) { ?>
+                <?php for($i=0; $i<count($tipstersMonth); $i++) { ?>
+                    <li class="row">
+                        <span class="rightBorderDotted bestTipstersId"><?php echo $i+1; ?></span>
+                        <span class="user">
+                            <a href="#"><?php echo $tipstersMonth[$i]->username; ?></a>
+                        </span>
+                        <span class="credits"><?php echo $tipstersMonth[$i]->conto; ?>€</span>
+                    </li>
+                <?php } ?>
+                    <li class="row">
+                        <span class="user" style="text-align:center; width:100%;">
+                            <a href="#">See all <i class="icon-double-angle-right"></i></a>
+                        </span>
+                    </li>
+            <?php } ?>
         </ul>
-        <ul id="tipsters" class="tabb tab-1">
-            <li id="row"><span>1</span><div class="user"><a href="">slavco</a></div><div id="credits">555€</div></li>
-            <li id="row"><span>2</span><div class="user"><a href="">mile</a></div><div id="credits">600€</div></li>
-            <li id="row"><span>3</span><div class="user"><a href="">janev</a></div><div id="credits">602€</div></li>
-            <li id="row"><span>4</span><div class="user"><a href="">kuzeski</a></div><div id="credits">512€</div></li>
-            <li id="row"><span>5</span><div class="user"><a href="">odds</a></div><div id="credits">398€</div></li>
-            <li id="row"><span>6</span><div class="user"><a href="">bets.com</a></div><div id="credits">350€</div></li>
-            <li id="row"><span>7</span><div class="user"><a href="">tipster</a></div><div id="credits">312€</div></li>
-            <li id="row"><span>8</span><div class="user"><a href="">jmile</a></div><div id="credits">480€</div></li>
-            <li id="row"><span>9</span><div class="user"><a href="">tiger_s</a></div><div id="credits">632€</div></li>
-            <li id="row"><span>10</span><div class="user"><a href="">leaders</a></div><div id="credits">421€</div></li>
-            <li id="row"><div class="user" style="text-align:center; width:100%;"><a href="">See all <i class="icon-double-angle-right"></i></a></div></li>
+        <ul class="tipsters tabb tab-1">
+            <?php $tipstersMonth = OddsClass::getTipsters(FALSE); ?>
+            <?php if ($tipstersMonth) { ?>
+                <?php for($i=0; $i<count($tipstersMonth); $i++) { ?>
+                    <li class="row">
+                        <span class="rightBorderDotted bestTipstersId"><?php echo $i+1; ?></span>
+                        <span class="user">
+                            <a href="#"><?php echo $tipstersMonth[$i]->username; ?></a>
+                        </span>
+                        <span class="credits"><?php echo $tipstersMonth[$i]->conto; ?>€</span>
+                    </li>
+                <?php } ?>
+                    <li class="row">
+                        <span class="user" style="text-align:center; width:100%;">
+                            <a href="">See all <i class="icon-double-angle-right"></i></a>
+                        </span>
+                    </li>
+            <?php } ?>
         </ul>
     </div>
 </div>
