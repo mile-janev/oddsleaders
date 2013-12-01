@@ -189,13 +189,11 @@ $(document).ready(function() {
             $.cookie("myBets", bets, { expires : 2 });//2 days
         }
         
-       // mark_played(gameCode);
-        
         $('#not_loged').hide();
         // $.removeCookie("myBets");
         html = '<div class="match">'+matchName+'<span class="close betSlipperClose" id="'+gameCode+'">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
         $('.match-slip').append(html);
-        console.log($.cookie("myBets"));
+
         cal_win_stake();
         $('.nano').nanoScroller({
             preventPageScrolling: true
@@ -205,8 +203,18 @@ $(document).ready(function() {
     })
     
     $('body').delegate('.betSlipperClose', 'click', function(){
-        removeGameFromCookie($(this).attr('id'));
+        id = $(this).attr('id');
+
+        removeGameFromCookie(id);
         $(this).parent().remove();
+        $('.'+id).removeClass('disable');
+        $('.'+id).find('.tipped').each(function(){
+            $(this).removeClass('tipped');
+        });
+
+        $('.nano').nanoScroller({
+            preventPageScrolling: true
+        });
     })
 
 });
@@ -218,7 +226,6 @@ $(document).ready(function() {
 */
     function setRemoveMyLeagues(id)
     {
-        console.log(id);
         var myLeaguesString = id + '|';
         var have = false;
         

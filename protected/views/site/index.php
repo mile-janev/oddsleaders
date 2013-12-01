@@ -48,6 +48,9 @@
     <div class="box_title grey"><i class="icon-flag"></i> Upcoming events</div>
     <ul class="upcoming">
         <?php 
+
+            $cookie = explode('|', $_COOKIE['myBets']);
+
             foreach ($upcoming as $key => $value) {
                 $odds = json_decode($value['data']);
 
