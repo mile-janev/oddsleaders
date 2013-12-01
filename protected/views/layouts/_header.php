@@ -44,6 +44,7 @@
                 array('label'=>'Top Matches', 'url'=>array('/stack/topmatches')),
                 array('label'=>'My Leagues', 'url'=>array('/stack/myleagues')),
                 array('label'=>'My Matches', 'url'=>array('/stack/mymatches')),
+                array('label'=>'My Slipper', 'url'=>array('/stack/myslipper')),
                 array('label'=>'Tickets', 'url'=>array('/user/tickets'), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'My History', 'url'=>array('/user/history'), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Bet Manager', 'url'=>array('/user/betmanager'), 'visible'=>!Yii::app()->user->isGuest),

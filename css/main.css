@@ -669,29 +669,29 @@ a
 		font-size: 12px;	
 		list-style: none;
 	}
-	#wrapped #content #rightbar #tipsters #row 
+	#wrapped #content #rightbar #tipsters .row 
 	{
 		margin: 0;
 		display: block;
 		border-bottom: 1px dotted #cdcdcd;
 	}
-	#wrapped #content #rightbar #tipsters #row .user a 
+	#wrapped #content #rightbar #tipsters .row .user a 
 	{
 		color: #1a5e83;
 	}
-	#wrapped #content #rightbar #tipsters #row .user a:hover 
+	#wrapped #content #rightbar #tipsters .row .user a:hover 
 	{
 		text-decoration: underline;
 	} 
-	#wrapped #content #rightbar #tipsters #row:nth-child(2n)
+	#wrapped #content #rightbar #tipsters .row:nth-child(2n)
 	{
 		background: #fff;
 	}
-	#wrapped #content #rightbar #tipsters #row:hover 
+	#wrapped #content #rightbar #tipsters .row:hover 
 	{
 		background: rgba(98,191,98,.1) ;
 	}
-	#wrapped #content #rightbar #tipsters #row span
+	#wrapped #content #rightbar #tipsters .row span
 	{
 		width: 30px;
 		padding: 5px;
@@ -700,7 +700,7 @@ a
 		border-right: 1px dotted #1a5e83;
 	}
 
-	#wrapped #content #rightbar #tipsters #row .user
+	#wrapped #content #rightbar #tipsters .row .user
 	{
 		font-size: 14px;
 		color: #1a5e83;
@@ -710,7 +710,7 @@ a
 		zoom: 1; /* Fix for IE7 */
 		*display: inline; /* Fix for IE7 */
 	}
-	#wrapped #content #rightbar #tipsters #row #credits
+	#wrapped #content #rightbar #tipsters .row #credits
 	{
 		padding: 5px;
 		float: right;

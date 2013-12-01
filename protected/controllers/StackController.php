@@ -28,7 +28,7 @@ class StackController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','topmatches','getmatches','myleagues', 'mymatches'),
+				'actions'=>array('index','view','topmatches','getmatches','myleagues', 'mymatches', 'myslipper'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -240,11 +240,21 @@ class StackController extends Controller
                 'model'=>$model,
             ));
         }
+        
         public function actionMymatches()
         {
             $model = new Stack();
 
             $this->render('mymatches',array(
+                'model'=>$model,
+            ));
+        }
+        
+        public function actionMyslipper()
+        {
+            $model = new Stack();
+
+            $this->render('myslipper',array(
                 'model'=>$model,
             ));
         }
