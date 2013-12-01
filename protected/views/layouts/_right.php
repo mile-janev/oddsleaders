@@ -50,17 +50,17 @@
             <?php if ($tipstersMonth) { ?>
                 <?php for($i=0; $i<count($tipstersMonth); $i++) { ?>
                     <li class="row">
-                        <span><?php echo $i+1; ?></span>
-                        <div class="user">
+                        <span class="rightBorderDotted bestTipstersId"><?php echo $i+1; ?></span>
+                        <span class="user">
                             <a href="#"><?php echo $tipstersMonth[$i]->username; ?></a>
-                        </div>
+                        </span>
                         <span class="credits"><?php echo $tipstersMonth[$i]->conto; ?>€</span>
                     </li>
                 <?php } ?>
                     <li class="row">
-                        <div class="user" style="text-align:center; width:100%;">
-                            <a href="">See all <i class="icon-double-angle-right"></i></a>
-                        </div>
+                        <span class="user" style="text-align:center; width:100%;">
+                            <a href="#">See all <i class="icon-double-angle-right"></i></a>
+                        </span>
                     </li>
             <?php } ?>
         </ul>
@@ -69,17 +69,17 @@
             <?php if ($tipstersMonth) { ?>
                 <?php for($i=0; $i<count($tipstersMonth); $i++) { ?>
                     <li class="row">
-                        <span><?php echo $i+1; ?></span>
-                        <div class="user">
+                        <span class="rightBorderDotted bestTipstersId"><?php echo $i+1; ?></span>
+                        <span class="user">
                             <a href="#"><?php echo $tipstersMonth[$i]->username; ?></a>
-                        </div>
+                        </span>
                         <span class="credits"><?php echo $tipstersMonth[$i]->conto; ?>€</span>
                     </li>
                 <?php } ?>
                     <li class="row">
-                        <div class="user" style="text-align:center; width:100%;">
+                        <span class="user" style="text-align:center; width:100%;">
                             <a href="">See all <i class="icon-double-angle-right"></i></a>
-                        </div>
+                        </span>
                     </li>
             <?php } ?>
         </ul>
