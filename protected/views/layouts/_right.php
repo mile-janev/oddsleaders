@@ -1,7 +1,7 @@
 <div id="rightbar">
     <div class="box_title blue"><i class="icon-credit-card"></i> Bet slip</div>
     <div id="bet_slip">
-        <form class="form" action="#" method="POST">
+        <form id='slipper' name='slipper' class="form" action="<?php echo Yii::app()->createUrl('bet/slipper'); ?>" method="POST">
             <div class="nano">
                 <div class="content">
                     <div id="matchs" class="match-slip">
@@ -12,7 +12,7 @@
                         <?php  } else {
                             $cookieValue = explode('|', $_COOKIE['myBets']);
                             for ($i = 0; $i < count($cookieValue) - 1; $i++) {
-                                $bet = explode("-", $cookieValue[$i]);
+                                $bet = explode("=", $cookieValue[$i]);
                         ?>
                             <div class="match">
                                 <?php echo $bet[3]; ?>
@@ -40,7 +40,7 @@
             <div id="money">
                 Winning stake <span><input type="text" id="win_stake" name="win_stake" value="0 €"/></span> 
             </div>
-            <a href="" class="clear">Clear bets</a>
+            <a href="#" class="clear">Clear bets</a>
             <input type="submit" value="Place Bet" class="button blue right" id="place_bet">
         </form>
     </div>

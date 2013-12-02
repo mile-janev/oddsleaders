@@ -43,7 +43,7 @@
                 array('label'=>'Home', 'url'=>array('/site/index')),
                 array('label'=>'My Leagues', 'url'=>array('/stack/myleagues')),
                 array('label'=>'My Matches', 'url'=>array('/stack/mymatches')),
-                array('label'=>'My Slipper', 'url'=>array('/stack/myslipper')),
+                array('label'=>'Bet Slipper', 'url'=>array('/bet/slipper')),
 //                array('label'=>'Top Matches', 'url'=>array('/stack/topmatches')),
                 array('label'=>'Best Tipsters', 'url'=>array('/user/best')),
 //                array('label'=>'My Tickets', 'url'=>array('/user/tickets'), 'visible'=>!Yii::app()->user->isGuest),

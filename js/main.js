@@ -150,6 +150,7 @@ $(document).ready(function() {
         {
             var gameType = $(this).find(".gameType").html();
             var gameQuote = $(this).find(".gameQuote").html();
+            var gameTypeBet = $(this).find(".gameTypeBet").html();
             var matchName = $('.'+gameCode).find("a").html();
         }
         else
@@ -157,9 +158,10 @@ $(document).ready(function() {
             var gameType = $(this).attr("data-type");
             var gameQuote = $(this).html();
             var matchName = $('.'+gameCode).find('#teams').html();
+            var gameTypeBet = $(this).parent().find(".gameTypeBet").html();
         }
 
-        var bets = gameCode + '-' + gameType + '-' + gameQuote + '-' + matchName + '|';
+        var bets = gameCode + '=' + gameType + '=' + gameQuote + '=' + matchName + '=' + gameTypeBet + '|';
 
         if($.cookie("myBets")){
             var cookieValue = $.cookie("myBets");
@@ -167,7 +169,7 @@ $(document).ready(function() {
             var cookieNewValue = '';
             var matchBets = cookieValue.split('|');
             for (var i=0; i<matchBets.length-1; i++) {
-                var gameBet = matchBets[i].split('-');
+                var gameBet = matchBets[i].split('=');
                 if (gameBet[0]!=gameCode) {//If gameCode is same as old will be deleted
                     cookieNewValue += matchBets[i] + "|";
                     //Make edit on slipper div here
@@ -241,13 +243,17 @@ $(document).ready(function() {
     $('#place_bet').click(function(){
         matchs = $('.match-slip > .match').length;
         stake = $('.stake').val(); // get the current stake of the input field.
-        if(matchs <= 0)
+        if (matchs <= 0) {
             alert('Please select matches to bet');
+            return false;
+        }
 
-        if(stake <= 0)
+        if (stake <= 0) {
             alert('Please insert valid value for stake');
+            return false;
+        }
 
-        return false;
+        return true;
     });
 });
 /*
@@ -349,7 +355,7 @@ $(document).ready(function() {
             var cookieNewValue = '';
             var matchBets = cookieValue.split('|');
             for (var i=0; i<matchBets.length-1; i++) {
-                var gameBet = matchBets[i].split('-');
+                var gameBet = matchBets[i].split('=');
                 if (gameBet[0]!=gameCode) {//If gameCode is same as old will be deleted
                     cookieNewValue += matchBets[i] + "|";
                 }

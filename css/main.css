@@ -1401,3 +1401,6 @@ i[data-title]:hover:after
 .grid-view td a{
     color: #1A5E83;
 }
+.gameTypeBet{
+    display: none;
+}

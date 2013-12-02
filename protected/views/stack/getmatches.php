@@ -34,7 +34,7 @@
                         foreach ($more_odds as $tip => $m_odds) {
                             if ($tip != 'label') {
                                 if (!empty($m_odds))
-                                    $odd .= '<div class="tip"><a class="clickable" rel="' . $value['code'] . '"><b class="gameType">' . ucfirst($tip) . '</b> <span class="gameQuote">' . $m_odds . '</span></a></div>';
+                                    $odd .= '<div class="tip"><a class="clickable" rel="' . $value['code'] . '"><b class="gameType">' . ucfirst($tip) . '</b> <span class="gameQuote">' . $m_odds . '</span><span class="gameTypeBet">'.$key.'</span></a></div>';
                             }
                         }
 

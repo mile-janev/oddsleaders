@@ -31,7 +31,7 @@
                     $tipped = '';
                     foreach ($cookie as $cook) {
                         
-                        $exp = explode("-", $cook);
+                        $exp = explode("=", $cook);
 
                         if($exp[0] === $value['code'])
                         {
@@ -41,7 +41,7 @@
                     }
 
                     if ($key != 'label')
-                        $match_odds .= '<div class="tip"><a class="clickable '.$tipped.'" id="liga" rel="' . $value['code'] . '" data-type="'.ucfirst($key).'">' . $match . '</a></div>';
+                        $match_odds .= '<div class="tip"><span class="gameTypeBet">match</span><a class="clickable '.$tipped.'" id="liga" rel="' . $value['code'] . '" data-type="'.ucfirst($key).'">' . $match . '</a></div>';
                 }
             }
 
@@ -56,7 +56,7 @@
                             $tipped = '';
                             foreach ($cookie as $cook) {
                                 
-                                $exp = explode("-", $cook);
+                                $exp = explode("=", $cook);
 
                                 if($exp[0] === $value['code'])
                                 {
@@ -67,7 +67,7 @@
 
                             if ($tip != 'label') {
                                 if (!empty($m_odds))
-                                    $odd .= '<div class="tip"><a class="clickable '.$tipped.'" rel="' . $value['code'] . '"><b class="gameType">' . ucfirst($tip) . '</b> <span class="gameQuote">' . $m_odds . '</span></a></div>';
+                                    $odd .= '<div class="tip"><span class="gameTypeBet">'.$key.'</span><a class="clickable '.$tipped.'" rel="' . $value['code'] . '"><b class="gameType">' . ucfirst($tip) . '</b> <span class="gameQuote">' . $m_odds . '</span><span class="gameTypeBet">'.$key.'</span></a></div>';
                             }
                         }
 
@@ -81,7 +81,7 @@
             }
             $disable = '';
             foreach ($cookie as $key => $cook) {
-                $exp = explode('-', $cook);
+                $exp = explode('=', $cook);
                 if($exp[0] === $value['code'])
                     $disable = 'disable';
             }
