@@ -20,8 +20,6 @@ class User extends CActiveRecord
     public function beforeSave() { // 06adb4cbaa2eabbc41f8f2af3b095bf65d67d7b8
             if ($this->isNewRecord) {
                 $this->date_created = new CDbExpression('NOW()');
-            } else {
-                $this->date_modified = new CDbExpression('NOW()');
             }
             
             $bcrypt = new Bcrypt();

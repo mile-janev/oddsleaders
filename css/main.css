@@ -1404,3 +1404,7 @@ i[data-title]:hover:after
 .gameTypeBet{
     display: none;
 }
+#new_error{
+    color: #ff0000;
+    font-weight: bold;
+}
