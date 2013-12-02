@@ -930,6 +930,7 @@ a
 			#wrapped #main #new_tipsters #users .user:hover 
 			{
 				background: rgba(189,54,47,.2);
+                                cursor: pointer;
 			}
 				#wrapped #main #new_tipsters #users .user img 
 				{
@@ -1395,4 +1396,8 @@ i[data-title]:hover:after
 }
 .gameType{
     margin: 0;
+}
+
+.grid-view td a{
+    color: #1A5E83;
 }

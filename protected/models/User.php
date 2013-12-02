@@ -87,7 +87,9 @@ class User extends CActiveRecord
 			'date_created' => 'Date Created',
                         'email' => 'E-mail',
                         'oauth_provider'=>'Provider',
-                        'oauth_uid'=>'User id from provider'
+                        'oauth_uid'=>'User id from provider',
+                        'conto'=>'Conto this month',
+                        'conto_all'=>'Conto all time'
 		);
 	}
 
@@ -116,9 +118,14 @@ class User extends CActiveRecord
 		$criteria->compare('date_created',$this->date_created,true);
                 $criteria->compare('oauth_provider',$this->oauth_provider,true);
                 $criteria->compare('oauth_uid',$this->oauth_uid,true);
+                $criteria->compare('conto',$this->conto,true);
+                $criteria->compare('conto_all',$this->conto_all,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'sort'=>array(
+                            'defaultOrder'=>'conto DESC',
+                        ),
 		));
 	}
 

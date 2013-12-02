@@ -57,33 +57,33 @@
                     <li class="row">
                         <span class="rightBorderDotted bestTipstersId"><?php echo $i+1; ?></span>
                         <span class="user">
-                            <a href="#"><?php echo $tipstersMonth[$i]->username; ?></a>
+                            <a href="<?php echo Yii::app()->createUrl('user/view', array('id'=>$tipstersMonth[$i]->id)); ?>"><?php echo $tipstersMonth[$i]->username; ?></a>
                         </span>
                         <span class="credits"><?php echo $tipstersMonth[$i]->conto; ?>€</span>
                     </li>
                 <?php } ?>
                     <li class="row">
                         <span class="user" style="text-align:center; width:100%;">
-                            <a href="#">See all <i class="icon-double-angle-right"></i></a>
+                            <a href="<?php echo Yii::app()->createUrl('user/best'); ?>">See all <i class="icon-double-angle-right"></i></a>
                         </span>
                     </li>
             <?php } ?>
         </ul>
         <ul class="tipsters tabb tab-1">
-            <?php $tipstersMonth = OddsClass::getTipsters(FALSE); ?>
-            <?php if ($tipstersMonth) { ?>
-                <?php for($i=0; $i<count($tipstersMonth); $i++) { ?>
+            <?php $tipstersAlltime = OddsClass::getTipsters(FALSE); ?>
+            <?php if ($tipstersAlltime) { ?>
+                <?php for($i=0; $i<count($tipstersAlltime); $i++) { ?>
                     <li class="row">
                         <span class="rightBorderDotted bestTipstersId"><?php echo $i+1; ?></span>
                         <span class="user">
-                            <a href="#"><?php echo $tipstersMonth[$i]->username; ?></a>
+                            <a href="<?php echo Yii::app()->createUrl('user/view', array('id'=>$tipstersMonth[$i]->id)); ?>"><?php echo $tipstersAlltime[$i]->username; ?></a>
                         </span>
-                        <span class="credits"><?php echo $tipstersMonth[$i]->conto; ?>€</span>
+                        <span class="credits"><?php echo $tipstersAlltime[$i]->conto_all; ?>€</span>
                     </li>
                 <?php } ?>
                     <li class="row">
                         <span class="user" style="text-align:center; width:100%;">
-                            <a href="">See all <i class="icon-double-angle-right"></i></a>
+                            <a href="<?php echo Yii::app()->createUrl('user/best'); ?>">See all <i class="icon-double-angle-right"></i></a>
                         </span>
                     </li>
             <?php } ?>

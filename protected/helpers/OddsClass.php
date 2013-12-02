@@ -50,6 +50,11 @@ class OddsClass {
     public static function getTipsters($monthly=true)
     {
         $criteria1 = new CDbCriteria();
+        if ($monthly) {
+            $criteria1->order = 'conto DESC';
+        } else {
+            $criteria1->order = 'conto_all DESC';
+        }
         $criteria1->limit = 10;
         $tipsters = User::model()->findAll($criteria1);
         
