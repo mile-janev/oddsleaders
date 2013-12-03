@@ -44,7 +44,7 @@ class CronController extends Controller
 
             if (($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin) {
             
-                $xml = simplexml_load_file('http://api.oddsleaders.dev/xml/odds.xml');
+                $xml = simplexml_load_file('http://api.oddsleaders.com/xml/odds.xml');
                 foreach ($xml->sport as $key => $sport) {
 
                     $sportModel = Sport::model()->findByAttributes(array('name'=>(string)$sport->sport_name));
@@ -86,7 +86,7 @@ class CronController extends Controller
                                     $stackModel = new Stack();
                                     $stackModel->code = (string)$game->code;
                                     $stackModel->opponent = (string)$game->opponent;
-                                    $stackModel->start = strtotime((string)$game->start);
+                                    $stackModel->start = (string)$game->start;
                                     $stackModel->data = (string)$game->odds;
                                     $stackModel->tournament_id = $tournamentModel->id;
                                     $stackModel->active = 1;

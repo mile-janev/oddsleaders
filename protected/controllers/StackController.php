@@ -220,13 +220,12 @@ class StackController extends Controller
         	if(isset($_COOKIE['myLeagues']) AND $_COOKIE['myLeagues'] != '')
         	{
 	        	$leagues = explode('|', $_COOKIE['myLeagues']);
-
 	        	foreach ($leagues as $key => $value) {
 	        		if($value != '')
 	        		{
 	        			$criteria1 = new CDbCriteria();
 			            $criteria1->addCondition('tournament_id = :id');
-			            $criteria1->params[':id'] = $value;
+			            $criteria1->params[':id'] = $value;	
 			            $model[] = Stack::model()->findAll($criteria1);
 	        		}
 	        	}

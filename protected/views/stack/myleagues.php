@@ -11,7 +11,7 @@
             <div class="box_title green">Football</div>
                 <ul class="table">
                 <li>
-                    <div id="league"><?php echo $matches[0]->tournament['name']; ?></div>
+                    <div id="league">Football</div>
                     <div class="tips">
                         <div>1</div>
                         <div>X</div>
@@ -22,25 +22,27 @@
 <?php
        $cookie = explode('|', $_COOKIE['myBets']);
 
+       if (isset($_COOKIE['myBets'])) {
+           $cookie = explode('|', $_COOKIE['myBets']);
+            
+           for ($i = 0; $i < count($cookie) - 1; $i++) {
+                $exp = explode("=", $cookie[$i]);
+
+                $tipped[$exp[0]][$exp[4]][$exp[1]] = 'tipped';
+            }
+        }
+        
         foreach ($matches as $key => $value) {
             $odds = json_decode($value['data']);
 
             $match_odds = '';
             if ($odds) {
                 foreach ($odds->match as $key => $match) {
-                    $tipped = '';
-                    foreach ($cookie as $cook) {
-                        
-                        $exp = explode("=", $cook);
-                        if($exp[0] === $value['code'])
-                        {
-                            if(isset($exp[1]) AND $exp[1] === ucfirst($key))
-                                $tipped = 'tipped';
-                        }
-                    }
 
                     if ($key != 'label')
-                        $match_odds .= '<div class="tip"><span class="gameTypeBet">match</span><a class="clickable '.$tipped.'" id="liga" rel="' . $value['code'] . '" data-type="'.ucfirst($key).'">' . $match . '</a></div>';
+                    {
+                        $match_odds .= '<div class="tip"><span class="gameTypeBet">match</span><a class="clickable '.$tipped.'" id="liga" rel="' . $value['code'] . '" data-type="'.$key.'">' . $match . '</a></div>';
+                    }
                 }
             }
 
