@@ -12,9 +12,6 @@
  * @property string $start
  * @property string $data
  * @property string $tournament_id
- * @property integer $cron
- * @property string $cron_time
- * @property string $date_created
  *
  * The followings are the available model relations:
  * @property Tournament $tournament
@@ -37,15 +34,14 @@ class Stack extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tournament_id, date_created', 'required'),
-			array('cron', 'numerical', 'integerOnly'=>true),
+			array('tournament_id', 'required'),
                         array('code', 'numerical', 'integerOnly'=>true),
 			array('opponent', 'length', 'max'=>256),
 			array('tournament_id', 'length', 'max'=>10),
-			array('start, data, cron_time', 'safe'),
+			array('start, data', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, opponent, start, data, tournament_id, cron, cron_time, date_created', 'safe', 'on'=>'search'),
+			array('id, code, opponent, start, data, tournament_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,10 +68,7 @@ class Stack extends CActiveRecord
 			'opponent' => 'Opponents',
 			'start' => 'Start game',
 			'data' => 'Data content',
-			'tournament_id' => 'Tournament',
-			'cron' => 'Cron group',
-			'cron_time' => 'Cron Time',
-			'date_created' => 'Date Created',
+			'tournament_id' => 'Tournament'
 		);
 	}
 
@@ -103,9 +96,6 @@ class Stack extends CActiveRecord
 		$criteria->compare('start',$this->start,true);
 		$criteria->compare('data',$this->data,true);
 		$criteria->compare('tournament_id',$this->tournament_id,true);
-		$criteria->compare('cron',$this->cron);
-		$criteria->compare('cron_time',$this->cron_time,true);
-		$criteria->compare('date_created',$this->date_created,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

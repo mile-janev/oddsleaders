@@ -28,7 +28,7 @@ class CronController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array(''),//
+				'actions'=>array('getxml'),//
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -36,5 +36,63 @@ class CronController extends Controller
 			),
 		);
 	}
+        
+        public function actionGetxml()
+        {
+            $xml = simplexml_load_file('http://api.oddsleaders.dev/xml/odds.xml');
+            foreach ($xml->sport as $key => $sport) {
+                
+                $sportModel = Sport::model()->findByAttributes(array('name'=>(string)$sport->sport_name));
+                
+                if (!$sportModel) {
+                    $sportModel = new Sport();
+                    $sportModel->name = (string)$sport->sport_name;
+                    $sportModel->active = 1;
+                    $sportModel->save();
+                }
+
+                foreach ($sport->tournament as $key => $tournament) {
+                    $countryModel = Country::model()->findByAttributes(array('country'=>(string)$tournament->country));
+                    
+                    if (!$countryModel) {
+                        $countryModel = new Country();
+                        $countryModel->country = (string)$tournament->country;
+                        $countryModel->link = 'http://oddsleaders.com';
+                        $countryModel->save();
+                    }
+                    
+                    $tournamentModel = Tournament::model()->findByAttributes(array('name'=>(string)$tournament->tournament_name));
+                                        
+                    if (!$tournamentModel) {
+                        $tournamentModel = new Tournament();
+                        $tournamentModel->name = (string)$tournament->tournament_name;
+                        $tournamentModel->slug = SlugGenerator::slug((string)$tournament->tournament_name);
+                        $tournamentModel->active = 1;
+                        $tournamentModel->sport_id = $sportModel->id;
+                        $tournamentModel->country_id = $countryModel->id;
+                        $tournamentModel->save();
+                    }
+
+                    foreach ($tournament->game as $key => $game) {
+                        $stackModel = Stack::model()->findByAttributes(array('code'=>(string)$game->code));
+                        
+                        if (!$stackModel) {
+                            $stackModel = new Stack();
+                            $stackModel->code = (string)$game->code;
+                            $stackModel->opponent = (string)$game->opponent;
+                            $stackModel->start = strtotime((string)$game->start);
+                            $stackModel->data = (string)$game->odds;
+                            $stackModel->tournament_id = $tournamentModel->id;
+                            $stackModel->cron = 0;
+                            $stackModel->active = 1;
+                            $stackModel->save();
+                        } else {
+                            $stackModel->data = (string)$game->odds;
+                            $bla = $stackModel->save();
+                        }
+                    }
+                }
+            }
+        }
 
 }
