@@ -32,7 +32,6 @@
                     foreach ($cookie as $cook) {
                         
                         $exp = explode("=", $cook);
-
                         if($exp[0] === $value['code'])
                         {
                             if(isset($exp[1]) AND $exp[1] === ucfirst($key))

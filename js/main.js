@@ -214,7 +214,9 @@ $(document).ready(function() {
         check_slipper();
 
         removeGameFromCookie(id);
-        $(this).parent().remove();
+
+        $('.match-slip .'+id).remove();
+
         $('.'+id).removeClass('disable');
         $('.'+id).find('.tipped').removeClass('tipped');
 
@@ -290,7 +292,22 @@ $(document).ready(function() {
             total = 0;
 
         stake = $('.stake').val(); // get the current stake of the input field.
-        $('#money #win_stake').val((total*stake).toFixed(2)+' €');
+        if(stake >= 500)
+        {
+
+            stake = '500';
+            $('.stake').val('500');
+        }
+
+        win = (total*stake).toFixed(2);
+
+        if(win >= 100000)
+        {
+            win = '100000';
+            $('.stake').val((100000 / total).toFixed(0));
+        }
+
+        $('#money #win_stake').val(win+' €');
     }
 /*
  * ---------------------------------------------------------------------------------------------------------------------
@@ -299,7 +316,9 @@ $(document).ready(function() {
  * ---------------------------------------------------------------------------------------------------------------------
 */
     $('.clear').live('click', function(){
-        $('.match-slip').html('');
+        $('.match-slip').each(function(){
+            $(this).html('');
+        });
 
         $('.disable').each(function(){
             $(this).removeClass('disable');

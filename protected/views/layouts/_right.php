@@ -14,7 +14,7 @@
                             for ($i = 0; $i < count($cookieValue) - 1; $i++) {
                                 $bet = explode("=", $cookieValue[$i]);
                         ?>
-                            <div class="match">
+                            <div class="match <?php echo $bet[0]; ?>">
                                 <?php echo $bet[3]; ?>
                                 <span class="close betSlipperClose" id="<?php echo $bet[0]; ?>">X</span>
                                 <div id="odds">
@@ -38,7 +38,7 @@
                 <input type="text" name="stake" class="stake"> €
             </div>
             <div id="money">
-                Winning stake <span><input type="text" id="win_stake" name="win_stake" value="0 €"/></span> 
+                Winning stake <span><input type="text" id="win_stake" name="win_stake" value="0 €" disabled="disabled"/></span> 
             </div>
             <a href="#" class="clear">Clear bets</a>
             <input type="submit" value="Place Bet" class="button blue right" id="place_bet">
