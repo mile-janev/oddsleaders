@@ -77,17 +77,19 @@ class CronController extends Controller
                         $stackModel = Stack::model()->findByAttributes(array('code'=>(string)$game->code));
                         
                         if (!$stackModel) {
-                            $stackModel = new Stack();
-                            $stackModel->code = (string)$game->code;
-                            $stackModel->opponent = (string)$game->opponent;
-                            $stackModel->start = strtotime((string)$game->start);
-                            $stackModel->data = (string)$game->odds;
-                            $stackModel->tournament_id = $tournamentModel->id;
-                            $stackModel->active = 1;
-                            $stackModel->save();
+                            if ((string)$game->opponent) {
+                                $stackModel = new Stack();
+                                $stackModel->code = (string)$game->code;
+                                $stackModel->opponent = (string)$game->opponent;
+                                $stackModel->start = strtotime((string)$game->start);
+                                $stackModel->data = (string)$game->odds;
+                                $stackModel->tournament_id = $tournamentModel->id;
+                                $stackModel->active = 1;
+                                $stackModel->save();
+                            }
                         } else {
                             $stackModel->data = (string)$game->odds;
-                            $bla = $stackModel->save();
+                            $stackModel->update();
                         }
                     }
                 }
