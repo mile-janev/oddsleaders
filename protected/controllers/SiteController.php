@@ -49,8 +49,6 @@ class SiteController extends Controller
             $criteria1->order = 'start ASC';
             $criteria1->limit = 20;
             $upcoming = Stack::model()->findAll($criteria1);
-            var_dump($upcoming);
-            exit();
             
             $criteria2 = new CDbCriteria();
             $criteria2->order = 'id ASC';
