@@ -48,7 +48,8 @@
     <div class="box_title grey"><i class="icon-flag"></i> Upcoming events</div>
     <ul class="upcoming">
         <?php 
-            if (isset($_COOKIE['myBets'])) {
+            $tipped = array();
+            if (isset($_COOKIE['myBets']) && $_COOKIE['myBets']!='') {
                $cookie = explode('|', $_COOKIE['myBets']);
                 
                for ($i = 0; $i < count($cookie) - 1; $i++) {
@@ -104,7 +105,7 @@
                     $time = strtotime($value['start']) - time();
                     $disable = '';
                     
-                    if (isset($_COOKIE['myBets'])) {
+                    if (isset($_COOKIE['myBets']) && $_COOKIE['myBets']!='') {
                         foreach ($cookie as $key => $cook) {
                             $exp = explode('=', $cook);
                             if($exp[0] === $value['code'])

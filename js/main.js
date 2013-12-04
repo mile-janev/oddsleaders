@@ -188,10 +188,11 @@ $(document).ready(function() {
         }
 
         $(this).addClass('tipped');
+        $(this).removeClass('clickable');
         
         //$('#not_loged').hide();
         // $.removeCookie("myBets");
-        html = '<div class="match">'+matchName+'<span class="close betSlipperClose" id="'+gameCode+'">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
+        html = '<div class="match '+gameCode+'">'+matchName+'<span class="close betSlipperClose" id="'+gameCode+'">X</span><div id="odds"><div class="tip">'+gameType+'</div><span>'+gameQuote+'</span></div></div>';
         $('.match-slip').append(html);
 
         cal_win_stake();
@@ -226,6 +227,24 @@ $(document).ready(function() {
 
         cal_win_stake();
         
+    });
+ /*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Delete match from sliper
+ *  @return html
+ * ---------------------------------------------------------------------------------------------------------------------
+*/  
+    $('.tipped').live('click', function(){
+        id = $(this).attr('rel');
+
+        removeGameFromCookie(id);
+
+        $('.match-slip .'+id).remove();
+        $('.'+id).removeClass('disable');
+        $(this).removeClass('tipped');
+        $(this).addClass('clickable');
+
+        return false;
     });
 /*
  * ---------------------------------------------------------------------------------------------------------------------

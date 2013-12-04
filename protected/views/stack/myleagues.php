@@ -44,7 +44,7 @@
                     if (isset($key) AND $key != 'label')
                     {
                         $key = (string)ucfirst($key);
-                        print_r($tipped);
+                        
                         (isset($tipped[$value['code']][$type][$key])) ? $tiped = 'tipped' : $tiped = '';
 
                         $match_odds .= '<div class="tip"><span class="gameTypeBet">match</span><a class="clickable '.$tiped.'" id="liga" rel="' . $value['code'] . '" data-type="'.$key.'">' . $match . '</a></div>';
