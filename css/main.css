@@ -1426,7 +1426,92 @@ i[data-title]:hover:after
 {
 	display: none !important;
 }
+/*--------------------------------------------------------------------------------------------------------------
+										BEST TIPSTERS
+---------------------------------------------------------------------------------------------------------------*/
+.grid-view 
+{
+}
+	.grid-view .summary
+	{
+		text-align: right;
+		margin: 10px;
+	} 
+	.grid-view table.items
+	{
+		width: 100%;
+		border-radius: 5px 5px 0 0;
+		overflow: hidden;
+	}
+	.grid-view table.items th
+	{
+		color: #ffffff;
+		padding: 10px;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+		background-color: #5bb75b;
+		background-image: -moz-linear-gradient(top, #62c462, #51a351);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+		background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+		background-image: -o-linear-gradient(top, #62c462, #51a351);
+		background-image: linear-gradient(to bottom, #62c462, #51a351);
+		background-repeat: repeat-x;
+		border-color: #51a351 #51a351 #387038;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+		filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+	}
+	.grid-view table.items th a
+	{
+		color: #ffffff;
+	}
+	.grid-view table.items
+	{
+		border-left: 2px solid #51a351;
+		border-right: 2px solid #51a351;
+		border-bottom: 5px solid #51a351;
+	}
+	.grid-view table.items .filters
+	{
+		text-align: center;
+	}
+	.grid-view table.items .filters input
+	{
+		border: none;
+		outline: none;
+		padding: 2px 5px;
+		border: 1px solid #cdcdcd;
+	}
+	.grid-view table.items tr.odd
+	{
+		background: #ffffff;
+	}
+	.grid-view table.items tr td 
+	{
+		padding: 5px 10px;
+		text-align: center;
+		border-bottom: 1px dotted #cdcdcd;  
+	}
+	.grid-view table.items tr td:first-child
+	{
+		text-align: left;
+	} 
+	.grid-view table.items tr td a:hover
+	{
+		text-decoration: underline;
+	}
 
+	table.detail-view 
+	{
+		background: red !important;
+	}
+	table.detail-view tr 
+	{
+		padding: 10px; 
+	}
+	table.detail-view tr.odd
+	{
+		background: #ffffff !important;
+	}
 /*--------------------------------------------------------------------------------------------------------------
 										NANO SCROLLER
 ---------------------------------------------------------------------------------------------------------------*/
