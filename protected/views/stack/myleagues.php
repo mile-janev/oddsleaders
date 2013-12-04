@@ -31,17 +31,23 @@
                 $tipped[$exp[0]][$exp[4]][$exp[1]] = 'tipped';
             }
         }
-        
-        foreach ($matches as $key => $value) {
+        foreach ($matches as $value) {
+
+            
             $odds = json_decode($value['data']);
 
             $match_odds = '';
             if ($odds) {
                 foreach ($odds->match as $key => $match) {
+                    $type = strtolower($match);
 
-                    if ($key != 'label')
+                    if (isset($key) AND $key != 'label')
                     {
-                        $match_odds .= '<div class="tip"><span class="gameTypeBet">match</span><a class="clickable '.$tipped.'" id="liga" rel="' . $value['code'] . '" data-type="'.$key.'">' . $match . '</a></div>';
+                        $key = (string)ucfirst($key);
+                        print_r($tipped);
+                        (isset($tipped[$value['code']][$type][$key])) ? $tiped = 'tipped' : $tiped = '';
+
+                        $match_odds .= '<div class="tip"><span class="gameTypeBet">match</span><a class="clickable '.$tiped.'" id="liga" rel="' . $value['code'] . '" data-type="'.$key.'">' . $match . '</a></div>';
                     }
                 }
             }
