@@ -13,16 +13,8 @@
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
         
-        <b><?php echo CHtml::encode($data->getAttributeLabel('syn')); ?>:</b>
-	<?php echo CHtml::encode($data->syn); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('link')); ?>:</b>
-	<?php echo CHtml::encode($data->link); ?>
-	<br />
-        
-        <b><?php echo CHtml::encode($data->getAttributeLabel('syn_link')); ?>:</b>
-	<?php echo CHtml::encode($data->syn_link); ?>
+        <b><?php echo CHtml::encode($data->getAttributeLabel('icon')); ?>:</b>
+	<?php echo CHtml::encode($data->icon); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('active')); ?>:</b>

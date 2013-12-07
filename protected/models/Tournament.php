@@ -37,10 +37,10 @@ class Tournament extends CActiveRecord
 			array('name, sport_id', 'required'),
 			array('active', 'numerical', 'integerOnly'=>true),
 			array('name, slug', 'length', 'max'=>256),
-			array('sport_id', 'length', 'max'=>10),
+			array('sport_id, country_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, slug, active, sport_id', 'safe', 'on'=>'search'),
+			array('id, name, slug, active, sport_id, country_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,10 +66,11 @@ class Tournament extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-                        'slug' => 'Address',
+                        'slug' => 'Slug',
                         'country_id' => 'Country',
 			'active' => 'Active',
-			'sport_id' => 'Sport'
+			'sport_id' => 'Sport',
+                        'country_id' => 'Country'
 		);
 	}
 
@@ -96,6 +97,7 @@ class Tournament extends CActiveRecord
                 $criteria->compare('slug',$this->slug,true);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('sport_id',$this->sport_id,true);
+                $criteria->compare('country_id',$this->country_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

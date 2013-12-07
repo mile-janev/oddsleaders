@@ -26,27 +26,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'link'); ?>
-		<?php echo $form->textArea($model,'link',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'link'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($model,'syn_link'); ?>
-		<?php echo $form->textArea($model,'syn_link',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'syn_link'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'opponent'); ?>
 		<?php echo $form->textField($model,'opponent',array('size'=>60,'maxlength'=>256)); ?>
 		<?php echo $form->error($model,'opponent'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($model,'syn'); ?>
-		<?php echo $form->textField($model,'syn',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'syn'); ?>
 	</div>
 
 	<div class="row">
@@ -68,21 +50,15 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'cron'); ?>
-		<?php echo $form->textField($model,'cron'); ?>
-		<?php echo $form->error($model,'cron'); ?>
+		<?php echo $form->labelEx($model,'active'); ?>
+		<?php echo $form->textField($model,'active'); ?>
+		<?php echo $form->error($model,'active'); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'cron_time'); ?>
-		<?php echo $form->textField($model,'cron_time'); ?>
-		<?php echo $form->error($model,'cron_time'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_created'); ?>
-		<?php echo $form->textField($model,'date_created'); ?>
-		<?php echo $form->error($model,'date_created'); ?>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'bet_count'); ?>
+		<?php echo $form->textField($model,'bet_count'); ?>
+		<?php echo $form->error($model,'bet_count'); ?>
 	</div>
 
 	<div class="row buttons">

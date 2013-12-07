@@ -26,27 +26,15 @@
 	</div>
         
         <div class="row">
-		<?php echo $form->labelEx($model,'syn'); ?>
-		<?php echo $form->textField($model,'syn',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'syn'); ?>
+		<?php echo $form->labelEx($model,'slug'); ?>
+		<?php echo $form->textField($model,'slug',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->error($model,'slug'); ?>
 	</div>
 
         <div class="row">
 		<?php echo $form->labelEx($model,'country_id'); ?>
 		<?php echo $form->dropDownList($model,'country_id', $countriesList); ?>
 		<?php echo $form->error($model,'country_id'); ?>
-	</div>
-        
-	<div class="row">
-		<?php echo $form->labelEx($model,'link'); ?>
-		<?php echo $form->textArea($model,'link',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'link'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($model,'syn_link'); ?>
-		<?php echo $form->textArea($model,'syn_link',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'syn_link'); ?>
 	</div>
 
 	<div class="row">
@@ -59,12 +47,6 @@
 		<?php echo $form->labelEx($model,'sport_id'); ?>
 		<?php echo $form->textField($model,'sport_id',array('size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'sport_id'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($model,'special'); ?>
-		<?php echo $form->checkBox($model,'special'); ?>
-		<?php echo $form->error($model,'special'); ?>
 	</div>
 
 	<div class="row buttons">

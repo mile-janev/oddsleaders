@@ -13,16 +13,8 @@
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
         
-        <b><?php echo CHtml::encode($data->getAttributeLabel('syn')); ?>:</b>
-	<?php echo CHtml::encode($data->syn); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('link')); ?>:</b>
-	<?php echo CHtml::encode($data->link); ?>
-	<br />
-        
-        <b><?php echo CHtml::encode($data->getAttributeLabel('syn_link')); ?>:</b>
-	<?php echo CHtml::encode($data->syn_link); ?>
+        <b><?php echo CHtml::encode($data->getAttributeLabel('slug')); ?>:</b>
+	<?php echo CHtml::encode($data->slug); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('active')); ?>:</b>
@@ -32,9 +24,9 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('sport_id')); ?>:</b>
 	<?php echo CHtml::encode($data->sport_id); ?>
 	<br />
-
-        <b><?php echo CHtml::encode($data->getAttributeLabel('special')); ?>:</b>
-	<?php echo CHtml::encode($data->special); ?>
+        
+        <b><?php echo CHtml::encode($data->getAttributeLabel('country_id')); ?>:</b>
+	<?php echo CHtml::encode($data->country_id); ?>
 	<br />
 
 </div>

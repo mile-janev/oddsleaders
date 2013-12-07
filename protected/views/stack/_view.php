@@ -13,20 +13,8 @@
 	<?php echo CHtml::encode($data->code); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('link')); ?>:</b>
-	<?php echo CHtml::encode($data->link); ?>
-	<br />
-        
-        <b><?php echo CHtml::encode($data->getAttributeLabel('syn_link')); ?>:</b>
-	<?php echo CHtml::encode($data->syn_link); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('opponent')); ?>:</b>
 	<?php echo CHtml::encode($data->opponent); ?>
-	<br />
-        
-        <b><?php echo CHtml::encode($data->getAttributeLabel('syn')); ?>:</b>
-	<?php echo CHtml::encode($data->syn); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('start')); ?>:</b>
@@ -41,19 +29,12 @@
 	<?php echo CHtml::encode($data->tournament_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('cron')); ?>:</b>
-	<?php echo CHtml::encode($data->cron); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('active')); ?>:</b>
+	<?php echo CHtml::encode($data->active); ?>
 	<br />
-
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('cron_time')); ?>:</b>
-	<?php echo CHtml::encode($data->cron_time); ?>
+        
+        <b><?php echo CHtml::encode($data->getAttributeLabel('bet_count')); ?>:</b>
+	<?php echo CHtml::encode($data->bet_count); ?>
 	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('date_created')); ?>:</b>
-	<?php echo CHtml::encode($data->date_created); ?>
-	<br />
-
-	*/ ?>
 
 </div>

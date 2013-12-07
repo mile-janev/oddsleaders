@@ -47,22 +47,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'name',
-                'syn',
-		array(
-                    'name'=>'link',
-                    'value'=>'"<a href=" .$data->link. " target=_blank>" .$data->link. "</a>"',
-                    'sortable'=>TRUE,
-                    'type'  => 'raw',
-                ),
-                array(
-                    'name'=>'syn_link',
-                    'value'=>'"<a href=" .$data->syn_link. " target=_blank>" .$data->syn_link. "</a>"',
-                    'sortable'=>TRUE,
-                    'type'  => 'raw',
-                ),
+                'slug',
 		'active',
 		'sport_id',
-                'special',
+                'country_id',
 		array(
 			'class'=>'CButtonColumn',
 		),

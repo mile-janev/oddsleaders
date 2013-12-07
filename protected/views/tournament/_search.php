@@ -22,18 +22,8 @@
 	</div>
     
         <div class="row">
-		<?php echo $form->label($model,'syn'); ?>
-		<?php echo $form->textField($model,'syn',array('size'=>60,'maxlength'=>256)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'link'); ?>
-		<?php echo $form->textArea($model,'link',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-    
-        <div class="row">
-		<?php echo $form->label($model,'syn_link'); ?>
-		<?php echo $form->textArea($model,'syn_link',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->label($model,'slug'); ?>
+		<?php echo $form->textField($model,'slug',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
 
 	<div class="row">
@@ -47,8 +37,8 @@
 	</div>
     
         <div class="row">
-		<?php echo $form->label($model,'special'); ?>
-		<?php echo $form->textField($model,'special'); ?>
+		<?php echo $form->label($model,'country_id'); ?>
+		<?php echo $form->textField($model,'country_id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row buttons">

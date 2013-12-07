@@ -23,19 +23,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'name',
-                'syn',
-		array(
-                    'name'=>'link',
-                    'value'=>"<a href='" .$model->link. "' target='_blank'>" .$model->link. "</a>",
-                    'sortable'=>TRUE,
-                    'type'  => 'raw',
-                ),
-                array(
-                    'name'=>'syn_link',
-                    'value'=>"<a href='" .$model->syn_link. "' target='_blank'>" .$model->syn_link. "</a>",
-                    'sortable'=>TRUE,
-                    'type'  => 'raw',
-                ),
+                'icon',
 		'active',
 	),
 )); ?>

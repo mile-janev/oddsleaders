@@ -5,10 +5,7 @@
  *
  * The followings are the available columns in table 'stack':
  * @property string $id
- * @property string $link
- * @property string $syn_link
  * @property string $opponent
- * @property string $syn
  * @property string $start
  * @property string $data
  * @property string $tournament_id
@@ -41,7 +38,7 @@ class Stack extends CActiveRecord
 			array('start, data', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, opponent, start, data, tournament_id', 'safe', 'on'=>'search'),
+			array('id, code, opponent, start, data, tournament_id, active, bet_count', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,7 +65,9 @@ class Stack extends CActiveRecord
 			'opponent' => 'Opponents',
 			'start' => 'Start game',
 			'data' => 'Data content',
-			'tournament_id' => 'Tournament'
+			'tournament_id' => 'Tournament',
+                        'bet_count' => 'Bet Count',
+                        'active' => 'Active'
 		);
 	}
 
@@ -96,6 +95,8 @@ class Stack extends CActiveRecord
 		$criteria->compare('start',$this->start,true);
 		$criteria->compare('data',$this->data,true);
 		$criteria->compare('tournament_id',$this->tournament_id,true);
+                $criteria->compare('active',$this->active,true);
+                $criteria->compare('bet_count',$this->bet_count,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

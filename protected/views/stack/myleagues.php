@@ -3,9 +3,10 @@
 <?php
     if($model != '')
     {
-
+        
     foreach ($model as $matches) 
     {
+        if($matches) {
 ?>
         <div class="box" id="<?=$matches[0]->tournament->id;?>">
             <div class="box_title green">Football</div>
@@ -99,6 +100,7 @@
                     </li>';
         }
         echo '</ul></div>';
+    }
 	}
 	}
 	else 

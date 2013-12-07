@@ -26,21 +26,9 @@
 	</div>
         
         <div class="row">
-		<?php echo $form->labelEx($model,'syn'); ?>
-		<?php echo $form->textField($model,'syn',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'syn'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'link'); ?>
-		<?php echo $form->textField($model,'link',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'link'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($model,'syn_link'); ?>
-		<?php echo $form->textField($model,'syn_link',array('size'=>60,'maxlength'=>256)); ?>
-		<?php echo $form->error($model,'syn_link'); ?>
+		<?php echo $form->labelEx($model,'icon'); ?>
+		<?php echo $form->textField($model,'icon',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'icon'); ?>
 	</div>
 
 	<div class="row">

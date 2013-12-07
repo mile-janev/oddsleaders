@@ -22,18 +22,8 @@
 	</div>
     
         <div class="row">
-		<?php echo $form->label($model,'syn'); ?>
-		<?php echo $form->textField($model,'syn',array('size'=>60,'maxlength'=>256)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'link'); ?>
-		<?php echo $form->textField($model,'link',array('size'=>60,'maxlength'=>256)); ?>
-	</div>
-    
-        <div class="row">
-		<?php echo $form->label($model,'syn_link'); ?>
-		<?php echo $form->textField($model,'syn_link',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->label($model,'icon'); ?>
+		<?php echo $form->textField($model,'icon',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">
