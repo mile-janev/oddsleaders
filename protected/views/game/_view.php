@@ -13,6 +13,10 @@
 	<?php echo CHtml::encode($data->code); ?>
 	<br />
 
+        <b><?php echo CHtml::encode($data->getAttributeLabel('game_type')); ?>:</b>
+	<?php echo CHtml::encode($data->game_type); ?>
+	<br />
+        
 	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
 	<?php echo CHtml::encode($data->type); ?>
 	<br />

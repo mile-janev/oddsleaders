@@ -23,6 +23,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'code',
+                'game_type',
 		'type',
 		'odd',
 		'ticket_id',

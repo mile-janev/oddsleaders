@@ -30,6 +30,12 @@
 		<?php echo $form->textField($model,'type',array('size'=>16,'maxlength'=>16)); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'game_type'); ?>
+		<?php echo $form->textField($model,'game_type',array('size'=>16,'maxlength'=>64)); ?>
+		<?php echo $form->error($model,'game_type'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'odd'); ?>

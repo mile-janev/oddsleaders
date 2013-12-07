@@ -37,10 +37,11 @@ class Game extends CActiveRecord
 			array('odd', 'numerical'),
 			array('code, stack_id', 'length', 'max'=>20),
 			array('type', 'length', 'max'=>16),
+                        array('game_type', 'length', 'max'=>64),
 			array('ticket_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, type, odd, ticket_id, stack_id', 'safe', 'on'=>'search'),
+			array('id, code, type, odd, ticket_id, stack_id,game_type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +70,7 @@ class Game extends CActiveRecord
 			'odd' => 'Odd',
 			'ticket_id' => 'Ticket',
 			'stack_id' => 'Stack',
+                        'game_type' => 'Bet type'
 		);
 	}
 
@@ -96,6 +98,7 @@ class Game extends CActiveRecord
 		$criteria->compare('odd',$this->odd);
 		$criteria->compare('ticket_id',$this->ticket_id,true);
 		$criteria->compare('stack_id',$this->stack_id,true);
+                $criteria->compare('game_type',$this->game_type,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

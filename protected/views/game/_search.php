@@ -20,6 +20,11 @@
 		<?php echo $form->label($model,'code'); ?>
 		<?php echo $form->textField($model,'code',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
+    
+        <div class="row">
+		<?php echo $form->label($model,'game_type'); ?>
+		<?php echo $form->textField($model,'game_type',array('size'=>16,'maxlength'=>64)); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'type'); ?>
