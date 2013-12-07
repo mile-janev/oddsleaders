@@ -90,6 +90,7 @@ class CronController extends Controller
                                     $stackModel->data = (string)$game->odds;
                                     $stackModel->tournament_id = $tournamentModel->id;
                                     $stackModel->active = 1;
+                                    $stackModel->bet_count = 0;
                                     $stackModel->save();
                                 }
                             } else {

@@ -100,6 +100,7 @@ class StackController extends Controller
 		if(isset($_POST['Stack']))
 		{
 			$model->attributes=$_POST['Stack'];
+                        $model->data = json_encode(json_decode($model->data)); //This is maked because pretty_print destroy string in area
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -225,7 +226,7 @@ class StackController extends Controller
 	        	foreach ($leagues as $key => $value) {
 	        		if($value != '')
 	        		{
-	        			$criteria1 = new CDbCriteria();
+                                    $criteria1 = new CDbCriteria();
 			            $criteria1->addCondition('tournament_id = :id');
 			            $criteria1->params[':id'] = $value;	
 			            $model[] = Stack::model()->findAll($criteria1);
