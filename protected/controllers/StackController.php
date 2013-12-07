@@ -206,6 +206,8 @@ class StackController extends Controller
             $id = $_POST['id'];
             
             $criteria1 = new CDbCriteria();
+            $criteria1->addCondition('start > :nowtime');
+            $criteria1->params[':nowtime'] = time();
             $criteria1->addCondition('tournament_id = :id');
             $criteria1->params[':id'] = $id;
             $matches = Stack::model()->findAll($criteria1);

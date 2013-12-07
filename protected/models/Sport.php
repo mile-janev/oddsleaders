@@ -6,9 +6,7 @@
  * The followings are the available columns in table 'sport':
  * @property string $id
  * @property string $name
- * @property string $syn
  * @property string $link
- * @property string $syn_link
  * @property integer $active
  *
  * The followings are the available model relations:

@@ -87,7 +87,7 @@
             }
 
             echo '<li class="' . $value['code'] . " ".$disable.'">
-                        <div id="time">' . date("d-m H:i", strtotime($value['start'])) . '</div>
+                        <div id="time">' . date("d-m-Y H:i", $value->start) . '</div>
                         <div id="teams"><a>' . $value['opponent'] . '</a></div>
                         <div class="tips">
                             ' . $match_odds . '

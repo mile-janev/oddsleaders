@@ -44,7 +44,7 @@ class CronController extends Controller
 
             if (($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin) {
             
-                $xml = simplexml_load_file('http://api.oddsleaders.com/xml/odds.xml');
+                $xml = simplexml_load_file('http://api.oddsleaders.dev/xml/odds.xml');
                 foreach ($xml->sport as $key => $sport) {
 
                     $sportModel = Sport::model()->findByAttributes(array('name'=>(string)$sport->sport_name));

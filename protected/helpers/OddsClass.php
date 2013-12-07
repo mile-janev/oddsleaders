@@ -61,6 +61,15 @@ class OddsClass {
         return $tipsters;
     }
     
+    /**
+     * @return user conto
+     */
+    public static function getUserConto()
+    {
+        $user = User::model()->findByPk(Yii::app()->user->id);
+        return $user->conto;
+    }
+    
 }
 
 ?>

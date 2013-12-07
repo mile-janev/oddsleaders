@@ -102,7 +102,7 @@
                         }
                     }   
                 }
-                    $time = strtotime($value['start']) - time();
+                    $time = $value->start - time();
                     $disable = '';
                     
                     if (isset($_COOKIE['myBets']) && $_COOKIE['myBets']!='') {
@@ -134,8 +134,8 @@
         <?php foreach ($users as $user) { ?>
         <a href="<?php echo Yii::app()->createUrl('user/view', array('id'=>$user->id)); ?>">
                 <div class="user">
-                        <img src="<?php echo ($user['image']) ? $user['image'] : '/images/regtop.png'; ?>" alt="<?php echo $user['name']; ?>"/>
-                        <h1><?php echo $user['name']; ?></h1>
+                        <img src="<?php echo ($user->image) ? $user->image : '/images/regtop.png'; ?>" alt="<?php echo $user->username; ?>"/>
+                        <h1><?php echo $user->username; ?></h1>
                 </div>
             </a>
         <?php } ?>

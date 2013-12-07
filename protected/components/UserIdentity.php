@@ -30,7 +30,6 @@ class UserIdentity extends CUserIdentity
                     if($user->oauth_provider == 'facebook')
                     {
                         $this->_id=$user->id;
-                        $this->setState('conto', $user->conto);
                         $this->errorCode=self::ERROR_NONE;
                     }
                     else
@@ -47,7 +46,6 @@ class UserIdentity extends CUserIdentity
                     else
                     {
                         $this->_id=$user->id;
-                        $this->setState('conto', $user->conto);
                         $this->errorCode=self::ERROR_NONE;
                     }
                 }

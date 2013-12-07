@@ -198,7 +198,7 @@ class BetController extends Controller
         	{
                     $user = User::model()->findByPk(Yii::app()->user->id);
                     $conto = $user->conto;
-                    if ($_POST['stake'] < $conto) {
+                    if ($_POST['stake'] <= $conto) {
                         $games = explode('|', $_COOKIE['myBets']);
 
                         $totalOdds = 1;
@@ -236,7 +236,12 @@ class BetController extends Controller
                                         $game->odd = OddsClass::formatNumber($gameArray[2]);
                                         $game->ticket_id = $ticket->id;
                                         $game->stack_id = $stack->id;
-                                        $game->save();
+                                        $gameSaved = $game->save();
+                                        
+                                        if ($gameSaved) {
+                                            $stack->bet_count += 1;
+                                            $stack->update();
+                                        }
                                     }
                                 }
                             }

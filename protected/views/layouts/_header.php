@@ -24,7 +24,7 @@
                             <ul class="grey">
                                 <li><a href="<?php echo Yii::app()->createUrl('user/profile'); ?>"><i class="icon-user"></i> Profile</a></li>
                                     <li><a href="/index.php?r=site/logout"><i class="icon-signout"></i> Log Out</a></li>
-                                    <li><a class="bilans"> CREDITS <span><?php echo Yii::app()->user->conto; ?> €</span></a></li>
+                                    <li><a class="bilans"> CREDITS <span><?php echo OddsClass::getUserConto(); ?> €</span></a></li>
                             </ul>
                         </li>
                     </ul>	

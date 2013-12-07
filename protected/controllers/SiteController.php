@@ -45,13 +45,18 @@ class SiteController extends Controller
 //            Register
             $model=new User;
             
+            //Select games who start in next 24 hours
             $criteria1 = new CDbCriteria();
+            $criteria1->addCondition('start > :nowtime');
+            $criteria1->params[':nowtime'] = time();
+            $criteria1->addCondition('start <= :today');
+            $criteria1->params[':today'] = time()+(24*60*60);
             $criteria1->order = 'start ASC';
             $criteria1->limit = 20;
             $upcoming = Stack::model()->findAll($criteria1);
             
             $criteria2 = new CDbCriteria();
-            $criteria2->order = 'id ASC';
+            $criteria2->order = 'bet_count ASC';
             $criteria2->limit = 3;
             $topMatches = Stack::model()->findAll($criteria2);
             
