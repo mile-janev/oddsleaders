@@ -28,7 +28,7 @@ class CronController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('getxml'),//
+				'actions'=>array('cron','calculatewin','getxml'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -37,6 +37,39 @@ class CronController extends Controller
 		);
 	}
         
+        /**
+         * Main cron action. This will controll executing of other actions (In future).
+         */
+        public function actionCron()
+        {
+            
+            exit();
+        }
+
+        /**
+         * Checking is this ticked winner.
+         */
+        public function actionCalculatewin()
+        {
+            
+            exit();
+        }
+        
+        /**
+         * Check is this game winner or not.
+         * @param type $game
+         * @return boolean (winner or not)
+         */
+        public function calculateGame($game)
+        {
+            $win = false;
+            
+            return $win;
+        }
+
+        /**
+         * Getting xml and everything is copied into database. If already match is saved, then field data is updated
+         */
         public function actionGetxml()
         {
             $u_id = Yii::app()->user->id;

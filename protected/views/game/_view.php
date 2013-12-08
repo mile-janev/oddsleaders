@@ -32,6 +32,13 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('stack_id')); ?>:</b>
 	<?php echo CHtml::encode($data->stack_id); ?>
 	<br />
-
-
+        
+        <b><?php echo CHtml::encode($data->getAttributeLabel('score')); ?>:</b>
+	<?php echo CHtml::encode($data->score); ?>
+	<br />
+        
+        <b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
+	<?php echo CHtml::encode($data->status); ?>
+	<br />
+        
 </div>

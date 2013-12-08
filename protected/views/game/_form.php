@@ -54,6 +54,18 @@
 		<?php echo $form->textField($model,'stack_id',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'stack_id'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'score'); ?>
+		<?php echo $form->textField($model,'score',array('size'=>16,'maxlength'=>64)); ?>
+		<?php echo $form->error($model,'score'); ?>
+	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->textField($model,'status',array('size'=>6,'maxlength'=>6)); ?>
+		<?php echo $form->error($model,'status'); ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

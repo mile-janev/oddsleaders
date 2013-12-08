@@ -28,5 +28,7 @@ $this->menu=array(
 		'odd',
 		'ticket_id',
 		'stack_id',
+                'score',
+                'status',
 	),
 )); ?>

@@ -10,6 +10,8 @@
  * @property double $odd
  * @property string $ticket_id
  * @property string $stack_id
+ * @property string $score
+ * @property string $status
  *
  * The followings are the available model relations:
  * @property Stack $stack
@@ -35,13 +37,15 @@ class Game extends CActiveRecord
 		return array(
 			array('code, type, odd, ticket_id, stack_id', 'required'),
 			array('odd', 'numerical'),
+                        array('status', 'numerical'),
+                        array('status', 'length', 'max'=>6),
 			array('code, stack_id', 'length', 'max'=>20),
 			array('type', 'length', 'max'=>16),
-                        array('game_type', 'length', 'max'=>64),
+                        array('game_type, score', 'length', 'max'=>64),
 			array('ticket_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, type, odd, ticket_id, stack_id,game_type', 'safe', 'on'=>'search'),
+			array('id, code, type, odd, ticket_id, stack_id, game_type, score, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,7 +74,9 @@ class Game extends CActiveRecord
 			'odd' => 'Odd',
 			'ticket_id' => 'Ticket',
 			'stack_id' => 'Stack',
-                        'game_type' => 'Bet type'
+                        'game_type' => 'Bet type',
+                        'score' => 'Score',
+                        'status' => 'Status'
 		);
 	}
 
@@ -99,6 +105,8 @@ class Game extends CActiveRecord
 		$criteria->compare('ticket_id',$this->ticket_id,true);
 		$criteria->compare('stack_id',$this->stack_id,true);
                 $criteria->compare('game_type',$this->game_type,true);
+                $criteria->compare('score',$this->score,true);
+                $criteria->compare('status',$this->status,true);                
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -45,6 +45,16 @@
 		<?php echo $form->label($model,'stack_id'); ?>
 		<?php echo $form->textField($model,'stack_id',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
+    
+        <div class="row">
+		<?php echo $form->label($model,'score'); ?>
+		<?php echo $form->textField($model,'score',array('size'=>16,'maxlength'=>64)); ?>
+	</div>
+    
+        <div class="row">
+		<?php echo $form->label($model,'status'); ?>
+		<?php echo $form->textField($model,'status',array('size'=>6,'maxlength'=>6)); ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
