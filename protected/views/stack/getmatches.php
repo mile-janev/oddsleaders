@@ -77,9 +77,11 @@
                             $disable = 'disable';
                     }
                 }
+                
+                ($value['start'] < time()) ? $finished = 'finished' : $finished = 'play';
 
-                echo '<li class="' . $value['code'] . " ".$disable.'">
-                            <div id="time">' . date("d-m H:i", strtotime($value['start'])) . '</div>
+                echo '<li class="' . $value['code'] . " ".$disable.' '.$finished.' play" data-time="'.$value['start'].'">
+                            <div id="time">' . date("d-M H:i", $value['start']) . '</div>
                             <div id="teams"><a>' . $value['opponent'] . '</a></div>
                             <div class="tips">
                                 ' . $match_odds . '

@@ -87,10 +87,12 @@
                     if($exp[0] === $value['code'])
                         $disable = 'disable';
                 }
-            }
+            }   
 
-            echo '<li class="' . $value['code'] . " ".$disable.'">
-                        <div id="time">' . date("d-m-Y H:i", $value->start) . '</div>
+            ($value->start < time()) ? $finished = 'finished' : $finished = 'play';
+            
+            echo '<li class="' . $value['code'] . " ".$disable.' '.$finished.'" data-time="'.$value->start.'">
+                        <div id="time">' . date("d-M H:i", $value->start) . '</div>
                         <div id="teams"><a>' . $value['opponent'] . '</a></div>
                         <div class="tips">
                             ' . $match_odds . '

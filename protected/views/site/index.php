@@ -90,72 +90,79 @@
                     $tipped[$exp[0]][$exp[4]][$exp[1]] = 'tipped';
                 }
             }
-            foreach ($upcoming as $key => $value) {
-                $odds = json_decode($value['data']);
-                if($value['code'])
-                $match_odds = '';
-                if ($odds) {
-                    foreach ($odds->match as $key => $match) {          
+            if(count($upcoming) > 0)
+            {
+                foreach ($upcoming as $key => $value) {
+                    $odds = json_decode($value['data']);
+                    if($value['code'])
+                    $match_odds = '';
+                    if ($odds) {
+                        foreach ($odds->match as $key => $match) {          
 
 
-                        if($key != 'label')
-                        {
-                            $key = ucfirst($key);
-                            (isset($tipped[$value['code']]['match'][$key])) ? $tiped = 'tipped' : $tiped = '';
-                            
-                            $match_odds .= '<div class="tip"><a class="stripe clickable '.$tiped.'" rel="'.$value['code'].'"><p class="gameType">'.$key.'</p><span class="gameQuote">'.$match.'</span><span class="gameTypeBet">match</span></a></div>';
-                        }
-                    }
-                }
-                $more = ''; $count = 0;
-                if ($odds) {
-                    foreach ($odds as $key => $more_odds) {
-                        $odd = '';
-                        if($key != 'match')
-                        {
-                            foreach ($more_odds as $tip => $m_odds) {
-                                $m_odds = strtolower($m_odds);
+                            if($key != 'label')
+                            {
+                                $key = ucfirst($key);
+                                (isset($tipped[$value['code']]['match'][$key])) ? $tiped = 'tipped' : $tiped = '';
                                 
-                               if($tip != 'label')
-                                {
-                                    $tip = ucfirst($tip);
-                                    (isset($tipped[$value['code']][$key][$tip])) ? $tipe = 'tipped' : $tipe = '';
-
-                                    if(!empty($m_odds))
-                                        $odd .= '<div class="tip"><a class="stripe clickable '.$tipe.'" rel="'.$value['code'].'"><p class="gameType">'.$tip.'</p><span class="gameQuote">'.$m_odds.'</span><span class="gameTypeBet">'.$key.'</span></a></div>';
-                                }
+                                $match_odds .= '<div class="tip"><a class="stripe clickable '.$tiped.'" rel="'.$value['code'].'"><p class="gameType">'.$key.'</p><span class="gameQuote">'.$match.'</span><span class="gameTypeBet">match</span></a></div>';
                             }
-
-                            $more .= '<li>
-                                        <div id="type">'.ucfirst($key).'</i></div>
-                                        '.$odd.'
-                                    </li>';
-                            $count++;
-                        }
-                    }   
-                }
-                    $time = $value->start - time();
-                    $disable = '';
-                    
-                    if (isset($_COOKIE['myBets']) && $_COOKIE['myBets']!='') {
-                        foreach ($cookie as $key => $cook) {
-                            $exp = explode('=', $cook);
-                            if($exp[0] === $value['code'])
-                                $disable = 'disable';
                         }
                     }
+                    $more = ''; $count = 0;
+                    if ($odds) {
+                        foreach ($odds as $key => $more_odds) {
+                            $odd = '';
+                            if($key != 'match')
+                            {
+                                foreach ($more_odds as $tip => $m_odds) {
+                                    $m_odds = strtolower($m_odds);
+                                    
+                                   if($tip != 'label')
+                                    {
+                                        $tip = ucfirst($tip);
+                                        (isset($tipped[$value['code']][$key][$tip])) ? $tipe = 'tipped' : $tipe = '';
 
-                    echo '<li class="'.$value['code']." ".$disable.'">
-                        <div id="sport"><div class="icon" style="background-position: '.$value->tournament->sport->icon.'"></div></div>
-                        <div class="match"><a>'.$value['opponent'].'</a> - for <span class="time_play">'.date('H:i:s', $time).'</span></div>
-                        <div class="tips">
-                            '.$match_odds.'
-                            <div class="more">'.$count.'+<i class="icon-plus-sign"></i></div>
-                        </div>
-                        <ul class="more_odds">
-                            '.$more.'
-                        </ul>
-                    </li>';
+                                        if(!empty($m_odds))
+                                            $odd .= '<div class="tip"><a class="stripe clickable '.$tipe.'" rel="'.$value['code'].'"><p class="gameType">'.$tip.'</p><span class="gameQuote">'.$m_odds.'</span><span class="gameTypeBet">'.$key.'</span></a></div>';
+                                    }
+                                }
+
+                                $more .= '<li>
+                                            <div id="type">'.$key.'</i></div>
+                                            '.$odd.'
+                                        </li>';
+                                $count++;
+                            }
+                        }   
+                    }
+                        $time = $value->start - time();
+                        $disable = '';
+                        
+                        if (isset($_COOKIE['myBets']) && $_COOKIE['myBets']!='') {
+                            foreach ($cookie as $key => $cook) {
+                                $exp = explode('=', $cook);
+                                if($exp[0] === $value['code'])
+                                    $disable = 'disable';
+                            }
+                        }
+
+                        echo '<li class="'.$value['code']." ".$disable.' play" data-time="'.$time.'">
+                            <div id="sport"><div class="icon" style="background-position: '.$value->tournament->sport->icon.'"></div></div>
+                            <div class="match"><a>'.$value['opponent'].'</a> - for <span class="time_play">'.date('H:i:s', $time).'</span></div>
+                            <div class="tips">
+                                '.$match_odds.'
+                                <div class="more">'.$count.'+<i class="icon-plus-sign"></i></div>
+                            </div>
+                            <ul class="more_odds">
+                                '.$more.'
+                            </ul>
+                        </li>';
+                }
+            }
+            else
+            {
+                echo '<li class="no-match">There is no upcoming event in next 24 hours</li>';
             }
         ?>
     </ul>   

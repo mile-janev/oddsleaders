@@ -22,39 +22,39 @@ $(document).ready(function() {
  *  @return time
  * ---------------------------------------------------------------------------------------------------------------------
 */
-	function countdown()
-	{
-		$('.time_play').each(function(){
-			time = $(this).text().split(':');
-			hours = time[0];
-			minutes = time[1];
-			seconds = time[2];
+    function countdown()
+    {
+        $('.time_play').each(function(){
+            time = $(this).text().split(':');
+            hours = time[0];
+            minutes = time[1];
+            seconds = time[2];
 
-			if(seconds == 0) {
-				seconds = 59;
-				minutes = time[1]-1;
-			} else {
-				seconds = time[2]-1;
-			}
+            if(seconds == 0) {
+                seconds = 59;
+                minutes = time[1]-1;
+            } else {
+                seconds = time[2]-1;
+            }
 
-			if(minutes == 0)
-			{
-				hours = time[0]-1;
-			}
+            if(minutes == 0)
+            {
+                hours = time[0]-1;
+            }
 
-			if(String(seconds).length == 1) {
-				seconds = '0'+seconds;
-			}
-			if(String(minutes).length == 1) {
-				minutes = '0'+minutes;
-			}
-			$(this).html(hours+':'+minutes+':'+seconds);
-		});
-	}
+            if(String(seconds).length == 1) {
+                seconds = '0'+seconds;
+            }
+            if(String(minutes).length == 1) {
+                minutes = '0'+minutes;
+            }
+            $(this).html(hours+':'+minutes+':'+seconds);
+        });
+    }
 
-	setInterval(function() {
-		countdown();
-	},1000);
+    setInterval(function() {
+        countdown();
+    },1000);
 
     $('.services li').click(function() {
         $(this).find('ul').show();
@@ -76,8 +76,8 @@ $(document).ready(function() {
         $(tab).show();
         $(this).addClass("current");
 
-		return false;
-	});
+        return false;
+    });
 /*
  * ---------------------------------------------------------------------------------------------------------------------
  *  Show all available types for the match
@@ -110,6 +110,38 @@ $(document).ready(function() {
     });
 
     side_toggle($('.first'));
+ /*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Delete match from sliper
+ *  @return html
+ * ---------------------------------------------------------------------------------------------------------------------
+*/ 
+    window.onload = disable_match;  // Start displaying the time when document loads.
+
+    function disable_match()
+    {
+        $('.play').each(function(){
+            time = $(this).attr('data-time');
+            curr_time = Math.round(new Date().getTime() / 1000);
+
+            if(curr_time >= time)
+            {
+                $(this).addClass('finished');
+                $(this).removeClass('play');
+                $(this).find('.clickable').removeClass('clickable');
+            }
+        });
+        setTimeout(disable_match, 1000);  
+    }
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Block tips for finished games
+ *  @return 
+ * ---------------------------------------------------------------------------------------------------------------------
+*/
+    $('.finished .clickable').each(function(){
+        $(this).removeClass('clickable');
+    });
 /*
  * ---------------------------------------------------------------------------------------------------------------------
  *  Add the match to slipper and create cookie for that match
@@ -201,9 +233,10 @@ $(document).ready(function() {
         removeGameFromCookie(id);
 
         $('.match-slip .'+id).remove();
+        $('.my-slip .'+id).remove();
 
         $('.'+id).removeClass('disable');
-        $('.'+id).find('.tipped').removeClass('tipped');
+        $('.'+id).find('.tipped').removeClass('tipped').addClass('clickable');
 
         $('.nano').nanoScroller({
             preventPageScrolling: true

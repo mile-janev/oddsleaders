@@ -626,6 +626,10 @@ a
     color: #1a5e83;
     font-weight: bold;
     margin: 10px 0 0 5px; 
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1; /* Fix for IE7 */
+    *display: inline; /* Fix for IE7 */
 }
 #wrapped #content #rightbar #tabs
 {
@@ -1153,11 +1157,21 @@ a
     display: inline-block;
     border-left: 1px dotted #d7d7d7;
 }
-.box .table li .tip a:hover 
+.tip a:hover 
 {
     color: #fff;
     cursor: pointer;
     background: #51a351;
+}
+.finished .tip a
+{
+    color: #333;
+    cursor: url(/images/danger.png), auto !important;
+    background: none;
+} 
+#wrapped #main .upcoming li.finished .tip a:hover
+{
+    background: #51a351 !important;
 }
 .box .table li .more 
 {
@@ -1191,6 +1205,13 @@ a
 .box .table li ul li .tip span
 {
     float: right;
+}
+.no-match
+{
+    padding: 10px;
+    font-size: 14px;
+    background: rgba(98,191,98,.1) !important;
+    text-align: center;
 }
 /*--------------------------------------------------------------------------------------------------------------
                                                                                 BUTTONS
@@ -1431,6 +1452,11 @@ a
 .disable
 {
     background: rgba(189,54,47,.2) !important;
+}
+.finished 
+{
+    opacity: .5;
+    cursor: url(/images/danger.png), auto;
 }
 .tipped
 {
