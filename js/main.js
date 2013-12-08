@@ -128,7 +128,11 @@ $(document).ready(function() {
             {
                 $(this).addClass('finished');
                 $(this).removeClass('play');
+                code = $(this).find('.clickable').attr('rel');
                 $(this).find('.clickable').removeClass('clickable');
+                $(this).find('.tipped').removeClass('tipped');
+                console.log(code);
+                remove_match(code);
             }
         });
         setTimeout(disable_match, 1000);  
@@ -228,6 +232,16 @@ $(document).ready(function() {
     $('body').delegate('.betSlipperClose', 'click', function(){
         id = $(this).attr('id');
 
+        remove_match(id);
+    });
+ /*
+ * ---------------------------------------------------------------------------------------------------------------------
+ *  Delete match from sliper
+ *  @return html
+ * ---------------------------------------------------------------------------------------------------------------------
+*/
+    function remove_match(id)
+    {
         check_slipper();
 
         removeGameFromCookie(id);
@@ -243,8 +257,7 @@ $(document).ready(function() {
         });
 
         cal_win_stake();
-        
-    });
+    }
  /*
  * ---------------------------------------------------------------------------------------------------------------------
  *  Delete match from sliper
