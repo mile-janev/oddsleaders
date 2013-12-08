@@ -44,17 +44,17 @@ $(document).ready(function() {
     var chartData1 = [
         {
             "teams": $('.chart_1_home').html() + " win",
-            "procent": $('.chart_1_1').attr('rel'),
+            "procent": $('.chart_1_1').attr('data'),
             "short": "1"
         },
         {
             "teams": "Draw",
-            "procent": $('.chart_1_2').attr('rel'),
+            "procent": $('.chart_1_2').attr('data'),
             "short": "X"
         },
         {
             "teams": $('.chart_1_guest').html() + " win",
-            "procent": $('.chart_1_3').attr('rel'),
+            "procent": $('.chart_1_3').attr('data'),
             "short": "2"
         }
     ];
@@ -105,17 +105,17 @@ $(document).ready(function() {
     var chartData2 = [
         {
             "teams": $('.chart_2_home').html() + " win",
-            "procent": $('.chart_2_1').attr('rel'),
+            "procent": $('.chart_2_1').attr('data'),
             "short": "1"
         },
         {
             "teams": "Draw",
-            "procent": $('.chart_2_2').attr('rel'),
+            "procent": $('.chart_2_2').attr('data'),
             "short": "X"
         },
         {
             "teams": $('.chart_2_guest').html() + " win",
-            "procent": $('.chart_2_3').attr('rel'),
+            "procent": $('.chart_2_3').attr('data'),
             "short": "2"
         }
     ];
@@ -164,17 +164,17 @@ $(document).ready(function() {
     var chartData3 = [
         {
             "teams": $('.chart_3_home').html() + " win",
-            "procent": $('.chart_3_1').attr('rel'),
+            "procent": $('.chart_3_1').attr('data'),
             "short": "1"
         },
         {
             "teams": "Draw",
-            "procent": $('.chart_3_2').attr('rel'),
+            "procent": $('.chart_3_2').attr('data'),
             "short": "X"
         },
         {
             "teams": $('.chart_3_guest').html() + " win",
-            "procent": $('.chart_1_1').attr('rel'),
+            "procent": $('.chart_1_1').attr('data'),
             "short": "2"
         }
     ];

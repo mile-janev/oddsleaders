@@ -734,7 +734,7 @@ a
 #wrapped #content #main #main_top 
 {
 	width: 100%;
-	height: auto;
+	height: 205px;
 	text-align: center;
 	padding-bottom: 20px;
 	background: rgba(1,63,120,.05);
@@ -744,9 +744,14 @@ a
 	{
 		width: 170px;
 		margin: 0 5px;
+		padding: 5px;
+		height: 201px;
 		position: relative;
 		text-align: center;
 		display: inline-block;
+		vertical-align: top;
+		zoom: 1; /* Fix for IE7 */
+		*display: inline; /* Fix for IE7 */
 	}
 	#wrapped #content #main #main_top .match #teams 
 	{
@@ -979,11 +984,72 @@ a
 .box #user_box
 {
 	min-height: 200px;
+	padding: 10px 15px 50px 15px;
 	border: 2px solid #51a351;
 }
 .box #user_box label
 {
 	display: block;
+	font-size: 16px;
+	color: #333;
+}
+.box #user_box label input[type=text]
+{
+	width: 250px;
+	padding: 5px;
+	font-size: 16px;
+	color: #51a351;
+	border: 1px solid #cdcdcd;
+}
+.box #user_box label input[type=text]:disabled
+{
+	border: none;
+	padding: 6px;
+	background: #f2f2f2;
+}
+.box #user_box label a 
+{
+	margin-left: 20px;
+	color: #51a351;
+	font-weight: bold;
+}
+.box #user_box label a:hover
+{
+	text-decoration: underline;
+} 
+.box #user_box #mybutton 
+{
+    clear: both;
+    overflow: hidden;
+    position: relative;
+}
+.box #user_box #myfile 
+{
+    opacity: 0;
+    font-size:42px;
+    position: absolute;
+    right: 0;
+    top: 0;   
+    cursor: pointer;
+}
+.box #user_box #left
+{
+	width: 150px;
+	text-align: center;
+	padding-top: 40px;
+	display: inline-block;
+	vertical-align: top;
+	zoom: 1; /* Fix for IE7 */
+	*display: inline; /* Fix for IE7 */
+}
+.box #user_box #right
+{
+	width: 340px;
+	padding: 20px 0 0 20px;
+	display: inline-block;
+	vertical-align: top;
+	zoom: 1; /* Fix for IE7 */
+	*display: inline; /* Fix for IE7 */
 }
 	.box_title
 	{
@@ -1367,6 +1433,10 @@ a
 	background: rgba(189,54,47,1) !important;
 	color: #ffffff !important;
 }
+.none
+{
+	display: none !important;
+}
 	.disable .more_odds
 	{
 		background: none !important;
@@ -1472,14 +1542,7 @@ i[data-title]:hover:after
 	}
 	.grid-view table.items .filters
 	{
-		text-align: center;
-	}
-	.grid-view table.items .filters input
-	{
-		border: none;
-		outline: none;
-		padding: 2px 5px;
-		border: 1px solid #cdcdcd;
+		display: none;
 	}
 	.grid-view table.items tr.odd
 	{
@@ -1490,6 +1553,10 @@ i[data-title]:hover:after
 		padding: 5px 10px;
 		text-align: center;
 		border-bottom: 1px dotted #cdcdcd;  
+	}
+	.grid-view table.items tr:hover 
+	{
+		background: rgba(98,191,98,.1);
 	}
 	.grid-view table.items tr td:first-child
 	{

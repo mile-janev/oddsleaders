@@ -35,10 +35,10 @@
             <?php } ?> -->
             <div id="stake">
                 Place your stake 
-                <input type="text" name="stake" class="stake"> €
+                <input type="text" name="stake" class="stake" id="match-slip"> €
             </div>
             <div id="money">
-                Winning stake <span><input type="text" id="win_stake" name="win_stake" value="0 €" disabled="disabled"/></span> 
+                Winning stake <span><input type="text" id="win_stake" name="win_stake" value="0.00 €" disabled="disabled"/></span> 
             </div>
             <a href="#" class="clear">Clear bets</a>
             <input type="submit" value="Place Bet" class="button blue right" id="place_bet">

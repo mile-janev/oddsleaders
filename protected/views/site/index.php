@@ -1,6 +1,17 @@
 <?php
 /* @var $this SiteController */
     $this->pageTitle = Yii::app()->name;
+    
+    if (isset($_COOKIE['myBets']) && $_COOKIE['myBets']!='') 
+    {
+       $cookie = explode('|', $_COOKIE['myBets']);
+        
+       for ($i = 0; $i < count($cookie) - 1; $i++) {
+            $exp = explode("=", $cookie[$i]);
+
+            $tipped[$exp[0]][$exp[4]][$exp[1]] = 'tipped';
+        }
+    }
 ?>
 <div class="loader"><img src="/images/blue_load.gif" alt="Loading ..."/></div>
 <div class="load_matches"></div>
@@ -17,10 +28,25 @@
 </div>
 <div class="box_title green"><i class="icon-flag"></i> Top Matches</div>
 <div id="main_top">
-    <?php $i=1; foreach ($topMatches as $topMatch) {
-        $teams = explode(' vs ', $topMatch->opponent);
+    <?php 
+        $i=1; 
+        $disable = '';        
+        
+        foreach ($topMatches as $topMatch) 
+        {
+            if (isset($_COOKIE['myBets']) && $_COOKIE['myBets']!='') 
+            {
+                foreach ($cookie as $key => $cook) {
+                    $exp = explode('=', $cook);
+                    if($exp[0] === $topMatch['code'])
+                        $disable = 'disable';
+                }
+            }
+            
+            $teams = explode(' vs ', $topMatch->opponent);
     ?>
-        <div class="match">
+        <div class="match <?=$topMatch['code'];?> <?=$disable;?>">
+            <a href="" class="none"><?=$topMatch->opponent;?></a>
             <div id="teams" class="grey">
                 <span class="chart_<?php echo $i; ?>_home"><?php echo $teams[0]; ?></span>
                 -
@@ -34,10 +60,16 @@
                     foreach ($data->match as $key => $value) { 
                         if ($key != 'label') {
                             $j++;
+                            $key = ucfirst($key);
+                            (isset($tipped[$topMatch['code']]['match'][$key])) ? $tiped = 'tipped' : $tiped = '';
                 ?>
-                        <a href="#" class="stripe clickable chart_<?php echo $i; ?>_<?php echo $j; ?>"
-                           rel="<?php echo OddsClass::getPercent($data->match, $value); ?>">
+                        <a href="#" class="stripe clickable <?=$tiped;?> chart_<?=$i.'_'.$j;?>"
+                           rel = "<?=$topMatch['code'];?>"
+                           data="<?php echo OddsClass::getPercent($data->match, $value); ?>">
                             <?php echo $value; ?>
+                            <div class="none">
+                                <p class="gameType"><?=$key;?></p><span class="gameQuote"><?=$value;?></span><span class="gameTypeBet">match</span>
+                            </div>
                         </a>
                 <?php } } ?>
             </div>
@@ -58,7 +90,6 @@
                     $tipped[$exp[0]][$exp[4]][$exp[1]] = 'tipped';
                 }
             }
-
             foreach ($upcoming as $key => $value) {
                 $odds = json_decode($value['data']);
                 if($value['code'])
@@ -69,9 +100,10 @@
 
                         if($key != 'label')
                         {
+                            $key = ucfirst($key);
                             (isset($tipped[$value['code']]['match'][$key])) ? $tiped = 'tipped' : $tiped = '';
                             
-                            $match_odds .= '<div class="tip"><a class="stripe clickable '.$tiped.'" rel="'.$value['code'].'"><p class="gameType">'.ucfirst($key).'</p><span class="gameQuote">'.$match.'</span><span class="gameTypeBet">match</span></a></div>';
+                            $match_odds .= '<div class="tip"><a class="stripe clickable '.$tiped.'" rel="'.$value['code'].'"><p class="gameType">'.$key.'</p><span class="gameQuote">'.$match.'</span><span class="gameTypeBet">match</span></a></div>';
                         }
                     }
                 }

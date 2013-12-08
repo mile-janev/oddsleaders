@@ -80,24 +80,6 @@ $(document).ready(function() {
 	});
 /*
  * ---------------------------------------------------------------------------------------------------------------------
- *  Mark game as played
- *  @return 
- * ---------------------------------------------------------------------------------------------------------------------
-*/
-    function mark_played(game_id) 
-    {
-        $(document).find('a').each(function(index, element) {
-            if (game_id == $(this).attr('rel')) {
-                $(this).contents().unwrap();
-            }
-        });
-    }
-    // do not allow user to click on played game
-    $('#tip').live('click', function(){
-        return false;
-    });
-/*
- * ---------------------------------------------------------------------------------------------------------------------
  *  Show all available types for the match
  *  @return 
  * ---------------------------------------------------------------------------------------------------------------------
@@ -140,6 +122,8 @@ $(document).ready(function() {
         
         $('.'+gameCode).addClass('disable');
 
+        $('.'+gameCode+' .tipped').removeClass('tipped').addClass('clickable');
+
         empty = $('#empty').attr('class');
         if(empty != 'hide')
         {
@@ -177,7 +161,7 @@ $(document).ready(function() {
                 else
                 {
                     removeGameFromCookie(gameCode);
-                    $('#matchs #'+gameCode).closest('div').hide();
+                    $('#matchs #'+gameCode).closest('div').remove();
                     $('.'+gameCode).find('.tipped').removeClass('tipped');
                 }
             }
@@ -244,6 +228,7 @@ $(document).ready(function() {
         $(this).removeClass('tipped');
         $(this).addClass('clickable');
 
+        cal_win_stake();
         return false;
     });
 /*
@@ -252,7 +237,7 @@ $(document).ready(function() {
  *  @return winning stake
  * ---------------------------------------------------------------------------------------------------------------------
 */
-    $('.stake').bind('input', function() { 
+    $('.stake').bind('input', function() {
         cal_win_stake();
     });
 /*
@@ -264,6 +249,7 @@ $(document).ready(function() {
     $('#place_bet').click(function(){
         matchs = $('.match-slip > .match').length;
         stake = $('.stake').val(); // get the current stake of the input field.
+
         if (matchs <= 0) {
             alert('Please select matches to bet');
             return false;
@@ -300,7 +286,7 @@ $(document).ready(function() {
 */
     function cal_win_stake()
     {
-        var total = 1;
+        total = 1;
         $('.match-slip .match').each(function(){
             odd = $(this).find('#odds span').text();
             new_odd = odd.replace(',','.');
@@ -311,6 +297,7 @@ $(document).ready(function() {
             total = 0;
 
         stake = $('.stake').val(); // get the current stake of the input field.
+        
         if(stake >= 500)
         {
 
@@ -346,6 +333,7 @@ $(document).ready(function() {
 
         $.cookie('myBets', '' , { expires: 2 });
 
+        cal_win_stake();
         return false;
     });
 /*

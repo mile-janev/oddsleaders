@@ -50,6 +50,13 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>	
 
+	<div class="row">
+		<div id="mybutton" class="button grey"> Add Avatar
+			<?php echo $form->fileField($model,'file', array('id'=>'avatar', 'onchange' => "readURL(this);")); ?>
+		</div><br>
+		<img src="" id="img"/>
+	</div>	
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create my profile' : 'Save changes', array('class'=>"button green")); ?>
 	</div>
@@ -62,3 +69,19 @@
         <a id="loginColorboxInside" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-login" : Yii::app()->createUrl('site/login'); ?>" class="fb_login button blue"><i class="icon-signin"></i> Log in</a>
 
 </div><!-- form -->
+<script type="text/javascript">
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img')
+                    .attr('src', e.target.result)
+                    .width(100)
+                    .height(100);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

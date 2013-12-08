@@ -61,8 +61,10 @@
                             $m_odds = strtolower($m_odds);
 
                             if ($tip != 'label') {
+                            {
                                 $tip = ucfirst($tip);
-                                    (isset($tipped[$value['code']][$key][$tip])) ? $tipe = 'tipped' : $tipe = '';
+                                (isset($tipped[$value['code']][$key][$tip])) ? $tipe = 'tipped' : $tipe = '';
+                            }
 
                                 
                                 if (!empty($m_odds))

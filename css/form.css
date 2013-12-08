@@ -36,6 +36,7 @@
 
 div.popup
 {
+	text-align: center;
 }
 div.popup #left 
 {
@@ -213,6 +214,10 @@ div .popup input[type=text], input[type=password]
 	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
 	transition: border linear 0.2s, box-shadow linear 0.2s;
 }
+div .popup input[type=text]:disabled
+{
+	padding-left: 5px;
+}
 div .popup input[type=text]:focus, input[type=password]:focus 
 {
 	outline: none;
@@ -234,6 +239,30 @@ div.popup hr
 {
 	border-top: 1px dotted #ccc;
 }
+div.popup #mybutton 
+{
+    clear: both;
+    overflow: hidden;
+    position: relative;
+}
+div.popup #avatar 
+{
+    opacity: 0;
+    font-size:42px;
+    position: absolute;
+    right: 0;
+    top: 0;   
+    cursor: pointer;
+}
+div .popup #img 
+{
+	margin-top: 10px;
+	overflow: hidden;
+	border-radius: 50%;
+	-o-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+} 
 .squaredFour {
 	width: 15px;
 	position: relative;
