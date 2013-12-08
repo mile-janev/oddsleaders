@@ -1610,6 +1610,37 @@ table.detail-view tr.odd
     background: #ffffff !important;
 }
 /*--------------------------------------------------------------------------------------------------------------
+                                                                                HELP PAGE
+---------------------------------------------------------------------------------------------------------------*/
+#questions
+{
+    padding: 5px 10px;
+}
+#questions .answer 
+{
+    width: 98%;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 12px;
+    background: rgba(98,191,98,.1);
+    display: none;
+}
+    #questions a
+    {
+        display: block;
+        text-align: left;
+        margin-top: 2px; 
+    }
+    #questions a.click
+    {
+        background: #fff
+    }
+    #questions a:hover
+    {
+        background: #fff;
+    }
+
+/*--------------------------------------------------------------------------------------------------------------
                                                                                 NANO SCROLLER
 ---------------------------------------------------------------------------------------------------------------*/
 .nano {
