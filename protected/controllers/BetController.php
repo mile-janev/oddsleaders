@@ -199,56 +199,73 @@ class BetController extends Controller
                     $user = User::model()->findByPk(Yii::app()->user->id);
                     $conto = $user->conto;
                     if ($_POST['stake'] <= $conto) {
+                        $started = FALSE;
                         $games = explode('|', $_COOKIE['myBets']);
 
                         $totalOdds = 1;
                         foreach ($games as $key => $value) {
                             if ($value != '') {
                                 $gameArray = explode('=', $value);
+                                $stack = Stack::model()->findByAttributes(array('code'=>$gameArray[0]));
                                 if ($gameArray[0] != '') {
                                     $totalOdds *= OddsClass::formatNumber($gameArray[2]);
                                 }
+                                
+                                if ($stack->start < time()) {
+                                    $started = TRUE;
+                                    Yii::app()->user->setFlash('new_error', $gameArray[3].' is already started.');
+                                    $this->redirect(Yii::app()->createUrl("bet/slipper"));
+                        
+                                    exit();
+                                }
                             }
                         }
-
-                        $ticket = new Ticket();
-                        $ticket->odd = $totalOdds;
-                        $ticket->deposit = $_POST['stake'];
-                        $ticket->earning = $totalOdds * $_POST['stake'];
-                        $ticket->status = 0;
-                        $ticket->user_id = Yii::app()->user->id;
-                        $ticketSaved = $ticket->save();
                         
-                        $user->conto -= $_POST['stake'];
-                        $user->update();
-                        
-                        if ($ticketSaved) {
-                            foreach ($games as $key => $value) {
-                                if ($value != '') {
-                                    $gameArray = explode('=', $value);
-                                    if ($gameArray[0] != '') {
-                                        $stack = Stack::model()->findByAttributes(array('code'=>$gameArray[0]));
+                        if (!$started) { //If game is not started
+                            $ticket = new Ticket();
+                            $ticket->odd = $totalOdds;
+                            $ticket->deposit = $_POST['stake'];
+                            $ticket->earning = $totalOdds * $_POST['stake'];
+                            $ticket->status = 0;
+                            $ticket->user_id = Yii::app()->user->id;
+                            $ticketSaved = $ticket->save();
 
-                                        $game = new Game();
-                                        $game->code = $gameArray[0];
-                                        $game->game_type = $gameArray[4];
-                                        $game->type = $gameArray[1];
-                                        $game->odd = OddsClass::formatNumber($gameArray[2]);
-                                        $game->ticket_id = $ticket->id;
-                                        $game->stack_id = $stack->id;
-                                        $gameSaved = $game->save();
-                                        
-                                        if ($gameSaved) {
-                                            $stack->bet_count += 1;
-                                            $stack->update();
+                            $user->conto -= $_POST['stake'];
+                            $user->update();
+
+                            if ($ticketSaved) {
+                                foreach ($games as $key => $value) {
+                                    if ($value != '') {
+                                        $gameArray = explode('=', $value);
+                                        if ($gameArray[0] != '') {
+                                            $stack = Stack::model()->findByAttributes(array('code'=>$gameArray[0]));
+
+                                            $game = new Game();
+                                            $game->code = $gameArray[0];
+                                            $game->game_type = $gameArray[4];
+                                            $game->type = $gameArray[1];
+                                            $game->odd = OddsClass::formatNumber($gameArray[2]);
+                                            $game->ticket_id = $ticket->id;
+                                            $game->stack_id = $stack->id;
+                                            $gameSaved = $game->save();
+
+                                            if ($gameSaved) {
+                                                $stack->bet_count += 1;
+                                                $stack->update();
+                                            }
                                         }
                                     }
                                 }
                             }
+                            setcookie('myBets', '', time()-3600);
+                            Yii::app()->user->setFlash('new_error', "Your bet is recored.");
+                            $this->redirect(Yii::app()->createUrl("bet/slipper"));
+                        } else {
+                            Yii::app()->user->setFlash('new_error', $gameArray[3].' is already started.');
+                            $this->redirect(Yii::app()->createUrl("bet/slipper"));
+
+                            exit();
                         }
-                        setcookie('myBets', '', time()-3600);
-                        Yii::app()->user->setFlash('new_error', "Your bet is recored.");
-                        $this->redirect(Yii::app()->createUrl("bet/slipper"));
                     } else {
                         Yii::app()->user->setFlash('new_error', "Insufficient money.");
                         $this->redirect(Yii::app()->createUrl("bet/slipper"));
