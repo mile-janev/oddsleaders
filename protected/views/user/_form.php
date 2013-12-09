@@ -54,7 +54,8 @@
 		<div id="mybutton" class="button grey"> Add Avatar
 			<?php echo $form->fileField($model,'file', array('id'=>'avatar', 'onchange' => "readURL(this);")); ?>
 		</div><br>
-		<img src="" id="img"/>
+		<?php echo $form->hiddenField($model,'image'); ?>
+		<img src="<?php echo $model->image;?>" id="img"/>
 	</div>	
 
 	<div class="row buttons">
@@ -63,7 +64,7 @@
 
 <?php $this->endWidget(); ?>
 
-        <div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'user_website,user_birthday,email', 'redirect_uri' => Yii::app()->createAbsoluteUrl("user/register", array('registerwith' => 'facebook'), '', '&')))); ?>" class="button green"><i class="icon-facebook"></i>  Register using Facebook</a></div>
+        <div class="facebook_login"><a href="<?php echo htmlspecialchars($facebook->getLoginUrl(array('scope' => 'email', 'redirect_uri' => Yii::app()->createAbsoluteUrl("user/register", array('registerwith' => 'facebook'), '', '&')))); ?>" class="button green"><i class="icon-facebook"></i>  Register using Facebook</a></div>
         <hr>
         <p>You already have account ???</p>
         <a id="loginColorboxInside" href="<?php echo (Yii::app()->controller->id.'/'.$this->action->id == 'site/index') ? "#partial-login" : Yii::app()->createUrl('site/login'); ?>" class="fb_login button blue"><i class="icon-signin"></i> Log in</a>

@@ -256,6 +256,7 @@ div.popup #avatar
 }
 div .popup #img 
 {
+	width: 100px;
 	margin-top: 10px;
 	overflow: hidden;
 	border-radius: 50%;

@@ -7,9 +7,9 @@
 				<div id="mybutton" class="button grey"><input type="file" id="myfile">Change Avatar</div>
 			</div>
 			<div id="right">
-				<label>Name:<br><input type='text' id="input" value="<?=$model[1]['name'];?>" disabled/></label>
-				<label>Email:<br><input type='text' id="input" value="<?=$model[1]['email'];?>" disabled/></label>
-				<label>Member since: <input type="text" value="<?=date('d F Y H:i:s', strtotime($model[1]['date_created']));?>" disabled/></label>
+				<label>Name:<br><input type='text' id="input" value="<?=$model[0]['name'];?>" disabled/></label>
+				<label>Email:<br><input type='text' id="input" value="<?=$model[0]['email'];?>" disabled/></label>
+				<label>Member since: <input type="text" value="<?=date('d F Y H:i:s', strtotime($model[0]['date_created']));?>" disabled/></label>
 				<label>Credits: <input type="text" value="<?=$model[0]['conto'];?>" disabled/></label>
 			</div><br>
 			<input type="button" value="Edit Information" class="button grey right edit">
