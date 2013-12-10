@@ -1572,7 +1572,7 @@ i[data-title]:hover:after
 }
 .grid-view table.items .filters
 {
-    display: none;
+    /*display: none;*/
 }
 .grid-view table.items tr.odd
 {

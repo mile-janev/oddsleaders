@@ -51,6 +51,29 @@ class CronController extends Controller
          */
         public function actionCalculatewin()
         {
+            $tickets = Ticket::model()->findAll();
+            foreach ($tickets as $ticket) {
+                $ticketFinished = true;
+                $tickedWinned = 1;
+                foreach ($ticket->games as $game) {
+                    if ($game->status == 0) {
+                        $status = $this->calculateGame($game);
+                        if ($status == 0) {
+                            $ticketFinished = false;
+                        } else {
+                            $game->status = $status;
+                            $game->update();
+                            if ($status == 2) {
+                                $tickedWinned = 2;
+                            }
+                        }
+                    }
+                }
+                if ($ticketFinished) {
+                    $ticket->status = $tickedWinned;
+                    $ticket->update();
+                }
+            }
             
             exit();
         }
@@ -62,9 +85,48 @@ class CronController extends Controller
          */
         public function calculateGame($game)
         {
-            $win = false;
+            $status = 0;
+            $data = json_decode($game->stack->data);
+            if (isset($data->score)) { //If isset then game is finished.
+                $game->score = $data->score->team1.":".$data->score->team2;
+                if ($game->stack->tournament->sport->name == 'Football') {
+                    if ($game->game_type == 'match') {
+                        $status = $this->x12Sport($game, $data);
+                    }
+                }
+            }
             
-            return $win;
+            return $status;
+        }
+        
+        /**
+         * For all similar games
+         * @param type $game
+         * @param type $data json
+         * @return boolean win or not
+         */
+        public function x12Sport($game, $data)
+        {
+            $status = 0;
+            
+            if ($game->type == '1') {
+                $status = 2;//Setting as losed, but will be changed in if
+                if ($data->score->team1 > $data->score->team2) {
+                    $status = 1;
+                }
+            } else if ($game->type == 'X') {
+                $status = 2;
+                if ($data->score->team1 == $data->score->team2) {
+                    $status = 1;
+                }
+            } else if ($game->type == '2') {
+                $status = 2;
+                if ($data->score->team1 < $data->score->team2) {
+                    $status = 1;
+                }
+            }
+            
+            return $status;
         }
 
         /**
