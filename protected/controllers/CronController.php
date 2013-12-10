@@ -90,7 +90,19 @@ class CronController extends Controller
             if (isset($data->score)) { //If isset then game is finished.
                 $game->score = $data->score->team1.":".$data->score->team2;
                 if ($game->stack->tournament->sport->name == 'Football') {
-                    if (
+                    switch ($game->game_type) {
+                        case 'match': $status = $this->x12Sport($game, $data);  break;
+                        case 'handicap': $status = $this->handicap($game, $data);  break;
+                        case 'half-time': $status = $this->x12Sport($game, $data);  break;
+                        case 'double-chance': $status = $this->double_chance($game, $data);  break;
+                        case 'how-many-goals': $status = $this->how_many_goals($game, $data);  break;
+                        case 'correct-score': $status = $this->correct_score($game, $data);  break;
+                        case 'goals': $status = $this->goals($game, $data);  break;
+                        default:
+                            # code...
+                            break;
+                    }
+                    /*if (
                             $game->game_type == 'match'
                             || $game->game_type == 'handicap'
                             || $game->game_type == 'half-time'
@@ -98,7 +110,7 @@ class CronController extends Controller
                         $status = $this->x12Sport($game, $data);
                     } else if ($game->game_type == 'double-chance') {
                         //Kodo tuka
-                    }
+                    }*/
                 }
             }
             
@@ -132,6 +144,75 @@ class CronController extends Controller
                 }
             }
             
+            return $status;
+        }
+
+        public function handicap($game, $data)
+        {
+            $status = 0;
+            switch ($game->type) {
+                case '1': ($data->score->team1 > $data->score->team2+1) ? $status = 1 : $status = 0 ; break;
+                case 'X': ($data->score->team1 = $data->score->team2+1) ? $status = 1 : $status = 0 ; break;
+                case '2': ($data->score->team1 < $data->score->team2+1) ? $status = 1 : $status = 0 ; break;
+                
+                default: $status = 2; break;
+            }
+
+            return $status;
+        }
+
+        public function double_chance($game, $data)
+        {
+            $status = 0;
+            if ($game->type == '1x') {
+                $status = 2;//Setting as losed, but will be changed in if
+                if ($data->score->team1 >= $data->score->team2) {
+                    $status = 1;
+                }
+            }
+
+            return $status;
+        }
+
+        public function how_many_goals($game, $data)
+        {
+            $status = 2;
+
+            switch ($game->type) {
+                case '0': ($data->score->team1 == 0 AND $data->score->team2 == 0) ? $status = 1 : $status = 0; break;
+                case '1+': (($data->score->team1 + $data->score->team2) >= 1) ? $status = 1 : $status = 0; break;
+                case '0-1': (($data->score->team1 + $data->score->team2) <= 1) ? $status = 1 : $status = 0; break;
+                case '2+': (($data->score->team1 + $data->score->team2) >= 2) ? $status = 1 : $status = 0; break;
+                case '0-2': (($data->score->team1 + $data->score->team2) <= 2) ? $status = 1 : $status = 0; break;
+                case '3+': (($data->score->team1 + $data->score->team2) >= 3) ? $status = 1 : $status = 0; break;
+                case '0-3': (($data->score->team1 + $data->score->team2) <= 3) ? $status = 1 : $status = 0; break;
+                case '4+': (($data->score->team1 + $data->score->team2) >= 4) ? $status = 1 : $status = 0; break;
+                case '0-4': (($data->score->team1 + $data->score->team2) <= 4) ? $status = 1 : $status = 0; break;
+                case '5+': (($data->score->team1 + $data->score->team2) >= 5) ? $status = 1 : $status = 0; break;
+                
+                default: $status = 2; break;
+            }
+
+            return $status;
+        }
+
+        public function correct_score($game, $data)
+        {
+            $status = 0;
+
+            $exp = explode(':', $game->type);
+            
+            ($exp[0] === $data->score->team1 AND $exp[1] === $data->score->team2) ? $status = 1 : $status = 2;
+
+            return $status;
+        }
+
+        public function goals($game, $data)
+        {
+            $status = 0;
+
+            ((int)$game->type === ((int)$data->score->team1 + (int)$data->score->team2)) ? $status = 1 : $status = 2;
+
             return $status;
         }
 

@@ -147,7 +147,7 @@
                             }
                         }
 
-                        echo '<li class="'.$value['code']." ".$disable.' play" data-time="'.$time.'">
+                        echo '<li class="'.$value['code']." ".$disable.' play" data-time="'.$value->start.'">
                             <div id="sport"><div class="icon" style="background-position: '.$value->tournament->sport->icon.'"></div></div>
                             <div class="match"><a>'.$value['opponent'].'</a> - for <span class="time_play">'.date('H:i:s', $time).'</span></div>
                             <div class="tips">
