@@ -90,8 +90,14 @@ class CronController extends Controller
             if (isset($data->score)) { //If isset then game is finished.
                 $game->score = $data->score->team1.":".$data->score->team2;
                 if ($game->stack->tournament->sport->name == 'Football') {
-                    if ($game->game_type == 'match') {
+                    if (
+                            $game->game_type == 'match'
+                            || $game->game_type == 'handicap'
+                            || $game->game_type == 'half-time'
+                        ) {
                         $status = $this->x12Sport($game, $data);
+                    } else if ($game->game_type == 'double-chance') {
+                        //Kodo tuka
                     }
                 }
             }
