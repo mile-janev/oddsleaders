@@ -15,10 +15,9 @@
     <ul id="sports">
         <?php $i = 0; foreach ($sports as $sport) { $i++; ?>
             <li>
-                <a href="#"
-                   class="toggler<?php echo ($i==1) ? ' first' : ''; ?>">
-                    <div class="icon" style="background-position: <?php echo $sport->icon; ?>"></div><?php echo $sport->name; ?>
-                    <!--<span>&nbsp;</span>-->
+                <a href="#" class="toggler<?php echo ($i==1) ? ' first' : ''; ?>">
+                    <div class="icon" style="background-position: <?php echo $sport->icon; ?>"></div>
+                    <?php echo $sport->name; ?>
                 </a>
                 <ul>
                     <?php foreach ($sport->tournaments as $tournament) { 
