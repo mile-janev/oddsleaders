@@ -46,6 +46,7 @@ class User extends CActiveRecord
 			array('username, password, password_repeat, email', 'required'),
 			array('username, password, email', 'length', 'max'=>64),
 			array('name', 'length', 'max'=>255),
+                        array('username', 'length', 'max'=>10),
                         array('image', 'length', 'max'=>255),
                         array('email', 'email'),
                         array('email', 'unique'), 
