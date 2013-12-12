@@ -17,15 +17,15 @@
                 </div>
                 <?php } else { ?>
                 <div id="loged">
-                    <img src="images/regtop.png"/>
+                    <img src="images/regtop.png" alt="Oddsleaders.com" />
                     <h1><?php echo Yii::app()->user->name; ?></h1>
                     <ul class="config">
                         <li><a href=""><i class="icon-indent-right"></i></a>
                             <ul class="grey">
                                 <li><a href="<?php echo Yii::app()->createUrl('user/profile'); ?>"><i class="icon-user"></i> Profile</a></li>
                                 <li><a href="<?php echo Yii::app()->createUrl('user/tickets'); ?>"><i class="icon-dashboard"></i> Tickets</a></li>
-                                    <li><a href="/index.php?r=site/logout"><i class="icon-signout"></i> Log Out</a></li>
-                                    <li><a class="bilans"> CREDITS <span><?php echo OddsClass::getUserConto(); ?> €</span></a></li>
+                                <li><a href="/index.php?r=site/logout"><i class="icon-signout"></i> Log Out</a></li>
+                                <li><a class="bilans"> CREDITS <span><?php echo OddsClass::getUserConto(); ?> €</span></a></li>
                             </ul>
                         </li>
                     </ul>	
@@ -35,7 +35,7 @@
     </div>
 </div>
 <div id="banner">
-    <a href="/"><img src="/images/logo.png" title="Oddsleaders.com"/></a>
+    <a href="/"><img src="/images/logo.png" title="Oddsleaders.com" alt="Oddsleaders.com" /></a>
 </div>
 <div id="mainmenu">
     <?php 
