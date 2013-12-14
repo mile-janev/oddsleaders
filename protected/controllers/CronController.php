@@ -28,7 +28,7 @@ class CronController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('cron','calculatewin','getxml'),
+				'actions'=>array('cron','calculatewin','getxml', 'test'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -287,6 +287,23 @@ class CronController extends Controller
                 die('Access forbidden!');
             }
             
+            exit();
+        }
+        
+        public function actionTest()
+        {
+            $server = 'http://api.oddsleaders.dev';
+            
+            $code = '192949235';//Set code you like
+            $url = Yii::app()->createUrl('cron/getresult', array('code'=>$code));
+            
+            //Make request
+            $parserAll = new SimpleHTMLDOM;
+            $htmlAll = $parserAll->file_get_html($server.$url);
+            $returnedValue = $htmlAll->innertext;//Decode this value with json_decode
+            
+            var_dump(json_decode($returnedValue));
+//            echo $htmlAll->innertext;
             exit();
         }
 
