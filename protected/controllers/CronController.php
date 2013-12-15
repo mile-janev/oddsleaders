@@ -295,14 +295,15 @@ class CronController extends Controller
             $server = 'http://api.oddsleaders.dev';
             
             $code = '192949235';//Set code you like
-            $url = Yii::app()->createUrl('cron/getresult', array('code'=>$code));
+            $url = Yii::app()->createUrl('cron/getinfo', array('code'=>$code));
             
             //Make request
             $parserAll = new SimpleHTMLDOM;
             $htmlAll = $parserAll->file_get_html($server.$url);
             $returnedValue = $htmlAll->innertext;//Decode this value with json_decode
             
-            var_dump(json_decode($returnedValue));
+            echo $returnedValue;
+//            var_dump(json_decode($returnedValue));
 //            echo $htmlAll->innertext;
             exit();
         }
