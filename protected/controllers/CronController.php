@@ -42,6 +42,22 @@ class CronController extends Controller
          */
         public function actionCron()
         {
+            $u_id = Yii::app()->user->id;
+            $isAdmin = array_key_exists($u_id, $this->admin);
+            
+            if (($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin) {
+                
+                $time = date("H:i",time());
+                
+                if ( $time=='00:00' || $time=='02:00' || $time=='04:00' || $time=='06:00' || $time=='08:00' || $time=='10:00'
+                    || $time=='12:00' || $time=='14:00' || $time=='16:00' || $time=='18:00' || $time=='20:00' || $time=='22:00'
+                ) {
+                    $this->actionGetxml();
+                }
+            
+            } else {
+                die('Access forbidden!');
+            }
             
             exit();
         }
@@ -294,16 +310,17 @@ class CronController extends Controller
         {
             $server = 'http://api.oddsleaders.dev';
             
-            $code = '192949235';//Set code you like
-            $url = Yii::app()->createUrl('cron/getinfo', array('code'=>$code));
-            
+            $code = '1142563436';//Set code you like
+            $url = Yii::app()->createUrl('cron/forceodds', array('code'=>$code));
+//            var_dump($url);
+//            exit();
             //Make request
             $parserAll = new SimpleHTMLDOM;
             $htmlAll = $parserAll->file_get_html($server.$url);
             $returnedValue = $htmlAll->innertext;//Decode this value with json_decode
             
-            echo $returnedValue;
-//            var_dump(json_decode($returnedValue));
+//            echo $returnedValue;
+            var_dump(json_decode($returnedValue));
 //            echo $htmlAll->innertext;
             exit();
         }
