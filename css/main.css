@@ -1529,21 +1529,21 @@ i[data-title]:hover:after
 /*--------------------------------------------------------------------------------------------------------------
                                                                                 BEST TIPSTERS
 ---------------------------------------------------------------------------------------------------------------*/
-.grid-view 
+.userGridNew
 {
 }
-.grid-view .summary
+.userGridNew .summary
 {
     text-align: right;
     margin: 10px;
 } 
-.grid-view table.items
+.userGridNew table.items
 {
     width: 100%;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
 }
-.grid-view table.items th
+.userGridNew table.items th
 {
     color: #ffffff;
     padding: 10px;
@@ -1560,39 +1560,39 @@ i[data-title]:hover:after
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
-.grid-view table.items th a
+.userGridNew table.items th a
 {
     color: #ffffff;
 }
-.grid-view table.items
+.userGridNew table.items
 {
     border-left: 2px solid #51a351;
     border-right: 2px solid #51a351;
     border-bottom: 5px solid #51a351;
 }
-.grid-view table.items .filters
+.userGridNew table.items .filters
 {
     /*display: none;*/
 }
-.grid-view table.items tr.odd
+.userGridNew table.items tr.odd
 {
     background: #ffffff;
 }
-.grid-view table.items tr td 
+.userGridNew table.items tr td 
 {
     padding: 5px 10px;
     text-align: center;
     border-bottom: 1px dotted #cdcdcd;  
 }
-.grid-view table.items tr:hover 
+.userGridNew table.items tr:hover 
 {
     background: rgba(98,191,98,.1);
 }
-.grid-view table.items tr td:first-child
+.userGridNew table.items tr td:first-child
 {
     text-align: left;
 } 
-.grid-view table.items tr td a:hover
+.userGridNew table.items tr td a:hover
 {
     text-decoration: underline;
 }
@@ -1608,6 +1608,9 @@ table.detail-view tr
 table.detail-view tr.odd
 {
     background: #ffffff !important;
+}
+.userGridNew .filters input{
+    width: 100%;
 }
 /*--------------------------------------------------------------------------------------------------------------
                                                                                 HELP PAGE
