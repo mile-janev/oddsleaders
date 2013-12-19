@@ -897,6 +897,7 @@ a
     width: 100%;
     display: none;
     text-align: left;
+    list-style: none;
     background: #e6ebf1;
     padding: 0px 0 10px 0px;
     border-top: 1px solid #51a351;

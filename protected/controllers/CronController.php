@@ -103,17 +103,23 @@ class CronController extends Controller
         {
             $status = 0;
             $data = json_decode($game->stack->data);
-            if (isset($data->score)) { //If isset then game is finished.
-                $game->score = $data->score->team1.":".$data->score->team2;
+            $result = json_decode($game->stack->result,true);
+
+            if (isset($result) AND $result != '') { //If isset then game is finished.
                 if ($game->stack->tournament->sport->name == 'Football') {
                     switch ($game->game_type) {
-                        case 'match': $status = $this->x12Sport($game, $data);  break;
-                        case 'handicap': $status = $this->handicap($game, $data);  break;
-                        case 'half-time': $status = $this->x12Sport($game, $data);  break;
-                        case 'double-chance': $status = $this->double_chance($game, $data);  break;
-                        case 'how-many-goals': $status = $this->how_many_goals($game, $data);  break;
-                        case 'correct-score': $status = $this->correct_score($game, $data);  break;
-                        case 'goals': $status = $this->goals($game, $data);  break;
+                        case 'match': $status = $this->x12Sport($game, $result);  break;
+                        case 'handicap': $status = $this->handicap($game, $result);  break;
+                        case 'half-time': $status = $this->half_time($game, $result);  break;
+                        case 'first-goal': $status = $this->first_goal($game, $result);  break;
+                        case 'double-chance': $status = $this->double_chance($game, $result);  break;
+                        case 'how-many-goals': $status = $this->how_many_goals($game, $result);  break;
+                        case 'correct-score': $status = $this->correct_score($game, $result);  break;
+                        case 'goals': $status = $this->goals($game, $result);  break;
+                        case 'time-first-goal': $status = $this->time_goal($game, $result);  break;
+                        case 'half-full-time': $status = $this->half_full_time($game, $result);  break;
+                        case 'when-first-goal': $status = $this->time_goal($game, $result);  break;
+                        case 'time-first-goal': $status = $this->time_goal($game, $result);  break;
                         default:
                             # code...
                             break;
@@ -145,17 +151,41 @@ class CronController extends Controller
             
             if ($game->type == '1') {
                 $status = 2;//Setting as losed, but will be changed in if
-                if ($data->score->team1 > $data->score->team2) {
+                if ($data['final']['team1'] > $data['final']['team2']) {
                     $status = 1;
                 }
             } else if ($game->type == 'X') {
                 $status = 2;
-                if ($data->score->team1 == $data->score->team2) {
+                if ($data['final']['team1'] == $data['final']['team2']) {
                     $status = 1;
                 }
             } else if ($game->type == '2') {
                 $status = 2;
-                if ($data->score->team1 < $data->score->team2) {
+                if ($data['final']['team1'] < $data['final']['team2']) {
+                    $status = 1;
+                }
+            }
+            
+            return $status;
+        }
+
+        public function half_time($game, $data)
+        {
+            $status = 0;
+            
+            if ($game->type == '1') {
+                $status = 2;//Setting as losed, but will be changed in if
+                if ($data['half-time']['team1'] > $data['half-time']['team2']) {
+                    $status = 1;
+                }
+            } else if ($game->type == 'X') {
+                $status = 2;
+                if ($data['half-time']['team1'] == $data['half-time']['team2']) {
+                    $status = 1;
+                }
+            } else if ($game->type == '2') {
+                $status = 2;
+                if ($data['half-time']['team1'] < $data['half-time']['team2']) {
                     $status = 1;
                 }
             }
@@ -167,13 +197,32 @@ class CronController extends Controller
         {
             $status = 0;
             switch ($game->type) {
-                case '1': ($data->score->team1 > $data->score->team2+1) ? $status = 1 : $status = 0 ; break;
-                case 'X': ($data->score->team1 = $data->score->team2+1) ? $status = 1 : $status = 0 ; break;
-                case '2': ($data->score->team1 < $data->score->team2+1) ? $status = 1 : $status = 0 ; break;
+                case '1': ($data['final']['team1'] > $data['final']['team2']+1) ? $status = 1 : $status = 2 ; break;
+                case 'X': ($data['final']['team1'] = $data['final']['team2']+1) ? $status = 1 : $status = 2 ; break;
+                case '2': ($data['final']['team1'] < $data['final']['team2']+1) ? $status = 1 : $status = 2 ; break;
                 
                 default: $status = 2; break;
             }
 
+            return $status;
+        }
+
+        public function first_goal($game, $data)
+        {
+            $status = 0;
+            
+            if ($game->type == 'Home') {
+                $status = 2;//Setting as losed, but will be changed in if
+                if (min($data['goals']['team1']) > min($data['goals']['team2'])) {
+                    $status = 1;
+                }
+            } else {
+                $status = 2;
+                if (min($data['goals']['team1']) < min($data['goals']['team2'])) {
+                    $status = 1;
+                }
+            }
+            
             return $status;
         }
 
@@ -182,7 +231,7 @@ class CronController extends Controller
             $status = 0;
             if ($game->type == '1x') {
                 $status = 2;//Setting as losed, but will be changed in if
-                if ($data->score->team1 >= $data->score->team2) {
+                if ($data['final']['team1'] >= $data['final']['team2']) {
                     $status = 1;
                 }
             }
@@ -192,21 +241,21 @@ class CronController extends Controller
 
         public function how_many_goals($game, $data)
         {
-            $status = 2;
+            $status = 0;
 
             switch ($game->type) {
-                case '0': ($data->score->team1 == 0 AND $data->score->team2 == 0) ? $status = 1 : $status = 0; break;
-                case '1+': (($data->score->team1 + $data->score->team2) >= 1) ? $status = 1 : $status = 0; break;
-                case '0-1': (($data->score->team1 + $data->score->team2) <= 1) ? $status = 1 : $status = 0; break;
-                case '2+': (($data->score->team1 + $data->score->team2) >= 2) ? $status = 1 : $status = 0; break;
-                case '0-2': (($data->score->team1 + $data->score->team2) <= 2) ? $status = 1 : $status = 0; break;
-                case '3+': (($data->score->team1 + $data->score->team2) >= 3) ? $status = 1 : $status = 0; break;
-                case '0-3': (($data->score->team1 + $data->score->team2) <= 3) ? $status = 1 : $status = 0; break;
-                case '4+': (($data->score->team1 + $data->score->team2) >= 4) ? $status = 1 : $status = 0; break;
-                case '0-4': (($data->score->team1 + $data->score->team2) <= 4) ? $status = 1 : $status = 0; break;
-                case '5+': (($data->score->team1 + $data->score->team2) >= 5) ? $status = 1 : $status = 0; break;
+                case '0': ($data['final']['team1'] == 0 AND $data['final']['team2'] == 0) ? $status = 1 : $status = 2; break;
+                case '1+': (($data['final']['team1'] + $data['final']['team2']) >= 1) ? $status = 1 : $status = 2; break;
+                case '0-1': (($data['final']['team1'] + $data['final']['team2']) <= 1) ? $status = 1 : $status = 2; break;
+                case '2+': (($data['final']['team1'] + $data['final']['team2']) >= 2) ? $status = 1 : $status = 2; break;
+                case '0-2': (($data['final']['team1'] + $data['final']['team2']) <= 2) ? $status = 1 : $status = 2; break;
+                case '3+': (($data['final']['team1'] + $data['final']['team2']) >= 3) ? $status = 1 : $status = 2; break;
+                case '0-3': (($data['final']['team1'] + $data['final']['team2']) <= 3) ? $status = 1 : $status = 2; break;
+                case '4+': (($data['final']['team1'] + $data['final']['team2']) >= 4) ? $status = 1 : $status = 2; break;
+                case '0-4': (($data['final']['team1'] + $data['final']['team2']) <= 4) ? $status = 1 : $status = 2; break;
+                case '5+': (($data['final']['team1'] + $data['final']['team2']) >= 5) ? $status = 1 : $status = 2; break;
                 
-                default: $status = 2; break;
+                default: $status = 0; break;
             }
 
             return $status;
@@ -218,7 +267,7 @@ class CronController extends Controller
 
             $exp = explode(':', $game->type);
             
-            ($exp[0] === $data->score->team1 AND $exp[1] === $data->score->team2) ? $status = 1 : $status = 2;
+            ($exp[0] === $data['final']['team1'] AND $exp[1] === $data['final']['team2']) ? $status = 1 : $status = 2;
 
             return $status;
         }
@@ -227,8 +276,55 @@ class CronController extends Controller
         {
             $status = 0;
 
-            ((int)$game->type === ((int)$data->score->team1 + (int)$data->score->team2)) ? $status = 1 : $status = 2;
+            ((int)$game->type === ((int)$data['final']['team1'] + (int)$data['final']['team2'])) ? $status = 1 : $status = 2;
 
+            return $status;
+        }
+
+        public function time_goal($game, $data)
+        {
+            $status = 0;
+            $home_goal = min($data['goals']['team1']);
+            $guest_goal = min($data['goals']['team2']);
+
+            ($home_goal < $guest_goal) ? $first_goal = $home_goal : $first_goal = $guest_goal;
+
+            switch ($game->type) {
+                case '1-29':  ($first_goal >= '1' AND $first_goal <= '29') ? $status = 1 : $status = 2; break;
+                case '30+':   ($first_goal >= '30') ? $status = 1 : $status = 2; break;
+                case '1-10':  ($first_goal >= '1' AND $first_goal <= '10') ? $status = 1 : $status = 2; break;
+                case '11-20': ($first_goal >= '11' AND $first_goal <= '20') ? $status = 1 : $status = 2; break;
+                case '21-30': ($first_goal >= '21' AND $first_goal <= '30') ? $status = 1 : $status = 2; break;
+                case '31-40': ($first_goal >= '31' AND $first_goal <= '40') ? $status = 1 : $status = 2; break;
+                case '41-50': ($first_goal >= '41' AND $first_goal <= '50') ? $status = 1 : $status = 2; break;
+                case '51-60': ($first_goal >= '51' AND $first_goal <= '60') ? $status = 1 : $status = 2; break;
+                case '61-70': ($first_goal >= '61' AND $first_goal <= '70') ? $status = 1 : $status = 2; break;
+                case '71-80': ($first_goal >= '71' AND $first_goal <= '80') ? $status = 1 : $status = 2; break;
+                case '81+':   ($first_goal >= '81') ? $status = 1 : $status = 2; break;
+                
+                default: $status = 0; break;
+            }
+
+           return $status;
+        }
+
+        public function half_full_time($game, $data)
+        {
+            $status = 0;
+
+            switch ($game->type) {
+                case 'H/H': (($data['half-time']['team1'] > $data['half-time']['team2']) AND ($data['final']['team1'] > $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'X/H': (($data['half-time']['team1'] = $data['half-time']['team2']) AND ($data['final']['team1'] > $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'G/H': (($data['half-time']['team1'] < $data['half-time']['team2']) AND ($data['final']['team1'] > $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'H/X': (($data['half-time']['team1'] > $data['half-time']['team2']) AND ($data['final']['team1'] = $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'X/X': (($data['half-time']['team1'] = $data['half-time']['team2']) AND ($data['final']['team1'] = $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'G/X': (($data['half-time']['team1'] < $data['half-time']['team2']) AND ($data['final']['team1'] = $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'H/G': (($data['half-time']['team1'] > $data['half-time']['team2']) AND ($data['final']['team1'] < $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'X/G': (($data['half-time']['team1'] = $data['half-time']['team2']) AND ($data['final']['team1'] < $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'G/G': (($data['half-time']['team1'] < $data['half-time']['team2']) AND ($data['final']['team1'] < $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                
+                default: $status = 0; break;
+            }
             return $status;
         }
 

@@ -96,7 +96,7 @@
                         <div id="teams"><a>' . $value['opponent'] . '</a></div>
                         <div class="tips">
                             ' . $match_odds . '
-                            <div class="more">+16 <i class="icon-plus-sign"></i></div>
+                            <div class="more">+'.$count.' <i class="icon-plus-sign"></i></div>
                         </div>
                         <ul class="more_odds">
                             ' . $more . '

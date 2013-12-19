@@ -35,10 +35,10 @@ class Stack extends CActiveRecord
                         array('code', 'numerical', 'integerOnly'=>true),
 			array('opponent', 'length', 'max'=>256),
 			array('tournament_id', 'length', 'max'=>10),
-			array('start, data', 'safe'),
+			array('start, result, data', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, opponent, start, data, tournament_id, active, bet_count', 'safe', 'on'=>'search'),
+			array('id, code, opponent, start, data, result, tournament_id, active, bet_count', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,6 +65,7 @@ class Stack extends CActiveRecord
 			'opponent' => 'Opponents',
 			'start' => 'Start game',
 			'data' => 'Data content',
+			'result' => 'Match Result',
 			'tournament_id' => 'Tournament',
                         'bet_count' => 'Bet Count',
                         'active' => 'Active'
@@ -94,6 +95,7 @@ class Stack extends CActiveRecord
 		$criteria->compare('opponent',$this->opponent,true);
 		$criteria->compare('start',$this->start,true);
 		$criteria->compare('data',$this->data,true);
+		$criteria->compare('result',$this->result,true);
 		$criteria->compare('tournament_id',$this->tournament_id,true);
                 $criteria->compare('active',$this->active,true);
                 $criteria->compare('bet_count',$this->bet_count,true);
