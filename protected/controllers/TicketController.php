@@ -32,7 +32,7 @@ class TicketController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','mytickets'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -177,5 +177,21 @@ class TicketController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+        
+        /**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionMytickets()
+	{
+            $model=new Ticket('search');
+            $model->unsetAttributes();  // clear any default values
+            if(isset($_GET['Ticket']))
+                    $model->attributes=$_GET['Ticket'];
+            
+		$this->render('mytickets',array(
+			'model'=>$model,
+		));
 	}
 }
