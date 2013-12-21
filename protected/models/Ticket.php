@@ -83,7 +83,7 @@ class Ticket extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($bla=false)
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
@@ -94,7 +94,11 @@ class Ticket extends CActiveRecord
 		$criteria->compare('deposit',$this->deposit);
 		$criteria->compare('earning',$this->earning);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('user_id',$this->user_id,true);
+                if ($bla) {
+                    $criteria->compare('user_id',Yii::app()->user->id,true);
+                } else {
+                    $criteria->compare('user_id',  $this->user_id,true);
+                }
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

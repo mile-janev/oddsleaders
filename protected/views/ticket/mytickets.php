@@ -20,7 +20,7 @@ $this->menu=array(
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'ticket-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->search('true'),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
