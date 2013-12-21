@@ -1,3 +1,5 @@
+<?php $this->pageTitle=Yii::app()->name . ' - Partners'; ?>
+
 <h1>Partners</h1>
 
 <p>This is a "static" page. You may change the content of this page

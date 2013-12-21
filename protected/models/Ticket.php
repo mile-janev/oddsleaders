@@ -33,13 +33,13 @@ class Ticket extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('odd, deposit, earning, user_id', 'required'),
+			array('odd, deposit, earning, date, user_id', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('odd, deposit, earning', 'numerical'),
 			array('user_id', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, odd, deposit, earning, status, user_id', 'safe', 'on'=>'search'),
+			array('id, odd, deposit, data, earning, status, user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +63,7 @@ class Ticket extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'date' => 'Date',
 			'odd' => 'Odd',
 			'deposit' => 'Deposit',
 			'earning' => 'Earning',
@@ -90,6 +91,7 @@ class Ticket extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
+		$criteria->compare('date',$this->date);
 		$criteria->compare('odd',$this->odd);
 		$criteria->compare('deposit',$this->deposit);
 		$criteria->compare('earning',$this->earning);

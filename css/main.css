@@ -1484,28 +1484,31 @@ a
 {
     background-position: 0px -29px;
 }
-i
+.hint
 {
+    font-size: 12px;
+    color: #1A5E83;
     position: relative;
+    cursor: help;
+    vertical-align: super;
 }
-i[data-title]:hover:after
+.hint[data-title]:hover:after
 {
-    content: attr(data-title);
-    padding: 4px 8px;
-    position: absolute;
-    left: 100%;
     top: 100%;
+    left: 100%;
     color: #000;
     font-size: 12px;
+    padding: 4px 8px;
+    z-index: 99999;
+    position: absolute;
+    background: #E6E6E6;
     white-space: nowrap;
-    z-index: 20px;
+    margin: -15px 0 0 10px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    -moz-box-shadow: 0px 0px 4px #1a5e83;
-    -webkit-box-shadow: 0px 0px 4px #1a5e83;
-    box-shadow: 0px 0px 4px #1a5e83;
-    background: #fff;
+    border: 1px solid #1A5E83;
+    content: attr(data-title);
 }
 /*--------------------------------------------------------------------------------------------------------------
                                                                                 BUTTONS
@@ -1529,7 +1532,7 @@ i[data-title]:hover:after
 }
 .win 
 {
-    background: rgba(99,196,99,.2) !important;
+    background: rgba(99,196,99,.5) !important;
 }
 .lose
 {
@@ -1541,6 +1544,10 @@ i[data-title]:hover:after
 ---------------------------------------------------------------------------------------------------------------*/
 .userGridNew
 {
+}
+.userGridNew #share 
+{
+    text-align: center;
 }
 .userGridNew .summary
 {

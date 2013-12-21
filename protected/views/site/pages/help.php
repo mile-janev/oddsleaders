@@ -1,3 +1,5 @@
+<?php $this->pageTitle=Yii::app()->name . ' - Help'; ?>
+
 <h1>Help</h1>
 <div id="questions">
 	<a href="" class="button grey">1. How do I make a bet?</a>

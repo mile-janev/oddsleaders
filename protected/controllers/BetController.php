@@ -224,6 +224,7 @@ class BetController extends Controller
                         if (!$started) { //If game is not started
                             $ticket = new Ticket();
                             $ticket->odd = $totalOdds;
+                            $ticket->date = time();
                             $ticket->deposit = $_POST['stake'];
                             $ticket->earning = $totalOdds * $_POST['stake'];
                             $ticket->status = 0;

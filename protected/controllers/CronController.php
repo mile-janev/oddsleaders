@@ -74,7 +74,8 @@ class CronController extends Controller
                 foreach ($ticket->games as $game) {
                     if ($game->status == 0) {
                         $status = $this->calculateGame($game);
-                        if ($status == 0) {
+                        if ($status == 0) 
+                        {
                             $ticketFinished = false;
                         } else {
                             $game->status = $status;
@@ -121,18 +122,9 @@ class CronController extends Controller
                         case 'when-first-goal': $status = $this->time_goal($game, $result);  break;
                         case 'time-first-goal': $status = $this->time_goal($game, $result);  break;
                         default:
-                            # code...
-                            break;
+                            $status = 0;
+                        break;
                     }
-                    /*if (
-                            $game->game_type == 'match'
-                            || $game->game_type == 'handicap'
-                            || $game->game_type == 'half-time'
-                        ) {
-                        $status = $this->x12Sport($game, $data);
-                    } else if ($game->game_type == 'double-chance') {
-                        //Kodo tuka
-                    }*/
                 }
             }
             

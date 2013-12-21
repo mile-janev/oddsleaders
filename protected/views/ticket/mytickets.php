@@ -25,13 +25,15 @@ $this->menu=array(
 	'rowCssClassExpression' => '
         ( $data->status != "0" ? ($data->status == "1") ? "win" : "lose" : "" )
     ',
-	'filter'=>$model,
 	'columns'=>array(
 		array(
                 'name'=>'id',
                 'value'=>'"#".$data->id',
             ),
-		'odd',
+		array(
+                'name'=>'date',
+                'value'=>'date("d/m/y H:i", $data->date)',
+            ),
 		array(
                 'name'=>'deposit',
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->deposit, "EUR")',
@@ -41,7 +43,7 @@ $this->menu=array(
                 'value'=>'Yii::app()->numberFormatter->formatCurrency($data->earning, "EUR")',
             ),
 		array(
-                'name'=>'earning',
+                'name'=>'status',
                 'value'=>'( $data->status != "0" ? ($data->status == "1") ? "WIN" : "LOSE" : "STILL PLAY" )',
             ),
 		array(
