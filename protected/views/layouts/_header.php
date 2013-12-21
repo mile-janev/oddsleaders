@@ -47,7 +47,7 @@
                 array('label'=>'Bet Slipper', 'url'=>array('/bet/slipper')),
 //                array('label'=>'Top Matches', 'url'=>array('/stack/topmatches')),
                 array('label'=>'Best Tipsters', 'url'=>array('/user/best')),
-//                array('label'=>'My Tickets', 'url'=>array('/user/tickets'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'My Tickets', 'url'=>array('/user/tickets'), 'visible'=>!Yii::app()->user->isGuest),
 //                array('label'=>'My History', 'url'=>array('/user/history'), 'visible'=>!Yii::app()->user->isGuest),
 //                array('label'=>'Bet Manager', 'url'=>array('/user/betmanager'), 'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Admin', 'url'=>array('/user/adminpanel'), 'submenuOptions'=>array('class'=>'dropdown-menu'), 'visible' => UserRoleCheck::isAdmin(Yii::app()->user->id)),

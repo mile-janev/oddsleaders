@@ -302,7 +302,7 @@ class UserController extends Controller
         
         public function actionTickets()
         {
-            $model = User::model()->findAll();
+            $model = Ticket::model()->findAll();
             
             $this->render('tickets',array(
                 'model'=>$model,

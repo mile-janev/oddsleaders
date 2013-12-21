@@ -198,7 +198,7 @@ class CronController extends Controller
             $status = 0;
             switch ($game->type) {
                 case '1': ($data['final']['team1'] > $data['final']['team2']+1) ? $status = 1 : $status = 2 ; break;
-                case 'X': ($data['final']['team1'] = $data['final']['team2']+1) ? $status = 1 : $status = 2 ; break;
+                case 'X': ($data['final']['team1'] == $data['final']['team2']+1) ? $status = 1 : $status = 2 ; break;
                 case '2': ($data['final']['team1'] < $data['final']['team2']+1) ? $status = 1 : $status = 2 ; break;
                 
                 default: $status = 2; break;
@@ -213,12 +213,12 @@ class CronController extends Controller
             
             if ($game->type == 'Home') {
                 $status = 2;//Setting as losed, but will be changed in if
-                if (min($data['goals']['team1']) > min($data['goals']['team2'])) {
+                if (min($data['goals']['team1']) < min($data['goals']['team2'])) {
                     $status = 1;
                 }
             } else {
                 $status = 2;
-                if (min($data['goals']['team1']) < min($data['goals']['team2'])) {
+                if (min($data['goals']['team1']) > min($data['goals']['team2'])) {
                     $status = 1;
                 }
             }
@@ -229,9 +229,17 @@ class CronController extends Controller
         public function double_chance($game, $data)
         {
             $status = 0;
+
             if ($game->type == '1x') {
                 $status = 2;//Setting as losed, but will be changed in if
                 if ($data['final']['team1'] >= $data['final']['team2']) {
+                    $status = 1;
+                }
+            }
+            else 
+            {
+                $status = 2;
+                if ($data['final']['team1'] <= $data['final']['team2']) {
                     $status = 1;
                 }
             }
@@ -314,13 +322,13 @@ class CronController extends Controller
 
             switch ($game->type) {
                 case 'H/H': (($data['half-time']['team1'] > $data['half-time']['team2']) AND ($data['final']['team1'] > $data['final']['team2'])) ? $status = 1 : $status = 2; break;
-                case 'X/H': (($data['half-time']['team1'] = $data['half-time']['team2']) AND ($data['final']['team1'] > $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'X/H': (($data['half-time']['team1'] == $data['half-time']['team2']) AND ($data['final']['team1'] > $data['final']['team2'])) ? $status = 1 : $status = 2; break;
                 case 'G/H': (($data['half-time']['team1'] < $data['half-time']['team2']) AND ($data['final']['team1'] > $data['final']['team2'])) ? $status = 1 : $status = 2; break;
-                case 'H/X': (($data['half-time']['team1'] > $data['half-time']['team2']) AND ($data['final']['team1'] = $data['final']['team2'])) ? $status = 1 : $status = 2; break;
-                case 'X/X': (($data['half-time']['team1'] = $data['half-time']['team2']) AND ($data['final']['team1'] = $data['final']['team2'])) ? $status = 1 : $status = 2; break;
-                case 'G/X': (($data['half-time']['team1'] < $data['half-time']['team2']) AND ($data['final']['team1'] = $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'H/X': (($data['half-time']['team1'] > $data['half-time']['team2']) AND ($data['final']['team1'] == $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'X/X': (($data['half-time']['team1'] == $data['half-time']['team2']) AND ($data['final']['team1'] == $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'G/X': (($data['half-time']['team1'] < $data['half-time']['team2']) AND ($data['final']['team1'] == $data['final']['team2'])) ? $status = 1 : $status = 2; break;
                 case 'H/G': (($data['half-time']['team1'] > $data['half-time']['team2']) AND ($data['final']['team1'] < $data['final']['team2'])) ? $status = 1 : $status = 2; break;
-                case 'X/G': (($data['half-time']['team1'] = $data['half-time']['team2']) AND ($data['final']['team1'] < $data['final']['team2'])) ? $status = 1 : $status = 2; break;
+                case 'X/G': (($data['half-time']['team1'] == $data['half-time']['team2']) AND ($data['final']['team1'] < $data['final']['team2'])) ? $status = 1 : $status = 2; break;
                 case 'G/G': (($data['half-time']['team1'] < $data['half-time']['team2']) AND ($data['final']['team1'] < $data['final']['team2'])) ? $status = 1 : $status = 2; break;
                 
                 default: $status = 0; break;
