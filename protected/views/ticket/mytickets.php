@@ -16,21 +16,45 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Ticket #<?php echo $model->id; ?></h1>
+<h1>Your Tickets</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'ticket-grid',
+	'htmlOptions' => array('class' => 'userGridNew'),
 	'dataProvider'=>$model->search('true'),
+	'rowCssClassExpression' => '
+        ( $data->status != "0" ? ($data->status == "1") ? "win" : "lose" : "" )
+    ',
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+		array(
+                'name'=>'id',
+                'value'=>'"#".$data->id',
+            ),
 		'odd',
-		'deposit',
-		'earning',
-		'status',
-		'user_id',
+		array(
+                'name'=>'deposit',
+                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->deposit, "EUR")',
+            ),
+		array(
+                'name'=>'earning',
+                'value'=>'Yii::app()->numberFormatter->formatCurrency($data->earning, "EUR")',
+            ),
+		array(
+                'name'=>'earning',
+                'value'=>'( $data->status != "0" ? ($data->status == "1") ? "WIN" : "LOSE" : "STILL PLAY" )',
+            ),
 		array(
 			'class'=>'CButtonColumn',
+			'header' => Yii::t( 'app', 'View' ),
+			'template'=>'{view}',
+			'buttons' => array(
+                'view'=>array(
+                        'label'=>'View Ticket',
+                        'url'=>'Yii::app()->createUrl("ticket/check", array("id"=>$data->id))',
+                        'imageUrl'=>'images/zoom.png',
+                ),
+            ),
 		),
 	),
 )); ?>

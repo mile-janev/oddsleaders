@@ -28,7 +28,7 @@ class TicketController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','check'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -148,6 +148,20 @@ class TicketController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+
+	public function actionCheck()
+	{
+		$id = $_GET['id'];
+		$criteria = new CDbCriteria();
+        $criteria->addCondition('ticket_id = :id');
+        $criteria->params[':id'] = $id;
+		
+		$model=Game::model()->findAll($criteria);
+	
+		$this->render('check', array(
+			'model' => $model,
 		));
 	}
 
