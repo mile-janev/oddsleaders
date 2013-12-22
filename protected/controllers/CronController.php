@@ -445,7 +445,7 @@ class CronController extends Controller
                 $criteria1 = new CDbCriteria();
                 $criteria1->addCondition('month = :month');
                 $criteria1->params[':month'] = date("d-m-Y",time());
-                $criteria->order = 'conto DESC';
+                $criteria1->order = 'conto DESC';
                 $histories = History::model()->findAll($criteria1);
                 
                 $j=1;
