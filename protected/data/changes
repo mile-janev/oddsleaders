@@ -5,3 +5,7 @@ ALTER TABLE  `ticket` ADD  `date` BIGINT( 13 ) NOT NULL AFTER  `id`
 
 ALTER TABLE `game` ADD `score` VARCHAR( 64 ) NULL DEFAULT NULL;
 ALTER TABLE `game` ADD `status` SMALLINT NOT NULL DEFAULT '0' COMMENT '0-not finished, 1-win, 2-lose';
+
+22.12.2013
+
+Imort new table "history"

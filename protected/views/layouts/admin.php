@@ -34,6 +34,7 @@
                 <div id="main" class="adminMain">
                     <ul id="adminMenu">
                         <li><?php echo CHtml::link('User', Yii::app()->createUrl('user/admin')); ?></li>
+                        <li><?php echo CHtml::link('Month History', Yii::app()->createUrl('history/admin')); ?></li>
                         <li><?php echo CHtml::link('Bet Ticket', Yii::app()->createUrl('ticket/admin')); ?></li>
                         <li><?php echo CHtml::link('Bet Games', Yii::app()->createUrl('game/admin')); ?></li>
                         <li><?php echo CHtml::link('Country', Yii::app()->createUrl('country/admin')); ?></li>

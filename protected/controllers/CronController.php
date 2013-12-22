@@ -28,7 +28,7 @@ class CronController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('cron','calculatewin','getxml', 'test'),
+				'actions'=>array('cron','calculatewin','getxml','newmonth','test'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -48,12 +48,23 @@ class CronController extends Controller
             if (($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin) {
                 
                 $time = date("H:i",time());
+                $dayMonth = $date("d-m", time());
                 
-//                if ( $time=='00:00' || $time=='02:00' || $time=='04:00' || $time=='06:00' || $time=='08:00' || $time=='10:00'
-//                    || $time=='12:00' || $time=='14:00' || $time=='16:00' || $time=='18:00' || $time=='20:00' || $time=='22:00'
-//                ) {
+                if ( $time=='00:00' || $time=='02:00' || $time=='04:00' || $time=='06:00' || $time=='08:00' || $time=='10:00'
+                    || $time=='12:00' || $time=='14:00' || $time=='16:00' || $time=='18:00' || $time=='20:00' || $time=='22:00'
+                ) {
                     $this->actionGetxml();
-//                }
+                }
+                else if ($time=='00:00')
+                {
+                    $this->actionCalculatewin();
+                }
+                else if (($dayMonth=='31.01' && $time=='23:59') || ($dayMonth=='28.02' && $time=='23:59') || ($dayMonth=='31.03' && $time=='23:59') || ($dayMonth=='30.04' && $time=='23:59') 
+                        || ($dayMonth=='31.05' && $time=='23:59') || ($dayMonth=='30.06' && $time=='23:59') || ($dayMonth=='31.07' && $time=='23:59') || ($dayMonth=='31.08' && $time=='23:59')
+                        || ($dayMonth=='30.09' && $time=='23:59') || ($dayMonth=='31.10' && $time=='23:59') || ($dayMonth=='30.11' && $time=='23:59') || ($dayMonth=='31.12' && $time=='23:59')
+                ) {
+                    $this->actionNewmonth();
+                }
             
             } else {
                 die('Access forbidden!');
@@ -89,6 +100,12 @@ class CronController extends Controller
                 if ($ticketFinished) {
                     $ticket->status = $tickedWinned;
                     $ticket->update();
+                    if ($tickedWinned==1) {
+                        $user = User::model()->findByPk($ticket->user_id);
+                        $user->conto += $ticket->earning;
+                        $user->conto_all += $ticket->earning;
+                        $user->update();
+                    }
                 }
             }
             
@@ -395,6 +412,49 @@ class CronController extends Controller
                     }
                 }
                 
+            } else {
+                die('Access forbidden!');
+            }
+            
+            exit();
+        }
+        
+        /**
+         * Cron for every month save conto for current month and reset for new
+         */
+        public function actionNewmonth()
+        {
+            $u_id = Yii::app()->user->id;
+            $isAdmin = array_key_exists($u_id, $this->admin);
+
+            if (($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin) {
+                
+                $users = User::model()->findAll();
+                foreach ($users as $user) {
+                    $history = new History();
+                    $history->user_id = $user->id;
+                    $history->month = date("d-m-Y",time());
+                    $history->conto = $user->conto;
+                    $history->position;
+                    $history->save();
+
+                    $user->conto = 500;
+                    $user->update();
+                }
+                
+                $criteria1 = new CDbCriteria();
+                $criteria1->addCondition('month = :month');
+                $criteria1->params[':month'] = date("d-m-Y",time());
+                $criteria->order = 'conto DESC';
+                $histories = History::model()->findAll($criteria1);
+                
+                $j=1;
+                for ($i=0; $i<count($histories); $i++) {
+                    $histories[$i]->position = $j;
+                    $histories[$i]->update();
+                    $j++;
+                }
+            
             } else {
                 die('Access forbidden!');
             }
