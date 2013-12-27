@@ -48,7 +48,7 @@ class CronController extends Controller
             if (($_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR']) || $isAdmin) {
                 
                 $time = date("H:i",time());
-                $dayMonth = $date("d-m", time());
+                $dayMonth = date("d-m", time());
                 
                 if ( $time=='00:00' || $time=='02:00' || $time=='04:00' || $time=='06:00' || $time=='08:00' || $time=='10:00'
                     || $time=='12:00' || $time=='14:00' || $time=='16:00' || $time=='18:00' || $time=='20:00' || $time=='22:00'
