@@ -397,7 +397,7 @@ class CronController extends Controller
                                     $stackModel = new Stack();
                                     $stackModel->code = (string)$game->code;
                                     $stackModel->opponent = (string)$game->opponent;
-                                    $stackModel->start = (string)$game->start;
+                                    $stackModel->start = (string)$game->start-3600;
                                     $stackModel->data = (string)$game->odds;
                                     $stackModel->tournament_id = $tournamentModel->id;
                                     $stackModel->active = 1;
