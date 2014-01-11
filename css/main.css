@@ -1051,6 +1051,10 @@ a
     zoom: 1; /* Fix for IE7 */
     *display: inline; /* Fix for IE7 */
 }
+.box #user_box #left img
+{
+    width: 100%;
+}
 .box #user_box #right
 {
     width: 340px;

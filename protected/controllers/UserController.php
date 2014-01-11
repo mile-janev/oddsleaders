@@ -28,7 +28,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','register','best'),
+				'actions'=>array('index','view','register','best', 'change'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -209,7 +209,7 @@ class UserController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+	public function actionUpdateUser($id)
 	{
             $this->layout='admin';
             
@@ -351,5 +351,14 @@ class UserController extends Controller
             $this->render('best',array(
                 'model'=>$model,
             ));
+        }
+
+        public function actionChange()
+        {
+        	$id = $_POST['id'];
+        	$name = $_POST['name'];
+        	$email = $_POST['email'];
+
+        	User::model()->updateByPk($id, array('name' => $name ,'email' => $email));
         }
 }
