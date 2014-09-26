@@ -33,15 +33,19 @@
             <div id="content">
                 <div id="main" class="adminMain">
                     <ul id="adminMenu">
-                        <li><?php echo CHtml::link('User', Yii::app()->createUrl('user/admin')); ?></li>
-                        <li><?php echo CHtml::link('Month History', Yii::app()->createUrl('history/admin')); ?></li>
-                        <li><?php echo CHtml::link('Bet Ticket', Yii::app()->createUrl('ticket/admin')); ?></li>
-                        <li><?php echo CHtml::link('Bet Games', Yii::app()->createUrl('game/admin')); ?></li>
-                        <li><?php echo CHtml::link('Country', Yii::app()->createUrl('country/admin')); ?></li>
-                        <li><?php echo CHtml::link('Sport', Yii::app()->createUrl('sport/admin')); ?></li>
-                        <li><?php echo CHtml::link('Tournament', Yii::app()->createUrl('tournament/admin')); ?></li>
-                        <li><?php echo CHtml::link('Stack', Yii::app()->createUrl('stack/admin')); ?></li>
-                        <li><?php echo CHtml::link('Top Matches', Yii::app()->createUrl('stack/admintopmatches')); ?></li>
+                        <?php $controllerAction = $this->id."/".$this->action->id; ?>
+                        <li class="<?php echo ($controllerAction=='country/admin') ? "active" : "" ?>"><?php echo CHtml::link('Country', Yii::app()->createUrl('country/admin')); ?></li>
+                        <li class="<?php echo ($controllerAction=='sport/admin') ? "active" : "" ?>"><?php echo CHtml::link('Sport', Yii::app()->createUrl('sport/admin')); ?></li>
+                        <li class="<?php echo ($controllerAction=='tournament/admin') ? "active" : "" ?>"><?php echo CHtml::link('Tournament', Yii::app()->createUrl('tournament/admin')); ?></li>
+                        <li class="<?php echo ($controllerAction=='stack/admin') ? "active" : "" ?>"><?php echo CHtml::link('Stack', Yii::app()->createUrl('stack/admin')); ?></li>
+                        <li class="<?php echo ($controllerAction=='stack/create') ? "active" : "" ?>"><?php echo CHtml::link('Create Match (Stack)', Yii::app()->createUrl('stack/create')); ?></li>
+                        <li class="<?php echo ($controllerAction=='ticket/admin') ? "active" : "" ?>"><?php echo CHtml::link('Bet Ticket', Yii::app()->createUrl('ticket/admin')); ?></li>
+                        <li class="<?php echo ($controllerAction=='game/admin') ? "active" : "" ?>"><?php echo CHtml::link('Bet Games', Yii::app()->createUrl('game/admin')); ?></li>
+                        <li class="<?php echo ($controllerAction=='stack/admintopmatches') ? "active" : "" ?>"><?php echo CHtml::link('Top Matches', Yii::app()->createUrl('stack/admintopmatches')); ?></li>
+                        <li class="<?php echo ($controllerAction=='user/admin') ? "active" : "" ?>"><?php echo CHtml::link('User', Yii::app()->createUrl('user/admin')); ?></li>
+                        <li class="<?php echo ($controllerAction=='history/admin') ? "active" : "" ?>"><?php echo CHtml::link('Month History', Yii::app()->createUrl('history/admin')); ?></li>
+                        <li class="<?php echo ($controllerAction=='cron/calculatewin') ? "active" : "" ?>"><?php echo CHtml::link('Calculate Win', Yii::app()->createUrl('cron/calculatewin')); ?></li>
+                        
                     </ul>
                     <div class="adminContentWrapper">
                         <?php echo $content; ?>

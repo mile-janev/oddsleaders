@@ -89,6 +89,8 @@ class CronController extends Controller
                         {
                             $ticketFinished = false;
                         } else {
+                            $game->stack_id = NULL;
+                            $game->score = $game->stack->result;
                             $game->status = $status;
                             $game->update();
                             if ($status == 2) {

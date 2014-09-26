@@ -57,7 +57,7 @@
         
         <div class="row">
 		<?php echo $form->labelEx($model,'score'); ?>
-		<?php echo $form->textField($model,'score',array('size'=>16,'maxlength'=>64)); ?>
+		<?php echo $form->textArea($model,'score',array('class'=>'coefficients-textarea')); ?>
 		<?php echo $form->error($model,'score'); ?>
 	</div>
         

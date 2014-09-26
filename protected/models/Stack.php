@@ -31,7 +31,7 @@ class Stack extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tournament_id', 'required'),
+			array('tournament_id,opponent,start,data', 'required'),
                         array('code', 'numerical', 'integerOnly'=>true),
 			array('opponent', 'length', 'max'=>256),
 			array('tournament_id', 'length', 'max'=>10),

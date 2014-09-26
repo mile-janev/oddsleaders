@@ -70,6 +70,11 @@ class OddsClass {
         return $user->conto;
     }
     
+    public static function codeGenerator($tournament)
+    {
+        return $tournament->sport->id.$tournament->id.mt_rand(100000, 999999);
+    }
+    
 }
 
 ?>

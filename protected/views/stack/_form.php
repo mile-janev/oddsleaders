@@ -19,46 +19,51 @@
 
 	<?php echo $form->errorSummary($model); ?>
         
-        <div class="row">
-		<?php echo $form->labelEx($model,'code'); ?>
-		<?php echo $form->textField($model,'code',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'code'); ?>
-	</div>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'opponent'); ?>
 		<?php echo $form->textField($model,'opponent',array('size'=>60,'maxlength'=>256)); ?>
 		<?php echo $form->error($model,'opponent'); ?>
 	</div>
 
-	<div class="row">
+        <div class="row">
+                <div id="dateValue" style="display: none"><?php echo ($model->start) ? date("Y-m-d H:i:s", $model->start) : "" ?></div>
 		<?php echo $form->labelEx($model,'start'); ?>
-		<?php echo $form->textField($model,'start'); ?>
+		<?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                    $this->widget('CJuiDateTimePicker',array(
+                        'model'=>$model, //Model object
+                        'mode'=>'datetime', //use "time","date" or "datetime" (default)
+                        'attribute'=>'start',//attribute name
+                        'language'=>'mk',
+                        'options'=>array(
+                            'showSecond'=>true,
+                            'dateFormat'=>'yy-mm-dd',
+                            'timeFormat'=>'hh:mm:ss',
+                        ) // jquery plugin options
+                    ));
+                ?>
 		<?php echo $form->error($model,'start'); ?>
 	</div>
 
 	<div class="row">
+                <?php $coefficients = '{"match":{"label":"Match","1":"1,0","x":"1,0","2":"1,0"},"double-chance":{"label":"Double Chance","1x":"1,0","x2":"1,0"},"how-many-goals":{"label":"How many goals","0-2":"1,0","3+":"1,0"}}'; ?>
 		<?php echo $form->labelEx($model,'data'); ?>
-		<?php echo $form->textArea($model,'data',array('class'=>'coefficients-textarea')); ?>
+		<?php echo $form->textArea($model,'data',array('class'=>'coefficients-textarea','value' => Oddsleaders::pretty_print($coefficients))); ?>
 		<?php echo $form->error($model,'data'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'tournament_id'); ?>
-		<?php echo $form->textField($model,'tournament_id',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'tournament_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-		<?php echo $form->error($model,'active'); ?>
 	</div>
         
         <div class="row">
-		<?php echo $form->labelEx($model,'bet_count'); ?>
-		<?php echo $form->textField($model,'bet_count'); ?>
-		<?php echo $form->error($model,'bet_count'); ?>
+            <br />
+                <div class="note">Example: {"final":{"team1":3,"team2":1}}</div>
+		<?php echo $form->labelEx($model,'result'); ?>
+		<?php echo $form->textArea($model,'result',array('class'=>'coefficients-textarea')); ?>
+		<?php echo $form->error($model,'result'); ?>
+	</div>
+    
+	<div class="row">
+                <?php $opts = CHtml::listData($allTournaments,'id','name'); ?>
+		<?php echo $form->labelEx($model,'tournament_id'); ?>
+		<?php echo $form->dropDownList($model,'tournament_id',$opts); ?>
+		<?php echo $form->error($model,'tournament_id'); ?>
 	</div>
 
 	<div class="row buttons">
@@ -68,3 +73,8 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#Stack_start").val($("#dateValue").html());
+})
+</script>

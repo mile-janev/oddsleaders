@@ -74,12 +74,23 @@ class StackController extends Controller
 		if(isset($_POST['Stack']))
 		{
 			$model->attributes=$_POST['Stack'];
+                        
+                        $tournament = Tournament::model()->findByPk($_POST['Stack']['tournament_id']);
+                        $model->start = strtotime($_POST['Stack']['start']);
+                        $model->code = OddsClass::codeGenerator($tournament);
+                        $model->active = 1;
+                        $model->data = json_encode(json_decode($model->data)); //This is maked because pretty_print destroy string in area
+                        
+                        $tournament = $_POST['Stack']['tournament_id'];
+                        
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-
+                
+                $allTournaments = Tournament::model()->findAll();
 		$this->render('create',array(
 			'model'=>$model,
+                        'allTournaments'=>$allTournaments
 		));
 	}
 
@@ -101,14 +112,18 @@ class StackController extends Controller
 		{
 			$model->attributes=$_POST['Stack'];
                         $model->data = json_encode(json_decode($model->data)); //This is maked because pretty_print destroy string in area
+                        $model->start = strtotime($_POST['Stack']['start']);
+                        
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
                 
                 $model->data = Oddsleaders::pretty_print($model->data);
+                $allTournaments = Tournament::model()->findAll();
                 
 		$this->render('update',array(
 			'model'=>$model,
+                        'allTournaments'=>$allTournaments
 		));
 	}
 
