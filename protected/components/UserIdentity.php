@@ -19,7 +19,6 @@ class UserIdentity extends CUserIdentity
 	public function authenticate()
 	{
                 $user = User::model()->findByAttributes(array('username' => $this->username));
-                $bcrypt = new Bcrypt();
                 
 		if(!isset($user->username))
                 {
@@ -39,7 +38,7 @@ class UserIdentity extends CUserIdentity
                 }
 		else
                 {
-                    if(!$bcrypt->verify($this->password, $user->password))
+                    if(sha1($this->password) != $user->password)
                     {
                         $this->errorCode=self::ERROR_PASSWORD_INVALID;
                     }

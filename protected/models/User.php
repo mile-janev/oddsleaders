@@ -17,13 +17,12 @@ class User extends CActiveRecord
 {
     public $password_repeat;
     
-    public function beforeSave() { // 06adb4cbaa2eabbc41f8f2af3b095bf65d67d7b8
+    public function beforeSave() {
             if ($this->isNewRecord) {
                 $this->date_created = new CDbExpression('NOW()');
             }
             
-            $bcrypt = new Bcrypt();
-            $this->password = $bcrypt->hash($this->password);
+            $this->password = sha1($this->password);
 
             return parent::beforeSave();
         }
