@@ -28,19 +28,23 @@
         <div class="row">
                 <div id="dateValue" style="display: none"><?php echo ($model->start) ? date("Y-m-d H:i:s", $model->start) : "" ?></div>
 		<?php echo $form->labelEx($model,'start'); ?>
-		<?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
-                    $this->widget('CJuiDateTimePicker',array(
-                        'model'=>$model, //Model object
-                        'mode'=>'datetime', //use "time","date" or "datetime" (default)
-                        'attribute'=>'start',//attribute name
-                        'language'=>'mk',
-                        'options'=>array(
-                            'showSecond'=>true,
-                            'dateFormat'=>'yy-mm-dd',
-                            'timeFormat'=>'hh:mm:ss',
-                        ) // jquery plugin options
-                    ));
-                ?>
+                <?php if($model->isNewRecord) { ?>
+                    <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                        $this->widget('CJuiDateTimePicker',array(
+                            'model'=>$model, //Model object
+                            'mode'=>'datetime', //use "time","date" or "datetime" (default)
+                            'attribute'=>'start',//attribute name
+                            'language'=>'mk',
+                            'options'=>array(
+                                'showSecond'=>true,
+                                'dateFormat'=>'yy-mm-dd',
+                                'timeFormat'=>'hh:mm:ss',
+                            ) // jquery plugin options
+                        ));
+                    ?>
+                <?php } else { ?>
+                    <?php echo $form->textField($model,'start',array('size'=>60,'maxlength'=>256)); ?>
+                <?php } ?>
 		<?php echo $form->error($model,'start'); ?>
 	</div>
 
