@@ -27,6 +27,12 @@
             $script->registerScriptFile($baseUrl . '/js/jquery-cookie/jquery.cookie.js');
         ?>
 
+        <?php
+            if($_SERVER['SERVER_NAME'] == 'oddsleaders.com' || $_SERVER['SERVER_NAME'] == 'www.oddsleaders.com'){
+                include_once 'google-analytics.php';
+            }
+        ?>
+        
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
     <body>
