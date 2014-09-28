@@ -44,8 +44,8 @@
                         <li class="<?php echo ($controllerAction=='stack/admintopmatches') ? "active" : "" ?>"><?php echo CHtml::link('Top Matches', Yii::app()->createUrl('stack/admintopmatches')); ?></li>
                         <li class="<?php echo ($controllerAction=='user/admin') ? "active" : "" ?>"><?php echo CHtml::link('User', Yii::app()->createUrl('user/admin')); ?></li>
                         <li class="<?php echo ($controllerAction=='history/admin') ? "active" : "" ?>"><?php echo CHtml::link('Month History', Yii::app()->createUrl('history/admin')); ?></li>
-                        <li class="<?php echo ($controllerAction=='cron/calculatewin') ? "active" : "" ?>"><?php echo CHtml::link('Calculate Win', Yii::app()->createUrl('cron/calculatewin')); ?></li>
-                        
+                        <li class="<?php echo ($controllerAction=='cron/calculatewin') ? "active" : "" ?>"><?php echo CHtml::link('Check Tickets', Yii::app()->createUrl('cron/calculatewin')); ?></li>
+                        <li class="<?php echo ($controllerAction=='cron/newmonth') ? "active" : "" ?>"><?php echo CHtml::link('Cron Month', Yii::app()->createUrl('cron/newmonth')); ?></li>
                     </ul>
                     <div class="adminContentWrapper">
                         <?php echo $content; ?>

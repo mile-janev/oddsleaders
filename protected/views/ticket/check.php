@@ -20,20 +20,16 @@ $this->breadcrumbs=array(
 		</tr>
 		<?php foreach ($model as $key => $value) { 
 			$result = '';
-                        if ($value->stack) {
-                            $stack_res = json_decode($value->stack->result, true);
-                        } else {
-                            $stack_res = json_decode($value->score, true);
-                        }
+                        $stack_res = json_decode($value->score, true);
                         
 			$game_type = array('match' => 'Final Score');	
 			if(isset($stack_res))
 				$result = $stack_res['final']['team1'].':'.$stack_res['final']['team2'];
 		?>
 		<tr >
-			<td><?php echo ($value->stack) ? date('d-m-y H:i', $value->stack->start) : date('d-m-y H:i', $value->start); ?></td>
-			<td><?php echo ($value->stack) ? $value->stack->opponent : $value->opponent; ?> </td>
-			<td><?=$result;?> </td>
+			<td><?=date('d-m-y H:i', $value->start);?></td>
+			<td><?=$value->opponent;?> </td>
+			<td><?php echo ($result) ? $result : "Not finished"; ?> </td>
 			<td><?=$value->type;?><i class="hint" data-title="<?=$game_type[$value->game_type];?>">?</i></td>
 			<td><?=$value->odd;?></td>
 			<td class="<?=($value->status != '0') ? ($value->status == '1') ? 'win' : 'lose' : '';?>"><?=($value->status != '0') ? ($value->status == '1') ? 'Win' : 'Lose' : 'Not finished';?></td>
