@@ -92,6 +92,8 @@ class CronController extends Controller
                             $game->stack_id = NULL;
                             $game->score = $game->stack->result;
                             $game->status = $status;
+                            $game->opponent = $game->stack->opponent;
+                            $game->start = $game->stack->start;
                             $game->update();
                             if ($status == 2) {
                                 $tickedWinned = 2;

@@ -48,7 +48,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
                 'code',
 		'opponent',
-		'start',
+                array(
+                    'name'=>'start',
+                    'value'=>'date("Y-m-d H:i:s", $data->start)',
+                    'sortable'=>TRUE,
+                    'type'=>'raw'
+                ),
 		'tournament_id',
 		'bet_count',
 		'active',

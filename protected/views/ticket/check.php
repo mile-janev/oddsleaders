@@ -20,27 +20,19 @@ $this->breadcrumbs=array(
 		</tr>
 		<?php foreach ($model as $key => $value) { 
 			$result = '';
-			$stack_res = json_decode($value->stack->result, true);
-			$game_type = array(
-							'match' => 'Final Score',
-							'handicap' => 'Handicap (0-1)',
-							'half-time' => 'Half Time Winner',
-							'first-goal' => 'Who score first goal',
-							'double-chance' => 'Double Chance',
-							'how-many-goals' => 'How many goals',
-							'correct-score' => 'Correct Score',
-							'goals' => 'Goals',
-							'time-first-goal' => 'Time first goal',
-							'half-full-time' => 'Half time - Full time winner',
-							'when-first-goal' => 'When first goal is scored',
-							'time-first-goal' => 'Time when first goal is scorred'
-			);	
+                        if ($value->stack) {
+                            $stack_res = json_decode($value->stack->result, true);
+                        } else {
+                            $stack_res = json_decode($value->score, true);
+                        }
+                        
+			$game_type = array('match' => 'Final Score');	
 			if(isset($stack_res))
-				$result = $stack_res['final']['team1'].':'.$stack_res['final']['team2'].' ('.$stack_res['half-time']['team1'].':'.$stack_res['half-time']['team2'].')';
+				$result = $stack_res['final']['team1'].':'.$stack_res['final']['team2'];
 		?>
 		<tr >
-			<td><?=date('d-m-y H:i', $value->stack->start);?></td>
-			<td><?=$value->stack->opponent;?> </td>
+			<td><?php echo ($value->stack) ? date('d-m-y H:i', $value->stack->start) : date('d-m-y H:i', $value->start); ?></td>
+			<td><?php echo ($value->stack) ? $value->stack->opponent : $value->opponent; ?> </td>
 			<td><?=$result;?> </td>
 			<td><?=$value->type;?><i class="hint" data-title="<?=$game_type[$value->game_type];?>">?</i></td>
 			<td><?=$value->odd;?></td>
