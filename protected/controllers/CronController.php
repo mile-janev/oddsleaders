@@ -78,37 +78,37 @@ class CronController extends Controller
          */
         public function actionCalculatewin()
         {
-            $tickets = Ticket::model()->findAll();
-            foreach ($tickets as $ticket) {
-                $ticketFinished = true;
-                $tickedWinned = 1;
-                foreach ($ticket->games as $game) {
-                    if ($game->status == 0) {
-                        $status = $this->calculateGame($game);
-                        if ($status == 0) 
-                        {
-                            $ticketFinished = false;
-                        } else {
-                            $game->stack_id = NULL;
-                            $game->score = $game->stack->result;
-                            $game->status = $status;
-                            $game->opponent = $game->stack->opponent;
-                            $game->start = $game->stack->start;
-                            $game->update();
-                            if ($status == 2) {
-                                $tickedWinned = 2;
+            $tickets = Ticket::model()->findAllByAttributes(array("status"=>0));
+            if ($tickets) {
+                foreach ($tickets as $ticket) {
+                    $ticketFinished = true;
+                    $tickedWinned = 1;
+                    foreach ($ticket->games as $game) {
+                        if ($game->status == 0) {
+                            $status = $this->calculateGame($game);
+                            if ($status == 0) 
+                            {
+                                $ticketFinished = false;
+                            } else {
+                                $game->stack_id = NULL;
+                                $game->score = $game->stack->result;
+                                $game->status = $status;
+                                $game->update();
+                                if ($status == 2) {
+                                    $tickedWinned = 2;
+                                }
                             }
                         }
                     }
-                }
-                if ($ticketFinished) {
-                    $ticket->status = $tickedWinned;
-                    $ticket->update();
-                    if ($tickedWinned==1) {
-                        $user = User::model()->findByPk($ticket->user_id);
-                        $user->conto += $ticket->earning;
-                        $user->conto_all += $ticket->earning;
-                        $user->update();
+                    if ($ticketFinished) {
+                        $ticket->status = $tickedWinned;
+                        $ticket->update();
+                        if ($tickedWinned==1) {
+                            $user = User::model()->findByPk($ticket->user_id);
+                            $user->conto += $ticket->earning;
+                            $user->conto_all += $ticket->earning;
+                            $user->update();
+                        }
                     }
                 }
             }
@@ -126,7 +126,7 @@ class CronController extends Controller
             $status = 0;
             $data = json_decode($game->stack->data);
             $result = json_decode($game->stack->result,true);
-
+            
             if (isset($result) AND $result != '') { //If isset then game is finished.
                 if ($game->stack->tournament->sport->name == 'Football') {
                     switch ($game->game_type) {

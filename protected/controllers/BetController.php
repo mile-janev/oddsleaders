@@ -232,6 +232,7 @@ class BetController extends Controller
                             $ticketSaved = $ticket->save();
 
                             $user->conto -= $_POST['stake'];
+                            $user->conto_all -= $_POST['stake'];
                             $user->update();
 
                             if ($ticketSaved) {
@@ -248,6 +249,8 @@ class BetController extends Controller
                                             $game->odd = OddsClass::formatNumber($gameArray[2]);
                                             $game->ticket_id = $ticket->id;
                                             $game->stack_id = $stack->id;
+                                            $game->opponent = $stack->opponent;
+                                            $game->start = $stack->start;
                                             $gameSaved = $game->save();
 
                                             if ($gameSaved) {
