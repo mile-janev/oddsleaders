@@ -51,7 +51,11 @@
 	<div class="row">
                 <?php $coefficients = '{"match":{"label":"Match","1":"1,0","x":"1,0","2":"1,0"},"double-chance":{"label":"Double Chance","1x":"1,0","x2":"1,0"},"how-many-goals":{"label":"How many goals","0-2":"1,0","3+":"1,0"}}'; ?>
 		<?php echo $form->labelEx($model,'data'); ?>
+            <?php if($model->isNewRecord) { ?>
 		<?php echo $form->textArea($model,'data',array('class'=>'coefficients-textarea','value' => Oddsleaders::pretty_print($coefficients))); ?>
+            <?php } else { ?>
+                <?php echo $form->textArea($model,'data',array('class'=>'coefficients-textarea')); ?>
+            <?php } ?>
 		<?php echo $form->error($model,'data'); ?>
 	</div>
         
