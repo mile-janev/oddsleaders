@@ -174,7 +174,7 @@ $(document).ready(function() {
         },
         {
             "teams": $('.chart_3_guest').html() + " win",
-            "procent": $('.chart_1_1').attr('data'),
+            "procent": $('.chart_3_3').attr('data'),
             "short": "2"
         }
     ];
