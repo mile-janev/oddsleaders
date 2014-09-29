@@ -38,7 +38,7 @@ class UserIdentity extends CUserIdentity
                 }
 		else
                 {
-                    if(sha1($this->password) != $user->password)
+                    if($user->password!==sha1($this->password))
                     {
                         $this->errorCode=self::ERROR_PASSWORD_INVALID;
                     }
