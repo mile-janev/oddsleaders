@@ -50,7 +50,14 @@ class LoginForm extends CFormModel
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
 			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect username or password.');
+                        {
+                            $this->addError('all_errors','Погрешна е-пошта или лозинка.');
+                        }
+                        else
+                        {
+                            $duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
+                            Yii::app()->user->login($this->_identity,$duration);
+                        }
 		}
 	}
 
