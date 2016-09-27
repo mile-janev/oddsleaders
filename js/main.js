@@ -84,7 +84,7 @@ $(document).ready(function() {
  *  @return 
  * ---------------------------------------------------------------------------------------------------------------------
 */
-    $('.more').live('click', function() {
+    $('.more').on('click', function() {
         $(this).parent("div").next().slideToggle();
     });
 /*
@@ -152,7 +152,7 @@ $(document).ready(function() {
  *  @return 
  * ---------------------------------------------------------------------------------------------------------------------
 */
-    $(".clickable").live('click', function(){
+    $(".clickable").on('click', function(){
         var gameCode = $(this).attr('rel');
         var league_btn = $(this).attr('id');
         
@@ -264,7 +264,7 @@ $(document).ready(function() {
  *  @return html
  * ---------------------------------------------------------------------------------------------------------------------
 */  
-    $('.tipped').live('click', function(){
+    $('.tipped').on('click', function(){
         id = $(this).attr('rel');
 
         removeGameFromCookie(id);
@@ -367,7 +367,7 @@ $(document).ready(function() {
  *  @return 
  * ---------------------------------------------------------------------------------------------------------------------
 */
-    $('.clear').live('click', function(){
+    $('.clear').on('click', function(){
         $('.match-slip').each(function(){
             $(this).html('');
         });

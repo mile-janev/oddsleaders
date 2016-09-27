@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    $('.loaded').live('click', function(){
+    $('.loaded').on('click', function(){
         id = $(this).attr('data-id');
 
         setRemoveMyLeagues(id);
@@ -11,7 +11,7 @@
         return false;
     });
 
-    $('.load').live('click', function()
+    $('.load').on('click', function()
     {    
         id = $(this).attr('data-id');
 

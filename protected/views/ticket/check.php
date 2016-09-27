@@ -48,7 +48,7 @@ $this->breadcrumbs=array(
 
 </div>
 <script type="text/javascript">
-	$('#copy').live('click', function(){
+	$('#copy').on('click', function(){
 		text = $('#link').val();
 		window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
 	});
